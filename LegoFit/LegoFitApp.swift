@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct LegoFitApp: App {
@@ -13,5 +14,6 @@ struct LegoFitApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Exercise.self)
     }
 }

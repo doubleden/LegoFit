@@ -11,6 +11,7 @@
 		05BC717F2C0646F400524C58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC717E2C0646F400524C58 /* ContentView.swift */; };
 		05BC71812C0646F500524C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71802C0646F500524C58 /* Assets.xcassets */; };
 		05BC71842C0646F500524C58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71832C0646F500524C58 /* Preview Assets.xcassets */; };
+		05BC718C2C0648CC00524C58 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC718B2C0648CC00524C58 /* Exercise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		05BC717E2C0646F400524C58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		05BC71802C0646F500524C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BC71832C0646F500524C58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		05BC718B2C0648CC00524C58 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				05BC717C2C0646F400524C58 /* LegoFitApp.swift */,
 				05BC717E2C0646F400524C58 /* ContentView.swift */,
+				05BC718A2C06470600524C58 /* Models */,
 				05BC71802C0646F500524C58 /* Assets.xcassets */,
 				05BC71822C0646F500524C58 /* Preview Content */,
 			);
@@ -65,6 +68,14 @@
 				05BC71832C0646F500524C58 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		05BC718A2C06470600524C58 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05BC718B2C0648CC00524C58 /* Exercise.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			files = (
 				05BC717F2C0646F400524C58 /* ContentView.swift in Sources */,
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
+				05BC718C2C0648CC00524C58 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
