@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 enum API {
-    case api
+    case exercises
     
     var url: URL {
         switch self {
-        case .api:
+        case .exercises:
             URL(string: "http://127.0.0.1:8080/trainings")!
         }
     }

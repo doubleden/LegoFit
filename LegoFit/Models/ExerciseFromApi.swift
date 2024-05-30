@@ -7,10 +7,10 @@
 
 import SwiftData
 
-struct ExerciseFromApi: Decodable {
+struct ExerciseFromApi: Decodable, Identifiable {
     let id: Int
     let category: String
     let name: String
-    let definition: String
-    let photo: String
+    let description: String
+    let image: String
 }

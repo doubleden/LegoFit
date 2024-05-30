@@ -9,8 +9,17 @@ import SwiftUI
 
 struct CreateWorkoutView: View {
     
+    let createWorkoutVM = CreateWorkoutViewViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(createWorkoutVM.exercises) { exercise in
+                Text(exercise.name)
+            }
+        }
+        .onAppear {
+            createWorkoutVM.fetchExercises()
+        }
     }
 }
 
