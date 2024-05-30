@@ -7,20 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */; };
+		0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A42C0900CB0007F632 /* NetworkManager.swift */; };
+		0525D3A82C0901FE0007F632 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0525D3A72C0901FE0007F632 /* Alamofire */; };
+		0525D3AA2C0901FE0007F632 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 0525D3A92C0901FE0007F632 /* AlamofireDynamic */; };
+		0525D3AC2C0908E10007F632 /* ExercisesFromDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AB2C0908E10007F632 /* ExercisesFromDataBase.swift */; };
+		0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */; };
 		05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC717C2C0646F400524C58 /* LegoFitApp.swift */; };
 		05BC717F2C0646F400524C58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC717E2C0646F400524C58 /* ContentView.swift */; };
 		05BC71812C0646F500524C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71802C0646F500524C58 /* Assets.xcassets */; };
 		05BC71842C0646F500524C58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71832C0646F500524C58 /* Preview Assets.xcassets */; };
-		05BC718C2C0648CC00524C58 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC718B2C0648CC00524C58 /* Exercise.swift */; };
+		05BC718C2C0648CC00524C58 /* ExerciseFromApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC718B2C0648CC00524C58 /* ExerciseFromApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutView.swift; sourceTree = "<group>"; };
+		0525D3A42C0900CB0007F632 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0525D3AB2C0908E10007F632 /* ExercisesFromDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesFromDataBase.swift; sourceTree = "<group>"; };
+		0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutViewViewModel.swift; sourceTree = "<group>"; };
 		05BC71792C0646F400524C58 /* LegoFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BC717C2C0646F400524C58 /* LegoFitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegoFitApp.swift; sourceTree = "<group>"; };
 		05BC717E2C0646F400524C58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		05BC71802C0646F500524C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BC71832C0646F500524C58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		05BC718B2C0648CC00524C58 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		05BC718B2C0648CC00524C58 /* ExerciseFromApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseFromApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,12 +38,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0525D3A82C0901FE0007F632 /* Alamofire in Frameworks */,
+				0525D3AA2C0901FE0007F632 /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0525D39F2C08F9840007F632 /* CreateWorkoutView */ = {
+			isa = PBXGroup;
+			children = (
+				0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */,
+				0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */,
+			);
+			path = CreateWorkoutView;
+			sourceTree = "<group>";
+		};
 		05BC71702C0646F400524C58 = {
 			isa = PBXGroup;
 			children = (
@@ -55,7 +76,9 @@
 			children = (
 				05BC717C2C0646F400524C58 /* LegoFitApp.swift */,
 				05BC717E2C0646F400524C58 /* ContentView.swift */,
+				0525D39F2C08F9840007F632 /* CreateWorkoutView */,
 				05BC718A2C06470600524C58 /* Models */,
+				05BC718D2C08E9FA00524C58 /* Services */,
 				05BC71802C0646F500524C58 /* Assets.xcassets */,
 				05BC71822C0646F500524C58 /* Preview Content */,
 			);
@@ -73,9 +96,18 @@
 		05BC718A2C06470600524C58 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				05BC718B2C0648CC00524C58 /* Exercise.swift */,
+				05BC718B2C0648CC00524C58 /* ExerciseFromApi.swift */,
+				0525D3AB2C0908E10007F632 /* ExercisesFromDataBase.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		05BC718D2C08E9FA00524C58 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0525D3A42C0900CB0007F632 /* NetworkManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +126,10 @@
 			dependencies = (
 			);
 			name = LegoFit;
+			packageProductDependencies = (
+				0525D3A72C0901FE0007F632 /* Alamofire */,
+				0525D3A92C0901FE0007F632 /* AlamofireDynamic */,
+			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +158,9 @@
 				Base,
 			);
 			mainGroup = 05BC71702C0646F400524C58;
+			packageReferences = (
+				0525D3A62C0901FE0007F632 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -148,9 +187,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0525D3AC2C0908E10007F632 /* ExercisesFromDataBase.swift in Sources */,
+				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
+				0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */,
 				05BC717F2C0646F400524C58 /* ContentView.swift in Sources */,
+				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
-				05BC718C2C0648CC00524C58 /* Exercise.swift in Sources */,
+				05BC718C2C0648CC00524C58 /* ExerciseFromApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +333,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,9 +342,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DenisDenisov.LegoFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,8 +366,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,9 +375,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DenisDenisov.LegoFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -356,6 +407,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0525D3A62C0901FE0007F632 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0525D3A72C0901FE0007F632 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0525D3A62C0901FE0007F632 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0525D3A92C0901FE0007F632 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0525D3A62C0901FE0007F632 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 05BC71712C0646F400524C58 /* Project object */;
 }

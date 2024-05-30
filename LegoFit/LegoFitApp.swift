@@ -14,6 +14,5 @@ struct LegoFitApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Exercise.self)
     }
 }
