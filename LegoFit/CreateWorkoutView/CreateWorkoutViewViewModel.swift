@@ -8,6 +8,7 @@
 
 import Observation
 import SwiftUI
+import SwiftData
 
 @Observable
 final class CreateWorkoutViewViewModel {
@@ -19,6 +20,7 @@ final class CreateWorkoutViewViewModel {
     var errorShowAlert = false
     
     private let networkManager = NetworkManager.shared
+    private let storageManager = StorageManager.shared
         
     func fetchExercises() {
         isLoading = true
@@ -35,5 +37,13 @@ final class CreateWorkoutViewViewModel {
                 errorShowAlert.toggle()
             }
         }
+    }
+    
+    func addToWorkout(exerciseFromApi: ExerciseFromApi) {
+        
+    }
+    
+    func saveWorkout() {
+        
     }
 }

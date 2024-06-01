@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
     
-    @Environment(\.modelContext) private var modelContext
     let exercise: ExerciseFromApi
     
     var body: some View {

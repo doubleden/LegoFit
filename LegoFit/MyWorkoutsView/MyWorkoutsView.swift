@@ -14,8 +14,10 @@ struct MyWorkoutsView: View {
     var body: some View {
         NavigationStack {
             List(workouts, id: \.self) { workout in
-                Text(workout.name)
-                
+                Button(workout.name) {}
+                    .swipeActions(allowsFullSwipe: true) {
+                        
+                    }
             }
             .navigationTitle("My Workouts")
             .toolbar {
