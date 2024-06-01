@@ -10,15 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            CreateWorkoutView(createWorkoutVM: CreateWorkoutViewViewModel())
-                .tabItem {
-                    
-                    Text("Create")
-                }
-            
             MyWorkoutsView()
                 .tabItem {
-                    
+                    Image(systemName: "dumbbell")
                     Text("My workouts")
                 }
         }

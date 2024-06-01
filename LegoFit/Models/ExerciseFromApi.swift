@@ -13,6 +13,6 @@ struct ExerciseFromApi: Decodable, Identifiable {
     let image: String
     
     static func getExercise() -> ExerciseFromApi {
-        ExerciseFromApi(id: 2, category: "legs", name: "De", description: "jnsdn", image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg")
+        ExerciseFromApi(id: 2, category: "legs", name: "Жим ног", description: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", image: "http://127.0.0.1:8080/images/leg_press.png")
     }
 }

@@ -12,10 +12,9 @@ struct CreateWorkoutDetailsView: View {
     @Environment(\.modelContext) private var modelContext
     let exercise: ExerciseFromApi
     
-    //TODO: Нужно сделать сохранение в базу данных
     var body: some View {
         VStack {
-            
+            Text(" ")
         }
     }
 }

@@ -17,6 +17,15 @@ struct MyWorkoutsView: View {
                 Text(workout.name)
                 
             }
+            .navigationTitle("My Workouts")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: CreateWorkoutView()) {
+                        Image(systemName: "plus")
+                            .imageScale(.large)
+                    }
+                }
+            }
         }
     }
 }
