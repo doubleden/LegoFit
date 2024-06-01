@@ -13,28 +13,33 @@ struct CreateWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            ZStack {
+                List(createWorkoutVM.exercises) { exercise in
+                    NavigationLink(
+                        exercise.name,
+                        destination:CreateWorkoutDetailsView(
+                            exercise: exercise
+                        )
+                    )
+                        
+                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                        Button("Add", action: {
+                            //TODO: Логика по добавлению упражнения в тренировку
+                        })
+                        .tint(.green)
+                    }
+                }
+                .refreshable {
+                    createWorkoutVM.fetchExercises()
+                }
+                    
                 if createWorkoutVM.isLoading {
                     LoadingView()
                         .alert(createWorkoutVM.errorMessage ?? "",
-                               isPresented: $createWorkoutVM.showAlert,
-                               actions: {}
+                                isPresented: $createWorkoutVM.errorShowAlert,
+                                actions: {}
                         )
-                    
-                } else {
-                    List(createWorkoutVM.exercises) { exercise in
-                        NavigationLink(exercise.name, destination: CreateWorkoutDetailsView(exercise: exercise))
-                            
-                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                Button("Add", action: {
-                                    //TODO: Логика по добавлению упражнения в тренировку
-                                })
-                                    .tint(.green)
-                            }
-                    }
-                    
                 }
-                
             }
             .navigationTitle("Exercises")
             .toolbar {

@@ -7,6 +7,7 @@
 
 
 import Observation
+import SwiftUI
 
 @Observable
 final class CreateWorkoutViewViewModel {
@@ -15,13 +16,13 @@ final class CreateWorkoutViewViewModel {
     var isLoading = true
     
     var errorMessage: String?
-    var showAlert = false
+    var errorShowAlert = false
     
     private let networkManager = NetworkManager.shared
         
     func fetchExercises() {
-        errorMessage = nil
         isLoading = true
+        errorMessage = nil
         
         networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
             switch result {
@@ -29,8 +30,9 @@ final class CreateWorkoutViewViewModel {
                 self.exercises = exercises
                 isLoading = false
             case .failure(let error):
+                exercises = []
                 errorMessage = error.localizedDescription
-                showAlert.toggle()
+                errorShowAlert.toggle()
             }
         }
     }
