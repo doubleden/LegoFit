@@ -14,8 +14,9 @@ struct ExerciseImageView: View {
     var body: some View {
         KFImage(URL(string: imageUrl))
             .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 250 , height: 250)
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 250)
+            .clipShape(.rect(cornerRadius: 20))
     }
 }
 
