@@ -8,21 +8,31 @@
 import SwiftUI
 
 struct CreateWorkoutView: View {
-    
-    let createWorkoutVM = CreateWorkoutViewViewModel()
+    @Bindable var createWorkoutVM: CreateWorkoutViewViewModel
     
     var body: some View {
         NavigationStack {
-            List(createWorkoutVM.exercises) { exercise in
-                Text(exercise.name)
+            VStack {
+                if createWorkoutVM.isLoading {
+                    LoadingView()
+                } else {
+                    List(createWorkoutVM.exercises) { exercise in
+                        NavigationLink(exercise.name, destination: CreateWorkoutDetailsView(exercise: exercise))
+                    }
+                }
             }
-        }
-        .onAppear {
-            createWorkoutVM.fetchExercises()
+            .navigationTitle("Exercises")
+            .onAppear {
+                createWorkoutVM.fetchExercises()
+            }
+            .alert(createWorkoutVM.errorMessage ?? "",
+                   isPresented: $createWorkoutVM.showAlert,
+                   actions: {} 
+            )
         }
     }
 }
 
 #Preview {
-    CreateWorkoutView()
+    CreateWorkoutView(createWorkoutVM: CreateWorkoutViewViewModel())
 }

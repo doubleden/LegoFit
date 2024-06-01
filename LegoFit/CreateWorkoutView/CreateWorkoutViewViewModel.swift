@@ -5,30 +5,32 @@
 //  Created by Denis Denisov on 30/5/24.
 //
 
-import Foundation
+
 import Observation
-import Alamofire
 
 @Observable
 final class CreateWorkoutViewViewModel {
     
     var exercises: [ExerciseFromApi] = []
-    var isLoading: Bool = false
+    var isLoading = true
+    
     var errorMessage: String?
+    var showAlert = false
+    
+    private let networkManager = NetworkManager.shared
         
     func fetchExercises() {
-        isLoading = true
         errorMessage = nil
+        isLoading = true
         
-        AF.request(API.exercises.url)
-            .validate()
-            .responseDecodable(of: [ExerciseFromApi].self) { response in
-            self.isLoading = false
-            switch response.result {
+        networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
+            switch result {
             case .success(let exercises):
                 self.exercises = exercises
+                isLoading = false
             case .failure(let error):
-                self.errorMessage = error.localizedDescription
+                errorMessage = error.localizedDescription
+                showAlert.toggle()
             }
         }
     }
