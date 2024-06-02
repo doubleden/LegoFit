@@ -23,6 +23,7 @@
 		05BC71812C0646F500524C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71802C0646F500524C58 /* Assets.xcassets */; };
 		05BC71842C0646F500524C58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71832C0646F500524C58 /* Preview Assets.xcassets */; };
 		05BC718C2C0648CC00524C58 /* WorkoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC718B2C0648CC00524C58 /* WorkoutDTO.swift */; };
+		05D857312C0D014900DD77AC /* MyWorkoutsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857302C0D014900DD77AC /* MyWorkoutsDetailsView.swift */; };
 		05F87D282C0B6C0400AFB4CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 05F87D272C0B6C0400AFB4CA /* Kingfisher */; };
 		05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		05BC71802C0646F500524C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BC71832C0646F500524C58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05BC718B2C0648CC00524C58 /* WorkoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDTO.swift; sourceTree = "<group>"; };
+		05D857302C0D014900DD77AC /* MyWorkoutsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutsDetailsView.swift; sourceTree = "<group>"; };
 		05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */,
+				05D857302C0D014900DD77AC /* MyWorkoutsDetailsView.swift */,
 			);
 			path = MyWorkoutsView;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			files = (
 				0525D3AC2C0908E10007F632 /* Workout.swift in Sources */,
 				0555C5CC2C09F1D70090C252 /* UIActivityIndicatorRepresentation.swift in Sources */,
+				05D857312C0D014900DD77AC /* MyWorkoutsDetailsView.swift in Sources */,
 				0525D3B02C0912E10007F632 /* CreateWorkoutDetailsView.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
 				0555C5CA2C09F1240090C252 /* LoadingView.swift in Sources */,

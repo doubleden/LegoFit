@@ -24,6 +24,10 @@ final class Workout {
             exercises: item.exercises.map { Exercise(item: $0) }
         )
     }
+    
+    static func getWorkout() -> Workout {
+        Workout(name: "First", exercises: [Exercise.getExercise()])
+    }
 }
 
 @Model
@@ -62,5 +66,9 @@ final class Exercise {
             definition: item.description,
             photo: item.image
         )
+    }
+    
+    static func getExercise() -> Exercise {
+        Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png")
     }
 }

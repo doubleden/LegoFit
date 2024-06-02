@@ -8,21 +8,22 @@
 import SwiftData
 
 final class StorageManager {
-static let shared = StorageManager()
+    
+    static let shared = StorageManager()
 
-func save(workout: Workout, context: ModelContext) {
-    context.insert(workout)
-    do {
-        try context.save()
-    } catch {
-        print(error)
+    func save(workout: Workout, context: ModelContext) {
+        context.insert(workout)
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
     }
-}
 
-func delete(workout: Workout, context: ModelContext) {
-    context.delete(workout)
-}
+    func delete(workout: Workout, context: ModelContext) {
+        context.delete(workout)
+    }
 
-private init() {}
+    private init() {}
     
 }

@@ -62,6 +62,7 @@ struct CreateWorkoutView: View {
             
             .onDisappear {
                 //TODO: Логика по отмене создания тренировки
+                createWorkoutVM.cancelCrateWorkout()
             }
         }
     }

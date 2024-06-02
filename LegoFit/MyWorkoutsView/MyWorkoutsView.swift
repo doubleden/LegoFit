@@ -16,11 +16,7 @@ struct MyWorkoutsView: View {
         NavigationStack {
             List {
                 ForEach(workouts) { workout in
-                    Button("\(workout.name) \(workout.exercises.count.formatted())") {
-                        workout.exercises.forEach { exercise in
-                            print(exercise.name)
-                        }
-                    }
+                    NavigationLink(workout.name, destination: MyWorkoutsDetailsView(workout: workout))
                 }
                 .onDelete(perform: { indexSet in
                     deleteWorkout(indexSet)

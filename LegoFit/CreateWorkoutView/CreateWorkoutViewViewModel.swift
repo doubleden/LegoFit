@@ -7,7 +7,6 @@
 
 
 import Observation
-import SwiftUI
 import SwiftData
 
 @Observable
@@ -42,12 +41,15 @@ final class CreateWorkoutViewViewModel {
     
     func addToWorkout(exerciseDTO: ExerciseDTO) {
         workoutDTO.exercises.append(exerciseDTO)
-        print(workoutDTO.exercises.last?.name ?? " ")
     }
     
     func saveWorkout(modelContext: ModelContext) {
         let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
-        print(workout.exercises.last?.name ?? "")
+    }
+    
+    func cancelCrateWorkout() {
+        workoutDTO.name = ""
+        workoutDTO.exercises.removeAll()
     }
 }
