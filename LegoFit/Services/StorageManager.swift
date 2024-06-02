@@ -5,25 +5,24 @@
 //  Created by Denis Denisov on 31/5/24.
 //
 
-import SwiftUI
 import SwiftData
 
 final class StorageManager {
-    @Environment(\.modelContext) var modelContext
-    
-    static let shared = StorageManager()
-    
-    func save(workout: Workout) {
-        modelContext.insert(workout)
+static let shared = StorageManager()
+
+func save(workout: Workout, context: ModelContext) {
+    context.insert(workout)
+    do {
+        try context.save()
+    } catch {
+        print(error)
     }
+}
+
+func delete(workout: Workout, context: ModelContext) {
+    context.delete(workout)
+}
+
+private init() {}
     
-    func delete(workout: Workout) {
-        modelContext.delete(workout)
-    }
-    
-//    func edit(workout: Workout) {
-//        
-//    }
-    
-    private init() {}
 }

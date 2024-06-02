@@ -13,15 +13,21 @@ final class Workout {
     let name: String
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     
-    init(name: String = "", exercises: [Exercise] = []) {
+    init(name: String, exercises: [Exercise]) {
         self.name = name
         self.exercises = exercises
+    }
+    
+    convenience init(item: WorkoutDTO) {
+        self.init(
+            name: item.name,
+            exercises: item.exercises.map { Exercise(item: $0) }
+        )
     }
 }
 
 @Model
 final class Exercise {
-    let id: Int
     let category: String
     let name: String
     let definition: String
@@ -32,7 +38,6 @@ final class Exercise {
     var weight: Int
     
     init(
-        id: Int,
         category: String,
         name: String,
         definition: String,
@@ -41,7 +46,6 @@ final class Exercise {
         rep: Int = 0,
         weight: Int = 0
     ) {
-        self.id = id
         self.category = category
         self.name = name
         self.definition = definition
@@ -49,5 +53,14 @@ final class Exercise {
         self.set = set
         self.rep = rep
         self.weight = weight
+    }
+    
+    convenience init(item: ExerciseDTO) {
+        self.init(
+            category: item.category,
+            name: item.name,
+            definition: item.description,
+            photo: item.image
+        )
     }
 }

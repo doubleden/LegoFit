@@ -41,10 +41,10 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchExercises(from url: URL, completion: @escaping(Result<[ExerciseFromApi], AFError>) -> Void) {
+    func fetchExercises(from url: URL, completion: @escaping(Result<[ExerciseDTO], AFError>) -> Void) {
         AF.request(url)
             .validate()
-            .responseDecodable(of: [ExerciseFromApi].self) { response in
+            .responseDecodable(of: [ExerciseDTO].self) { response in
                 switch response.result {
                 case .success(let exercises):
                     completion(.success(exercises))

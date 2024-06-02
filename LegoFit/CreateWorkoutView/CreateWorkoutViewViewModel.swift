@@ -13,7 +13,8 @@ import SwiftData
 @Observable
 final class CreateWorkoutViewViewModel {
     
-    var exercises: [ExerciseFromApi] = []
+    var workoutDTO = WorkoutDTO()
+    var exercisesDTO: [ExerciseDTO] = []
     var isLoading = true
     
     var errorMessage: String?
@@ -29,21 +30,24 @@ final class CreateWorkoutViewViewModel {
         networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
             switch result {
             case .success(let exercises):
-                self.exercises = exercises
+                self.exercisesDTO = exercises
                 isLoading = false
             case .failure(let error):
-                exercises = []
+                exercisesDTO = []
                 errorMessage = error.localizedDescription
                 errorShowAlert.toggle()
             }
         }
     }
     
-    func addToWorkout(exerciseFromApi: ExerciseFromApi) {
-        
+    func addToWorkout(exerciseDTO: ExerciseDTO) {
+        workoutDTO.exercises.append(exerciseDTO)
+        print(workoutDTO.exercises.last?.name ?? " ")
     }
     
-    func saveWorkout() {
-        
+    func saveWorkout(modelContext: ModelContext) {
+        let workout = Workout(item: workoutDTO)
+        storageManager.save(workout: workout, context: modelContext)
+        print(workout.exercises.last?.name ?? "")
     }
 }

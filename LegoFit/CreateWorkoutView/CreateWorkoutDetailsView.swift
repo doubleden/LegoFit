@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
     
-    let exercise: ExerciseFromApi
+    let createWorkoutVM = CreateWorkoutViewViewModel()
+    let exercise: ExerciseDTO
     
     var body: some View {
         VStack(spacing: 10) {
@@ -23,7 +24,7 @@ struct CreateWorkoutDetailsView: View {
             
             Spacer()
             
-            Button("Add Exercise", action: {})
+            Button("Add Exercise", action: {createWorkoutVM.addToWorkout(exerciseDTO: exercise)})
                 .buttonStyle(.borderedProminent)
                 .tint(.green)
             
@@ -34,5 +35,5 @@ struct CreateWorkoutDetailsView: View {
 }
 
 #Preview {
-    CreateWorkoutDetailsView(exercise: ExerciseFromApi.getExercise())
+    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise())
 }
