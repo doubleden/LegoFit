@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
     
-    let createWorkoutVM = CreateWorkoutViewViewModel()
+    @Bindable var createWorkoutVM: CreateWorkoutViewViewModel
     let exercise: ExerciseDTO
     
     var body: some View {
@@ -35,5 +35,5 @@ struct CreateWorkoutDetailsView: View {
 }
 
 #Preview {
-    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise())
+    CreateWorkoutDetailsView(createWorkoutVM: CreateWorkoutViewViewModel(), exercise: ExerciseDTO.getExercise())
 }

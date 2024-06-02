@@ -44,6 +44,8 @@ final class CreateWorkoutViewViewModel {
     }
     
     func saveWorkout(modelContext: ModelContext) {
+        //TODO: Сделать валидацию для пустой тренировки
+        
         let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
     }
@@ -52,4 +54,7 @@ final class CreateWorkoutViewViewModel {
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
     }
+    
+    //TODO: Сделать функцию для добавления сет, реп, веса для упражнений и валидация
+    
 }

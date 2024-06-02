@@ -1,0 +1,27 @@
+//
+//  PreviewProviderSwiftData.swift
+//  LegoFit
+//
+//  Created by Denis Denisov on 2/6/24.
+//
+
+import Foundation
+import SwiftData
+
+@MainActor
+class DataController {
+    static let previewContainer: ModelContainer = {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: Workout.self, Exercise.self, configurations: config)
+
+            container.mainContext.insert(Workout.getWorkout())
+            container.mainContext.insert(Workout.getWorkout())
+            container.mainContext.insert(Workout.getWorkout())
+
+            return container
+        } catch {
+            fatalError("Failed to create model container for previewing: \(error.localizedDescription)")
+        }
+    }()
+}

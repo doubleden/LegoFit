@@ -44,4 +44,5 @@ struct MyWorkoutsView: View {
 
 #Preview {
     MyWorkoutsView()
+        .modelContainer(DataController.previewContainer)
 }

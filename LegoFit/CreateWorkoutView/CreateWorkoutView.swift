@@ -21,13 +21,15 @@ struct CreateWorkoutView: View {
                     NavigationLink(
                         exercise.name,
                         destination:CreateWorkoutDetailsView(
-                            exercise: exercise
+                            
+                            //TODO: При переходе на дитали и назад Тренировка сбрасывается надо сделать модальный переход. Это происходит из за функции .onDisapear
+                    
+                            createWorkoutVM: createWorkoutVM, exercise: exercise
                         )
                     )
                         
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button("Add", action: {
-                            //TODO: Логика по добавлению упражнения в тренировку
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                         })
                         .tint(.green)
@@ -49,9 +51,8 @@ struct CreateWorkoutView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save Workout", action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                        //TODO: Логика по сохранению тренировки
                         createWorkoutVM.saveWorkout(modelContext: modelContext)
+                        self.presentationMode.wrappedValue.dismiss()
                     })
                 }
             }
@@ -61,7 +62,6 @@ struct CreateWorkoutView: View {
             }
             
             .onDisappear {
-                //TODO: Логика по отмене создания тренировки
                 createWorkoutVM.cancelCrateWorkout()
             }
         }

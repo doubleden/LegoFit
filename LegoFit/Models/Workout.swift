@@ -26,7 +26,15 @@ final class Workout {
     }
     
     static func getWorkout() -> Workout {
-        Workout(name: "First", exercises: [Exercise.getExercise()])
+        Workout(name: "First", exercises: Exercise.getExercises())
+    }
+    
+    static func getWorkouts() -> [Workout] {
+        [
+            Workout(name: "First", exercises: Exercise.getExercises()),
+            Workout(name: "Second", exercises: Exercise.getExercises()),
+            Workout(name: "Third", exercises: Exercise.getExercises())
+        ]
     }
 }
 
@@ -68,7 +76,7 @@ final class Exercise {
         )
     }
     
-    static func getExercise() -> Exercise {
-        Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png")
+    static func getExercises() -> [Exercise] {
+        [Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png")]
     }
 }
