@@ -42,7 +42,7 @@ struct CreateWorkoutView: View {
                 if createWorkoutVM.isLoading {
                     LoadingView()
                         .alert(createWorkoutVM.errorMessage ?? "",
-                                isPresented: $createWorkoutVM.errorShowAlert,
+                                isPresented: $createWorkoutVM.isShowAlertPresented,
                                 actions: {}
                         )
                 }

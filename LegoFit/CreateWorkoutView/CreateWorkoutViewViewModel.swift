@@ -17,7 +17,7 @@ final class CreateWorkoutViewViewModel {
     var isLoading = true
     
     var errorMessage: String?
-    var errorShowAlert = false
+    var isShowAlertPresented = false
     
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
@@ -34,7 +34,7 @@ final class CreateWorkoutViewViewModel {
             case .failure(let error):
                 exercisesDTO = []
                 errorMessage = error.localizedDescription
-                errorShowAlert.toggle()
+                isShowAlertPresented.toggle()
             }
         }
     }
