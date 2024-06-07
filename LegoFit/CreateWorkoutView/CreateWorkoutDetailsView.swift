@@ -26,6 +26,8 @@ struct CreateWorkoutDetailsView: View {
                 
                 Spacer()
                 
+                //TODO: сделать текстфилды для реп, сэт, веса
+                
                 Button("Add Exercise"){
                     createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                     dismiss()

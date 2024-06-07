@@ -27,6 +27,7 @@ struct CreateWorkoutView: View {
                         })
                         .tint(.green)
                     }
+                    //TODO: сделать текстфилды для реп, сэт, веса
                 }
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
                     CreateWorkoutDetailsView(exercise: exercise)
