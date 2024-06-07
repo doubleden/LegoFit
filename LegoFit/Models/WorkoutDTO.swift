@@ -17,13 +17,14 @@ struct WorkoutDTO {
     }
 }
 
-struct ExerciseDTO: Decodable {
+struct ExerciseDTO: Decodable, Identifiable {
+    var id: UUID
     let category: String
     let name: String
     let description: String
     let image: String
     
     static func getExercise() -> ExerciseDTO {
-        ExerciseDTO(category: "legs", name: "Жим ног", description: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", image: "http://127.0.0.1:8080/images/leg_press.png")
+        ExerciseDTO(id: UUID(), category: "legs", name: "Жим ног", description: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", image: "http://127.0.0.1:8080/images/leg_press.png")
     }
 }
