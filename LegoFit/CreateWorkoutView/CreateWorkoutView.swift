@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateWorkoutView: View {
-    @Bindable var createWorkoutVM = CreateWorkoutViewViewModel()
+    @State var createWorkoutVM = CreateWorkoutViewViewModel()
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
@@ -20,6 +20,7 @@ struct CreateWorkoutView: View {
                 List(createWorkoutVM.exercisesDTO) { exercise in
                     Button(exercise.name) {
                         createWorkoutVM.showDetailsOf(exercise: exercise)
+                        
                     }
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button("Add", action: {
@@ -27,10 +28,10 @@ struct CreateWorkoutView: View {
                         })
                         .tint(.green)
                     }
-                    //TODO: сделать текстфилды для реп, сэт, веса
+                    //TODO: сделать алерт для реп, сэт, веса
                 }
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-                    CreateWorkoutDetailsView(exercise: exercise)
+                    CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: $createWorkoutVM)
                 }
                 .refreshable {
                     createWorkoutVM.fetchExercises()
@@ -38,21 +39,23 @@ struct CreateWorkoutView: View {
                     
                 if createWorkoutVM.isLoading {
                     LoadingView()
-                        .alert(createWorkoutVM.errorMessage ?? "",
-                                isPresented: $createWorkoutVM.isShowAlertPresented,
-                                actions: {}
-                        )
                 }
             }
             .navigationTitle("Exercises")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save Workout", action: {
+                    Button("Save Workout") {
                         createWorkoutVM.saveWorkout(modelContext: modelContext)
-                        dismiss()
-                    })
+                        if !createWorkoutVM.isShowAlertPresented {
+                            dismiss()
+                        }
+                    }
                 }
             }
+            .alert(createWorkoutVM.errorMessage ?? "",
+                    isPresented: $createWorkoutVM.isShowAlertPresented,
+                    actions: {}
+            )
             
             .onAppear {
                 createWorkoutVM.fetchExercises()

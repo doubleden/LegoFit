@@ -19,6 +19,10 @@ final class CreateWorkoutViewViewModel {
     
     var sheetExercise: ExerciseDTO?
     
+    var setInputExercise = ""
+    var repInputExercise = ""
+    var weightInputExercise = ""
+    
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
         
@@ -40,11 +44,22 @@ final class CreateWorkoutViewViewModel {
     }
     
     func addToWorkout(exerciseDTO: ExerciseDTO) {
-        workoutDTO.exercises.append(exerciseDTO)
+        //TODO: Валидация на 0 параметры
+        let exercise = create(exercise: exerciseDTO)
+        workoutDTO.exercises.append(exercise)
+        
+        setInputExercise = ""
+        repInputExercise = ""
+        weightInputExercise = ""
     }
     
     func saveWorkout(modelContext: ModelContext) {
         //TODO: Сделать валидацию для пустой тренировки
+        guard !workoutDTO.exercises.isEmpty else {
+            errorMessage = "Workout cannot be empty"
+            isShowAlertPresented.toggle()
+            return
+        }
         
         let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
@@ -59,6 +74,17 @@ final class CreateWorkoutViewViewModel {
         sheetExercise = exercise
     }
     
-    //TODO: Сделать функцию для добавления сет, реп, веса для упражнений и валидация
+    private func create(exercise: ExerciseDTO) -> ExerciseDTO {
+        ExerciseDTO(
+            id: exercise.id,
+            category: exercise.category,
+            name: exercise.name,
+            description: exercise.description,
+            image: exercise.image,
+            set: Int(setInputExercise) ?? exercise.set,
+            rep: Int(repInputExercise) ?? exercise.rep,
+            weight: Int(weightInputExercise) ?? exercise.weight
+        )
+    }
     
 }

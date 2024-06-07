@@ -54,9 +54,9 @@ final class Exercise {
         name: String,
         definition: String,
         photo: String,
-        set: Int = 0,
-        rep: Int = 0,
-        weight: Int = 0
+        set: Int,
+        rep: Int,
+        weight: Int
     ) {
         self.category = category
         self.name = name
@@ -72,11 +72,14 @@ final class Exercise {
             category: item.category,
             name: item.name,
             definition: item.description,
-            photo: item.image
+            photo: item.image,
+            set: item.set,
+            rep: item.rep,
+            weight: item.weight
         )
     }
     
     static func getExercises() -> [Exercise] {
-        [Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png"), Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png")]
+        [Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55)]
     }
 }

@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
-    let exercise: ExerciseDTO
-    
-    private let createWorkoutVM = CreateWorkoutViewViewModel()
+    var exercise: ExerciseDTO
+    @Binding var createWorkoutVM: CreateWorkoutViewViewModel
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -27,6 +26,16 @@ struct CreateWorkoutDetailsView: View {
                 Spacer()
                 
                 //TODO: сделать текстфилды для реп, сэт, веса
+                TextField("sets", text: $createWorkoutVM.setInputExercise)
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.numberPad)
+                TextField("reps", text: $createWorkoutVM.repInputExercise)
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.numberPad)
+                TextField("weight", text: $createWorkoutVM.weightInputExercise)
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.numberPad)
+                Spacer()
                 
                 Button("Add Exercise"){
                     createWorkoutVM.addToWorkout(exerciseDTO: exercise)
@@ -34,10 +43,12 @@ struct CreateWorkoutDetailsView: View {
                 }
                     .buttonStyle(.borderedProminent)
                     .tint(.green)
+
                 
                 Spacer()
             }
             .padding()
+            
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }, label: {
@@ -52,5 +63,5 @@ struct CreateWorkoutDetailsView: View {
 }
 
 #Preview {
-    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise())
+    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise(), createWorkoutVM: .constant(CreateWorkoutViewViewModel()))
 }
