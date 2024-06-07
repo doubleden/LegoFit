@@ -8,32 +8,47 @@
 import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
-    
-    @Bindable var createWorkoutVM: CreateWorkoutViewViewModel
     let exercise: ExerciseDTO
     
+    private let createWorkoutVM = CreateWorkoutViewViewModel()
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        VStack(spacing: 10) {
-            ExerciseImageView(imageUrl: exercise.image)
-            
-            Text(exercise.name)
-                .font(.title)
-            
-            Text(exercise.description)
-                .font(.subheadline)
-            
-            Spacer()
-            
-            Button("Add Exercise", action: {createWorkoutVM.addToWorkout(exerciseDTO: exercise)})
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-            
-            Spacer()
+        NavigationStack {
+            VStack(spacing: 10) {
+                ExerciseImageView(imageUrl: exercise.image)
+                
+                Text(exercise.name)
+                    .font(.title)
+                
+                Text(exercise.description)
+                    .font(.subheadline)
+                
+                Spacer()
+                
+                Button("Add Exercise"){
+                    createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                    dismiss()
+                }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.green)
+                
+                Spacer()
+            }
+            .padding()
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: { dismiss() }, label: {
+                        HStack {
+                            Text("Hide")
+                        }
+                    })
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
-    CreateWorkoutDetailsView(createWorkoutVM: CreateWorkoutViewViewModel(), exercise: ExerciseDTO.getExercise())
+    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise())
 }

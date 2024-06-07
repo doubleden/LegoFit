@@ -4,8 +4,6 @@
 //
 //  Created by Denis Denisov on 30/5/24.
 //
-
-
 import Observation
 import SwiftData
 
@@ -18,6 +16,8 @@ final class CreateWorkoutViewViewModel {
     
     var errorMessage: String?
     var isShowAlertPresented = false
+    
+    var sheetExercise: ExerciseDTO?
     
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
@@ -53,6 +53,10 @@ final class CreateWorkoutViewViewModel {
     func cancelCrateWorkout() {
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
+    }
+    
+    func showDetailsOf(exercise: ExerciseDTO) {
+        sheetExercise = exercise
     }
     
     //TODO: Сделать функцию для добавления сет, реп, веса для упражнений и валидация
