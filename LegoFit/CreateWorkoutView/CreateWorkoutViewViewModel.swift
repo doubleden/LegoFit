@@ -7,25 +7,34 @@
 import Observation
 import SwiftData
 
+enum FocusedTextField {
+    case sets
+    case reps
+    case weight
+}
+
 @Observable
 final class CreateWorkoutViewViewModel {
     
-    var workoutDTO = WorkoutDTO()
-    var exercisesDTO: [ExerciseDTO] = []
     var isLoading = true
+    var workoutDTO = WorkoutDTO()
+    
+    var exercisesDTO: [ExerciseDTO] = []
+    var sheetExercise: ExerciseDTO?
     
     var errorMessage: String?
     var isShowAlertPresented = false
     
-    var sheetExercise: ExerciseDTO?
-    
     var setInputExercise = ""
     var repInputExercise = ""
     var weightInputExercise = ""
+    var isFocused: FocusedTextField? = nil
     
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
-        
+    
+    // MARK: - Main View
+    
     func fetchExercises() {
         isLoading = true
         errorMessage = nil
@@ -43,20 +52,10 @@ final class CreateWorkoutViewViewModel {
         }
     }
     
-    func addToWorkout(exerciseDTO: ExerciseDTO) {
-        //TODO: Валидация на 0 параметры
-        let exercise = create(exercise: exerciseDTO)
-        workoutDTO.exercises.append(exercise)
-        
-        setInputExercise = ""
-        repInputExercise = ""
-        weightInputExercise = ""
-    }
-    
     func saveWorkout(modelContext: ModelContext) {
-        //TODO: Сделать валидацию для пустой тренировки
-        guard !workoutDTO.exercises.isEmpty else {
-            errorMessage = "Workout cannot be empty"
+        //TODO: Более глубокая валидация
+        guard !workoutDTO.exercises.isEmpty, !workoutDTO.name.isEmpty else {
+            errorMessage = "Workout name or exercise cannot be empty"
             isShowAlertPresented.toggle()
             return
         }
@@ -70,8 +69,32 @@ final class CreateWorkoutViewViewModel {
         workoutDTO.exercises.removeAll()
     }
     
+    // MARK: - Details View
+    
     func showDetailsOf(exercise: ExerciseDTO) {
         sheetExercise = exercise
+    }
+    
+    func addToWorkout(exerciseDTO: ExerciseDTO) {
+        //TODO: Валидация на 0 параметры
+        
+        let exercise = create(exercise: exerciseDTO)
+        workoutDTO.exercises.append(exercise)
+        
+        setInputExercise = ""
+        repInputExercise = ""
+        weightInputExercise = ""
+    }
+    
+    func changeIsFocused() {
+        switch isFocused {
+        case .sets:
+            isFocused = .reps
+        case .reps:
+            isFocused = .weight
+        default:
+            isFocused = nil
+        }
     }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
@@ -81,9 +104,9 @@ final class CreateWorkoutViewViewModel {
             name: exercise.name,
             description: exercise.description,
             image: exercise.image,
-            set: Int(setInputExercise) ?? exercise.set,
-            rep: Int(repInputExercise) ?? exercise.rep,
-            weight: Int(weightInputExercise) ?? exercise.weight
+            set: Int(setInputExercise) ?? 0,
+            rep: Int(repInputExercise) ?? 0,
+            weight: Int(weightInputExercise) ?? 0
         )
     }
     

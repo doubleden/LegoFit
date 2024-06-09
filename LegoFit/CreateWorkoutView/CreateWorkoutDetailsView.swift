@@ -12,52 +12,68 @@ struct CreateWorkoutDetailsView: View {
     @Binding var createWorkoutVM: CreateWorkoutViewViewModel
     @Environment(\.dismiss) private var dismiss
     
+    @FocusState private var isFocused: FocusedTextField?
+    
     var body: some View {
         NavigationStack {
-            VStack(spacing: 10) {
-                ExerciseImageView(imageUrl: exercise.image)
-                
-                Text(exercise.name)
-                    .font(.title)
-                
-                Text(exercise.description)
-                    .font(.subheadline)
-                
-                Spacer()
-                
-                //TODO: сделать текстфилды для реп, сэт, веса
-                TextField("sets", text: $createWorkoutVM.setInputExercise)
-                    .textFieldStyle(.roundedBorder)
+            ScrollView {
+                VStack(spacing: 20) {
+                    ExerciseImageView(imageUrl: exercise.image)
+                    
+                    Text(exercise.name)
+                        .font(.title)
+                    
+                    Text(exercise.description)
+                        .font(.subheadline)
+                    
+                    VStack {
+                        TextField("sets", text: $createWorkoutVM.setInputExercise)
+                            .focused($isFocused, equals: .sets)
+                        TextField("reps", text: $createWorkoutVM.repInputExercise)
+                            .focused($isFocused, equals: .reps)
+                        TextField("weight", text: $createWorkoutVM.weightInputExercise)
+                            .focused($isFocused, equals: .weight)
+                    }
                     .keyboardType(.numberPad)
-                TextField("reps", text: $createWorkoutVM.repInputExercise)
                     .textFieldStyle(.roundedBorder)
-                    .keyboardType(.numberPad)
-                TextField("weight", text: $createWorkoutVM.weightInputExercise)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.numberPad)
-                Spacer()
-                
-                Button("Add Exercise"){
-                    createWorkoutVM.addToWorkout(exerciseDTO: exercise)
-                    dismiss()
+                    
+                    Spacer()
                 }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.green)
-
-                
-                Spacer()
-            }
-            .padding()
-            
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: { dismiss() }, label: {
+                .padding()
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: { dismiss() }, label: {
+                            Text("Cancel")
+                        })
+                    }
+                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                            dismiss()
+                        }, label: {
+                            Text("Add")
+                        })
+                    }
+                    
+                    ToolbarItem(placement: .keyboard) {
                         HStack {
-                            Text("Hide")
+                            Spacer()
+                            Button("Done") {
+                                createWorkoutVM.changeIsFocused()
+                                self.isFocused = createWorkoutVM.isFocused
+                            }
                         }
-                    })
+                    }
                 }
             }
+        }
+        .onChange(of: isFocused, { _, newValue in
+            createWorkoutVM.isFocused = newValue
+        })
+        
+        .onTapGesture {
+            isFocused = nil
         }
     }
 }

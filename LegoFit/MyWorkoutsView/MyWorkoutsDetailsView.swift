@@ -11,6 +11,7 @@ struct MyWorkoutsDetailsView: View {
     let workout: Workout
     
     var body: some View {
+        Text(workout.name)
         List(workout.exercises, id: \.id) { exercise in
             VStack(alignment: .leading, spacing: 10) {
                 Text(exercise.name)

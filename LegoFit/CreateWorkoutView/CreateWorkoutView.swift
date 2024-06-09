@@ -33,6 +33,7 @@ struct CreateWorkoutView: View {
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
                     CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: $createWorkoutVM)
                 }
+                
                 .refreshable {
                     createWorkoutVM.fetchExercises()
                 }

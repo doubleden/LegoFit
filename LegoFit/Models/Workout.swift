@@ -73,9 +73,9 @@ final class Exercise {
             name: item.name,
             definition: item.description,
             photo: item.image,
-            set: item.set,
-            rep: item.rep,
-            weight: item.weight
+            set: item.set ?? 0,
+            rep: item.rep ?? 0,
+            weight: item.weight ?? 0
         )
     }
     
