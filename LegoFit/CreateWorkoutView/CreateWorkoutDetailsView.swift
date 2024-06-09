@@ -55,7 +55,11 @@ struct CreateWorkoutDetailsView: View {
                     ToolbarItem(placement: .keyboard) {
                         HStack {
                             Spacer()
-                            Button("Done") {
+                            Button(
+                                createWorkoutVM.isFocused == .weight
+                                   ? "Done"
+                                   : "Next"
+                            ) {
                                 createWorkoutVM.changeIsFocused()
                                 self.isFocused = createWorkoutVM.isFocused
                             }
@@ -91,6 +95,7 @@ struct ExerciseInputFields: View {
         }
         .keyboardType(.numberPad)
         .textFieldStyle(.roundedBorder)
+        //TODO: Сделать валидацию на ввод
     }
 }
 
