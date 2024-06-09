@@ -76,7 +76,6 @@ final class CreateWorkoutViewViewModel {
     }
     
     func addToWorkout(exerciseDTO: ExerciseDTO) {
-        //TODO: Валидация на 0 параметры
         
         let exercise = create(exercise: exerciseDTO)
         workoutDTO.exercises.append(exercise)

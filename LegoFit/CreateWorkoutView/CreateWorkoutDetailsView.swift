@@ -26,16 +26,12 @@ struct CreateWorkoutDetailsView: View {
                     Text(exercise.description)
                         .font(.subheadline)
                     
-                    VStack {
-                        TextField("sets", text: $createWorkoutVM.setInputExercise)
-                            .focused($isFocused, equals: .sets)
-                        TextField("reps", text: $createWorkoutVM.repInputExercise)
-                            .focused($isFocused, equals: .reps)
-                        TextField("weight", text: $createWorkoutVM.weightInputExercise)
-                            .focused($isFocused, equals: .weight)
-                    }
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(.roundedBorder)
+                    ExerciseInputFields(
+                        sets: $createWorkoutVM.setInputExercise,
+                        reps: $createWorkoutVM.repInputExercise,
+                        weight: $createWorkoutVM.weightInputExercise,
+                        isFocused: _isFocused
+                    )
                     
                     Spacer()
                 }
@@ -75,6 +71,26 @@ struct CreateWorkoutDetailsView: View {
         .onTapGesture {
             isFocused = nil
         }
+    }
+}
+
+struct ExerciseInputFields: View {
+    @Binding var sets: String
+    @Binding var reps: String
+    @Binding var weight: String
+    @FocusState var isFocused: FocusedTextField?
+    
+    var body: some View {
+        VStack {
+            TextField("sets", text: $sets)
+                .focused($isFocused, equals: .sets)
+            TextField("reps", text: $reps)
+                .focused($isFocused, equals: .reps)
+            TextField("weight", text: $weight)
+                .focused($isFocused, equals: .weight)
+        }
+        .keyboardType(.numberPad)
+        .textFieldStyle(.roundedBorder)
     }
 }
 
