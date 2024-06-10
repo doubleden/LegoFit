@@ -94,18 +94,19 @@ final class CreateWorkoutViewViewModel {
         }
     }
     
-//    private func isInputsValid() -> Bool {
-//        guard let set = Int(setInputExercise),
-//                let rep = Int(repInputExercise) else {
-//            return false
-//        }
-//        
-//        guard set >= 1, rep >= 1 else {
-//            return false
-//        }
-//        
-//        return true
-//    }
+    func isInputsValid() -> Bool {
+        guard let set = Int(setInputExercise),
+              let rep = Int(repInputExercise),
+              let weight = Int(weightInputExercise) else {
+            return false
+        }
+        
+        guard set >= 1, rep >= 1, weight >= 0 else {
+            return false
+        }
+        
+        return true
+    }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
         ExerciseDTO(

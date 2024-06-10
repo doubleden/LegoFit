@@ -50,6 +50,7 @@ struct CreateWorkoutDetailsView: View {
                         }, label: {
                             Text("Add")
                         })
+                        .disabled(!createWorkoutVM.isInputsValid())
                     }
                     
                     ToolbarItem(placement: .keyboard) {
