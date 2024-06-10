@@ -37,6 +37,8 @@ struct CreateWorkoutView: View {
                 .refreshable {
                     createWorkoutVM.fetchExercises()
                 }
+                
+                //TODO: Работает криво
                 if createWorkoutVM.isLoading {
                     ProgressView()
                         .progressViewStyle(.circular)

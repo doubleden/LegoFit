@@ -10,10 +10,10 @@ import Foundation
 enum API {
     case exercises
     
-    var url: URL {
+    var url: String {
         switch self {
         case .exercises:
-            URL(string: "http://192.168.18.234:8080/trainings")!
+             "http://192.168.18.234:8080/trainings"
         }
     }
 }
@@ -22,6 +22,7 @@ enum NetworkError: Error {
     case noData
     case invalidURL
     case decodingError
+    case invalidResponse
     
     var description: String {
         switch self {
@@ -31,6 +32,8 @@ enum NetworkError: Error {
             "Invalid URL"
         case .decodingError:
             "Decoding Error"
+        case .invalidResponse:
+            "Invalid Response from server"
         }
     }
 }
@@ -40,37 +43,22 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchExercises(from url: URL, completion: @escaping(Result<[ExerciseDTO], NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Request error: \(error.localizedDescription)")
-                completion(.failure(.noData))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                print("Invalid response")
-                completion(.failure(.invalidURL))
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received")
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let exercises = try JSONDecoder().decode([ExerciseDTO].self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(exercises))
-                }
-            } catch {
-                print("Decoding error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    completion(.failure(.decodingError))
-                }
-            }
-        }.resume()
+    func fetchExercise() async throws -> [ExerciseDTO] {
+        guard let url = URL(string: API.exercises.url) else {
+            throw NetworkError.invalidURL
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode([ExerciseDTO].self, from: data)
+        } catch {
+            throw NetworkError.decodingError
+        }
     }
 }

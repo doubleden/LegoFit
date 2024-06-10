@@ -41,12 +41,11 @@ final class CreateWorkoutViewViewModel {
             isLoading = true
             errorMessage = nil
             
-            networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
-                switch result {
-                case .success(let exercises):
-                    exercisesDTO = exercises
+            Task {
+                do {
+                    exercisesDTO = try await networkManager.fetchExercise()
                     isLoading = false
-                case .failure(let error):
+                } catch {
                     exercisesDTO = []
                     errorMessage = error.localizedDescription
                     isShowAlertPresented.toggle()
@@ -69,7 +68,6 @@ final class CreateWorkoutViewViewModel {
     }
     
     func cancelCrateWorkout() {
-        exercisesDTO = []
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
     }
