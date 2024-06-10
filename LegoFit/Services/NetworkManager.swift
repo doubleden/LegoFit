@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 enum API {
     case exercises
@@ -14,7 +13,7 @@ enum API {
     var url: URL {
         switch self {
         case .exercises:
-            URL(string: "http://127.0.0.1:8080/trainings")!
+            URL(string: "http://192.168.18.234:8080/trainings")!
         }
     }
 }
@@ -41,16 +40,37 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchExercises(from url: URL, completion: @escaping(Result<[ExerciseDTO], AFError>) -> Void) {
-        AF.request(url)
-            .validate()
-            .responseDecodable(of: [ExerciseDTO].self) { response in
-                switch response.result {
-                case .success(let exercises):
+    func fetchExercises(from url: URL, completion: @escaping(Result<[ExerciseDTO], NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Request error: \(error.localizedDescription)")
+                completion(.failure(.noData))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Invalid response")
+                completion(.failure(.invalidURL))
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let exercises = try JSONDecoder().decode([ExerciseDTO].self, from: data)
+                DispatchQueue.main.async {
                     completion(.success(exercises))
-                case .failure(let error):
-                    completion(.failure(error))
+                }
+            } catch {
+                print("Decoding error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(.failure(.decodingError))
                 }
             }
+        }.resume()
     }
 }
