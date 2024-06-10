@@ -54,9 +54,11 @@ struct CreateWorkoutView: View {
                 }
             }
             .alert(createWorkoutVM.errorMessage ?? "",
-                    isPresented: $createWorkoutVM.isShowAlertPresented,
-                    actions: {}
-            )
+                    isPresented: $createWorkoutVM.isShowAlertPresented) {
+                Button("Ok", role: .cancel) { createWorkoutVM.workoutDTO.name = ""
+                }
+            }
+            
             
             .onAppear {
                 createWorkoutVM.fetchExercises()

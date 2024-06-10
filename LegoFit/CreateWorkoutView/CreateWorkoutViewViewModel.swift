@@ -54,7 +54,9 @@ final class CreateWorkoutViewViewModel {
     
     func saveWorkout(modelContext: ModelContext) {
         //TODO: Более глубокая валидация
-        guard !workoutDTO.exercises.isEmpty, !workoutDTO.name.isEmpty else {
+        guard !workoutDTO.exercises.isEmpty,
+                !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
+        else {
             errorMessage = "Workout name or exercise cannot be empty"
             isShowAlertPresented.toggle()
             return
