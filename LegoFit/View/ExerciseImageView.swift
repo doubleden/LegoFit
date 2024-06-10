@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+//TODO: Сделать адаптивное фото
 
 struct ExerciseImageView: View {
     let imageUrl: String

@@ -4,6 +4,7 @@
 //
 //  Created by Denis Denisov on 30/5/24.
 //
+import Foundation
 import Observation
 import SwiftData
 
@@ -36,24 +37,25 @@ final class CreateWorkoutViewViewModel {
     // MARK: - Main View
     
     func fetchExercises() {
-        isLoading = true
-        errorMessage = nil
-        
-        networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
-            switch result {
-            case .success(let exercises):
-                self.exercisesDTO = exercises
-                isLoading = false
-            case .failure(let error):
-                exercisesDTO = []
-                errorMessage = error.localizedDescription
-                isShowAlertPresented.toggle()
+        DispatchQueue.main.async { [unowned self] in
+            isLoading = true
+            errorMessage = nil
+            
+            networkManager.fetchExercises(from: API.exercises.url) { [unowned self] result in
+                switch result {
+                case .success(let exercises):
+                    exercisesDTO = exercises
+                    isLoading = false
+                case .failure(let error):
+                    exercisesDTO = []
+                    errorMessage = error.localizedDescription
+                    isShowAlertPresented.toggle()
+                }
             }
         }
     }
     
     func saveWorkout(modelContext: ModelContext) {
-        //TODO: Более глубокая валидация
         guard !workoutDTO.exercises.isEmpty,
                 !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
         else {
@@ -67,6 +69,7 @@ final class CreateWorkoutViewViewModel {
     }
     
     func cancelCrateWorkout() {
+        exercisesDTO = []
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
     }

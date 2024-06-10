@@ -37,9 +37,10 @@ struct CreateWorkoutView: View {
                 .refreshable {
                     createWorkoutVM.fetchExercises()
                 }
-                    
                 if createWorkoutVM.isLoading {
-                    LoadingView()
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(1.5)
                 }
             }
             .navigationTitle("Exercises")
@@ -58,7 +59,6 @@ struct CreateWorkoutView: View {
                 Button("Ok", role: .cancel) { createWorkoutVM.workoutDTO.name = ""
                 }
             }
-            
             
             .onAppear {
                 createWorkoutVM.fetchExercises()
