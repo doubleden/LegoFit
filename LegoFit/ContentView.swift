@@ -15,6 +15,12 @@ struct ContentView: View {
                     Image(systemName: "dumbbell")
                     Text("My workouts")
                 }
+            CreateWorkoutView()
+                .tabItem {
+                    Image(systemName: "plus.square.dashed")
+                    Text("Creat")
+                }
+            Spacer()
         }
     }
 }
