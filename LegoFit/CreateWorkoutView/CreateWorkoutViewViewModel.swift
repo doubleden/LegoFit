@@ -4,7 +4,6 @@
 //
 //  Created by Denis Denisov on 30/5/24.
 //
-import Foundation
 import Observation
 import SwiftData
 
@@ -23,7 +22,7 @@ final class CreateWorkoutViewViewModel {
     var exercisesDTO: [ExerciseDTO] = []
     var sheetExercise: ExerciseDTO?
     
-    var errorMessage: String?
+    var errorMessage: String? = nil
     var isShowAlertPresented = false
     
     var setInputExercise = ""
@@ -37,19 +36,15 @@ final class CreateWorkoutViewViewModel {
     // MARK: - Main View
     
     func fetchExercises() {
-        DispatchQueue.main.async { [unowned self] in
-            isLoading = true
-            errorMessage = nil
-            
-            Task {
-                do {
-                    exercisesDTO = try await networkManager.fetchExercise()
-                    isLoading = false
-                } catch {
-                    exercisesDTO = []
-                    errorMessage = error.localizedDescription
-                    isShowAlertPresented.toggle()
-                }
+        Task {
+            do {
+                exercisesDTO = try await networkManager.fetchExercise()
+                isLoading = false
+            } catch {
+                exercisesDTO = []
+                isLoading = false
+                errorMessage = error.localizedDescription
+                isShowAlertPresented.toggle()
             }
         }
     }
@@ -74,7 +69,7 @@ final class CreateWorkoutViewViewModel {
     
     // MARK: - Details View
     
-    func showDetailsOf(exercise: ExerciseDTO) {
+    func showSheetOf(exercise: ExerciseDTO) {
         sheetExercise = exercise
     }
     
@@ -98,6 +93,19 @@ final class CreateWorkoutViewViewModel {
             isFocused = nil
         }
     }
+    
+//    private func isInputsValid() -> Bool {
+//        guard let set = Int(setInputExercise),
+//                let rep = Int(repInputExercise) else {
+//            return false
+//        }
+//        
+//        guard set >= 1, rep >= 1 else {
+//            return false
+//        }
+//        
+//        return true
+//    }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
         ExerciseDTO(

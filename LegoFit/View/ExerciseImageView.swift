@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-//TODO: Сделать адаптивное фото
 
 struct ExerciseImageView: View {
     let imageUrl: String
@@ -18,6 +17,7 @@ struct ExerciseImageView: View {
             .aspectRatio(contentMode: .fit)
             .frame(height: 200)
             .clipShape(.rect(cornerRadius: 20))
+            .shadow(radius: 30)
     }
 }
 

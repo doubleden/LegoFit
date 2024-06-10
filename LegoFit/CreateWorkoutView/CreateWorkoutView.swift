@@ -19,7 +19,7 @@ struct CreateWorkoutView: View {
             ZStack {
                 List(createWorkoutVM.exercisesDTO) { exercise in
                     Button(exercise.name) {
-                        createWorkoutVM.showDetailsOf(exercise: exercise)
+                        createWorkoutVM.showSheetOf(exercise: exercise)
                         
                     }
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
@@ -28,17 +28,12 @@ struct CreateWorkoutView: View {
                         })
                         .tint(.green)
                     }
-                    //TODO: сделать алерт для реп, сэт, веса
+                    //TODO: сделать мини sheet для заполнения реп, сэт, веса
                 }
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
                     CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: $createWorkoutVM)
                 }
                 
-                .refreshable {
-                    createWorkoutVM.fetchExercises()
-                }
-                
-                //TODO: Работает криво
                 if createWorkoutVM.isLoading {
                     ProgressView()
                         .progressViewStyle(.circular)
@@ -60,6 +55,10 @@ struct CreateWorkoutView: View {
                     isPresented: $createWorkoutVM.isShowAlertPresented) {
                 Button("Ok", role: .cancel) { createWorkoutVM.workoutDTO.name = ""
                 }
+            }
+            
+            .refreshable {
+                createWorkoutVM.fetchExercises()
             }
             
             .onAppear {

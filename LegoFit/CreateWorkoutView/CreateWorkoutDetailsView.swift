@@ -38,9 +38,9 @@ struct CreateWorkoutDetailsView: View {
                 .padding()
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button(action: { dismiss() }, label: {
+                        Button(action: { dismiss() }) {
                             Text("Cancel")
-                        })
+                        }
                     }
                     
                     ToolbarItem(placement: .topBarTrailing) {
