@@ -21,6 +21,7 @@ final class CreateWorkoutViewViewModel {
     
     var exercisesDTO: [ExerciseDTO] = []
     var sheetExercise: ExerciseDTO?
+    var isSaveSheetPresented = false
     
     var errorMessage: String? = nil
     var isShowAlertPresented = false
@@ -50,10 +51,8 @@ final class CreateWorkoutViewViewModel {
     }
     
     func saveWorkout(modelContext: ModelContext) {
-        guard !workoutDTO.exercises.isEmpty,
-                !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
-        else {
-            errorMessage = "Workout name or exercise cannot be empty"
+        guard !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty else {
+            errorMessage = "Workout name cannot be empty"
             isShowAlertPresented.toggle()
             return
         }
@@ -67,6 +66,10 @@ final class CreateWorkoutViewViewModel {
         workoutDTO.exercises.removeAll()
     }
     
+    func isExercisesInWorkoutEmpty() -> Bool {
+        workoutDTO.exercises.isEmpty
+    }
+    
     // MARK: - Details View
     
     func showSheetOf(exercise: ExerciseDTO) {
@@ -74,7 +77,6 @@ final class CreateWorkoutViewViewModel {
     }
     
     func addToWorkout(exerciseDTO: ExerciseDTO) {
-        
         let exercise = create(exercise: exerciseDTO)
         workoutDTO.exercises.append(exercise)
         
@@ -92,20 +94,6 @@ final class CreateWorkoutViewViewModel {
         default:
             isFocused = nil
         }
-    }
-    
-    func isInputsValid() -> Bool {
-        guard let set = Int(setInputExercise),
-              let rep = Int(repInputExercise),
-              let weight = Int(weightInputExercise) else {
-            return false
-        }
-        
-        guard set >= 1, rep >= 1, weight >= 0 else {
-            return false
-        }
-        
-        return true
     }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {

@@ -8,30 +8,31 @@
 import SwiftUI
 
 struct CreateWorkoutView: View {
+    @Binding var selectedTab: Int
     @State var createWorkoutVM = CreateWorkoutViewViewModel()
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         NavigationStack {
-            TextField("Workout Name", text: $createWorkoutVM.workoutDTO.name)
-                .textFieldStyle(.roundedBorder)
             ZStack {
                 List(createWorkoutVM.exercisesDTO) { exercise in
                     Button(exercise.name) {
                         createWorkoutVM.showSheetOf(exercise: exercise)
                         
                     }
+                    .tint(.green)
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button("Add", action: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                         })
                         .tint(.green)
                     }
-                    //TODO: сделать мини sheet для заполнения реп, сэт, веса
                 }
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-                    CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: $createWorkoutVM)
+                    CreateWorkoutDetailsView(
+                        exercise: exercise,
+                        createWorkoutVM: $createWorkoutVM
+                    )
                 }
                 
                 if createWorkoutVM.isLoading {
@@ -40,17 +41,22 @@ struct CreateWorkoutView: View {
                         .scaleEffect(1.5)
                 }
             }
-            .navigationTitle("Exercises")
+            .navigationTitle("Добавьте упражнения")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save Workout") {
-                        createWorkoutVM.saveWorkout(modelContext: modelContext)
-                        if !createWorkoutVM.isShowAlertPresented {
-                            dismiss()
-                        }
+                    Button("Далее") {
+                        createWorkoutVM.isSaveSheetPresented.toggle()
                     }
+                    .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
             }
+            .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
+                CreateWorkoutSaveView(workoutTitle: $createWorkoutVM.workoutDTO.name) { createWorkoutVM.saveWorkout(modelContext: modelContext)
+                    selectedTab = 0
+                }
+                .presentationDetents([.height(180)])
+            }
+            
             .alert(createWorkoutVM.errorMessage ?? "",
                     isPresented: $createWorkoutVM.isShowAlertPresented) {
                 Button("Ok", role: .cancel) { createWorkoutVM.workoutDTO.name = ""
@@ -73,5 +79,5 @@ struct CreateWorkoutView: View {
 }
 
 #Preview {
-    CreateWorkoutView()
+    CreateWorkoutView(selectedTab: .constant(1))
 }

@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedTab = 0
+    
     var body: some View {
-        TabView {
-            MyWorkoutsView()
+        TabView(selection: $selectedTab) {
+            MyWorkoutsView(selectedTab: $selectedTab)
                 .tabItem {
                     Image(systemName: "dumbbell")
-                    Text("My workouts")
+                    Text("Мои тренировки")
                 }
-            CreateWorkoutView()
+                .tag(0)
+            
+            CreateWorkoutView(selectedTab: $selectedTab)
                 .tabItem {
                     Image(systemName: "plus.square.dashed")
-                    Text("Creat")
+                    Text("Создать")
                 }
+                .tag(1)
+            
             Spacer()
         }
     }

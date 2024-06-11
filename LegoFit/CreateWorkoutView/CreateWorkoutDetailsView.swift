@@ -39,7 +39,7 @@ struct CreateWorkoutDetailsView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: { dismiss() }) {
-                            Text("Cancel")
+                            Text("Отменить")
                         }
                     }
                     
@@ -48,9 +48,8 @@ struct CreateWorkoutDetailsView: View {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                             dismiss()
                         }, label: {
-                            Text("Add")
+                            Text("Добавить")
                         })
-                        .disabled(!createWorkoutVM.isInputsValid())
                     }
                     
                     ToolbarItem(placement: .keyboard) {
@@ -58,8 +57,8 @@ struct CreateWorkoutDetailsView: View {
                             Spacer()
                             Button(
                                 createWorkoutVM.isFocused == .weight
-                                   ? "Done"
-                                   : "Next"
+                                   ? "Готово"
+                                   : "Далее"
                             ) {
                                 createWorkoutVM.changeIsFocused()
                                 self.isFocused = createWorkoutVM.isFocused
@@ -87,11 +86,11 @@ struct ExerciseInputFields: View {
     
     var body: some View {
         VStack {
-            TextField("sets", text: $sets)
+            TextField("Подходы", text: $sets)
                 .focused($isFocused, equals: .sets)
-            TextField("reps", text: $reps)
+            TextField("Повторения", text: $reps)
                 .focused($isFocused, equals: .reps)
-            TextField("weight", text: $weight)
+            TextField("Вес", text: $weight)
                 .focused($isFocused, equals: .weight)
         }
         .keyboardType(.numberPad)

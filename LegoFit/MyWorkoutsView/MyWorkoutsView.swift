@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MyWorkoutsView: View {
+    @Binding var selectedTab: Int
     @Query var workouts: [Workout]
     @Environment(\.modelContext) var modelContext
 
@@ -24,7 +25,7 @@ struct MyWorkoutsView: View {
                     })
                 }
             }
-            .navigationTitle("My Workouts")
+            .navigationTitle("Мои тренировки")
         }
     }
     
@@ -37,6 +38,6 @@ struct MyWorkoutsView: View {
 }
 
 #Preview {
-    MyWorkoutsView()
+    MyWorkoutsView(selectedTab: .constant(0))
         .modelContainer(DataController.previewContainer)
 }
