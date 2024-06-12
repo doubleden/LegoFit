@@ -18,7 +18,6 @@ final class CreateWorkoutViewViewModel {
     
     var isLoading = true
     var workoutDTO = WorkoutDTO()
-    
     var exercisesDTO: [ExerciseDTO] = []
     var sheetExercise: ExerciseDTO?
     var isSaveSheetPresented = false

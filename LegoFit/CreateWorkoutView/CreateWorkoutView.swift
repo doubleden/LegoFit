@@ -20,12 +20,12 @@ struct CreateWorkoutView: View {
                         createWorkoutVM.showSheetOf(exercise: exercise)
                         
                     }
-                    .tint(.green)
+                    .tint(.white)
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button("Add", action: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                         })
-                        .tint(.green)
+                        .tint(.main)
                     }
                 }
                 .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
@@ -41,12 +41,13 @@ struct CreateWorkoutView: View {
                         .scaleEffect(1.5)
                 }
             }
-            .navigationTitle("Добавьте упражнения")
+            .navigationTitle("Упражнения")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Далее") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
+                    .tint(.main)
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
             }
