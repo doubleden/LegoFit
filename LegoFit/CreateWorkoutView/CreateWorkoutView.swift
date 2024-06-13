@@ -15,25 +15,7 @@ struct CreateWorkoutView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                List(createWorkoutVM.exercisesDTO) { exercise in
-                    Button(exercise.name) {
-                        createWorkoutVM.showSheetOf(exercise: exercise)
-                        
-                    }
-                    .tint(.white)
-                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
-                        Button("Add", action: {
-                            createWorkoutVM.addToWorkout(exerciseDTO: exercise)
-                        })
-                        .tint(.main)
-                    }
-                }
-                .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-                    CreateWorkoutDetailsView(
-                        exercise: exercise,
-                        createWorkoutVM: $createWorkoutVM
-                    )
-                }
+                ExerciseList(createWorkoutVM: $createWorkoutVM)
                 
                 if createWorkoutVM.isLoading {
                     ProgressView()
@@ -79,6 +61,40 @@ struct CreateWorkoutView: View {
     }
 }
 
+struct ExerciseList: View {
+    @Binding var createWorkoutVM: CreateWorkoutViewViewModel
+    
+    var body: some View {
+        List(
+            Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
+            id: \.self
+        ) { section in
+            Section {
+                ForEach(createWorkoutVM.sortedByCategoryExercises[section] ?? []) { exercise in
+                    Button(exercise.name) {
+                        createWorkoutVM.showSheetOf(exercise: exercise)
+                    }
+                    .tint(.white)
+                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                        Button("Add") {
+                            createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                        }
+                        .tint(.main)
+                    }
+                }
+            } header: {
+                Text(section)
+            }
+        }
+        .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
+            CreateWorkoutDetailsView(
+                exercise: exercise,
+                createWorkoutVM: $createWorkoutVM
+            )
+        }
+    }
+}
 #Preview {
     CreateWorkoutView(selectedTab: .constant(1))
 }
+

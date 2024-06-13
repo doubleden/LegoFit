@@ -18,7 +18,6 @@ final class CreateWorkoutViewViewModel {
     
     var isLoading = true
     var workoutDTO = WorkoutDTO()
-    var exercisesDTO: [ExerciseDTO] = []
     var sheetExercise: ExerciseDTO?
     var isSaveSheetPresented = false
     
@@ -30,6 +29,17 @@ final class CreateWorkoutViewViewModel {
     var weightInputExercise = ""
     var isFocused: FocusedTextField? = nil
     
+    var sortedByCategoryExercises: [String: [ExerciseDTO]] {
+        [
+            "Ноги" : exercisesDTO.filter { $0.category == "legs" },
+            "Грудь" : exercisesDTO.filter { $0.category == "chest" },
+            "Плечи" : exercisesDTO.filter {$0.category == "shoulders" },
+            "Спина" : exercisesDTO.filter { $0.category == "back" },
+            "Руки" : exercisesDTO.filter { $0.category == "arms" }
+        ]
+    }
+    
+    private var exercisesDTO: [ExerciseDTO] = []
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
     
