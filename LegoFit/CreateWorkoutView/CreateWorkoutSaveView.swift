@@ -28,7 +28,7 @@ struct CreateWorkoutSaveView: View {
             })
             .font(.title2)
             .frame(width: 300 ,height: 45)
-            .background(.green)
+            .background(.main)
             .clipShape(.rect(cornerRadius: 10))
             
             Spacer()

@@ -61,7 +61,7 @@ struct CreateWorkoutView: View {
     }
 }
 
-struct ExerciseList: View {
+fileprivate struct ExerciseList: View {
     @Binding var createWorkoutVM: CreateWorkoutViewViewModel
     
     var body: some View {
@@ -73,7 +73,7 @@ struct ExerciseList: View {
                 ForEach(
                     createWorkoutVM.sortedByCategoryExercises[section] ?? []
                 ) { exercise in
-                    ExerciseCell(title: exercise.name) {
+                    ExerciseCellView(title: exercise.name) {
                             createWorkoutVM.showSheetOf(exercise: exercise)
                         } onSwipeAction: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
@@ -81,6 +81,7 @@ struct ExerciseList: View {
                 }
             } header: {
                 Text(section)
+                //TODO: Разукрасить
             }
         }
         .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
@@ -88,25 +89,6 @@ struct ExerciseList: View {
                 exercise: exercise,
                 createWorkoutVM: $createWorkoutVM
             )
-        }
-    }
-}
-
-struct ExerciseCell: View {
-    let title: String
-    let onTapAction: () -> Void
-    let onSwipeAction: () -> Void
-    
-    var body: some View {
-        Button(title) {
-            onTapAction()
-        }
-        .tint(.white)
-        .swipeActions(edge: .leading, allowsFullSwipe:true) {
-            Button("Add") {
-                onSwipeAction()
-            }
-            .tint(.main)
         }
     }
 }

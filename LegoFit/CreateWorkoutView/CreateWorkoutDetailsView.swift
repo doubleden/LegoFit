@@ -41,6 +41,7 @@ struct CreateWorkoutDetailsView: View {
                         Button(action: { dismiss() }) {
                             Text("Отменить")
                         }
+                        .tint(.main)
                     }
                     
                     ToolbarItem(placement: .topBarTrailing) {
@@ -50,6 +51,7 @@ struct CreateWorkoutDetailsView: View {
                         }, label: {
                             Text("Добавить")
                         })
+                        .tint(.main)
                     }
                     
                     ToolbarItem(placement: .keyboard) {
