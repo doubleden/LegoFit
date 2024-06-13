@@ -70,17 +70,14 @@ struct ExerciseList: View {
             id: \.self
         ) { section in
             Section {
-                ForEach(createWorkoutVM.sortedByCategoryExercises[section] ?? []) { exercise in
-                    Button(exercise.name) {
-                        createWorkoutVM.showSheetOf(exercise: exercise)
-                    }
-                    .tint(.white)
-                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
-                        Button("Add") {
+                ForEach(
+                    createWorkoutVM.sortedByCategoryExercises[section] ?? []
+                ) { exercise in
+                    ExerciseCell(title: exercise.name) {
+                            createWorkoutVM.showSheetOf(exercise: exercise)
+                        } onSwipeAction: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
                         }
-                        .tint(.main)
-                    }
                 }
             } header: {
                 Text(section)
@@ -94,7 +91,26 @@ struct ExerciseList: View {
         }
     }
 }
+
+struct ExerciseCell: View {
+    let title: String
+    let onTapAction: () -> Void
+    let onSwipeAction: () -> Void
+    
+    var body: some View {
+        Button(title) {
+            onTapAction()
+        }
+        .tint(.white)
+        .swipeActions(edge: .leading, allowsFullSwipe:true) {
+            Button("Add") {
+                onSwipeAction()
+            }
+            .tint(.main)
+        }
+    }
+}
+
 #Preview {
     CreateWorkoutView(selectedTab: .constant(1))
 }
-
