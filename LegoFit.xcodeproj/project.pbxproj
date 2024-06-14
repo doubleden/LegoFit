@@ -17,6 +17,7 @@
 		0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		057A4D862C1C895500B977A9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D852C1C895500B977A9 /* HeaderView.swift */; };
+		057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */; };
 		05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC717C2C0646F400524C58 /* LegoFitApp.swift */; };
 		05BC717F2C0646F400524C58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC717E2C0646F400524C58 /* ContentView.swift */; };
 		05BC71812C0646F500524C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71802C0646F500524C58 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutsView.swift; sourceTree = "<group>"; };
 		0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSaveView.swift; sourceTree = "<group>"; };
 		057A4D852C1C895500B977A9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonToolBar.swift; sourceTree = "<group>"; };
 		05BC71792C0646F400524C58 /* LegoFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BC717C2C0646F400524C58 /* LegoFitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegoFitApp.swift; sourceTree = "<group>"; };
 		05BC717E2C0646F400524C58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */,
 				057A4D852C1C895500B977A9 /* HeaderView.swift */,
+				057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
 				05BC718C2C0648CC00524C58 /* WorkoutDTO.swift in Sources */,
+				057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */,
 				05D857332C0D089900DD77AC /* PreviewProviderSwiftData.swift in Sources */,
 				057A4D862C1C895500B977A9 /* HeaderView.swift in Sources */,
 			);

@@ -9,27 +9,31 @@ import SwiftUI
 
 struct CreateWorkoutSaveView: View {
     @Binding var workoutTitle: String
-    let saveAction: () -> Void
-    @Environment(\.dismiss) var dismiss
+    let action: () -> Void
+    
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.isEnabled) var isEnabled
     @State private var isPressed = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(alignment: .center, spacing: 30) {
             TextField("Название тренировки", text: $workoutTitle)
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 300, height: 30)
+                .padding()
+                .frame(width: 300, height: 50)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.main)
+                )
             
             Button(action: {
-                saveAction()
+                action()
                 dismiss()
             }, label: {
                 Text("Сохранить тренировку")
                     .tint(.white)
             })
             .font(.title2)
-            .frame(width: 300 ,height: 45)
-            .background(.main)
-            .clipShape(.rect(cornerRadius: 10))
+            .buttonStyle(CustomButtonStyle(isEnabled: isEnabled))
             
             Spacer()
         }
@@ -37,6 +41,20 @@ struct CreateWorkoutSaveView: View {
     }
 }
 
+private struct CustomButtonStyle: ButtonStyle {
+    let isEnabled: Bool
+
+    @ViewBuilder
+    func makeBody(configuration: Configuration) -> some View {
+        let background = configuration.isPressed ? Color.black : Color.main
+
+        configuration.label
+            .frame(width: 300 ,height: 45)
+            .background(background)
+            .clipShape(.rect(cornerRadius: 10))
+    }
+}
+
 #Preview {
-    CreateWorkoutSaveView(workoutTitle: .constant("New Workout"), saveAction: {})
+    CreateWorkoutSaveView(workoutTitle: .constant("New Workout"), action: {})
 }

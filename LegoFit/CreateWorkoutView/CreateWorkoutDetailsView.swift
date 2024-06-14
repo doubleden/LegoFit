@@ -38,20 +38,18 @@ struct CreateWorkoutDetailsView: View {
                 .padding()
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button(action: { dismiss() }) {
-                            Text("Отменить")
+                        ButtonToolbar(title: "Отменить") {
+                            dismiss()
                         }
-                        .tint(.main)
                     }
                     
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
-                            createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                        ButtonToolbar(title: "Добавить") {
+                            createWorkoutVM.addToWorkout(
+                                exerciseDTO: exercise
+                            )
                             dismiss()
-                        }, label: {
-                            Text("Добавить")
-                        })
-                        .tint(.main)
+                        }
                     }
                     
                     ToolbarItem(placement: .keyboard) {
@@ -97,7 +95,7 @@ struct ExerciseInputFields: View {
         }
         .keyboardType(.numberPad)
         .textFieldStyle(.roundedBorder)
-        //TODO: Сделать валидацию на ввод
+        //TODO: Сделать валидацию на ввод букв
     }
 }
 

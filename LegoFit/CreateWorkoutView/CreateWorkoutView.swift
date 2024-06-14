@@ -14,31 +14,39 @@ struct CreateWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                
+            VStack {
                 ExerciseList(createWorkoutVM: $createWorkoutVM)
-                
-                if createWorkoutVM.isLoading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .scaleEffect(1.5)
-                }
+                    .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
+                        CreateWorkoutDetailsView(
+                            exercise: exercise,
+                            createWorkoutVM: $createWorkoutVM
+                        )
+                    }
             }
             .navigationTitle("Упражнения")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    ButtonToolbar(
+                        title: "Сбросить",
+                        action: createWorkoutVM.cancelCrateWorkout
+                    )
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Далее") {
+                    ButtonToolbar(title: "Далее") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
-                    .tint(.main)
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
             }
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
                 CreateWorkoutSaveView(workoutTitle: $createWorkoutVM.workoutDTO.name) { createWorkoutVM.saveWorkout(modelContext: modelContext)
-                    selectedTab = 0
+                    if !createWorkoutVM.isShowAlertPresented {
+                        createWorkoutVM.cancelCrateWorkout()
+                        selectedTab = 0
+                    }
                 }
-                .presentationDetents([.height(180)])
+                .presentationDetents([.height(190)])
             }
             
             .alert(createWorkoutVM.errorMessage ?? "",
@@ -53,10 +61,6 @@ struct CreateWorkoutView: View {
             
             .onAppear {
                 createWorkoutVM.fetchExercises()
-            }
-            
-            .onDisappear {
-                createWorkoutVM.cancelCrateWorkout()
             }
         }
     }
@@ -74,10 +78,13 @@ fileprivate struct ExerciseList: View {
                 ForEach(
                     createWorkoutVM.sortedByCategoryExercises[section] ?? []
                 ) { exercise in
-                    Button(exercise.name) {
+                    Button(action: {
                         createWorkoutVM.showSheetOf(exercise: exercise)
-                    }
-                    .tint(.white)
+                    }, label: {
+                        Text(exercise.name)
+                            .foregroundStyle(.white)
+                            
+                    })
                     .frame(height: 40)
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button(action: {
@@ -95,12 +102,6 @@ fileprivate struct ExerciseList: View {
             .listRowBackground(Color.cellBackground)
         }
         .scrollIndicators(.hidden)
-        .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-            CreateWorkoutDetailsView(
-                exercise: exercise,
-                createWorkoutVM: $createWorkoutVM
-            )
-        }
     }
 }
 

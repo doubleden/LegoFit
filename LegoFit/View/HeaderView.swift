@@ -13,14 +13,12 @@ struct HeaderView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundStyle(.main)
-                .frame(maxHeight: .infinity)
-                .frame(width: 360)
-                .opacity(0.8)
+                .foregroundStyle(Gradient(colors: [.main, .cellBackground]))
+                .frame(width: 360, height: 60)
             HStack {
                 Text(text)
                     .foregroundStyle(.white)
-                    .font(.system(size: 22))
+                    .font(.title2)
                     .padding()
                 Spacer()
             }
