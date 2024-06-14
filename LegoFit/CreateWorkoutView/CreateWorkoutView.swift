@@ -15,6 +15,7 @@ struct CreateWorkoutView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                
                 ExerciseList(createWorkoutVM: $createWorkoutVM)
                 
                 if createWorkoutVM.isLoading {
@@ -73,17 +74,27 @@ fileprivate struct ExerciseList: View {
                 ForEach(
                     createWorkoutVM.sortedByCategoryExercises[section] ?? []
                 ) { exercise in
-                    ExerciseCellView(title: exercise.name) {
-                            createWorkoutVM.showSheetOf(exercise: exercise)
-                        } onSwipeAction: {
+                    Button(exercise.name) {
+                        createWorkoutVM.showSheetOf(exercise: exercise)
+                    }
+                    .tint(.white)
+                    .frame(height: 40)
+                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                        Button(action: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)
-                        }
+                        }, label: {
+                            Image(systemName: "plus.circle.dashed")
+                        })
+                        .tint(.main)
+                    }
+                    
                 }
             } header: {
-                Text(section)
-                //TODO: Разукрасить
+                HeaderView(text: section)
             }
+            .listRowBackground(Color.cellBackground)
         }
+        .scrollIndicators(.hidden)
         .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
             CreateWorkoutDetailsView(
                 exercise: exercise,
