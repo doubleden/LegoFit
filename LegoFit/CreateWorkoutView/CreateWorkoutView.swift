@@ -25,15 +25,16 @@ struct CreateWorkoutView: View {
             }
             .navigationTitle("Упражнения")
             .toolbar {
+                //TODO: Надо сделать бургер с кнопками сбросить и фильтр
                 ToolbarItem(placement: .topBarLeading) {
                     ButtonToolbar(
                         title: "Сбросить",
-                        action: createWorkoutVM.cancelCrateWorkout
+                        action: createWorkoutVM.cancelCreateWorkout
                     )
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    ButtonToolbar(title: "Далее") {
+                    ButtonToolbar(title: "Готово") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
@@ -42,7 +43,7 @@ struct CreateWorkoutView: View {
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
                 CreateWorkoutSaveView(workoutTitle: $createWorkoutVM.workoutDTO.name) { createWorkoutVM.saveWorkout(modelContext: modelContext)
                     if !createWorkoutVM.isShowAlertPresented {
-                        createWorkoutVM.cancelCrateWorkout()
+                        createWorkoutVM.cancelCreateWorkout()
                         selectedTab = 0
                     }
                 }
@@ -51,7 +52,8 @@ struct CreateWorkoutView: View {
             
             .alert(createWorkoutVM.errorMessage ?? "",
                     isPresented: $createWorkoutVM.isShowAlertPresented) {
-                Button("Ok", role: .cancel) { createWorkoutVM.workoutDTO.name = ""
+                Button("Ok", role: .cancel) { 
+                    createWorkoutVM.workoutDTO.name = ""
                 }
             }
             

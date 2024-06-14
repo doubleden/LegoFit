@@ -42,6 +42,7 @@ final class CreateWorkoutViewViewModel {
     private var exercisesDTO: [ExerciseDTO] = []
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
+    private var queue = 1
     
     // MARK: - Main View
     
@@ -70,7 +71,8 @@ final class CreateWorkoutViewViewModel {
         storageManager.save(workout: workout, context: modelContext)
     }
     
-    func cancelCrateWorkout() {
+    func cancelCreateWorkout() {
+        queue = 1
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
     }
@@ -88,7 +90,10 @@ final class CreateWorkoutViewViewModel {
     func addToWorkout(exerciseDTO: ExerciseDTO) {
         let exercise = create(exercise: exerciseDTO)
         workoutDTO.exercises.append(exercise)
-        
+        queue += 1
+    }
+    
+    func clearInputs() {
         setInputExercise = ""
         repInputExercise = ""
         weightInputExercise = ""
@@ -107,7 +112,8 @@ final class CreateWorkoutViewViewModel {
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
         ExerciseDTO(
-            id: exercise.id,
+            id: exercise.id, 
+            queue: queue,
             category: exercise.category,
             name: exercise.name,
             description: exercise.description,

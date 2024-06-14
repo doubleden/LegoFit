@@ -11,6 +11,7 @@ import SwiftData
 @Model
 final class Workout {
     let name: String
+    let date = Date()
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     
     init(name: String, exercises: [Exercise]) {
@@ -40,6 +41,7 @@ final class Workout {
 
 @Model
 final class Exercise {
+    var queue: Int
     let category: String
     let name: String
     let definition: String
@@ -50,6 +52,7 @@ final class Exercise {
     var weight: Int
     
     init(
+        queue: Int,
         category: String,
         name: String,
         definition: String,
@@ -58,6 +61,7 @@ final class Exercise {
         rep: Int,
         weight: Int
     ) {
+        self.queue = queue
         self.category = category
         self.name = name
         self.definition = definition
@@ -69,6 +73,7 @@ final class Exercise {
     
     convenience init(item: ExerciseDTO) {
         self.init(
+            queue: item.queue ?? 0,
             category: item.category,
             name: item.name,
             definition: item.description,
@@ -80,6 +85,6 @@ final class Exercise {
     }
     
     static func getExercises() -> [Exercise] {
-        [Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55)]
+        [Exercise(queue: 3, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(queue: 2, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55),Exercise(queue: 1, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55)]
     }
 }

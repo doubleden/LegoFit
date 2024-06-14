@@ -51,7 +51,7 @@ private struct CustomButtonStyle: ButtonStyle {
         configuration.label
             .frame(width: 300 ,height: 45)
             .background(background)
-            .clipShape(.rect(cornerRadius: 10))
+            .clipShape(.rect(cornerRadius: 5))
     }
 }
 

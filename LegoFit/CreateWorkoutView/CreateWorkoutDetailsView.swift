@@ -19,13 +19,13 @@ struct CreateWorkoutDetailsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     ExerciseImageView(imageUrl: exercise.image)
+                        .shadow(color: .main, radius: 20)
                     
                     Text(exercise.name)
                         .font(.title)
                     
                     Text(exercise.description)
                         .font(.subheadline)
-                    
                     ExerciseInputFields(
                         sets: $createWorkoutVM.setInputExercise,
                         reps: $createWorkoutVM.repInputExercise,
@@ -75,6 +75,10 @@ struct CreateWorkoutDetailsView: View {
         .onTapGesture {
             isFocused = nil
         }
+        
+        .onDisappear {
+            createWorkoutVM.clearInputs()
+        }
     }
 }
 
@@ -95,7 +99,6 @@ struct ExerciseInputFields: View {
         }
         .keyboardType(.numberPad)
         .textFieldStyle(.roundedBorder)
-        //TODO: Сделать валидацию на ввод букв
     }
 }
 

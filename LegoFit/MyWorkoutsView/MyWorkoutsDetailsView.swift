@@ -10,9 +10,13 @@ import SwiftUI
 struct MyWorkoutsDetailsView: View {
     let workout: Workout
     
+    private var sortedExercise: [Exercise] {
+        workout.exercises.sorted { $0.queue < $1.queue}
+    }
+    
     var body: some View {
         Text(workout.name)
-        List(workout.exercises, id: \.id) { exercise in
+        List(sortedExercise, id: \.id) { exercise in
             VStack(alignment: .leading, spacing: 10) {
                 Text(exercise.name)
                 Text(exercise.set.formatted())
