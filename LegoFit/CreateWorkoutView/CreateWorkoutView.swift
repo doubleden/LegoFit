@@ -97,7 +97,10 @@ fileprivate struct ExerciseList: View {
                     
                 }
             } header: {
-                HeaderView(text: section)
+                HeaderView(
+                    text: section,
+                    isLoading: $createWorkoutVM.isLoading
+                )
             }
             .listRowBackground(Color.cellBackground)
         }

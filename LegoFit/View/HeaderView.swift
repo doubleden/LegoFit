@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     let text: String
+    @Binding var isLoading: Bool
     
     var body: some View {
         ZStack {
@@ -20,6 +21,9 @@ struct HeaderView: View {
                     .foregroundStyle(.white)
                     .font(.title2)
                     .padding()
+                if isLoading {
+                    ProgressView()
+                }
                 Spacer()
             }
         }
@@ -27,5 +31,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView(text: "Legs")
+    HeaderView(text: "Legs", isLoading: .constant(true))
 }
