@@ -40,6 +40,8 @@ struct CreateWorkoutView: View {
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
             }
+            
+            // Нажатие на кнопку Готово и переход к SaveView
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
                 CreateWorkoutSaveView(workoutTitle: $createWorkoutVM.workoutDTO.name) { createWorkoutVM.saveWorkout(modelContext: modelContext)
                     if !createWorkoutVM.isShowAlertPresented {

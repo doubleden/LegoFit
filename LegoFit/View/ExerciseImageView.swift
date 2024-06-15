@@ -8,6 +8,8 @@
 import SwiftUI
 import Kingfisher
 
+//TODO: Сделать картинку по умолчанию если не загружается
+//TODO: И Сделать ProgressView() пока картинка загружается
 struct ExerciseImageView: View {
     let imageUrl: String
     

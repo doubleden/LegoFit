@@ -27,6 +27,7 @@ final class CreateWorkoutViewViewModel {
     var setInputExercise = ""
     var repInputExercise = ""
     var weightInputExercise = ""
+    var commentInputExercise = ""
     var isFocused: FocusedTextField? = nil
     
     var sortedByCategoryExercises: [String: [ExerciseDTO]] {
@@ -120,8 +121,8 @@ final class CreateWorkoutViewViewModel {
             image: exercise.image,
             set: Int(setInputExercise) ?? 0,
             rep: Int(repInputExercise) ?? 0,
-            weight: Int(weightInputExercise) ?? 0
+            weight: Int(weightInputExercise) ?? 0,
+            comment: commentInputExercise
         )
     }
-    
 }
