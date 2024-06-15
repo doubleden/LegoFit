@@ -30,6 +30,7 @@ struct CreateWorkoutDetailsView: View {
                         sets: $createWorkoutVM.setInputExercise,
                         reps: $createWorkoutVM.repInputExercise,
                         weight: $createWorkoutVM.weightInputExercise,
+                        comment: $createWorkoutVM.commentInputExercise,
                         isFocused: _isFocused
                     )
                     
@@ -56,7 +57,7 @@ struct CreateWorkoutDetailsView: View {
                         HStack {
                             Spacer()
                             Button(
-                                createWorkoutVM.isFocused == .weight
+                                createWorkoutVM.isFocused == .comment
                                    ? "Готово"
                                    : "Далее"
                             ) {
@@ -86,6 +87,7 @@ struct ExerciseInputFields: View {
     @Binding var sets: String
     @Binding var reps: String
     @Binding var weight: String
+    @Binding var comment: String
     @FocusState var isFocused: FocusedTextField?
     
     var body: some View {
@@ -96,6 +98,8 @@ struct ExerciseInputFields: View {
                 .focused($isFocused, equals: .reps)
             TextField("Вес", text: $weight)
                 .focused($isFocused, equals: .weight)
+            TextField("Заметка", text: $comment)
+                .focused($isFocused, equals: .comment)
         }
         .keyboardType(.numberPad)
         .textFieldStyle(.roundedBorder)

@@ -11,6 +11,7 @@ enum FocusedTextField {
     case sets
     case reps
     case weight
+    case comment
 }
 
 @Observable
@@ -106,6 +107,8 @@ final class CreateWorkoutViewViewModel {
             isFocused = .reps
         case .reps:
             isFocused = .weight
+        case .weight:
+            isFocused = .comment
         default:
             isFocused = nil
         }

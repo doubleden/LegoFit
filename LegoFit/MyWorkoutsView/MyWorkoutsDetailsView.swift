@@ -22,6 +22,7 @@ struct MyWorkoutsDetailsView: View {
                 Text(exercise.set.formatted())
                 Text(exercise.rep.formatted())
                 Text(exercise.weight.formatted())
+                Text(exercise.comment)
             }
         }
     }
