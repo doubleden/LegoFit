@@ -22,6 +22,7 @@ struct CreateWorkoutView: View {
                             createWorkoutVM: $createWorkoutVM
                         )
                         .presentationBackground(.black)
+                        .presentationDragIndicator(.visible)
                     }
             }
             .navigationTitle("Упражнения")
@@ -52,6 +53,7 @@ struct CreateWorkoutView: View {
                 }
                 .presentationBackground(.cellBackground)
                 .presentationDetents([.height(190)])
+                .presentationDragIndicator(.visible)
             }
             
             .alert(createWorkoutVM.errorMessage ?? "",
