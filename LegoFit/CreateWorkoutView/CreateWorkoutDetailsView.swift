@@ -17,7 +17,7 @@ struct CreateWorkoutDetailsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
                     GradientBackground(content:
                         Text(exercise.name)
                             .font(.title)
@@ -39,7 +39,7 @@ struct CreateWorkoutDetailsView: View {
                     
                     Spacer()
                 }
-                .padding()
+                .padding(.top, 10)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         ButtonToolbar(title: "Отменить") {
@@ -70,6 +70,10 @@ struct CreateWorkoutDetailsView: View {
                         }
                     }
                 }
+            }
+            .scrollIndicators(.hidden)
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: 65)
             }
         }
         .onChange(of: isFocused, { _, newValue in
@@ -103,8 +107,8 @@ struct ExerciseInputFields: View {
                 .focused($isFocused, equals: .weight)
             Spacer()
             TextField("коментарии", text: $comment)
-                .padding()
                 .focused($isFocused, equals: .comment)
+                .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
     }
