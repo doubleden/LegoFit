@@ -50,6 +50,7 @@ struct CreateWorkoutView: View {
                         selectedTab = 0
                     }
                 }
+                .presentationBackground(.cellBackground)
                 .presentationDetents([.height(190)])
             }
             

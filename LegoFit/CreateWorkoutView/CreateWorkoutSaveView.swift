@@ -33,7 +33,7 @@ struct CreateWorkoutSaveView: View {
                     .tint(.white)
             })
             .font(.title2)
-            .buttonStyle(CustomButtonStyle(isEnabled: isEnabled))
+            .buttonStyle(CustomButtonStyle())
             
             Spacer()
         }
@@ -42,7 +42,6 @@ struct CreateWorkoutSaveView: View {
 }
 
 private struct CustomButtonStyle: ButtonStyle {
-    let isEnabled: Bool
 
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {

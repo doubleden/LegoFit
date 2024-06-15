@@ -99,6 +99,7 @@ final class CreateWorkoutViewViewModel {
         setInputExercise = ""
         repInputExercise = ""
         weightInputExercise = ""
+        commentInputExercise = ""
     }
     
     func changeIsFocused() {
