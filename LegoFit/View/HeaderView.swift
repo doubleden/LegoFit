@@ -13,19 +13,18 @@ struct HeaderView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundStyle(Gradient(colors: [.main, .cellBackground]))
-                .frame(width: 360, height: 60)
-            HStack {
-                Text(text)
-                    .foregroundStyle(.white)
-                    .font(.title2)
-                    .padding()
-                if isLoading {
-                    ProgressView()
+            GradientBackground(content:
+                HStack {
+                    Text(text)
+                        .foregroundStyle(.white)
+                        .font(.title2)
+                        .padding()
+                    if isLoading {
+                        ProgressView()
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
+            )
         }
     }
 }

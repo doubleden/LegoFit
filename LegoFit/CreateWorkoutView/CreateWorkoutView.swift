@@ -21,6 +21,7 @@ struct CreateWorkoutView: View {
                             exercise: exercise,
                             createWorkoutVM: $createWorkoutVM
                         )
+                        .presentationBackground(.black)
                     }
             }
             .navigationTitle("Упражнения")

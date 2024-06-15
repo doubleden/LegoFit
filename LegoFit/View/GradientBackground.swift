@@ -7,12 +7,20 @@
 
 import SwiftUI
 
-struct GradientBackground: View {
+struct GradientBackground<Content: View>: View {
+    let content: Content
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundStyle(Gradient(colors: [.main, .cellBackground]))
+            .frame(width: 360, height: 60)
+            
+            content
+        }
     }
 }
 
 #Preview {
-    GradientBackground()
+    GradientBackground(content: Text("Check"))
 }

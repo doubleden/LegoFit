@@ -17,15 +17,18 @@ struct CreateWorkoutDetailsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
-                    ExerciseImageView(imageUrl: exercise.image)
-                        .shadow(color: .main, radius: 20)
+                VStack(spacing: 30) {
+                    GradientBackground(content:
+                        Text(exercise.name)
+                            .font(.title)
+                    )
                     
-                    Text(exercise.name)
-                        .font(.title)
+                    ExerciseImageView(imageUrl: exercise.image)
+                        .shadow(color: .main, radius: 10, x: 3, y: 3)
                     
                     Text(exercise.description)
                         .font(.subheadline)
+                    
                     ExerciseInputFields(
                         sets: $createWorkoutVM.setInputExercise,
                         reps: $createWorkoutVM.repInputExercise,
@@ -91,18 +94,19 @@ struct ExerciseInputFields: View {
     @FocusState var isFocused: FocusedTextField?
     
     var body: some View {
-        VStack {
-            TextField("Подходы", text: $sets)
+        VStack(spacing: 12) {
+            ParameterTextFieldView(title: "Подход", text: "0", input: $sets)
                 .focused($isFocused, equals: .sets)
-            TextField("Повторения", text: $reps)
+            ParameterTextFieldView(title: "Раз", text: "0", input: $reps)
                 .focused($isFocused, equals: .reps)
-            TextField("Вес", text: $weight)
+            ParameterTextFieldView(title: "Вес", text: "0", input: $weight)
                 .focused($isFocused, equals: .weight)
-            TextField("Заметка", text: $comment)
+            Spacer()
+            TextField("коментарии", text: $comment)
+                .padding()
                 .focused($isFocused, equals: .comment)
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
-        .keyboardType(.numberPad)
-        .textFieldStyle(.roundedBorder)
     }
 }
 
