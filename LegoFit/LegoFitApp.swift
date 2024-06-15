@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct LegoFitApp: App {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.dark)
                 .modelContainer(for: [Workout.self])
         }
     }
