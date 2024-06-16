@@ -7,17 +7,6 @@
 
 import Foundation
 
-enum API {
-    case exercises
-    
-    var url: String {
-        switch self {
-        case .exercises:
-             "http://192.168.18.234:8080/trainings"
-        }
-    }
-}
-
 enum NetworkError: Error {
     case noData
     case invalidURL

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051D48652C1B466E00E87930 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 051D48642C1B466E00E87930 /* Kingfisher */; };
 		0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */; };
 		0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A42C0900CB0007F632 /* NetworkManager.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutView.swift; sourceTree = "<group>"; };
 		0525D3A42C0900CB0007F632 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0525D3AB2C0908E10007F632 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		05BC717B2C0646F400524C58 /* LegoFit */ = {
 			isa = PBXGroup;
 			children = (
+				051856092C1ED48300138B3E /* API.swift */,
 				05BC717C2C0646F400524C58 /* LegoFitApp.swift */,
 				05BC717E2C0646F400524C58 /* ContentView.swift */,
 				0555C5C82C09F1110090C252 /* View */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0525D3AC2C0908E10007F632 /* Workout.swift in Sources */,
+				0518560A2C1ED48300138B3E /* API.swift in Sources */,
 				05D857312C0D014900DD77AC /* MyWorkoutsDetailsView.swift in Sources */,
 				0525D3B02C0912E10007F632 /* CreateWorkoutDetailsView.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
