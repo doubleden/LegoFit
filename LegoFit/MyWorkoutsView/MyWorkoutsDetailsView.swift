@@ -17,7 +17,7 @@ struct MyWorkoutsDetailsView: View {
     var body: some View {
         Text(workout.name)
         List(sortedExercise, id: \.id) { exercise in
-            VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 10) {
                 Text(exercise.name)
                 Text(exercise.set.formatted())
                 Text(exercise.rep.formatted())

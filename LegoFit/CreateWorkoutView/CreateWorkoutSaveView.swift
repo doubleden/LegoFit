@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CreateWorkoutSaveView: View {
     @Binding var workoutTitle: String
+    let isInputValid: Bool
     let action: () -> Void
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.isEnabled) var isEnabled
-    @State private var isPressed = false
+    
     
     var body: some View {
         VStack(alignment: .center, spacing: 30) {
@@ -27,14 +28,17 @@ struct CreateWorkoutSaveView: View {
             
             Button(action: {
                 action()
-                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    dismiss()
+                }
+                
             }, label: {
                 Text("Сохранить тренировку")
                     .tint(.white)
             })
             .font(.title2)
-            .buttonStyle(CustomButtonStyle())
-            
+            .buttonStyle(CustomButtonStyle(isDisabled: !isInputValid))
+            .disabled(!isInputValid)
             Spacer()
         }
         .padding(.top, 40)
@@ -42,18 +46,19 @@ struct CreateWorkoutSaveView: View {
 }
 
 private struct CustomButtonStyle: ButtonStyle {
-
+    let isDisabled: Bool
+    
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
-        let background = configuration.isPressed ? Color.black : Color.main
-
         configuration.label
             .frame(width: 300 ,height: 45)
-            .background(background)
+            .background(isDisabled ? .offButton : .main)
             .clipShape(.rect(cornerRadius: 5))
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
 #Preview {
-    CreateWorkoutSaveView(workoutTitle: .constant("New Workout"), action: {})
+    CreateWorkoutSaveView(workoutTitle: .constant("New Workout"), isInputValid: false, action: {})
 }

@@ -45,8 +45,12 @@ struct CreateWorkoutView: View {
             
             // Нажатие на кнопку Готово и переход к SaveView
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
-                CreateWorkoutSaveView(workoutTitle: $createWorkoutVM.workoutDTO.name) { createWorkoutVM.saveWorkout(modelContext: modelContext)
-                    if !createWorkoutVM.isShowAlertPresented {
+                CreateWorkoutSaveView(
+                    workoutTitle: $createWorkoutVM.workoutDTO.name, isInputValid: createWorkoutVM.isWorkoutNameValid()
+                ) { createWorkoutVM.saveWorkout(
+                    modelContext: modelContext
+                )
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         createWorkoutVM.cancelCreateWorkout()
                         selectedTab = 0
                     }
@@ -93,7 +97,6 @@ fileprivate struct ExerciseList: View {
                             .foregroundStyle(.white)
                             
                     })
-                    .frame(height: 40)
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button(action: {
                             createWorkoutVM.addToWorkout(exerciseDTO: exercise)

@@ -84,9 +84,9 @@
 		0525D39F2C08F9840007F632 /* CreateWorkoutView */ = {
 			isa = PBXGroup;
 			children = (
+				0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */,
 				0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */,
 				0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */,
-				0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */,
 				0525D3AF2C0912E10007F632 /* CreateWorkoutDetailsView.swift */,
 			);
 			path = CreateWorkoutView;

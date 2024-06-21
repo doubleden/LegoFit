@@ -62,16 +62,15 @@ final class CreateWorkoutViewViewModel {
         }
     }
     
+    func isWorkoutNameValid() -> Bool {
+        !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+    
     func saveWorkout(modelContext: ModelContext) {
-        guard !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty else {
-            errorMessage = "Workout name cannot be empty"
-            isShowAlertPresented.toggle()
-            return
-        }
-        
         let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
     }
+    
     
     func cancelCreateWorkout() {
         queue = 1
