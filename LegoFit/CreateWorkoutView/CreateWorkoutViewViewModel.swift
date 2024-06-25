@@ -7,13 +7,6 @@
 import Observation
 import SwiftData
 
-enum FocusedTextField {
-    case sets
-    case reps
-    case weight
-    case comment
-}
-
 @Observable
 final class CreateWorkoutViewViewModel {
     
@@ -44,7 +37,7 @@ final class CreateWorkoutViewViewModel {
     private var exercisesDTO: [ExerciseDTO] = []
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
-    private var queue = 1
+    private var queue = 0
     
     // MARK: - Main View
     
@@ -66,23 +59,20 @@ final class CreateWorkoutViewViewModel {
         !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
+    func isExercisesInWorkoutEmpty() -> Bool {
+        workoutDTO.exercises.isEmpty
+    }
+    
     func saveWorkout(modelContext: ModelContext) {
         let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
     }
     
-    
     func cancelCreateWorkout() {
-        queue = 1
+        queue = 0
         workoutDTO.name = ""
         workoutDTO.exercises.removeAll()
     }
-    
-    func isExercisesInWorkoutEmpty() -> Bool {
-        workoutDTO.exercises.isEmpty
-    }
-    
-    // MARK: - Details View
     
     func showSheetOf(exercise: ExerciseDTO) {
         sheetExercise = exercise
@@ -93,6 +83,9 @@ final class CreateWorkoutViewViewModel {
         workoutDTO.exercises.append(exercise)
         queue += 1
     }
+    
+    // MARK: - Details View
+    
     
     func clearInputs() {
         setInputExercise = ""

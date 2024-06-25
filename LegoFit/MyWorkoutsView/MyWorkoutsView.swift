@@ -18,7 +18,7 @@ struct MyWorkoutsView: View {
             ZStack {
                 List {
                     ForEach(workouts) { workout in
-                        NavigationLink(workout.name, destination: MyWorkoutsDetailsView(workout: workout))
+                        NavigationLink(workout.name, destination: MyWorkoutView(workout: workout))
                     }
                     .onDelete(perform: { indexSet in
                         deleteWorkout(indexSet)

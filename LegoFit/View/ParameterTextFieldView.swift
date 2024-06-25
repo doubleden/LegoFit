@@ -36,7 +36,7 @@ struct OvalTextFieldStyle: TextFieldStyle {
                     gradient: Gradient(
                         colors: [
                             .main,
-                            .cellBackground
+                            .violet
                         ]
                     ),
                     startPoint: .topLeading,

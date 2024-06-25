@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyWorkoutsDetailsView: View {
+struct MyWorkoutView: View {
     let workout: Workout
     
     private var sortedExercise: [Exercise] {
@@ -15,18 +15,15 @@ struct MyWorkoutsDetailsView: View {
     }
     
     var body: some View {
-        Text(workout.name)
-        List(sortedExercise, id: \.id) { exercise in
-            HStack(spacing: 10) {
-                Text(exercise.name)
-                Text(exercise.set.formatted())
-                Text(exercise.rep.formatted())
-                Text(exercise.weight.formatted())
-                Text(exercise.comment)
+        NavigationStack {
+            List(sortedExercise) { exercise in
+                NavigationLink(exercise.name, destination: MyWorkoutDetailsView())
             }
+            .navigationTitle(workout.name)
         }
     }
 }
+
 
 import SwiftData
 #Preview {
@@ -34,6 +31,6 @@ import SwiftData
     let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
     let workout = workouts?.first ?? Workout.getWorkout()
 
-    return MyWorkoutsDetailsView(workout: workout)
+    return MyWorkoutView(workout: workout)
         .modelContainer(container)
 }

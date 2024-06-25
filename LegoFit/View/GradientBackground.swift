@@ -13,7 +13,7 @@ struct GradientBackground<Content: View>: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundStyle(Gradient(colors: [.main, .cellBackground]))
+                .foregroundStyle(Gradient(colors: [.main, .violet]))
             .frame(width: 360, height: 60)
             
             content

@@ -50,7 +50,7 @@ struct CreateWorkoutView: View {
                 ) { createWorkoutVM.saveWorkout(
                     modelContext: modelContext
                 )
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         createWorkoutVM.cancelCreateWorkout()
                         selectedTab = 0
                     }

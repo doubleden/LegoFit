@@ -10,8 +10,8 @@ import SwiftUI
 struct CreateWorkoutDetailsView: View {
     var exercise: ExerciseDTO
     @Binding var createWorkoutVM: CreateWorkoutViewViewModel
-    @Environment(\.dismiss) private var dismiss
     
+    @Environment(\.dismiss) private var dismiss
     @FocusState private var isFocused: FocusedTextField?
     
     var body: some View {
@@ -29,7 +29,7 @@ struct CreateWorkoutDetailsView: View {
                     Text(exercise.description)
                         .font(.subheadline)
                     
-                    ExerciseInputFields(
+                    ExerciseParametersTF(
                         sets: $createWorkoutVM.setInputExercise,
                         reps: $createWorkoutVM.repInputExercise,
                         weight: $createWorkoutVM.weightInputExercise,
@@ -76,6 +76,7 @@ struct CreateWorkoutDetailsView: View {
                 Color.clear.frame(height: 65)
             }
         }
+        
         .onChange(of: isFocused, { _, newValue in
             createWorkoutVM.isFocused = newValue
         })
@@ -86,30 +87,6 @@ struct CreateWorkoutDetailsView: View {
         
         .onDisappear {
             createWorkoutVM.clearInputs()
-        }
-    }
-}
-
-struct ExerciseInputFields: View {
-    @Binding var sets: String
-    @Binding var reps: String
-    @Binding var weight: String
-    @Binding var comment: String
-    @FocusState var isFocused: FocusedTextField?
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            ParameterTextFieldView(title: "Подход", text: "0", input: $sets)
-                .focused($isFocused, equals: .sets)
-            ParameterTextFieldView(title: "Раз", text: "0", input: $reps)
-                .focused($isFocused, equals: .reps)
-            ParameterTextFieldView(title: "Вес", text: "0", input: $weight)
-                .focused($isFocused, equals: .weight)
-            Spacer()
-            TextField("коментарии", text: $comment)
-                .focused($isFocused, equals: .comment)
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
     }
 }
