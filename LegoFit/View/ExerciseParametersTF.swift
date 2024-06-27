@@ -29,7 +29,7 @@ struct ExerciseParametersTF: View {
                 .focused($isFocused, equals: .reps)
             ParameterTextFieldView(title: "Вес", text: "0", input: $weight)
                 .focused($isFocused, equals: .weight)
-            Spacer()
+                .padding(.bottom, 20)
             TextField("коментарии", text: $comment)
                 .focused($isFocused, equals: .comment)
                 .padding()

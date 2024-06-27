@@ -10,6 +10,8 @@ import SwiftUI
 struct MyWorkoutView: View {
     let workout: Workout
     
+    @State private var sheetPresented: Exercise?
+    
     private var sortedExercise: [Exercise] {
         workout.exercises.sorted { $0.queue < $1.queue}
     }
@@ -34,19 +36,25 @@ struct MyWorkoutView: View {
                 }
                 
                 List(sortedExercise) { exercise in
-                    HStack(alignment: .center, spacing: 40) {
-                        Text(exercise.name)
-                        Spacer()
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(exercise.set.formatted())
-                            Text(exercise.rep.formatted())
-                            Text(exercise.weight.formatted())
+                    Button(action: {sheetPresented = exercise}) {
+                        HStack(alignment: .center, spacing: 40) {
+                            Text(exercise.name)
+                            Spacer()
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(exercise.set.formatted())
+                                Text(exercise.rep.formatted())
+                                Text(exercise.weight.formatted())
+                            }
                         }
                     }
                 }
                 .listStyle(.plain)
             }
             .padding()
+            .sheet(item: $sheetPresented) { exercise in MyWorkoutDetailsView(exercise: exercise)
+                    .presentationDetents([.height(320)])
+                    .presentationDragIndicator(.visible)
+            }
         }
     }
 }

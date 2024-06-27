@@ -36,8 +36,6 @@ struct CreateWorkoutDetailsView: View {
                         comment: $createWorkoutVM.commentInputExercise,
                         isFocused: _isFocused
                     )
-                    
-                    Spacer()
                 }
                 .padding(.top, 10)
                 .toolbar {

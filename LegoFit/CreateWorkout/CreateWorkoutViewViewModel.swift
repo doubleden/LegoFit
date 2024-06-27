@@ -86,7 +86,6 @@ final class CreateWorkoutViewViewModel {
     
     // MARK: - Details View
     
-    
     func clearInputs() {
         setInputExercise = ""
         repInputExercise = ""

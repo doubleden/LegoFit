@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class Workout {
-    let name: String
+    var name: String
     let date = Date()
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     
