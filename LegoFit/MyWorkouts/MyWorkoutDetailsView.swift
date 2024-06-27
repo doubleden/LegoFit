@@ -37,6 +37,7 @@ struct MyWorkoutDetailsView: View {
                 myWorkoutDetailsVM.setupTextFields()
             }
         .padding()
+        .padding(.top, 5)
         }
     }
 }

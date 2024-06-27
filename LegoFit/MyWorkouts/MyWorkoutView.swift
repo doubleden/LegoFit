@@ -16,7 +16,7 @@ struct MyWorkoutView: View {
                 Text(myWorkoutVM.workout.name)
                     .font(.largeTitle)
                 
-                Button(action: {}) {
+                NavigationLink(destination: ActiveWorkoutView()) {
                     ZStack {
                         Circle()
                             .frame(width: 100, height: 100)
