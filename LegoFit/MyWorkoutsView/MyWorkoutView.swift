@@ -16,10 +16,37 @@ struct MyWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            List(sortedExercise) { exercise in
-                NavigationLink(exercise.name, destination: MyWorkoutDetailsView())
+            VStack(spacing: 40) {
+                Text(workout.name)
+                    .font(.largeTitle)
+                
+                Button(action: {}) {
+                    ZStack {
+                        Circle()
+                            .frame(width: 100, height: 100)
+                            .foregroundStyle(Gradient(colors: [.main, .violet]))
+                            .shadow(color: .violet, radius: 7)
+                        
+                        Image(systemName: "play.fill")
+                            .foregroundStyle(.black)
+                            .font(.largeTitle)
+                    }
+                }
+                
+                List(sortedExercise) { exercise in
+                    HStack(alignment: .center, spacing: 40) {
+                        Text(exercise.name)
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(exercise.set.formatted())
+                            Text(exercise.rep.formatted())
+                            Text(exercise.weight.formatted())
+                        }
+                    }
+                }
+                .listStyle(.plain)
             }
-            .navigationTitle(workout.name)
+            .padding()
         }
     }
 }

@@ -21,6 +21,7 @@ struct HeaderView: View {
                         .padding()
                     if isLoading {
                         ProgressView()
+                            .progressViewStyle(.circular)
                     }
                     Spacer()
                 }

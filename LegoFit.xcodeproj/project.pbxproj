@@ -87,7 +87,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0525D39F2C08F9840007F632 /* CreateWorkoutView */ = {
+		0525D39F2C08F9840007F632 /* CreateWorkout */ = {
 			isa = PBXGroup;
 			children = (
 				0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */,
@@ -95,7 +95,7 @@
 				0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */,
 				0525D3AF2C0912E10007F632 /* CreateWorkoutDetailsView.swift */,
 			);
-			path = CreateWorkoutView;
+			path = CreateWorkout;
 			sourceTree = "<group>";
 		};
 		0525D3B52C09DF4A0007F632 /* MyWorkoutsView */ = {
@@ -145,7 +145,7 @@
 				05BC717C2C0646F400524C58 /* LegoFitApp.swift */,
 				05BC717E2C0646F400524C58 /* ContentView.swift */,
 				0555C5C82C09F1110090C252 /* View */,
-				0525D39F2C08F9840007F632 /* CreateWorkoutView */,
+				0525D39F2C08F9840007F632 /* CreateWorkout */,
 				0525D3B52C09DF4A0007F632 /* MyWorkoutsView */,
 				05BC718A2C06470600524C58 /* Models */,
 				05BC718D2C08E9FA00524C58 /* Services */,
