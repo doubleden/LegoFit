@@ -29,7 +29,7 @@ final class MyWorkoutDetailsViewModel {
         exercise.comment = comment
     }
     
-    private let exercise: Exercise
+    private var exercise: Exercise
     
     init(exercise: Exercise) {
         self.exercise = exercise

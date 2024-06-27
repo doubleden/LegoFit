@@ -16,7 +16,13 @@ struct MyWorkoutView: View {
                 Text(myWorkoutVM.workout.name)
                     .font(.largeTitle)
                 
-                NavigationLink(destination: ActiveWorkoutView()) {
+                NavigationLink(
+                    destination: ActiveWorkoutView(
+                        activeWorkoutVM: ActiveWorkoutViewModel(
+                            workout: myWorkoutVM.workout
+                        )
+                    )
+                ) {
                     ZStack {
                         Circle()
                             .frame(width: 100, height: 100)
@@ -31,6 +37,7 @@ struct MyWorkoutView: View {
                 
                 List(myWorkoutVM.sortedExercise) { exercise in
                     Button(action: {
+                        //Сделать Валидацию на то что нельзя включать треню пока есть упражнения где подход и повторения по нулям
                         myWorkoutVM.sheetPresented = exercise
                     }) {
                         HStack(alignment: .center, spacing: 40) {

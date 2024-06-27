@@ -8,11 +8,53 @@
 import SwiftUI
 
 struct ActiveWorkoutView: View {
+    @Bindable var activeWorkoutVM: ActiveWorkoutViewModel
+    @Environment(\.dismiss) var dismiss
+    private var exercise: Exercise {
+        activeWorkoutVM.exercise
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 20) {
+            Text(exercise.name)
+                .font(.largeTitle)
+            
+            ExerciseImageView(imageUrl: exercise.photo)
+            
+            Text(
+                "Подходов сделано: \(activeWorkoutVM.completedSets) из \(exercise.set)"
+            )
+            
+            VStack(alignment: .leading) {
+                Text("Повторения: \(exercise.rep)")
+                Text("Вес: \(exercise.weight)")
+            }
+            
+            Text(exercise.comment)
+            
+            Button(activeWorkoutVM.isLastExercise
+                   ? "Закончить"
+                   : "Далее") {
+                withAnimation(.easeInOut(duration: 0.8)) {
+                    activeWorkoutVM.showNextExercise()
+                }
+                activeWorkoutVM.finishWorkout {
+                    dismiss()
+                }
+            }
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 
+import SwiftData
 #Preview {
-    ActiveWorkoutView()
+    let container = DataController.previewContainer
+    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
+    let workout = workouts?.first ?? Workout.getWorkout()
+
+    return ActiveWorkoutView(activeWorkoutVM: ActiveWorkoutViewModel(workout: workout))
+        .modelContainer(container)
 }

@@ -31,6 +31,7 @@
 		05BC71812C0646F500524C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71802C0646F500524C58 /* Assets.xcassets */; };
 		05BC71842C0646F500524C58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BC71832C0646F500524C58 /* Preview Assets.xcassets */; };
 		05BC718C2C0648CC00524C58 /* WorkoutDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC718B2C0648CC00524C58 /* WorkoutDTO.swift */; };
+		05D3F8A92C2E084500494005 /* ActiveWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */; };
 		05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857302C0D014900DD77AC /* MyWorkoutView.swift */; };
 		05D857332C0D089900DD77AC /* PreviewProviderSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857322C0D089900DD77AC /* PreviewProviderSwiftData.swift */; };
 		05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */; };
@@ -74,6 +75,7 @@
 		05BC71802C0646F500524C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BC71832C0646F500524C58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		05BC718B2C0648CC00524C58 /* WorkoutDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDTO.swift; sourceTree = "<group>"; };
+		05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutViewModel.swift; sourceTree = "<group>"; };
 		05D857302C0D014900DD77AC /* MyWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutView.swift; sourceTree = "<group>"; };
 		05D857322C0D089900DD77AC /* PreviewProviderSwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProviderSwiftData.swift; sourceTree = "<group>"; };
 		05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				05AA11482C2DF93200145826 /* ActiveWorkoutView.swift */,
+				05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
 				05BC718C2C0648CC00524C58 /* WorkoutDTO.swift in Sources */,
 				058882F02C1E31A300451030 /* GradientBackground.swift in Sources */,
+				05D3F8A92C2E084500494005 /* ActiveWorkoutViewModel.swift in Sources */,
 				057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */,
 				05AA11492C2DF93200145826 /* ActiveWorkoutView.swift in Sources */,
 				05530F432C2618A30044A855 /* MyWorkoutDetailsView.swift in Sources */,

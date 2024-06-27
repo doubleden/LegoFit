@@ -10,21 +10,16 @@ import SwiftUI
 struct MyWorkoutDetailsView: View {
     @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
     
-    @State var set = ""
-    @State var rep = ""
-    @State var weight = ""
-    @State var comment = ""
-    
     @Environment(\.dismiss) var dismis
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
                 ExerciseParametersTF(
-                    sets: $set,
-                    reps: $rep,
-                    weight: $weight,
-                    comment: $comment
+                    sets: $myWorkoutDetailsVM.set,
+                    reps: $myWorkoutDetailsVM.rep,
+                    weight: $myWorkoutDetailsVM.weight,
+                    comment: $myWorkoutDetailsVM.comment
                 )
                 
                 Button("Save") {
