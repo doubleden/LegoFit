@@ -15,7 +15,7 @@ final class MyWorkoutViewModel {
         workout.exercises.sorted { $0.queue < $1.queue}
     }
     
-    private let workout: Workout
+    let workout: Workout
     
     init(workout: Workout) {
         self.workout = workout

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyWorkoutDetailsView: View {
-    var exercise: Exercise
+    @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
     
     @State var set = ""
     @State var rep = ""
@@ -28,19 +28,13 @@ struct MyWorkoutDetailsView: View {
                 )
                 
                 Button("Save") {
-                    exercise.set = Int(set) ?? 0
-                    exercise.rep = Int(rep) ?? 0
-                    exercise.weight = Int(weight) ?? 0
-                    exercise.comment = comment
+                    myWorkoutDetailsVM.saveСhanges()
                     dismis()
                 }
                 .buttonStyle(.borderedProminent)
             }
             .onAppear {
-                set = exercise.set.formatted()
-                rep = exercise.rep.formatted()
-                weight = exercise.weight.formatted()
-                comment = exercise.comment
+                myWorkoutDetailsVM.setupTextFields()
             }
         .padding()
         }
@@ -54,5 +48,5 @@ import SwiftData
     let workout = workouts?.first ?? Workout.getWorkout()
     let exercise = workout.exercises.first
     
-    return MyWorkoutDetailsView(exercise: exercise!)
+    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise!))
 }

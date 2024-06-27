@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct MyWorkoutView: View {
-    let workout: Workout
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 40) {
-                Text(workout.name)
+                Text(myWorkoutVM.workout.name)
                     .font(.largeTitle)
                 
                 Button(action: {}) {
@@ -48,7 +47,9 @@ struct MyWorkoutView: View {
                 .listStyle(.plain)
             }
             .padding()
-            .sheet(item: $myWorkoutVM.sheetPresented) { exercise in MyWorkoutDetailsView(exercise: exercise)
+            .sheet(item: $myWorkoutVM.sheetPresented) { exercise in MyWorkoutDetailsView(
+                myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise)
+            )
                     .presentationDetents([.height(320)])
                     .presentationDragIndicator(.visible)
             }
@@ -63,6 +64,6 @@ import SwiftData
     let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
     let workout = workouts?.first ?? Workout.getWorkout()
 
-    return MyWorkoutView(workout: workout, myWorkoutVM: MyWorkoutViewModel(workout: workout))
+    return MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: workout))
         .modelContainer(container)
 }
