@@ -9,12 +9,7 @@ import SwiftUI
 
 struct MyWorkoutView: View {
     let workout: Workout
-    
-    @State private var sheetPresented: Exercise?
-    
-    private var sortedExercise: [Exercise] {
-        workout.exercises.sorted { $0.queue < $1.queue}
-    }
+    @Bindable var myWorkoutVM: MyWorkoutViewModel
     
     var body: some View {
         NavigationStack {
@@ -35,8 +30,10 @@ struct MyWorkoutView: View {
                     }
                 }
                 
-                List(sortedExercise) { exercise in
-                    Button(action: {sheetPresented = exercise}) {
+                List(myWorkoutVM.sortedExercise) { exercise in
+                    Button(action: {
+                        myWorkoutVM.sheetPresented = exercise
+                    }) {
                         HStack(alignment: .center, spacing: 40) {
                             Text(exercise.name)
                             Spacer()
@@ -51,7 +48,7 @@ struct MyWorkoutView: View {
                 .listStyle(.plain)
             }
             .padding()
-            .sheet(item: $sheetPresented) { exercise in MyWorkoutDetailsView(exercise: exercise)
+            .sheet(item: $myWorkoutVM.sheetPresented) { exercise in MyWorkoutDetailsView(exercise: exercise)
                     .presentationDetents([.height(320)])
                     .presentationDragIndicator(.visible)
             }
@@ -66,6 +63,6 @@ import SwiftData
     let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
     let workout = workouts?.first ?? Workout.getWorkout()
 
-    return MyWorkoutView(workout: workout)
+    return MyWorkoutView(workout: workout, myWorkoutVM: MyWorkoutViewModel(workout: workout))
         .modelContainer(container)
 }
