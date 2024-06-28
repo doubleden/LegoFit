@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActiveWorkoutView: View {
     @Bindable var activeWorkoutVM: ActiveWorkoutViewModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     private var exercise: Exercise {
         activeWorkoutVM.exercise
     }

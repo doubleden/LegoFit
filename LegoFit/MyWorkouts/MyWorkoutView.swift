@@ -16,34 +16,19 @@ struct MyWorkoutView: View {
                 Text(myWorkoutVM.workout.name)
                     .font(.largeTitle)
                 
-                NavigationLink(
-                    destination: ActiveWorkoutView(
-                        activeWorkoutVM: ActiveWorkoutViewModel(
-                            workout: myWorkoutVM.workout
-                        )
-                    )
-                ) {
-                    ZStack {
-                        Circle()
-                            .frame(width: 100, height: 100)
-                            .foregroundStyle(Gradient(colors: [.main, .violet]))
-                            .shadow(color: .violet, radius: 7)
-                        
-                        Image(systemName: "play.fill")
-                            .foregroundStyle(.black)
-                            .font(.largeTitle)
-                    }
+                StartWorkoutButton {
+                    myWorkoutVM.startWorkout()
                 }
                 
                 List(myWorkoutVM.sortedExercise) { exercise in
                     Button(action: {
-                        //Сделать Валидацию на то что нельзя включать треню пока есть упражнения где подход и повторения по нулям
                         myWorkoutVM.sheetPresented = exercise
                     }) {
                         HStack(alignment: .center, spacing: 40) {
                             Text(exercise.name)
                             Spacer()
-                            VStack(alignment: .leading, spacing: 5) {
+                            VStack(alignment: .
+                                   trailing, spacing: 5) {
                                 Text(exercise.set.formatted())
                                 Text(exercise.rep.formatted())
                                 Text(exercise.weight.formatted())
@@ -53,7 +38,30 @@ struct MyWorkoutView: View {
                 }
                 .listStyle(.plain)
             }
-            .padding()
+            .padding(
+                EdgeInsets(
+                    top: 0,
+                    leading: 20,
+                    bottom: 0,
+                    trailing: 20
+                )
+            )
+            .navigationDestination(
+                isPresented: $myWorkoutVM.isWorkoutStart,
+                destination: {
+                    ActiveWorkoutView(
+                        activeWorkoutVM: ActiveWorkoutViewModel(
+                            workout: myWorkoutVM.workout
+                        )
+                    )
+                }
+            )
+            
+            .alert(myWorkoutVM.alertMessage ?? "",
+                   isPresented: $myWorkoutVM.isAlertPresented,
+                   actions: {}
+            )
+            
             .sheet(item: $myWorkoutVM.sheetPresented) { exercise in MyWorkoutDetailsView(
                 myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise)
             )
