@@ -32,9 +32,7 @@ struct ActiveWorkoutView: View {
             
             Text(exercise.comment)
             
-            Button(activeWorkoutVM.isLastExercise
-                   ? "Закончить"
-                   : "Далее") {
+            Button(activeWorkoutVM.buttonText) {
                 withAnimation(.easeInOut(duration: 0.8)) {
                     activeWorkoutVM.showNextExercise()
                 }

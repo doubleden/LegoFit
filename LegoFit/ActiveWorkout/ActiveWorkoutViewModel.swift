@@ -11,9 +11,22 @@ import Observation
 final class ActiveWorkoutViewModel {
     
     var completedSets = 0
+    
+    var buttonText: String {
+        if isLastExercise
+        && completedSets == exercise.set - 1 {
+            return "Закончить"
+        } else if completedSets == exercise.set {
+            return "Далее"
+        } else {
+            return "Закончил подход"
+        }
+    }
+    
     var exercise: Exercise {
         exercises[queue]
     }
+    
     var isLastExercise: Bool {
         exercises.count - 1 == queue
     }
