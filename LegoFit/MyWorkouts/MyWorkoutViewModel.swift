@@ -10,7 +10,7 @@ import Observation
 @Observable
 final class MyWorkoutViewModel {
     var isWorkoutStart = false
-    var sheetPresented: Exercise?
+    var sheetExerciseDetails: Exercise?
     
     var isAlertPresented = false
     var alertMessage: String?
@@ -33,6 +33,10 @@ final class MyWorkoutViewModel {
         }
         
         isWorkoutStart.toggle()
+    }
+    
+    func showDetailsView(of exercise: Exercise) {
+        sheetExerciseDetails = exercise
     }
     
     private func isExercisesValid() -> Bool {
