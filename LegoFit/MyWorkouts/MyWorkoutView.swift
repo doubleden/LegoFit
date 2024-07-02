@@ -33,6 +33,27 @@ struct MyWorkoutView: View {
                 }
             }
             .listStyle(.plain)
+            //Временно
+            List(myWorkoutVM.workout.laps) { lap in
+                Section("\(lap.set)") {
+                    ForEach(lap.exercises) { exercise in
+                        Button(action: {
+                            myWorkoutVM.showDetailsView(of: exercise)
+                        }) {
+                            HStack(alignment: .center, spacing: 40) {
+                                Text(exercise.name)
+                                Spacer()
+                                VStack(alignment: .trailing, spacing: 5) {
+                                    Text(exercise.set.formatted())
+                                    Text(exercise.rep.formatted())
+                                    Text(exercise.weight.formatted())
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .listStyle(.plain)
             .padding()
             .sheet(item: $myWorkoutVM.sheetExerciseDetails) { exercise in MyWorkoutDetailsView(
                 myWorkoutDetailsVM: MyWorkoutDetailsViewModel(

@@ -24,6 +24,13 @@ final class CreateWorkoutViewViewModel {
     var commentInputExercise = ""
     var isFocused: FocusedTextField? = nil
     
+    var isAddingLaps = false
+    var lapInput = ""
+    var exercisesInLaps: [ExerciseDTO] = []
+    
+    //временно
+    var isAlertForLapsPresented = false
+    
     var sortedByCategoryExercises: [String: [ExerciseDTO]] {
         [
             "Ноги" : exercisesDTO.filter { $0.category == "legs" },
@@ -84,6 +91,17 @@ final class CreateWorkoutViewViewModel {
         queue += 1
     }
     
+    func addToWorkoutLapDTO() {
+        let lap = LapDTO(queue: queue, set: Int(lapInput) ?? 0, exercises: exercisesInLaps)
+        workoutDTO.laps.append(lap)
+        queue += 1
+    }
+    
+    func addToLapDTO(exerciseDTO: ExerciseDTO) {
+        let exercise = create(exercise: exerciseDTO)
+        exercisesInLaps.append(exercise)
+    }
+    
     // MARK: - Details View
     
     func clearInputs() {
@@ -105,6 +123,10 @@ final class CreateWorkoutViewViewModel {
             isFocused = nil
         }
     }
+    
+//    private func create(lap: LapDTO) -> LapDTO {
+//        LapDTO(queue: queue, set: Int(lapInput) ?? 0, exercises: exercisesInLaps)
+//    }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
         ExerciseDTO(

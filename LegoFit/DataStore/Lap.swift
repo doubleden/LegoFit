@@ -11,11 +11,11 @@ import SwiftData
 @Model
 final class Lap {
     var queue: Int
-    var laps: Int
+    var set: Int
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     
     init(queue:Int, laps: Int, exercises: [Exercise]) {
-        self.laps = laps
+        self.set = laps
         self.exercises = exercises
         self.queue = queue
     }
@@ -23,7 +23,7 @@ final class Lap {
     convenience init(item: LapDTO) {
         self.init(
             queue: item.queue ?? 0,
-            laps: item.laps,
+            laps: item.set,
             exercises: item.exercises.map { Exercise(item: $0) }
         )
     }

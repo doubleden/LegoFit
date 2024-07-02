@@ -24,6 +24,24 @@ struct CreateWorkoutView: View {
                         .presentationBackground(.black)
                         .presentationDragIndicator(.visible)
                     }
+                
+                // Нажатие на кнопку Готово и переход к SaveView
+                .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
+                    CreateWorkoutSaveView(
+                        workoutTitle: $createWorkoutVM.workoutDTO.name,
+                        isInputValid: createWorkoutVM.isWorkoutNameValid()
+                    ) { createWorkoutVM.saveWorkout(
+                        modelContext: modelContext
+                    )
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            createWorkoutVM.cancelCreateWorkout()
+                            selectedTab = 0
+                        }
+                    }
+                    .presentationBackground(.cellBackground)
+                    .presentationDetents([.height(190)])
+                    .presentationDragIndicator(.visible)
+                }
             }
             .navigationTitle("Упражнения")
             .toolbar {
@@ -36,29 +54,37 @@ struct CreateWorkoutView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        if !createWorkoutVM.isAddingLaps {
+                            createWorkoutVM.isAddingLaps.toggle()
+                            createWorkoutVM.isAlertForLapsPresented.toggle()
+                        } else {
+                            createWorkoutVM.isAddingLaps.toggle()
+                            createWorkoutVM.addToWorkoutLapDTO()
+                        }
+                    }, label: {
+                        Image(systemName: createWorkoutVM.isAddingLaps
+                              ? "checkmark.rectangle.stack"
+                              : "rectangle.badge.checkmark")
+                    })
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
                     ButtonToolbar(title: "Готово") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
+                
             }
             
-            // Нажатие на кнопку Готово и переход к SaveView
-            .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
-                CreateWorkoutSaveView(
-                    workoutTitle: $createWorkoutVM.workoutDTO.name, isInputValid: createWorkoutVM.isWorkoutNameValid()
-                ) { createWorkoutVM.saveWorkout(
-                    modelContext: modelContext
-                )
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        createWorkoutVM.cancelCreateWorkout()
-                        selectedTab = 0
-                    }
-                }
-                .presentationBackground(.cellBackground)
-                .presentationDetents([.height(190)])
-                .presentationDragIndicator(.visible)
-            }
+            .alert("Введите сколько кругов вы хотите", isPresented: $createWorkoutVM.isAlertForLapsPresented, actions: {
+                TextField("0", text: $createWorkoutVM.lapInput)
+                Button("Готово", action: {})
+                Button("Отменить", action: {
+                    createWorkoutVM.isAddingLaps.toggle()
+                })
+            })
             
             .alert(createWorkoutVM.errorMessage ?? "",
                     isPresented: $createWorkoutVM.isShowAlertPresented) {
@@ -99,7 +125,11 @@ fileprivate struct ExerciseList: View {
                     })
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button(action: {
-                            createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                            if createWorkoutVM.isAddingLaps {
+                                createWorkoutVM.addToLapDTO(exerciseDTO: exercise)
+                            } else {
+                                createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                            }
                         }, label: {
                             Image(systemName: "plus.circle.dashed")
                         })

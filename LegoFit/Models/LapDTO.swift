@@ -9,6 +9,6 @@ import Foundation
 
 struct LapDTO {
     let queue: Int?
-    let laps: Int
+    let set: Int
     let exercises: [ExerciseDTO]
 }
