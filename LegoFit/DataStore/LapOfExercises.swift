@@ -1,5 +1,5 @@
 //
-//  Lap.swift
+//  LapOfExercises.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 2/7/24.
@@ -9,13 +9,13 @@ import Foundation
 import SwiftData
 
 @Model
-final class Lap {
+final class LapOfExercises {
     var queue: Int
-    var set: Int
+    var quantity: Int
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     
     init(queue:Int, laps: Int, exercises: [Exercise]) {
-        self.set = laps
+        self.quantity = laps
         self.exercises = exercises
         self.queue = queue
     }
@@ -28,11 +28,11 @@ final class Lap {
         )
     }
     
-    static func getLaps() -> [Lap] {
+    static func getLaps() -> [LapOfExercises] {
         [
-            Lap(queue: 1, laps: 3, exercises: Exercise.getExercises()),
-            Lap(queue: 3, laps: 2, exercises: Exercise.getExercises()),
-            Lap(queue: 5, laps: 2, exercises: Exercise.getExercises())
+            LapOfExercises(queue: 1, laps: 3, exercises: Exercise.getExercises()),
+            LapOfExercises(queue: 3, laps: 2, exercises: Exercise.getExercises()),
+            LapOfExercises(queue: 5, laps: 2, exercises: Exercise.getExercises())
         ]
     }
 }

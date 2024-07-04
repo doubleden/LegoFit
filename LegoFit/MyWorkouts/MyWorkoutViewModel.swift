@@ -10,7 +10,7 @@ import Foundation
 
 enum ExerciseType: Identifiable {
     case exercise(Exercise)
-    case lap(Lap)
+    case lap(LapOfExercises)
     
     var id: Int {
         switch self {
@@ -38,7 +38,7 @@ final class MyWorkoutViewModel {
         workout.exercises.sorted { $0.queue < $1.queue}
     }
     
-    private var sortedLaps: [Lap] {
+    private var sortedLaps: [LapOfExercises] {
         workout.laps.sorted { $0.queue < $1.queue}
     }
     

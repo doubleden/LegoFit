@@ -31,7 +31,7 @@ struct MyWorkoutView: View {
                             }
                         }
                     } header: {
-                        Text("Круг: \(lap.set)")
+                        Text("Круг: \(lap.quantity)")
                             .font(.title2)
                     }
                 }
