@@ -12,48 +12,30 @@ struct MyWorkoutView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            
             StartWorkoutButton {
                 myWorkoutVM.startWorkout()
             }
             
-            List(myWorkoutVM.sortedExercise) { exercise in
-                Button(action: {
-                    myWorkoutVM.showDetailsView(of: exercise)
-                }) {
-                    HStack(alignment: .center, spacing: 40) {
-                        Text(exercise.name)
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 5) {
-                            Text(exercise.set.formatted())
-                            Text(exercise.rep.formatted())
-                            Text(exercise.weight.formatted())
-                        }
+            List(myWorkoutVM.exercises) { exerciseType in
+                switch exerciseType {
+                case .exercise(let exercise):
+                    MyExerciseCellView(exercise: exercise) {
+                        myWorkoutVM.showDetailsView(of: exercise)
                     }
-                }
-            }
-            .listStyle(.plain)
-            //Временно
-            List(myWorkoutVM.workout.laps) { lap in
-                Section("\(lap.set)") {
-                    ForEach(lap.exercises) { exercise in
-                        Button(action: {
-                            myWorkoutVM.showDetailsView(of: exercise)
-                        }) {
-                            HStack(alignment: .center, spacing: 40) {
-                                Text(exercise.name)
-                                Spacer()
-                                VStack(alignment: .trailing, spacing: 5) {
-                                    Text(exercise.set.formatted())
-                                    Text(exercise.rep.formatted())
-                                    Text(exercise.weight.formatted())
-                                }
+                    
+                case .lap(let lap):
+                    Section {
+                        ForEach(lap.exercises) { exercise in
+                            MyExerciseCellView(exercise: exercise) {
+                                myWorkoutVM.showDetailsView(of: exercise)
                             }
                         }
+                    } header: {
+                        Text("Круг: \(lap.set)")
+                            .font(.title2)
                     }
                 }
             }
-            .listStyle(.plain)
             .padding()
             .sheet(item: $myWorkoutVM.sheetExerciseDetails) { exercise in MyWorkoutDetailsView(
                 myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
@@ -80,6 +62,9 @@ struct MyWorkoutView: View {
                isPresented: $myWorkoutVM.isAlertPresented,
                actions: {}
         )
+        .onAppear {
+            myWorkoutVM.getExerciseOrLap()
+        }
     }
 }
 

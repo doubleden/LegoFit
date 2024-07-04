@@ -95,6 +95,7 @@ final class CreateWorkoutViewViewModel {
         let lap = LapDTO(queue: queue, set: Int(lapInput) ?? 0, exercises: exercisesInLaps)
         workoutDTO.laps.append(lap)
         queue += 1
+        lapInput = ""
     }
     
     func addToLapDTO(exerciseDTO: ExerciseDTO) {
@@ -123,10 +124,6 @@ final class CreateWorkoutViewViewModel {
             isFocused = nil
         }
     }
-    
-//    private func create(lap: LapDTO) -> LapDTO {
-//        LapDTO(queue: queue, set: Int(lapInput) ?? 0, exercises: exercisesInLaps)
-//    }
     
     private func create(exercise: ExerciseDTO) -> ExerciseDTO {
         ExerciseDTO(

@@ -19,6 +19,7 @@
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutDetailsView.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
+		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
 		057A4D862C1C895500B977A9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D852C1C895500B977A9 /* HeaderView.swift */; };
 		057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */; };
 		0581615D2C3492C60012E105 /* LapDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581615C2C3492C60012E105 /* LapDTO.swift */; };
@@ -68,6 +69,7 @@
 		0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSaveView.swift; sourceTree = "<group>"; };
 		05530F422C2618A30044A855 /* MyWorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutDetailsView.swift; sourceTree = "<group>"; };
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
+		0575B3F92C36D271006253DD /* MyExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExerciseCellView.swift; sourceTree = "<group>"; };
 		057A4D852C1C895500B977A9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonToolBar.swift; sourceTree = "<group>"; };
 		0581615C2C3492C60012E105 /* LapDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDTO.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				058882EF2C1E31A300451030 /* GradientBackground.swift */,
 				057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */,
 				0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */,
+				0575B3F92C36D271006253DD /* MyExerciseCellView.swift */,
 				0528E9962C2F051D00BE9B02 /* StartWorkoutButton.swift */,
 			);
 			path = View;
@@ -325,6 +328,7 @@
 				0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */,
 				0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */,
 				05BC717F2C0646F400524C58 /* ContentView.swift in Sources */,
+				0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */,
 				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,
 				05C72FAE2C301BF9003ECC82 /* Exercise.swift in Sources */,
