@@ -34,7 +34,7 @@ final class MyWorkoutViewModel {
     
     let workout: Workout
     
-    private var sortedExercises: [Exercise] {
+    var sortedExercises: [Exercise] {
         workout.exercises.sorted { $0.queue < $1.queue}
     }
     
@@ -47,26 +47,18 @@ final class MyWorkoutViewModel {
     }
     
     func getExerciseOrLap() {
-        let exerciseQuantity = sortedLaps.count + sortedExercises.count
-        var counter = 0
-        var queue = 0
+        var combinedList: [(queue: Int, type: ExerciseType)] = []
         
-        while counter < exerciseQuantity {
-            for exercise in sortedExercises {
-                if queue == exercise.queue {
-                    exercises.append(.exercise(exercise))
-                    queue += 1
-                    counter += 1
-                }
-            }
-            
-            for lap in sortedLaps {
-                if queue == lap.queue {
-                    exercises.append(.lap(lap))
-                    queue += 1
-                    counter += 1
-                }
-            }
+        combinedList.append(contentsOf: sortedExercises.map { (queue: $0.queue, type: .exercise($0)) })
+        combinedList.append(contentsOf: sortedLaps.map { (queue: $0.queue, type: .lap($0)) })
+        
+        combinedList.sort(by: { $0.queue < $1.queue })
+        
+        print(sortedLaps.map{$0.queue})
+        print(sortedExercises.map{$0.queue})
+        
+        for item in combinedList {
+            exercises.append(item.type)
         }
     }
     
