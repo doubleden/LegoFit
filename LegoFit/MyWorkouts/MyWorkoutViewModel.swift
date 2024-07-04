@@ -30,11 +30,24 @@ final class MyWorkoutViewModel {
     var isAlertPresented = false
     var alertMessage: String?
     
-    var exercises: [ExerciseType] = []
+    var exercises: [ExerciseType] {
+        var combinedList: [(queue: Int, type: ExerciseType)] = []
+        var result: [ExerciseType] = []
+        
+        combinedList.append(contentsOf: sortedExercises.map { (queue: $0.queue, type: .exercise($0)) })
+        combinedList.append(contentsOf: sortedLaps.map { (queue: $0.queue, type: .lap($0)) })
+        
+        combinedList.sort(by: { $0.queue < $1.queue })
+        
+        for item in combinedList {
+            result.append(item.type)
+        }
+        return result
+    }
     
     let workout: Workout
     
-    var sortedExercises: [Exercise] {
+    private var sortedExercises: [Exercise] {
         workout.exercises.sorted { $0.queue < $1.queue}
     }
     
@@ -44,22 +57,6 @@ final class MyWorkoutViewModel {
     
     init(workout: Workout) {
         self.workout = workout
-    }
-    
-    func getExerciseOrLap() {
-        var combinedList: [(queue: Int, type: ExerciseType)] = []
-        
-        combinedList.append(contentsOf: sortedExercises.map { (queue: $0.queue, type: .exercise($0)) })
-        combinedList.append(contentsOf: sortedLaps.map { (queue: $0.queue, type: .lap($0)) })
-        
-        combinedList.sort(by: { $0.queue < $1.queue })
-        
-        print(sortedLaps.map{$0.queue})
-        print(sortedExercises.map{$0.queue})
-        
-        for item in combinedList {
-            exercises.append(item.type)
-        }
     }
     
     func startWorkout() {

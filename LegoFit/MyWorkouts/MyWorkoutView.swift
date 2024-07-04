@@ -62,9 +62,6 @@ struct MyWorkoutView: View {
                isPresented: $myWorkoutVM.isAlertPresented,
                actions: {}
         )
-        .onAppear {
-            myWorkoutVM.getExerciseOrLap()
-        }
     }
 }
 
