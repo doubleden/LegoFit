@@ -12,6 +12,8 @@ import SwiftData
 final class Workout {
     var name: String
     let date = Date()
+    var isDone = false
+    
     @Relationship(deleteRule: .cascade) var exercises: [Exercise]
     @Relationship(deleteRule: .cascade) var laps: [LapOfExercises]
     
