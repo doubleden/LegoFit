@@ -19,6 +19,10 @@ final class Exercise {
     var set: Int
     var rep: Int
     var weight: Int
+    
+//    Для настройки каждого подхода
+//    var approaches: [Approach]
+    
     var comment: String
     
     init(
@@ -60,4 +64,9 @@ final class Exercise {
     static func getExercises() -> [Exercise] {
         [Exercise(queue: 2, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55, comment: "с резинками"),Exercise(queue: 4, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55, comment: "с резинками"),Exercise(queue: 6, category: "legs", name: "Жим ног", definition: "Упражнение для прокачки ног, которое выполняется в специальном тренажёре, горизонтальном или вертикальном (наклонном)", photo: "http://127.0.0.1:8080/images/leg_press.png", set: 3, rep: 2, weight: 55, comment: "с резинками")]
     }
+}
+
+struct Approach {
+    var reiteration = 0
+    var weight = 0
 }
