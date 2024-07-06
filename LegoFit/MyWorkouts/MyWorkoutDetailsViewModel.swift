@@ -15,6 +15,12 @@ final class MyWorkoutDetailsViewModel {
     var weight = ""
     var comment = ""
     
+    private var exercise: Exercise
+    
+    init(exercise: Exercise) {
+        self.exercise = exercise
+    }
+    
     func setupTextFields() {
         set = exercise.set.formatted()
         rep = exercise.rep.formatted()
@@ -27,11 +33,5 @@ final class MyWorkoutDetailsViewModel {
         exercise.rep = Int(rep) ?? 0
         exercise.weight = Int(weight) ?? 0
         exercise.comment = comment
-    }
-    
-    private var exercise: Exercise
-    
-    init(exercise: Exercise) {
-        self.exercise = exercise
     }
 }

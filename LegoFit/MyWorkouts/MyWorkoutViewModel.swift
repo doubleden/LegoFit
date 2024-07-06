@@ -42,6 +42,8 @@ final class MyWorkoutViewModel {
         for item in combinedList {
             result.append(item.type)
         }
+        print("exercises did update")
+        
         return result
     }
     
