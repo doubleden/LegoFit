@@ -11,7 +11,8 @@ import Foundation
 @Observable
 final class MyWorkoutViewModel {
     var isWorkoutStart = false
-    var sheetExerciseDetails: Exercise?
+    
+    var sheetExercise: Exercise?
     var sheetExerciseType: ExerciseType?
     
     var isAlertPresented = false
@@ -33,12 +34,11 @@ final class MyWorkoutViewModel {
             alertMessage = "Проверьте заполнение параметров всех упражнений.\nПодход и повторения должны быть больше 0"
             return
         }
-        
         isWorkoutStart.toggle()
     }
     
     func showDetailsView(exercise: Exercise, type: ExerciseType) {
-        sheetExerciseDetails = exercise
+        sheetExercise = exercise
         sheetExerciseType = type
     }
     

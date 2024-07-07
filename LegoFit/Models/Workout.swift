@@ -33,33 +33,6 @@ final class Workout {
         self.name = name
         self.exercises = exercises
     }
-    
-    func updateExercise(exercise: Exercise) {
-        if let index = exercises.firstIndex(where: {
-            if case .single(let exerciseDB) = $0 {
-                return exerciseDB.queue == exercise.queue
-            }
-            return false
-        }) {
-            exercises[index] = .single(exercise)
-        }
-    }
-    
-    func updateExerciseInLap(lapId: Int, exercise: Exercise) {
-        if let lapIndex = exercises.firstIndex(where: {
-            if case .lap(let lap) = $0 {
-                return lap.queue == lapId
-            }
-            return false
-        }) {
-            if case .lap(var lap) = exercises[lapIndex] {
-                if let exerciseIndex = lap.exercises.firstIndex(where: { $0.id == exercise.id }) {
-                    lap.exercises[exerciseIndex] = exercise
-                    exercises[lapIndex] = .lap(lap)
-                }
-            }
-        }
-    }
 }
 
 // MARK: - ДЛЯ Preview

@@ -20,14 +20,20 @@ struct MyWorkoutView: View {
                 switch exerciseType {
                 case .single(let exercise):
                     MyExerciseCellView(exercise: exercise) {
-                        myWorkoutVM.showDetailsView(exercise: exercise, type: exerciseType)
+                        myWorkoutVM.showDetailsView(
+                            exercise: exercise,
+                            type: exerciseType
+                        )
                     }
                     
                 case .lap(let lap):
                     Section {
                         ForEach(lap.exercises) { exercise in
                             MyExerciseCellView(exercise: exercise) {
-                                myWorkoutVM.showDetailsView(exercise: exercise, type: exerciseType)
+                                myWorkoutVM.showDetailsView(
+                                    exercise: exercise,
+                                    type: exerciseType
+                                )
                             }
                         }
                     } header: {
@@ -37,8 +43,13 @@ struct MyWorkoutView: View {
                 }
             }
             .padding()
-            .sheet(item: $myWorkoutVM.sheetExerciseDetails) { exercise in MyWorkoutDetailsView(
-                myWorkoutDetailsVM: MyWorkoutDetailsViewModel(workout: myWorkoutVM.workout, exerciseType: myWorkoutVM.sheetExerciseType!, exercise: myWorkoutVM.sheetExerciseDetails!)
+            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutDetailsView(
+                myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
+                    exercise: exercise,
+                    exerciseType: myWorkoutVM.sheetExerciseType
+                                  ?? .single(exercise),
+                    workout: myWorkoutVM.workout
+                )
             )
             .presentationDetents([.height(320)])
             .presentationDragIndicator(.visible)

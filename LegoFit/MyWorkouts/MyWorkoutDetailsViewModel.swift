@@ -15,14 +15,16 @@ final class MyWorkoutDetailsViewModel {
     var weight = ""
     var comment = ""
     
-    private let workout: Workout
-    private let exerciseType: ExerciseType
     private var exercise: Exercise
+    private let exerciseType: ExerciseType
+    private let workout: Workout
     
-    init(workout: Workout, exerciseType: ExerciseType, exercise: Exercise) {
-        self.workout = workout
-        self.exerciseType = exerciseType
+    private let storageManager = StorageManager.shared
+    
+    init(exercise: Exercise, exerciseType: ExerciseType, workout: Workout) {
         self.exercise = exercise
+        self.exerciseType = exerciseType
+        self.workout = workout
     }
     
     func setupTextFields() {
@@ -37,9 +39,13 @@ final class MyWorkoutDetailsViewModel {
         
         switch exerciseType {
         case .single(_):
-            workout.updateExercise(exercise: self.exercise)
+            storageManager.update(exercise: self.exercise, in: workout)
         case .lap(let lap):
-            workout.updateExerciseInLap(lapId: lap.queue, exercise: exercise)
+            storageManager.update(
+                exercise: exercise,
+                withLapQueue: lap.queue,
+                in: workout
+            )
         }
     }
     

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MyWorkoutDetailsView: View {
     @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
-    
-    @Environment(\.dismiss) var dismis
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -24,7 +23,7 @@ struct MyWorkoutDetailsView: View {
                 
                 Button("Save") {
                     myWorkoutDetailsVM.saveСhanges()
-                    dismis()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
             }
@@ -37,12 +36,12 @@ struct MyWorkoutDetailsView: View {
     }
 }
 
-//import SwiftData
-//#Preview {
-//    let container = DataController.previewContainer
-//    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
-//    let workout = workouts?.first ?? Workout.getWorkout()
-//    let exercise = Exercise.getExercises().first!
-//    
-//    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(workout: workout, exercise: exercise))
-//}
+import SwiftData
+#Preview {
+    let container = DataController.previewContainer
+    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
+    let workout = workouts?.first ?? Workout.getWorkout()
+    let exercise = Exercise.getExercises().first!
+    
+    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise, exerciseType: .single(exercise), workout: workout))
+}
