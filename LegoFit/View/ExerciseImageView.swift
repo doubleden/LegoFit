@@ -23,5 +23,5 @@ struct ExerciseImageView: View {
 }
 
 #Preview {
-    ExerciseImageView(imageUrl: ExerciseDTO.getExercise().image)
+    ExerciseImageView(imageUrl: Exercise.getExercises().first!.image)
 }

@@ -10,8 +10,8 @@ import SwiftData
 
 struct MyWorkoutsView: View {
     @Binding var selectedTab: Int
-    @Query var workouts: [Workout]
     @Environment(\.modelContext) var modelContext
+    @Query var workouts: [Workout]
 
     var body: some View {
         NavigationStack {

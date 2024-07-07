@@ -37,12 +37,8 @@ struct MyWorkoutDetailsView: View {
     }
 }
 
-import SwiftData
 #Preview {
-    let container = DataController.previewContainer
-    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
-    let workout = workouts?.first ?? Workout.getWorkout()
-    let exercise = workout.exercises.first
+    let exercise = Exercise.getExercises().first!
     
-    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise!))
+    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise))
 }

@@ -18,7 +18,7 @@ struct MyWorkoutView: View {
             
             List(myWorkoutVM.exercises) { exerciseType in
                 switch exerciseType {
-                case .exercise(let exercise):
+                case .single(let exercise):
                     MyExerciseCellView(exercise: exercise) {
                         myWorkoutVM.showDetailsView(of: exercise)
                     }
@@ -47,16 +47,16 @@ struct MyWorkoutView: View {
             }
         }
         .navigationTitle(myWorkoutVM.workout.name)
-        .navigationDestination(
-            isPresented: $myWorkoutVM.isWorkoutStart,
-            destination: {
-                ActiveWorkoutView(
-                    activeWorkoutVM: ActiveWorkoutViewModel(
-                        workout: myWorkoutVM.workout
-                    )
-                )
-            }
-        )
+//        .navigationDestination(
+//            isPresented: $myWorkoutVM.isWorkoutStart,
+//            destination: {
+//                ActiveWorkoutView(
+//                    activeWorkoutVM: ActiveWorkoutViewModel(
+//                        workout: myWorkoutVM.workout
+//                    )
+//                )
+//            }
+//        )
         
         .alert(myWorkoutVM.alertMessage ?? "",
                isPresented: $myWorkoutVM.isAlertPresented,

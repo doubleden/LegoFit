@@ -8,11 +8,11 @@ import Observation
 import SwiftData
 
 @Observable
-final class CreateWorkoutViewViewModel {
+final class CreateWorkoutViewModel {
     
     var isLoading = true
-    var workoutDTO = WorkoutDTO()
-    var sheetExercise: ExerciseDTO?
+    var workout = Workout()
+    var sheetExercise: Exercise?
     var isSaveSheetPresented = false
     
     var errorMessage: String? = nil
@@ -26,22 +26,22 @@ final class CreateWorkoutViewViewModel {
     
     var isAddingLaps = false
     var lapInput = ""
-    var exercisesInLaps: [ExerciseDTO] = []
+    var exercisesInLaps: [Exercise] = []
     
     //временно
     var isAlertForLapsPresented = false
     
-    var sortedByCategoryExercises: [String: [ExerciseDTO]] {
+    var sortedByCategoryExercises: [String: [Exercise]] {
         [
-            "Ноги" : exercisesDTO.filter { $0.category == "legs" },
-            "Грудь" : exercisesDTO.filter { $0.category == "chest" },
-            "Плечи" : exercisesDTO.filter {$0.category == "shoulders" },
-            "Спина" : exercisesDTO.filter { $0.category == "back" },
-            "Руки" : exercisesDTO.filter { $0.category == "arms" }
+            "Ноги" : exercises.filter { $0.category == "legs" },
+            "Грудь" : exercises.filter { $0.category == "chest" },
+            "Плечи" : exercises.filter {$0.category == "shoulders" },
+            "Спина" : exercises.filter { $0.category == "back" },
+            "Руки" : exercises.filter { $0.category == "arms" }
         ]
     }
     
-    private var exercisesDTO: [ExerciseDTO] = []
+    private var exercises: [Exercise] = []
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
     private var queue = 0
@@ -51,10 +51,10 @@ final class CreateWorkoutViewViewModel {
     func fetchExercises() {
         Task {
             do {
-                exercisesDTO = try await networkManager.fetchExercise()
+                exercises = try await networkManager.fetchExercise()
                 isLoading = false
             } catch {
-                exercisesDTO = []
+                exercises = []
                 isLoading = false
                 errorMessage = error.localizedDescription
                 isShowAlertPresented.toggle()
@@ -63,43 +63,39 @@ final class CreateWorkoutViewViewModel {
     }
     
     func isWorkoutNameValid() -> Bool {
-        !workoutDTO.name.trimmingCharacters(in: .whitespaces).isEmpty
+        !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
     func isExercisesInWorkoutEmpty() -> Bool {
-        workoutDTO.exercises.isEmpty
+        workout.exercises.isEmpty
     }
     
     func saveWorkout(modelContext: ModelContext) {
-        let workout = Workout(item: workoutDTO)
         storageManager.save(workout: workout, context: modelContext)
     }
     
-    func cancelCreateWorkout() {
-        queue = 0
-        workoutDTO.name = ""
-        workoutDTO.exercises.removeAll()
+    func cancelCreateWorkout(modelContext: ModelContext) {
+        workout = Workout()
     }
     
-    func showSheetOf(exercise: ExerciseDTO) {
+    func showSheetOf(exercise: Exercise) {
         sheetExercise = exercise
     }
     
-    func addToWorkout(exerciseDTO: ExerciseDTO) {
-        let exercise = create(exercise: exerciseDTO)
-        workoutDTO.exercises.append(exercise)
+    func addToWorkout( exercise: inout Exercise) {
+        exercise.queue = queue
+        workout.exercises.append(.single(exercise))
         queue += 1
     }
     
-    func addToWorkoutLapDTO() {
-        let lap = LapDTO(queue: queue, set: Int(lapInput) ?? 0, exercises: exercisesInLaps)
-        workoutDTO.laps.append(lap)
+    func addToWorkoutLap() {
+        let lap = Lap(queue: queue, quantity: Int(lapInput) ?? 0, exercises: exercisesInLaps)
+        workout.exercises.append(.lap(lap))
         queue += 1
         lapInput = ""
     }
     
-    func addToLapDTO(exerciseDTO: ExerciseDTO) {
-        let exercise = create(exercise: exerciseDTO)
+    func addToLap(exercise: Exercise) {
         exercisesInLaps.append(exercise)
     }
     
@@ -125,18 +121,4 @@ final class CreateWorkoutViewViewModel {
         }
     }
     
-    private func create(exercise: ExerciseDTO) -> ExerciseDTO {
-        ExerciseDTO(
-            id: exercise.id, 
-            queue: queue,
-            category: exercise.category,
-            name: exercise.name,
-            description: exercise.description,
-            image: exercise.image,
-            set: Int(setInputExercise) ?? 0,
-            rep: Int(repInputExercise) ?? 0,
-            weight: Int(weightInputExercise) ?? 0,
-            comment: commentInputExercise
-        )
-    }
 }

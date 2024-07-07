@@ -22,10 +22,10 @@ final class MyWorkoutDetailsViewModel {
     }
     
     func setupTextFields() {
-        set = exercise.set.formatted()
-        rep = exercise.rep.formatted()
-        weight = exercise.weight.formatted()
-        comment = exercise.comment
+        set = (exercise.set ?? 0).formatted()
+        rep = (exercise.rep ?? 0).formatted()
+        weight = (exercise.weight ?? 0).formatted()
+        comment = exercise.comment ?? ""
     }
     
     func saveСhanges() {

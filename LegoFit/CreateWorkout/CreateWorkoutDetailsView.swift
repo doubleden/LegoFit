@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
-    var exercise: ExerciseDTO
-    @Binding var createWorkoutVM: CreateWorkoutViewViewModel
+    var exercise: Exercise
+    @Binding var createWorkoutVM: CreateWorkoutViewModel
     
     @Environment(\.dismiss) private var dismiss
     @FocusState private var isFocused: FocusedTextField?
@@ -47,8 +47,9 @@ struct CreateWorkoutDetailsView: View {
                     
                     ToolbarItem(placement: .topBarTrailing) {
                         ButtonToolbar(title: "Добавить") {
+                            var mutableExercise = exercise
                             createWorkoutVM.addToWorkout(
-                                exerciseDTO: exercise
+                                exercise: &mutableExercise
                             )
                             dismiss()
                         }
@@ -90,5 +91,6 @@ struct CreateWorkoutDetailsView: View {
 }
 
 #Preview {
-    CreateWorkoutDetailsView(exercise: ExerciseDTO.getExercise(), createWorkoutVM: .constant(CreateWorkoutViewViewModel()))
+    let exercise = Exercise.getExercises().first!
+    return CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: .constant(CreateWorkoutViewModel()))
 }

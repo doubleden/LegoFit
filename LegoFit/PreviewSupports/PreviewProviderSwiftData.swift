@@ -13,7 +13,7 @@ class DataController {
     static let previewContainer: ModelContainer = {
         do {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
-            let container = try ModelContainer(for: Workout.self, Exercise.self, configurations: config)
+            let container = try ModelContainer(for: Workout.self, configurations: config)
 
             container.mainContext.insert(Workout.getWorkout())
             container.mainContext.insert(Workout.getWorkout())

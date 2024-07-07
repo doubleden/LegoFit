@@ -16,7 +16,7 @@ struct LegoFitApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.dark)
-                .modelContainer(for: [Workout.self])
         }
+        .modelContainer(for: [Workout.self])
     }
 }

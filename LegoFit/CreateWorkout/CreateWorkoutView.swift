@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateWorkoutView: View {
     @Binding var selectedTab: Int
-    @State var createWorkoutVM = CreateWorkoutViewViewModel()
+    @State var createWorkoutVM = CreateWorkoutViewModel()
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
@@ -28,13 +28,13 @@ struct CreateWorkoutView: View {
                 // Нажатие на кнопку Готово и переход к SaveView
                 .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
                     CreateWorkoutSaveView(
-                        workoutTitle: $createWorkoutVM.workoutDTO.name,
+                        workoutTitle: $createWorkoutVM.workout.name,
                         isInputValid: createWorkoutVM.isWorkoutNameValid()
                     ) { createWorkoutVM.saveWorkout(
                         modelContext: modelContext
                     )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            createWorkoutVM.cancelCreateWorkout()
+                            createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
                             selectedTab = 0
                         }
                     }
@@ -49,7 +49,8 @@ struct CreateWorkoutView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     ButtonToolbar(
                         title: "Сбросить",
-                        action: createWorkoutVM.cancelCreateWorkout
+                        action: { createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                        }
                     )
                 }
                 
@@ -60,7 +61,7 @@ struct CreateWorkoutView: View {
                             createWorkoutVM.isAlertForLapsPresented.toggle()
                         } else {
                             createWorkoutVM.isAddingLaps.toggle()
-                            createWorkoutVM.addToWorkoutLapDTO()
+                            createWorkoutVM.addToWorkoutLap()
                         }
                     }, label: {
                         Image(systemName: createWorkoutVM.isAddingLaps
@@ -89,7 +90,7 @@ struct CreateWorkoutView: View {
             .alert(createWorkoutVM.errorMessage ?? "",
                     isPresented: $createWorkoutVM.isShowAlertPresented) {
                 Button("Ok", role: .cancel) { 
-                    createWorkoutVM.workoutDTO.name = ""
+                    createWorkoutVM.workout.name = ""
                 }
             }
             
@@ -105,7 +106,7 @@ struct CreateWorkoutView: View {
 }
 
 fileprivate struct ExerciseList: View {
-    @Binding var createWorkoutVM: CreateWorkoutViewViewModel
+    @Binding var createWorkoutVM: CreateWorkoutViewModel
     
     var body: some View {
         List(
@@ -126,16 +127,16 @@ fileprivate struct ExerciseList: View {
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button(action: {
                             if createWorkoutVM.isAddingLaps {
-                                createWorkoutVM.addToLapDTO(exerciseDTO: exercise)
+                                createWorkoutVM.addToLap(exercise: exercise)
                             } else {
-                                createWorkoutVM.addToWorkout(exerciseDTO: exercise)
+                                var mutableExercise = exercise
+                                createWorkoutVM.addToWorkout(exercise: &mutableExercise)
                             }
                         }, label: {
                             Image(systemName: "plus.circle.dashed")
                         })
                         .tint(.main)
                     }
-                    
                 }
             } header: {
                 HeaderView(

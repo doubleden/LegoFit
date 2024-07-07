@@ -32,7 +32,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchExercise() async throws -> [ExerciseDTO] {
+    func fetchExercise() async throws -> [Exercise] {
         guard let url = URL(string: API.exercises.url) else {
             throw NetworkError.invalidURL
         }
@@ -45,7 +45,7 @@ final class NetworkManager {
         
         let decoder = JSONDecoder()
         do {
-            return try decoder.decode([ExerciseDTO].self, from: data)
+            return try decoder.decode([Exercise].self, from: data)
         } catch {
             throw NetworkError.decodingError
         }

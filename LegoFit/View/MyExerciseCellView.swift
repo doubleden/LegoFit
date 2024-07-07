@@ -18,7 +18,7 @@ struct MyExerciseCellView: View {
                     .tint(.white)
                 Spacer()
                 HStack(spacing: 5) {
-                    Text("\(exercise.set) / \(exercise.rep) / \(exercise.weight)")
+                    Text("\(exercise.set ?? 0) / \(exercise.rep ?? 0) / \(exercise.weight ?? 0)")
                 }
                 .tint(.white)
             }
@@ -26,12 +26,7 @@ struct MyExerciseCellView: View {
     }
 }
 
-import SwiftData
 #Preview {
-    let container = DataController.previewContainer
-    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
-    let workout = workouts?.first ?? Workout.getWorkout()
-
-    return MyExerciseCellView(exercise: workout.exercises.first!, action: {})
-        .modelContainer(container)
+    let exercise = Exercise.getExercises().first!
+    return MyExerciseCellView(exercise: exercise, action: {})
 }
