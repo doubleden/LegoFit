@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exercise: Codable, Identifiable {
+struct Exercise: Codable, Identifiable, Equatable {
     var id: UUID
     var queue: Int?
     let category: String

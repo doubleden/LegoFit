@@ -13,8 +13,6 @@ final class MyWorkoutViewModel {
     var isWorkoutStart = false
     var sheetExerciseDetails: Exercise?
     var sheetExerciseType: ExerciseType?
-    var sheetExerciseQueue: Int?
-    var sheetExerciseInLapQueue: Int?
     
     var isAlertPresented = false
     var alertMessage: String?
@@ -39,11 +37,9 @@ final class MyWorkoutViewModel {
         isWorkoutStart.toggle()
     }
     
-    func showDetailsView(exercise: Exercise, type: ExerciseType, queue: Int , queueForLap: Int = 0) {
+    func showDetailsView(exercise: Exercise, type: ExerciseType) {
         sheetExerciseDetails = exercise
         sheetExerciseType = type
-        sheetExerciseQueue = queue
-        sheetExerciseInLapQueue = queueForLap
     }
     
     private func isExercisesValid() -> Bool {
