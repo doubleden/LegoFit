@@ -42,12 +42,20 @@ final class MyWorkoutViewModel {
     
     private func isExercisesValid() -> Bool {
         var isValid = true
-//        for exercise in sortedExercises {
-//            if exercise.set <= 0 || exercise.rep <= 0 {
-//                isValid.toggle()
-//                break
-//            }
-//        }
+        for exercise in exercises {
+            switch exercise {
+            case .single(let exercise):
+                if (exercise.set ?? 0) <= 0 || (exercise.rep ?? 0) <= 0 {
+                    isValid.toggle()
+                    break
+                }
+            case .lap(let lap):
+                if lap.quantity <= 0 {
+                    isValid.toggle()
+                    break
+                }
+            }
+        }
         return isValid
     }
 }
