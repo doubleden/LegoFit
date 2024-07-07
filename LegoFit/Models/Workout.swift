@@ -60,7 +60,10 @@ final class Workout {
             }
         }
     }
-    
+}
+
+// MARK: - ДЛЯ Preview
+extension Workout {
     static func getWorkout() -> Workout {
         let exercises: [ExerciseType] = [.single(Exercise.getExercises().first!), .lap(Lap.getLaps().first!)]
         return Workout(name: "First", exercises: exercises)

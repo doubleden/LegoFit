@@ -36,7 +36,7 @@ final class MyWorkoutDetailsViewModel {
         changeParametersInExercise()
         
         switch exerciseType {
-        case .single(let exercise):
+        case .single(_):
             workout.updateExercise(exercise: self.exercise)
         case .lap(let lap):
             workout.updateExerciseInLap(lapId: lap.queue, exercise: exercise)

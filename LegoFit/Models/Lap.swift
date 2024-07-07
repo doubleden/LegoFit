@@ -11,7 +11,10 @@ struct Lap: Codable {
     var queue: Int
     var quantity: Int
     var exercises: [Exercise]
-    
+}
+
+// MARK: - ДЛЯ Preview
+extension Lap {
     static func getLaps() -> [Lap] {
         [
             Lap(queue: 1, quantity: 3, exercises: Exercise.getExercises()),
