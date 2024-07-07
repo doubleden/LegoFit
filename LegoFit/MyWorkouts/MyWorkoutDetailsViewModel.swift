@@ -15,9 +15,17 @@ final class MyWorkoutDetailsViewModel {
     var weight = ""
     var comment = ""
     
-    private var exercise: Exercise
+    private let workout: Workout
+    private let queue: Int
+    private let queueInLap: Int?
+    private let exerciseType: ExerciseType
+    private let exercise: Exercise
     
-    init(exercise: Exercise) {
+    init(workout: Workout, queue: Int, queueInLap: Int = 0, exerciseType: ExerciseType, exercise: Exercise) {
+        self.workout = workout
+        self.queue = queue
+        self.queueInLap = queueInLap
+        self.exerciseType = exerciseType
         self.exercise = exercise
     }
     
@@ -29,9 +37,12 @@ final class MyWorkoutDetailsViewModel {
     }
     
     func saveСhanges() {
-        exercise.set = Int(set) ?? 0
-        exercise.rep = Int(rep) ?? 0
-        exercise.weight = Int(weight) ?? 0
-        exercise.comment = comment
+        
+//        exercise.set = Int(set) ?? 0
+//        exercise.rep = Int(rep) ?? 0
+//        exercise.weight = Int(weight) ?? 0
+//        exercise.comment = comment
     }
+    
+    
 }

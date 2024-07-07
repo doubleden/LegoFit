@@ -21,8 +21,8 @@ final class StorageManager {
     }
 
     func delete(workout: Workout, context: ModelContext) {
-        context.delete(workout)
         do {
+            context.delete(workout)
             try context.save()
         } catch {
             print(error)

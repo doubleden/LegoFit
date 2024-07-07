@@ -33,8 +33,8 @@
 //    
 //    private var queue = 0
 //    private let workout: Workout
-//    private var exercises: [Exercise] {
-//        workout.exercises.sorted { $0.queue ?? 0 < $1.queue ?? 1 }
+//    private var exercises: [ExerciseType] {
+//        workout.exercises
 //    }
 //    
 //    init(workout: Workout) {
