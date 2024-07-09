@@ -14,20 +14,18 @@ struct MyWorkoutsView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                List {
-                    ForEach(workouts) { workout in
-                        NavigationLink(
-                            workout.name,
-                            destination: MyWorkoutView(
-                                myWorkoutVM: MyWorkoutViewModel(workout: workout)
-                            )
+            List {
+                ForEach(workouts) { workout in
+                    NavigationLink(
+                        workout.name,
+                        destination: MyWorkoutView(
+                            myWorkoutVM: MyWorkoutViewModel(workout: workout)
                         )
-                    }
-                    .onDelete(perform: { indexSet in
-                        deleteWorkout(indexSet)
-                    })
+                    )
                 }
+                .onDelete(perform: { indexSet in
+                    deleteWorkout(indexSet)
+                })
             }
             .navigationTitle("My Workouts")
             .toolbar {

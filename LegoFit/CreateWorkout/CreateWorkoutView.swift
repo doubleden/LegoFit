@@ -14,6 +14,7 @@ struct CreateWorkoutView: View {
     
     var body: some View {
         NavigationStack {
+            CategoryList(createWorkoutVM: $createWorkoutVM)
             VStack {
                 ExerciseList(createWorkoutVM: $createWorkoutVM)
                     .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
@@ -42,12 +43,14 @@ struct CreateWorkoutView: View {
                     .presentationDragIndicator(.visible)
                 }
             }
-            .navigationTitle("Упражнения")
+            .navigationTitle("Exercises")
+            .navigationBarTitleDisplayMode(.inline)
+            
             .toolbar {
                 //TODO: Надо сделать бургер с кнопками сбросить и фильтр
                 ToolbarItem(placement: .topBarLeading) {
                     ButtonToolbar(
-                        title: "Сбросить",
+                        title: "Reset",
                         action: { createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
                         }
                     )
@@ -70,14 +73,12 @@ struct CreateWorkoutView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    ButtonToolbar(title: "Готово") {
+                    ButtonToolbar(title: "Done") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
                 }
-                
             }
-            
             .alert("Введите сколько кругов вы хотите", isPresented: $createWorkoutVM.isAlertForLapsPresented, actions: {
                 TextField("0", text: $createWorkoutVM.lapInput)
                 Button("Готово", action: {})
@@ -104,6 +105,32 @@ struct CreateWorkoutView: View {
     }
 }
 
+fileprivate struct CategoryList: View {
+    @Binding var createWorkoutVM: CreateWorkoutViewModel
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHStack {
+                ForEach(
+                    Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
+                    id: \.self
+                ) { category in
+                    Button(action: {}, label: {
+                        Text(category)
+                            .foregroundStyle(.white)
+                            .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
+                    })
+                    .background(Gradient(colors: [.gray, .indigo]))
+                    .clipShape(Capsule())
+//                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                }
+            }
+        }
+        .frame(height: 60)
+        .scrollIndicators(.hidden)
+    }
+}
+
 fileprivate struct ExerciseList: View {
     @Binding var createWorkoutVM: CreateWorkoutViewModel
     
@@ -112,7 +139,7 @@ fileprivate struct ExerciseList: View {
             Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
             id: \.self
         ) { section in
-            Section {
+            Section(section) {
                 ForEach(
                     createWorkoutVM.sortedByCategoryExercises[section] ?? []
                 ) { exercise in
@@ -137,13 +164,7 @@ fileprivate struct ExerciseList: View {
                         .tint(.main)
                     }
                 }
-            } header: {
-                HeaderView(
-                    text: section,
-                    isLoading: $createWorkoutVM.isLoading
-                )
             }
-            .listRowBackground(Color.cellBackground)
         }
         .scrollIndicators(.hidden)
     }

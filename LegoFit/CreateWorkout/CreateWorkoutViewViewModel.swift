@@ -33,11 +33,11 @@ final class CreateWorkoutViewModel {
     
     var sortedByCategoryExercises: [String: [Exercise]] {
         [
-            "Ноги" : exercises.filter { $0.category == "legs" },
-            "Грудь" : exercises.filter { $0.category == "chest" },
-            "Плечи" : exercises.filter {$0.category == "shoulders" },
-            "Спина" : exercises.filter { $0.category == "back" },
-            "Руки" : exercises.filter { $0.category == "arms" }
+            "Legs" : exercises.filter { $0.category == "legs" },
+            "Chest" : exercises.filter { $0.category == "chest" },
+            "Shoulders" : exercises.filter {$0.category == "shoulders" },
+            "Back" : exercises.filter { $0.category == "back" },
+            "Arms" : exercises.filter { $0.category == "arms" }
         ]
     }
     
