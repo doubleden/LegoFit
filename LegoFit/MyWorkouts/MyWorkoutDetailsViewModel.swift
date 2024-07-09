@@ -50,6 +50,7 @@ final class MyWorkoutDetailsViewModel {
     }
     
     private func changeParametersInExercise() {
+        // Сделать корректное обновление
         exercise.set = Int(set) ?? 0
         exercise.rep = Int(rep) ?? 0
         exercise.weight = Int(weight) ?? 0

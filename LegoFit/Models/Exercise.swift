@@ -8,7 +8,7 @@
 import Foundation
 
 struct Exercise: Codable, Identifiable, Equatable {
-    var id: UUID
+    var id = UUID()
     var queue: Int?
     let category: String
     let name: String
@@ -26,7 +26,7 @@ struct Exercise: Codable, Identifiable, Equatable {
 }
 
 //struct Approach {
-//    var reiteration = 0
+//    var repetition = 0
 //    var weight = 0
 //}
 

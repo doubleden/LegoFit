@@ -90,7 +90,10 @@ struct CreateWorkoutDetailsView: View {
     }
 }
 
+import SwiftData
 #Preview {
+    let container = DataController.previewContainer
     let exercise = Exercise.getExercises().first!
     return CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: .constant(CreateWorkoutViewModel()))
+        .modelContainer(container)
 }

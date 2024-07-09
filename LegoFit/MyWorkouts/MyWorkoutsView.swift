@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct MyWorkoutsView: View {
-    @Binding var selectedTab: Int
     @Environment(\.modelContext) var modelContext
     @Query var workouts: [Workout]
 
@@ -30,7 +29,18 @@ struct MyWorkoutsView: View {
                     })
                 }
             }
-            .navigationTitle("Мои тренировки")
+            .navigationTitle("My Workouts")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        CreateWorkoutView()
+                    } label: {
+                        Image(systemName: "plus")
+                            .tint(.main)
+                    }
+
+                }
+            }
         }
     }
     
@@ -43,6 +53,6 @@ struct MyWorkoutsView: View {
 }
 
 #Preview {
-    MyWorkoutsView(selectedTab: .constant(0))
+    MyWorkoutsView()
         .modelContainer(DataController.previewContainer)
 }

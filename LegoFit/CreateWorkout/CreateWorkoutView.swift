@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CreateWorkoutView: View {
-    @Binding var selectedTab: Int
-    @State var createWorkoutVM = CreateWorkoutViewModel()
+    
+    @State private var createWorkoutVM = CreateWorkoutViewModel()
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
@@ -35,7 +35,6 @@ struct CreateWorkoutView: View {
                     )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
-                            selectedTab = 0
                         }
                     }
                     .presentationBackground(.cellBackground)
@@ -150,6 +149,10 @@ fileprivate struct ExerciseList: View {
     }
 }
 
+import SwiftData
 #Preview {
-    CreateWorkoutView(selectedTab: .constant(1))
+    let container = DataController.previewContainer
+    
+    return CreateWorkoutView()
+        .modelContainer(container)
 }
