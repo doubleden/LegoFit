@@ -26,19 +26,32 @@ struct MyWorkoutsView: View {
                 .onDelete(perform: { indexSet in
                     deleteWorkout(indexSet)
                 })
+                .listRowSeparator(.hidden)
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 15)
+                        .foregroundStyle(.gray)
+                        .opacity(0.1)
+                )
             }
+            .listRowSpacing(5)
             .navigationTitle("My Workouts")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
                         CreateWorkoutView()
                     } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: "plus.circle")
                             .tint(.main)
+                            .font(.title2)
                     }
-
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(
+                Gradient(
+                    colors: [.cosmos, .cosmos, .gray]
+                )
+            )
         }
     }
     

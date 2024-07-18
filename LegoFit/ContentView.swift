@@ -17,10 +17,12 @@ struct ContentView: View {
                     Text("Мои тренировки")
                 }
         }
-        .tint(.main)
+        
+        .tint(.cosmos)
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(DataController.previewContainer)
 }

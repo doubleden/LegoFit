@@ -38,7 +38,7 @@ struct CreateWorkoutView: View {
                             createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
                         }
                     }
-                    .presentationBackground(.cellBackground)
+                    .presentationBackground(.cosmos)
                     .presentationDetents([.height(190)])
                     .presentationDragIndicator(.visible)
                 }
