@@ -120,9 +120,8 @@ fileprivate struct CategoryList: View {
                             .foregroundStyle(.white)
                             .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
                     })
-                    .background(Gradient(colors: [.gray, .indigo]))
+                    .background(Gradient(colors: [.gray]))
                     .clipShape(Capsule())
-//                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
                 }
             }
         }
@@ -166,7 +165,6 @@ fileprivate struct ExerciseList: View {
                 }
             }
         }
-        .scrollIndicators(.hidden)
     }
 }
 
