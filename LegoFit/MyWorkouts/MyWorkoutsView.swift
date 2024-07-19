@@ -11,7 +11,6 @@ import SwiftData
 struct MyWorkoutsView: View {
     @Environment(\.modelContext) var modelContext
     @Query var workouts: [Workout]
-    @State private var createWorkoutViewIsPresented = false
     
     var body: some View {
         NavigationStack {
@@ -33,20 +32,13 @@ struct MyWorkoutsView: View {
             .navigationTitle("My Workouts")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        createWorkoutViewIsPresented.toggle()
-                    }, label: {
+                    NavigationLink(destination: CreateWorkoutView()) {
                         Image(systemName: "plus.circle")
                             .tint(.main)
                             .font(.title2)
-                    })
+                    }
                 }
             }
-            
-            .sheet(isPresented: $createWorkoutViewIsPresented,
-                   content: {
-                CreateWorkoutView()
-            })
         }
     }
     
