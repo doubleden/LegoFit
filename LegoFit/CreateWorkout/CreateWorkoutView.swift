@@ -11,6 +11,7 @@ struct CreateWorkoutView: View {
     
     @State private var createWorkoutVM = CreateWorkoutViewModel()
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -36,6 +37,7 @@ struct CreateWorkoutView: View {
                     )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                            dismiss()
                         }
                     }
                     .presentationBackground(.cosmos)

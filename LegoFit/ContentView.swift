@@ -19,7 +19,7 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .tabBar)
                 .toolbarBackground(.cosmos, for: .tabBar)
             
-            CreateWorkoutView()
+            HistoryWorkoutView()
                 .tabItem {
                     Image(systemName: "book.fill")
                     Text("History")

@@ -18,7 +18,6 @@
 		0528E9972C2F051D00BE9B02 /* StartWorkoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0528E9962C2F051D00BE9B02 /* StartWorkoutButton.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutDetailsView.swift */; };
-		0565E5EE2C49A1EC001E9DE5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0565E5ED2C49A1EC001E9DE5 /* Kingfisher */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
 		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
 		057A4D862C1C895500B977A9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D852C1C895500B977A9 /* HeaderView.swift */; };
@@ -37,6 +36,8 @@
 		05BC99B42C4AEE5C00ED5B0D /* extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B32C4AEE5C00ED5B0D /* extension + View.swift */; };
 		05BC99B62C4AEE8A00ED5B0D /* MainRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B52C4AEE8A00ED5B0D /* MainRowStyle.swift */; };
 		05BC99BA2C4AF09200ED5B0D /* MainGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B92C4AF09200ED5B0D /* MainGradientBackground.swift */; };
+		05BC99BD2C4AF1E100ED5B0D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 05BC99BC2C4AF1E100ED5B0D /* Kingfisher */; };
+		05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99BF2C4AF44100ED5B0D /* HistoryWorkoutView.swift */; };
 		05C72FAE2C301BF9003ECC82 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C72FAD2C301BF9003ECC82 /* Exercise.swift */; };
 		05D3F8A92C2E084500494005 /* ActiveWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */; };
 		05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857302C0D014900DD77AC /* MyWorkoutView.swift */; };
@@ -88,6 +89,7 @@
 		05BC99B32C4AEE5C00ED5B0D /* extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + View.swift"; sourceTree = "<group>"; };
 		05BC99B52C4AEE8A00ED5B0D /* MainRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowStyle.swift; sourceTree = "<group>"; };
 		05BC99B92C4AF09200ED5B0D /* MainGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradientBackground.swift; sourceTree = "<group>"; };
+		05BC99BF2C4AF44100ED5B0D /* HistoryWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWorkoutView.swift; sourceTree = "<group>"; };
 		05C72FAD2C301BF9003ECC82 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutViewModel.swift; sourceTree = "<group>"; };
 		05D857302C0D014900DD77AC /* MyWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutView.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0565E5EE2C49A1EC001E9DE5 /* Kingfisher in Frameworks */,
+				05BC99BD2C4AF1E100ED5B0D /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,8 +180,9 @@
 				05BC717C2C0646F400524C58 /* LegoFitApp.swift */,
 				05BC717E2C0646F400524C58 /* ContentView.swift */,
 				0555C5C82C09F1110090C252 /* Views */,
-				0525D39F2C08F9840007F632 /* CreateWorkout */,
+				05BC99BE2C4AF40A00ED5B0D /* HistoryWorkout */,
 				0525D3B52C09DF4A0007F632 /* MyWorkouts */,
+				0525D39F2C08F9840007F632 /* CreateWorkout */,
 				05AA11472C2DF8FF00145826 /* ActiveWorkout */,
 				05C72FAB2C301B8A003ECC82 /* Models */,
 				05BC99B22C4AEE3A00ED5B0D /* Extensions */,
@@ -226,6 +229,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		05BC99BE2C4AF40A00ED5B0D /* HistoryWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				05BC99BF2C4AF44100ED5B0D /* HistoryWorkoutView.swift */,
+			);
+			path = HistoryWorkout;
+			sourceTree = "<group>";
+		};
 		05C72FAB2C301B8A003ECC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,7 +273,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				0565E5ED2C49A1EC001E9DE5 /* Kingfisher */,
+				05BC99BC2C4AF1E100ED5B0D /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -293,7 +304,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				0565E5EC2C49A1EC001E9DE5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -326,6 +337,7 @@
 				05BC99B62C4AEE8A00ED5B0D /* MainRowStyle.swift in Sources */,
 				05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */,
 				0581615F2C3492D30012E105 /* Lap.swift in Sources */,
+				05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */,
 				05AA11462C2DF5C700145826 /* MyWorkoutDetailsViewModel.swift in Sources */,
 				0525D3B02C0912E10007F632 /* CreateWorkoutDetailsView.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
@@ -570,7 +582,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0565E5EC2C49A1EC001E9DE5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -581,9 +593,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0565E5ED2C49A1EC001E9DE5 /* Kingfisher */ = {
+		05BC99BC2C4AF1E100ED5B0D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0565E5EC2C49A1EC001E9DE5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
