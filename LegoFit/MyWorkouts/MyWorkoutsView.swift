@@ -11,7 +11,8 @@ import SwiftData
 struct MyWorkoutsView: View {
     @Environment(\.modelContext) var modelContext
     @Query var workouts: [Workout]
-
+    @State private var createWorkoutViewIsPresented = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -26,32 +27,26 @@ struct MyWorkoutsView: View {
                 .onDelete(perform: { indexSet in
                     deleteWorkout(indexSet)
                 })
-                .listRowSeparator(.hidden)
-                .listRowBackground(
-                    RoundedRectangle(cornerRadius: 15)
-                        .foregroundStyle(.gray)
-                        .opacity(0.1)
-                )
+                .mainRowStyle()
             }
-            .listRowSpacing(5)
+            .mainListStyle()
             .navigationTitle("My Workouts")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        CreateWorkoutView()
-                    } label: {
+                    Button(action: {
+                        createWorkoutViewIsPresented.toggle()
+                    }, label: {
                         Image(systemName: "plus.circle")
                             .tint(.main)
                             .font(.title2)
-                    }
+                    })
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(
-                Gradient(
-                    colors: [.cosmos, .cosmos, .gray]
-                )
-            )
+            
+            .sheet(isPresented: $createWorkoutViewIsPresented,
+                   content: {
+                CreateWorkoutView()
+            })
         }
     }
     

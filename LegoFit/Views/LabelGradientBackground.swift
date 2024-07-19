@@ -1,5 +1,5 @@
 //
-//  GradientBackground.swift
+//  LabelGradientBackground.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 15/6/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GradientBackground<Content: View>: View {
+struct LabelGradientBackground<Content: View>: View {
     let content: Content
     
     var body: some View {
@@ -23,5 +23,5 @@ struct GradientBackground<Content: View>: View {
 }
 
 #Preview {
-    GradientBackground(content: Text("Check"))
+    LabelGradientBackground(content: Text("Check"))
 }

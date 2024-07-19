@@ -18,7 +18,7 @@ struct CreateWorkoutDetailsView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    GradientBackground(content:
+                    LabelGradientBackground(content:
                         Text(exercise.name)
                             .font(.title)
                     )

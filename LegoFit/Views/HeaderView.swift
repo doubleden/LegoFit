@@ -13,7 +13,7 @@ struct HeaderView: View {
     
     var body: some View {
         ZStack {
-            GradientBackground(content:
+            LabelGradientBackground(content:
                 HStack {
                     Text(text)
                         .foregroundStyle(.white)

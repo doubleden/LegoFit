@@ -10,15 +10,24 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        TabView() {
+        TabView {
             MyWorkoutsView()
                 .tabItem {
                     Image(systemName: "dumbbell")
-                    Text("Мои тренировки")
+                    Text("My workouts")
                 }
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(.cosmos, for: .tabBar)
+            
+            CreateWorkoutView()
+                .tabItem {
+                    Image(systemName: "book.fill")
+                    Text("History")
+                }
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(.cosmos, for: .tabBar)
         }
-        
-        .tint(.cosmos)
+        .tint(.white)
     }
 }
 
