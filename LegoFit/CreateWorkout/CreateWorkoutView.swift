@@ -15,8 +15,8 @@ struct CreateWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            CategoryList(createWorkoutVM: $createWorkoutVM)
             VStack {
+                
                 ExerciseList(createWorkoutVM: $createWorkoutVM)
                     .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
                         CreateWorkoutDetailsView(
@@ -40,42 +40,44 @@ struct CreateWorkoutView: View {
                             dismiss()
                         }
                     }
-                    .presentationBackground(.cosmos)
-                    .presentationDetents([.height(190)])
+                    .presentationBackground { MainGradientBackground()
+                    }
+                    
                     .presentationDragIndicator(.visible)
                 }
             }
+            .navigationBarBackButtonHidden()
             .navigationTitle("Exercises")
             .navigationBarTitleDisplayMode(.inline)
             
             .toolbar {
-                //TODO: Надо сделать бургер с кнопками сбросить и фильтр
                 ToolbarItem(placement: .topBarLeading) {
                     ButtonToolbar(
-                        title: "Reset",
+                        title: "Cancel",
                         action: { createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                            dismiss()
                         }
                     )
                 }
+                // MARK: - Функционал для заполнения лапов
+//                ToolbarItem(placement: .topBarTrailing) {
+//                    Button(action: {
+//                        if !createWorkoutVM.isAddingLaps {
+//                            createWorkoutVM.isAddingLaps.toggle()
+//                            createWorkoutVM.isAlertForLapsPresented.toggle()
+//                        } else {
+//                            createWorkoutVM.isAddingLaps.toggle()
+//                            createWorkoutVM.addToWorkoutLap()
+//                        }
+//                    }, label: {
+//                        Image(systemName: createWorkoutVM.isAddingLaps
+//                              ? "checkmark.rectangle.stack"
+//                              : "rectangle.badge.checkmark")
+//                    })
+//                }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        if !createWorkoutVM.isAddingLaps {
-                            createWorkoutVM.isAddingLaps.toggle()
-                            createWorkoutVM.isAlertForLapsPresented.toggle()
-                        } else {
-                            createWorkoutVM.isAddingLaps.toggle()
-                            createWorkoutVM.addToWorkoutLap()
-                        }
-                    }, label: {
-                        Image(systemName: createWorkoutVM.isAddingLaps
-                              ? "checkmark.rectangle.stack"
-                              : "rectangle.badge.checkmark")
-                    })
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    ButtonToolbar(title: "Done") {
+                    ButtonToolbar(title: "Workout") {
                         createWorkoutVM.isSaveSheetPresented.toggle()
                     }
                     .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
@@ -104,31 +106,6 @@ struct CreateWorkoutView: View {
                 createWorkoutVM.fetchExercises()
             }
         }
-    }
-}
-
-fileprivate struct CategoryList: View {
-    @Binding var createWorkoutVM: CreateWorkoutViewModel
-    
-    var body: some View {
-        ScrollView(.horizontal) {
-            LazyHStack {
-                ForEach(
-                    Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
-                    id: \.self
-                ) { category in
-                    Button(action: {}, label: {
-                        Text(category)
-                            .foregroundStyle(.white)
-                            .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
-                    })
-                    .background(Gradient(colors: [.gray]))
-                    .clipShape(Capsule())
-                }
-            }
-        }
-        .frame(height: 60)
-        .scrollIndicators(.hidden)
     }
 }
 
@@ -164,9 +141,11 @@ fileprivate struct ExerciseList: View {
                         })
                         .tint(.main)
                     }
+                    .mainRowStyle()
                 }
             }
         }
+        .mainListStyle()
     }
 }
 

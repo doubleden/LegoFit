@@ -40,6 +40,7 @@ struct MyWorkoutsView: View {
                 }
             }
         }
+        .tint(.main)
     }
     
     private func deleteWorkout(_ indexSet: IndexSet) {
