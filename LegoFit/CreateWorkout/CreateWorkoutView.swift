@@ -36,9 +36,6 @@ struct CreateWorkoutView: View {
                     CreateWorkoutSaveView(
                         createWorkoutVM: createWorkoutVM
                     )
-                    .presentationBackground { MainGradientBackground()
-                    }
-                    
                     .presentationDragIndicator(.visible)
                 }
             }
@@ -142,6 +139,9 @@ fileprivate struct ExerciseList: View {
             }
         }
         .mainListStyle()
+        .background(
+            MainGradientBackground()
+        )
     }
 }
 

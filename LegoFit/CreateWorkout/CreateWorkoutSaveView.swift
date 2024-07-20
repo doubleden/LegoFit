@@ -15,29 +15,36 @@ struct CreateWorkoutSaveView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .center, spacing: 25) {
-                InputNameTF(input: $createWorkoutVM.workout.name)
+            ZStack {
+                MainGradientBackground()
+                    .ignoresSafeArea()
                 
-                SaveButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
-                    createWorkoutVM.saveWorkout(
-                        modelContext: modelContext
-                    )
-                    createWorkoutVM.cancelCreateWorkout(
-                        modelContext: modelContext
-                    )
-                    dismiss()
-                }
-                
-                Spacer()
-            }
-            .padding(.top, 40)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Clear") {
-                        createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                VStack(alignment: .center, spacing: 25) {
+                    InputNameTF(input: $createWorkoutVM.workout.name)
+                    
+                    SaveButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
+                        createWorkoutVM.saveWorkout(
+                            modelContext: modelContext
+                        )
+                        createWorkoutVM.cancelCreateWorkout(
+                            modelContext: modelContext
+                        )
+                        dismiss()
                     }
-                    .tint(.main)
+                    
+                    
+                    
+                    Spacer()
                 }
+                .padding(.top, 40)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("Clear") {
+                            createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                        }
+                        .tint(.main)
+                    }
+            }
             }
         }
     }

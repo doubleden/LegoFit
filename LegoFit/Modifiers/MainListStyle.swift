@@ -13,8 +13,5 @@ struct MainListStyle: ViewModifier {
             .environment(\.defaultMinListRowHeight, 50)
             .listRowSpacing(5)
             .scrollContentBackground(.hidden)
-            .background(
-                MainGradientBackground()
-            )
     }
 }

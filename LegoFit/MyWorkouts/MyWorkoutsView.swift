@@ -29,6 +29,9 @@ struct MyWorkoutsView: View {
                 .mainRowStyle()
             }
             .mainListStyle()
+            .background(
+                MainGradientBackground()
+            )
             .navigationTitle("My Workouts")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
