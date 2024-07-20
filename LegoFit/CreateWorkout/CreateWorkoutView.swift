@@ -16,7 +16,6 @@ struct CreateWorkoutView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
                 ExerciseList(createWorkoutVM: $createWorkoutVM)
                     .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
                         CreateWorkoutDetailsView(
@@ -29,7 +28,7 @@ struct CreateWorkoutView: View {
                 
                 // Нажатие на кнопку Готово и переход к SaveView
                     .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented, onDismiss: {
-                        if createWorkoutVM.workout.exercises.isEmpty {
+                        if createWorkoutVM.isDidSave {
                             dismiss()
                         }
                     }) {
@@ -53,21 +52,21 @@ struct CreateWorkoutView: View {
                     )
                 }
                 // MARK: - Функционал для заполнения лапов
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    Button(action: {
-//                        if !createWorkoutVM.isAddingLaps {
-//                            createWorkoutVM.isAddingLaps.toggle()
-//                            createWorkoutVM.isAlertForLapsPresented.toggle()
-//                        } else {
-//                            createWorkoutVM.isAddingLaps.toggle()
-//                            createWorkoutVM.addToWorkoutLap()
-//                        }
-//                    }, label: {
-//                        Image(systemName: createWorkoutVM.isAddingLaps
-//                              ? "checkmark.rectangle.stack"
-//                              : "rectangle.badge.checkmark")
-//                    })
-//                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        if !createWorkoutVM.isAddingLaps {
+                            createWorkoutVM.isAddingLaps.toggle()
+                            createWorkoutVM.isAlertForLapsPresented.toggle()
+                        } else {
+                            createWorkoutVM.isAddingLaps.toggle()
+                            createWorkoutVM.addToWorkoutLap()
+                        }
+                    }, label: {
+                        Image(systemName: createWorkoutVM.isAddingLaps
+                              ? "checkmark.rectangle.stack"
+                              : "rectangle.badge.checkmark")
+                    })
+                }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     ButtonToolbar(title: "Workout") {

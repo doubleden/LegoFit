@@ -6,12 +6,14 @@
 //
 import Observation
 import SwiftData
+import Foundation
 
 @Observable
 final class CreateWorkoutViewModel {
     
     var isLoading = true
     var workout = Workout()
+    var isDidSave = false
     var sheetExercise: Exercise?
     var isSaveSheetPresented = false
     
@@ -72,10 +74,24 @@ final class CreateWorkoutViewModel {
     
     func saveWorkout(modelContext: ModelContext) {
         storageManager.save(workout: workout, context: modelContext)
+        isDidSave.toggle()
     }
     
     func cancelCreateWorkout(modelContext: ModelContext) {
         workout = Workout()
+    }
+    
+    func deleteExercise(withQueue: Int) {
+        if let index = workout.exercises.firstIndex(where: {
+            switch $0 {
+            case .single(let single):
+                single.queue == withQueue
+            case .lap(let lap):
+                lap.queue == withQueue
+            }
+        }) {
+            workout.exercises.remove(at: index)
+        }
     }
     
     func showSheetOf(exercise: Exercise) {
@@ -93,6 +109,7 @@ final class CreateWorkoutViewModel {
         workout.exercises.append(.lap(lap))
         queue += 1
         lapInput = ""
+        exercisesInLaps = []
     }
     
     func addToLap(exercise: Exercise) {

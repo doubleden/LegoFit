@@ -32,21 +32,43 @@ struct CreateWorkoutSaveView: View {
                         dismiss()
                     }
                     
-                    List(createWorkoutVM.workout.exercises) { exerciseType in
-                        switch exerciseType {
-                        case .single(let exercise):
-                            Text(exercise.name)
-                                .mainRowStyle()
-                            
-                        case .lap(let lap):
-                            Section {
-                                ForEach(lap.exercises) { exercise in
-                                    Text(exercise.name)
-                                        .mainRowStyle()
+                    List {
+                        ForEach(createWorkoutVM.workout.exercises) { exerciseType in
+                            switch exerciseType {
+                            case .single(let single):
+                                HStack {
+                                    Text(single.name)
+                                    Spacer()
+                                    Button(action: {
+                                        withAnimation(.spring) {
+                                            createWorkoutVM.deleteExercise(withQueue: single.queue ?? 0)
+                                        }
+                                    }, label: {
+                                        Image(systemName: "minus.circle")
+                                    })
                                 }
-                            } header: {
-                                Text("Круг: \(lap.quantity)")
-                                    .font(.title2)
+                                .mainRowStyle()
+                                
+                            case .lap(let lap):
+                                Section {
+                                    ForEach(lap.exercises) { exercise in
+                                        Text(exercise.name)
+                                            .mainRowStyle()
+                                    }
+                                } header: {
+                                    HStack {
+                                        Text("Lap: \(lap.quantity)")
+                                            .font(.headline)
+                                        Spacer()
+                                        Button(action: {
+                                            withAnimation(.spring) {
+                                                createWorkoutVM.deleteExercise(withQueue: lap.queue)
+                                            }
+                                        }, label: {
+                                            Image(systemName: "minus.circle")
+                                        })
+                                    }
+                                }
                             }
                         }
                     }
@@ -111,8 +133,19 @@ struct SaveButton: View {
 
 #Preview {
     let container = DataController.previewContainer
+    let createWorkoutVM = CreateWorkoutViewModel()
+    let exercises = Exercise.getExercises()
+    createWorkoutVM.exercisesInLaps.append(contentsOf: exercises)
+    for i in 0..<exercises.count {
+        var exercise = exercises[i]
+        createWorkoutVM.addToWorkout(exercise: &exercise)
+    }
     
-    return CreateWorkoutSaveView(createWorkoutVM: CreateWorkoutViewModel())
+    for _ in 0..<exercises.count {
+        createWorkoutVM.addToWorkoutLap()
+    }
+    
+    return CreateWorkoutSaveView(createWorkoutVM: createWorkoutVM)
         .modelContainer(container)
         
 }
