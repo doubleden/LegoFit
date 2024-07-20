@@ -91,10 +91,6 @@ struct CreateWorkoutView: View {
                 }
             }
             
-            .refreshable {
-                createWorkoutVM.fetchExercises()
-            }
-            
             .onAppear {
                 createWorkoutVM.fetchExercises()
             }
@@ -142,6 +138,9 @@ fileprivate struct ExerciseList: View {
         .background(
             MainGradientBackground()
         )
+        .refreshable {
+            createWorkoutVM.fetchExercises()
+        }
     }
 }
 

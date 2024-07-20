@@ -32,11 +32,27 @@ struct CreateWorkoutSaveView: View {
                         dismiss()
                     }
                     
-                    
-                    
-                    Spacer()
+                    List(createWorkoutVM.workout.exercises) { exerciseType in
+                        switch exerciseType {
+                        case .single(let exercise):
+                            Text(exercise.name)
+                                .mainRowStyle()
+                            
+                        case .lap(let lap):
+                            Section {
+                                ForEach(lap.exercises) { exercise in
+                                    Text(exercise.name)
+                                        .mainRowStyle()
+                                }
+                            } header: {
+                                Text("Круг: \(lap.quantity)")
+                                    .font(.title2)
+                            }
+                        }
+                    }
+                    .mainListStyle()
                 }
-                .padding(.top, 40)
+                .padding(.top, 20)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button("Clear") {
