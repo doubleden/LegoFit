@@ -32,47 +32,17 @@ struct CreateWorkoutSaveView: View {
                         dismiss()
                     }
                     
-                    List {
-                        ForEach(createWorkoutVM.workout.exercises) { exerciseType in
-                            switch exerciseType {
-                            case .single(let single):
-                                HStack {
-                                    Text(single.name)
-                                    Spacer()
-                                    Button(action: {
-                                        withAnimation(.spring) {
-                                            createWorkoutVM.deleteExercise(withQueue: single.queue ?? 0)
-                                        }
-                                    }, label: {
-                                        Image(systemName: "minus.circle")
-                                    })
-                                }
-                                .mainRowStyle()
-                                
-                            case .lap(let lap):
-                                Section {
-                                    ForEach(lap.exercises) { exercise in
-                                        Text(exercise.name)
-                                            .mainRowStyle()
-                                    }
-                                } header: {
-                                    HStack {
-                                        Text("Lap: \(lap.quantity)")
-                                            .font(.headline)
-                                        Spacer()
-                                        Button(action: {
-                                            withAnimation(.spring) {
-                                                createWorkoutVM.deleteExercise(withQueue: lap.queue)
-                                            }
-                                        }, label: {
-                                            Image(systemName: "minus.circle")
-                                        })
-                                    }
-                                }
-                            }
+                    ExerciseList(
+                        exercises: createWorkoutVM.workout.exercises
+                    ) { single in
+                        createWorkoutVM.deleteExercise(
+                            withQueue: single.queue ?? 0
+                        )
+                        } actionForLap: { lap in
+                            createWorkoutVM.deleteExercise(
+                                withQueue: lap.queue
+                            )
                         }
-                    }
-                    .mainListStyle()
                 }
                 .padding(.top, 20)
                 .toolbar {
@@ -82,7 +52,7 @@ struct CreateWorkoutSaveView: View {
                         }
                         .tint(.main)
                     }
-            }
+                }
             }
         }
     }
@@ -102,7 +72,7 @@ private struct CustomButtonStyle: ButtonStyle {
     }
 }
 
-struct InputNameTF: View {
+fileprivate struct InputNameTF: View {
     @Binding var input: String
     
     var body: some View {
@@ -116,7 +86,7 @@ struct InputNameTF: View {
     }
 }
 
-struct SaveButton: View {
+fileprivate struct SaveButton: View {
     let isDisabled: Bool
     let action: () -> Void
     
@@ -128,6 +98,56 @@ struct SaveButton: View {
         .font(.title2)
         .buttonStyle(CustomButtonStyle(isDisabled: isDisabled))
         .disabled(isDisabled)
+    }
+}
+
+fileprivate struct ExerciseList: View {
+    let exercises: [ExerciseType]
+    let actionForSingle: (Exercise) -> Void
+    let actionForLap: (Lap) -> Void
+    
+    var body: some View {
+        List {
+            ForEach(exercises) { exerciseType in
+                switch exerciseType {
+                case .single(let single):
+                    HStack {
+                        Text(single.name)
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.spring) {
+                                actionForSingle(single)
+                            }
+                        }, label: {
+                            Image(systemName: "minus.circle")
+                        })
+                    }
+                    .mainRowStyle()
+                    
+                case .lap(let lap):
+                    Section {
+                        ForEach(lap.exercises) { exercise in
+                            Text(exercise.name)
+                                .mainRowStyle()
+                        }
+                    } header: {
+                        HStack {
+                            Text("Lap: \(lap.quantity)")
+                                .font(.headline)
+                            Spacer()
+                            Button(action: {
+                                withAnimation(.spring) {
+                                    actionForLap(lap)
+                                }
+                            }, label: {
+                                Image(systemName: "minus.circle")
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        .mainListStyle()
     }
 }
 
