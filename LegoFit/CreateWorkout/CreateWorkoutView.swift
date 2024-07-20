@@ -28,18 +28,14 @@ struct CreateWorkoutView: View {
                     }
                 
                 // Нажатие на кнопку Готово и переход к SaveView
-                .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented) {
-                    CreateWorkoutSaveView(
-                        workoutTitle: $createWorkoutVM.workout.name,
-                        isInputValid: createWorkoutVM.isWorkoutNameValid()
-                    ) { createWorkoutVM.saveWorkout(
-                        modelContext: modelContext
-                    )
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                    .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented, onDismiss: {
+                        if createWorkoutVM.workout.exercises.isEmpty {
                             dismiss()
                         }
-                    }
+                    }) {
+                    CreateWorkoutSaveView(
+                        createWorkoutVM: createWorkoutVM
+                    )
                     .presentationBackground { MainGradientBackground()
                     }
                     

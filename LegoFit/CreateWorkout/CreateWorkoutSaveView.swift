@@ -8,40 +8,50 @@
 import SwiftUI
 
 struct CreateWorkoutSaveView: View {
-    @Binding var workoutTitle: String
-    let isInputValid: Bool
-    let action: () -> Void
+    @Bindable var createWorkoutVM: CreateWorkoutViewModel
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.isEnabled) var isEnabled
-    
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-        VStack(alignment: .center, spacing: 30) {
-            TextField("Название тренировки", text: $workoutTitle)
-                .padding()
-                .frame(width: 300, height: 50)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.main)
-                )
-            
-            Button(action: {
-                action()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    dismiss()
-                }
+        NavigationStack {
+            VStack(alignment: .center, spacing: 25) {
+                TextField("Название тренировки", text: $createWorkoutVM.workout.name)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.main)
+                    )
                 
-            }, label: {
-                Text("Сохранить тренировку")
-                    .tint(.white)
-            })
-            .font(.title2)
-            .buttonStyle(CustomButtonStyle(isDisabled: !isInputValid))
-            .disabled(!isInputValid)
-            Spacer()
+                Button(action: {
+                    createWorkoutVM.saveWorkout(
+                        modelContext: modelContext
+                    )
+                    createWorkoutVM.cancelCreateWorkout(
+                        modelContext: modelContext
+                    )
+                    
+                    dismiss()
+                }, label: {
+                    Text("Сохранить тренировку")
+                        .tint(.white)
+                })
+                .font(.title2)
+                .buttonStyle(CustomButtonStyle(isDisabled: !createWorkoutVM.isWorkoutNameValid()))
+                .disabled(!createWorkoutVM.isWorkoutNameValid())
+                Spacer()
+            }
+            .padding(.top, 40)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Clear") {
+                        createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                    }
+                    .tint(.main)
+                }
+            }
         }
-        .padding(.top, 40)
     }
 }
 
@@ -60,5 +70,9 @@ private struct CustomButtonStyle: ButtonStyle {
 }
 
 #Preview {
-    CreateWorkoutSaveView(workoutTitle: .constant("New Workout"), isInputValid: false, action: {})
+    let container = DataController.previewContainer
+    
+    return CreateWorkoutSaveView(createWorkoutVM: CreateWorkoutViewModel())
+        .modelContainer(container)
+        
 }
