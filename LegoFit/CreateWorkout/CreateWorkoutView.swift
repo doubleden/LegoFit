@@ -95,6 +95,7 @@ struct CreateWorkoutView: View {
                     createWorkoutVM.isSaveSheetPresented.toggle()
                 }
                 .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
+                
             }
             
             ToolbarItem(placement: .keyboard) {
@@ -118,7 +119,7 @@ struct CreateWorkoutView: View {
         }
         
         .onDisappear {
-            createWorkoutVM.isAddingLap.toggle()
+            createWorkoutVM.isAddingLap = false
         }
     }
 }
