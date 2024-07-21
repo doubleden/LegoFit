@@ -58,25 +58,11 @@ struct CreateWorkoutSaveView: View {
     }
 }
 
-private struct CustomButtonStyle: ButtonStyle {
-    let isDisabled: Bool
-    
-    @ViewBuilder
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(width: 300 ,height: 45)
-            .background(isDisabled ? .offButton : .main)
-            .clipShape(.rect(cornerRadius: 5))
-            .scaleEffect(configuration.isPressed ? 0.9 : 1)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
-
 fileprivate struct InputNameTF: View {
     @Binding var input: String
     
     var body: some View {
-        TextField("Название тренировки", text: $input)
+        TextField("Name of workout", text: $input)
             .padding()
             .frame(width: 300, height: 50)
             .overlay(
@@ -92,12 +78,26 @@ fileprivate struct SaveButton: View {
     
     var body: some View {
         Button(action: action, label: {
-            Text("Сохранить тренировку")
+            Text("Save workout")
                 .tint(.white)
         })
         .font(.title2)
         .buttonStyle(CustomButtonStyle(isDisabled: isDisabled))
         .disabled(isDisabled)
+    }
+}
+
+private struct CustomButtonStyle: ButtonStyle {
+    let isDisabled: Bool
+    
+    @ViewBuilder
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 300 ,height: 45)
+            .background(isDisabled ? .offButton : .main)
+            .clipShape(.rect(cornerRadius: 5))
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 

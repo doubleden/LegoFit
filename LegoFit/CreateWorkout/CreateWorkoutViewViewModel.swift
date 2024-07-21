@@ -26,7 +26,7 @@ final class CreateWorkoutViewModel {
     var commentInputExercise = ""
     var isFocused: FocusedTextField? = nil
     
-    var isAddLapPresented = false
+    var isAddingLap = false
     var lapQuantity = ""
     var exercisesInLaps: [Exercise] = []
     

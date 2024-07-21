@@ -12,7 +12,11 @@ struct MyWorkoutView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            StartWorkoutButton {
+            CircleButton(
+                icon: Image(systemName: "play.fill"),
+                width: 100,
+                height: 100
+            ) {
                 myWorkoutVM.startWorkout()
             }
             
@@ -82,6 +86,8 @@ import SwiftData
     let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
     let workout = workouts?.first ?? Workout.getWorkout()
 
-    return MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: workout))
-        .modelContainer(container)
+    return NavigationStack {
+        MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: workout))
+            .modelContainer(container)
+    }
 }
