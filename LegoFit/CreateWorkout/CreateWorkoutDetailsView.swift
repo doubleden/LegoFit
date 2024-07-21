@@ -38,6 +38,7 @@ struct CreateWorkoutDetailsView: View {
                     )
                 }
                 .padding(.top, 10)
+                .padding()
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         ButtonToolbar(title: "Отменить") {
@@ -85,7 +86,7 @@ struct CreateWorkoutDetailsView: View {
         }
         
         .onDisappear {
-            createWorkoutVM.clearInputs()
+            createWorkoutVM.clearExerciseInputs()
         }
     }
 }

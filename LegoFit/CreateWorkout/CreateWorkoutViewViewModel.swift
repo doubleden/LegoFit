@@ -18,7 +18,7 @@ final class CreateWorkoutViewModel {
     var isSaveSheetPresented = false
     
     var errorMessage: String? = nil
-    var isShowAlertPresented = false
+    var isAlertPresented = false
     
     var setInputExercise = ""
     var repInputExercise = ""
@@ -26,12 +26,9 @@ final class CreateWorkoutViewModel {
     var commentInputExercise = ""
     var isFocused: FocusedTextField? = nil
     
-    var isAddingLaps = false
-    var lapInput = ""
+    var isAddLapPresented = false
+    var lapQuantity = ""
     var exercisesInLaps: [Exercise] = []
-    
-    //временно
-    var isAlertForLapsPresented = false
     
     var sortedByCategoryExercises: [String: [Exercise]] {
         [
@@ -59,7 +56,7 @@ final class CreateWorkoutViewModel {
                 exercises = []
                 isLoading = false
                 errorMessage = error.localizedDescription
-                isShowAlertPresented.toggle()
+                isAlertPresented.toggle()
             }
         }
     }
@@ -98,27 +95,35 @@ final class CreateWorkoutViewModel {
         sheetExercise = exercise
     }
     
-    func addToWorkout( exercise: inout Exercise) {
+    func addToWorkout(exercise: inout Exercise) {
         exercise.queue = queue
         workout.exercises.append(.single(exercise))
         queue += 1
     }
     
     func addToWorkoutLap() {
-        let lap = Lap(queue: queue, quantity: Int(lapInput) ?? 0, exercises: exercisesInLaps)
+        let lap = Lap(queue: queue, quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
         workout.exercises.append(.lap(lap))
         queue += 1
-        lapInput = ""
-        exercisesInLaps = []
+        clearLapInputs()
     }
     
     func addToLap(exercise: Exercise) {
         exercisesInLaps.append(exercise)
     }
     
+    func clearLapInputs() {
+        lapQuantity = ""
+        exercisesInLaps = []
+    }
+    
+    func isLapValid() -> Bool {
+        !lapQuantity.isEmpty && !exercisesInLaps.isEmpty
+    }
+    
     // MARK: - Details View
     
-    func clearInputs() {
+    func clearExerciseInputs() {
         setInputExercise = ""
         repInputExercise = ""
         weightInputExercise = ""

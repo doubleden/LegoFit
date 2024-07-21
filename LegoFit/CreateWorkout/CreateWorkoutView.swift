@@ -15,129 +15,74 @@ struct CreateWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                ExerciseList(createWorkoutVM: $createWorkoutVM)
-                    .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-                        CreateWorkoutDetailsView(
-                            exercise: exercise,
-                            createWorkoutVM: $createWorkoutVM
+            FetchedExerciseListView(createWorkoutVM: $createWorkoutVM)
+            
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        ButtonToolbar(
+                            title: "Cancel",
+                            action: { createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                                dismiss()
+                            }
                         )
-                        .presentationBackground(.black)
-                        .presentationDragIndicator(.visible)
                     }
-                
-                // Нажатие на кнопку Готово и переход к SaveView
-                    .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented, onDismiss: {
-                        if createWorkoutVM.isDidSave {
-                            dismiss()
+                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            createWorkoutVM.isAddLapPresented.toggle()
+                        }, label: {
+                            Image(systemName: "figure.run.square.stack")
+                                .tint(.main)
+                        })
+                    }
+                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        ButtonToolbar(title: "Workout") {
+                            createWorkoutVM.isSaveSheetPresented.toggle()
                         }
-                    }) {
-                    CreateWorkoutSaveView(
-                        createWorkoutVM: createWorkoutVM
-                    )
-                    .presentationDragIndicator(.visible)
+                        .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
+                    }
                 }
-            }
+            
             .navigationBarBackButtonHidden()
             .navigationTitle("Exercises")
             .navigationBarTitleDisplayMode(.inline)
-            
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    ButtonToolbar(
-                        title: "Cancel",
-                        action: { createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
-                            dismiss()
-                        }
-                    )
-                }
-                // MARK: - Функционал для заполнения лапов
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        if !createWorkoutVM.isAddingLaps {
-                            createWorkoutVM.isAddingLaps.toggle()
-                            createWorkoutVM.isAlertForLapsPresented.toggle()
-                        } else {
-                            createWorkoutVM.isAddingLaps.toggle()
-                            createWorkoutVM.addToWorkoutLap()
-                        }
-                    }, label: {
-                        Image(systemName: createWorkoutVM.isAddingLaps
-                              ? "checkmark.rectangle.stack"
-                              : "rectangle.badge.checkmark")
-                    })
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    ButtonToolbar(title: "Workout") {
-                        createWorkoutVM.isSaveSheetPresented.toggle()
-                    }
-                    .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
-                }
-            }
-            .alert("Введите сколько кругов вы хотите", isPresented: $createWorkoutVM.isAlertForLapsPresented, actions: {
-                TextField("0", text: $createWorkoutVM.lapInput)
-                Button("Готово", action: {})
-                Button("Отменить", action: {
-                    createWorkoutVM.isAddingLaps.toggle()
-                })
-            })
-            
-            .alert(createWorkoutVM.errorMessage ?? "",
-                    isPresented: $createWorkoutVM.isShowAlertPresented) {
-                Button("Ok", role: .cancel) { 
-                    createWorkoutVM.workout.name = ""
-                }
-            }
-            
-            .onAppear {
-                createWorkoutVM.fetchExercises()
-            }
         }
-    }
-}
-
-fileprivate struct ExerciseList: View {
-    @Binding var createWorkoutVM: CreateWorkoutViewModel
-    
-    var body: some View {
-        List(
-            Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
-            id: \.self
-        ) { section in
-            Section(section) {
-                ForEach(
-                    createWorkoutVM.sortedByCategoryExercises[section] ?? []
-                ) { exercise in
-                    Button(action: {
-                        createWorkoutVM.showSheetOf(exercise: exercise)
-                    }, label: {
-                        Text(exercise.name)
-                            .foregroundStyle(.white)
-                            
-                    })
-                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
-                        Button(action: {
-                            if createWorkoutVM.isAddingLaps {
-                                createWorkoutVM.addToLap(exercise: exercise)
-                            } else {
-                                var mutableExercise = exercise
-                                createWorkoutVM.addToWorkout(exercise: &mutableExercise)
-                            }
-                        }, label: {
-                            Image(systemName: "plus.circle.dashed")
-                        })
-                        .tint(.main)
-                    }
-                    .mainRowStyle()
-                }
-            }
+        
+        // MARK: - Sheets
+        // Экран с описание упражнения
+        .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
+            CreateWorkoutDetailsView(
+                exercise: exercise,
+                createWorkoutVM: $createWorkoutVM
+            )
+            .presentationBackground(.black)
+            .presentationDragIndicator(.visible)
         }
-        .mainListStyle()
-        .background(
-            MainGradientBackground()
-        )
-        .refreshable {
+        
+        // Экран сохранения
+        .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented,
+               onDismiss: {
+            if createWorkoutVM.isDidSave {
+                dismiss()
+            }
+        }) {
+            CreateWorkoutSaveView( createWorkoutVM: createWorkoutVM ) .presentationDragIndicator(.visible)
+        }
+        
+        // Экран создания Lap
+        .sheet(isPresented: $createWorkoutVM.isAddLapPresented) {
+            CreateWorkoutAddLapView(createWorkoutVM: $createWorkoutVM)
+                .presentationDragIndicator(.visible)
+        }
+        
+        // MARK: - Alerts
+        .alert(createWorkoutVM.errorMessage ?? "",
+               isPresented: $createWorkoutVM.isAlertPresented) {
+            Button("Ok", role: .cancel) {}
+        }
+        
+        .onAppear {
             createWorkoutVM.fetchExercises()
         }
     }
