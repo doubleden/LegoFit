@@ -9,9 +9,17 @@ import SwiftUI
 
 struct CellTextView: View {
     let exercise: Exercise
+    var isLap = false
     
     var body: some View {
-        Text("\(exercise.name) | (\(exercise.approach ?? 0) / \(exercise.rep ?? 0) / \(exercise.weight ?? 0))")
+        HStack {
+            Text("\(exercise.name)   (")
+            if !isLap {
+                Text("\(exercise.approach ?? 0)  /")
+            }
+            Text("\(exercise.rep ?? 0)  /")
+            Text("\(exercise.weight ?? 0)  )")
+        }
     }
 }
 

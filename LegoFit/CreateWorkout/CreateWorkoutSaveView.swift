@@ -114,20 +114,16 @@ fileprivate struct ExerciseList: View {
                     HStack {
                         CellTextView(exercise: single)
                         Spacer()
-                        Button(action: {
-                            withAnimation(.spring) {
-                                actionForSingle(single)
-                            }
-                        }, label: {
-                            Image(systemName: "minus.circle")
-                        })
+                        DeleteButton {
+                            actionForSingle(single)
+                        }
                     }
                     .mainRowStyle()
                     
                 case .lap(let lap):
                     Section {
                         ForEach(lap.exercises) { exercise in
-                            CellTextView(exercise: exercise)
+                            CellTextView(exercise: exercise, isLap: true)
                                 .mainRowStyle()
                         }
                     } header: {
@@ -135,19 +131,29 @@ fileprivate struct ExerciseList: View {
                             Text("Lap: \(lap.quantity)")
                                 .font(.headline)
                             Spacer()
-                            Button(action: {
-                                withAnimation(.spring) {
-                                    actionForLap(lap)
-                                }
-                            }, label: {
-                                Image(systemName: "minus.circle")
-                            })
+                            DeleteButton {
+                                actionForLap(lap)
+                            }
                         }
                     }
                 }
             }
         }
         .mainListStyle()
+    }
+}
+
+fileprivate struct DeleteButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: {
+            withAnimation(.spring) {
+                action()
+            }
+        }, label: {
+            Image(systemName: "minus.circle")
+        })
     }
 }
 
