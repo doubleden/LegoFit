@@ -36,13 +36,13 @@
 		05BC99B42C4AEE5C00ED5B0D /* extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B32C4AEE5C00ED5B0D /* extension + View.swift */; };
 		05BC99B62C4AEE8A00ED5B0D /* MainRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B52C4AEE8A00ED5B0D /* MainRowStyle.swift */; };
 		05BC99BA2C4AF09200ED5B0D /* MainGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99B92C4AF09200ED5B0D /* MainGradientBackground.swift */; };
-		05BC99BD2C4AF1E100ED5B0D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 05BC99BC2C4AF1E100ED5B0D /* Kingfisher */; };
 		05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC99BF2C4AF44100ED5B0D /* HistoryWorkoutView.swift */; };
 		05C72FAE2C301BF9003ECC82 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C72FAD2C301BF9003ECC82 /* Exercise.swift */; };
 		05D3F8A92C2E084500494005 /* ActiveWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D3F8A82C2E084500494005 /* ActiveWorkoutViewModel.swift */; };
 		05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857302C0D014900DD77AC /* MyWorkoutView.swift */; };
 		05D857332C0D089900DD77AC /* PreviewProviderSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D857322C0D089900DD77AC /* PreviewProviderSwiftData.swift */; };
 		05DF97D02C4D8A4800853A74 /* CellTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DF97CF2C4D8A4800853A74 /* CellTextView.swift */; };
+		05ECD85E2C4D9C68002CDBCB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 05ECD85D2C4D9C68002CDBCB /* Kingfisher */; };
 		05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BC99BD2C4AF1E100ED5B0D /* Kingfisher in Frameworks */,
+				05ECD85E2C4D9C68002CDBCB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				05BC99BC2C4AF1E100ED5B0D /* Kingfisher */,
+				05ECD85D2C4D9C68002CDBCB /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -307,7 +307,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				05ECD85C2C4D9C68002CDBCB /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -586,7 +586,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		05ECD85C2C4D9C68002CDBCB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -597,9 +597,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		05BC99BC2C4AF1E100ED5B0D /* Kingfisher */ = {
+		05ECD85D2C4D9C68002CDBCB /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 05BC99BB2C4AF1E100ED5B0D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 05ECD85C2C4D9C68002CDBCB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
