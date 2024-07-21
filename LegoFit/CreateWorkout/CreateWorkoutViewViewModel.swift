@@ -20,7 +20,7 @@ final class CreateWorkoutViewModel {
     var errorMessage: String? = nil
     var isAlertPresented = false
     
-    var setInputExercise = ""
+    var approachInputExercise = ""
     var repInputExercise = ""
     var weightInputExercise = ""
     var commentInputExercise = ""
@@ -95,10 +95,13 @@ final class CreateWorkoutViewModel {
         sheetExercise = exercise
     }
     
-    func addToWorkout(exercise: inout Exercise) {
-        exercise.queue = queue
-        workout.exercises.append(.single(exercise))
-        queue += 1
+    func add(exercise: Exercise) {
+        if isAddingLap {
+            addToLap(exercise: exercise)
+        } else {
+            var mutableExercise = exercise
+            addToWorkout(exercise: &mutableExercise)
+        }
     }
     
     func addToWorkoutLap() {
@@ -106,10 +109,6 @@ final class CreateWorkoutViewModel {
         workout.exercises.append(.lap(lap))
         queue += 1
         clearLapInputs()
-    }
-    
-    func addToLap(exercise: Exercise) {
-        exercisesInLaps.append(exercise)
     }
     
     func clearLapInputs() {
@@ -121,13 +120,32 @@ final class CreateWorkoutViewModel {
         !lapQuantity.isEmpty && !exercisesInLaps.isEmpty
     }
     
+    private func addToWorkout(exercise: inout Exercise) {
+        exercise.queue = queue
+        workout.exercises.append(.single(exercise))
+        queue += 1
+    }
+    
+    private func addToLap(exercise: Exercise) {
+        exercisesInLaps.append(exercise)
+    }
+    
     // MARK: - Details View
     
     func clearExerciseInputs() {
-        setInputExercise = ""
+        approachInputExercise = ""
         repInputExercise = ""
         weightInputExercise = ""
         commentInputExercise = ""
+    }
+    
+    func makeChangesInExercise() -> Exercise? {
+        guard var exercise = sheetExercise else { return nil }
+        exercise.approach = Int(approachInputExercise)
+        exercise.rep = Int(repInputExercise)
+        exercise.weight = Int(weightInputExercise)
+        exercise.comment = commentInputExercise
+        return exercise
     }
     
     func changeIsFocused() {

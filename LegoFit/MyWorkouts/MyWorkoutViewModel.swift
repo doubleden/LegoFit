@@ -47,7 +47,7 @@ final class MyWorkoutViewModel {
         for exercise in exercises {
             switch exercise {
             case .single(let exercise):
-                if (exercise.set ?? 0) <= 0 || (exercise.rep ?? 0) <= 0 {
+                if (exercise.approach ?? 0) <= 0 || (exercise.rep ?? 0) <= 0 {
                     isValid.toggle()
                     break
                 }

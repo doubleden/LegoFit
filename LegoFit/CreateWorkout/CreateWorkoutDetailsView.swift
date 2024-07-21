@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct CreateWorkoutDetailsView: View {
-    var exercise: Exercise
     @Binding var createWorkoutVM: CreateWorkoutViewModel
+    
+    private var exercise: Exercise {
+        createWorkoutVM.sheetExercise ?? Exercise.getExercises()[0]
+    }
     
     @Environment(\.dismiss) private var dismiss
     @FocusState private var isFocused: FocusedTextField?
@@ -30,28 +33,29 @@ struct CreateWorkoutDetailsView: View {
                         .font(.subheadline)
                     
                     ExerciseParametersTF(
-                        sets: $createWorkoutVM.setInputExercise,
+                        sets: $createWorkoutVM.approachInputExercise,
                         reps: $createWorkoutVM.repInputExercise,
                         weight: $createWorkoutVM.weightInputExercise,
                         comment: $createWorkoutVM.commentInputExercise,
-                        isFocused: _isFocused
+                        isFocused: _isFocused, 
+                        isAddingLaps: createWorkoutVM.isAddingLap
                     )
                 }
                 .padding(.top, 10)
                 .padding()
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        ButtonToolbar(title: "Отменить") {
+                        ButtonToolbar(title: "Cancel") {
                             dismiss()
                         }
                     }
                     
                     ToolbarItem(placement: .topBarTrailing) {
-                        ButtonToolbar(title: "Добавить") {
-                            var mutableExercise = exercise
-                            createWorkoutVM.addToWorkout(
-                                exercise: &mutableExercise
-                            )
+                        ButtonToolbar(title: "Add") {
+                            guard let exercise = createWorkoutVM.makeChangesInExercise() else {
+                                return
+                            }
+                            createWorkoutVM.add(exercise: exercise)
                             dismiss()
                         }
                     }
@@ -61,8 +65,8 @@ struct CreateWorkoutDetailsView: View {
                             Spacer()
                             Button(
                                 createWorkoutVM.isFocused == .comment
-                                   ? "Готово"
-                                   : "Далее"
+                                   ? "Done"
+                                   : "Next"
                             ) {
                                 createWorkoutVM.changeIsFocused()
                                 self.isFocused = createWorkoutVM.isFocused
@@ -94,7 +98,6 @@ struct CreateWorkoutDetailsView: View {
 import SwiftData
 #Preview {
     let container = DataController.previewContainer
-    let exercise = Exercise.getExercises().first!
-    return CreateWorkoutDetailsView(exercise: exercise, createWorkoutVM: .constant(CreateWorkoutViewModel()))
+    return CreateWorkoutDetailsView(createWorkoutVM: .constant(CreateWorkoutViewModel()))
         .modelContainer(container)
 }

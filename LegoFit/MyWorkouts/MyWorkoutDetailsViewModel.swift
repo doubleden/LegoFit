@@ -28,7 +28,7 @@ final class MyWorkoutDetailsViewModel {
     }
     
     func setupTextFields() {
-        set = (exercise.set ?? 0).formatted()
+        set = (exercise.approach ?? 0).formatted()
         rep = (exercise.rep ?? 0).formatted()
         weight = (exercise.weight ?? 0).formatted()
         comment = exercise.comment ?? ""
@@ -51,7 +51,7 @@ final class MyWorkoutDetailsViewModel {
     
     private func changeParametersInExercise() {
         // Сделать корректное обновление
-        exercise.set = Int(set) ?? 0
+        exercise.approach = Int(set) ?? 0
         exercise.rep = Int(rep) ?? 0
         exercise.weight = Int(weight) ?? 0
         exercise.comment = comment

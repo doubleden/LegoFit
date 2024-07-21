@@ -112,7 +112,7 @@ fileprivate struct ExerciseList: View {
                 switch exerciseType {
                 case .single(let single):
                     HStack {
-                        Text(single.name)
+                        CellTextView(exercise: single)
                         Spacer()
                         Button(action: {
                             withAnimation(.spring) {
@@ -127,7 +127,7 @@ fileprivate struct ExerciseList: View {
                 case .lap(let lap):
                     Section {
                         ForEach(lap.exercises) { exercise in
-                            Text(exercise.name)
+                            CellTextView(exercise: exercise)
                                 .mainRowStyle()
                         }
                     } header: {
@@ -155,13 +155,14 @@ fileprivate struct ExerciseList: View {
     let container = DataController.previewContainer
     let createWorkoutVM = CreateWorkoutViewModel()
     let exercises = Exercise.getExercises()
+    let laps = Lap.getLaps()
     createWorkoutVM.exercisesInLaps.append(contentsOf: exercises)
     for i in 0..<exercises.count {
-        var exercise = exercises[i]
-        createWorkoutVM.addToWorkout(exercise: &exercise)
+        let exercise = exercises[i]
+        createWorkoutVM.add(exercise: exercise)
     }
     
-    for _ in 0..<exercises.count {
+    for _ in 0..<laps.count {
         createWorkoutVM.addToWorkoutLap()
     }
     

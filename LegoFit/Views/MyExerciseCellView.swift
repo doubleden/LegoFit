@@ -18,7 +18,7 @@ struct MyExerciseCellView: View {
                     .tint(.white)
                 Spacer()
                 HStack(spacing: 5) {
-                    Text("\(exercise.set ?? 0) / \(exercise.rep ?? 0) / \(exercise.weight ?? 0)")
+                    CellTextView(exercise: exercise)
                 }
                 .tint(.white)
             }

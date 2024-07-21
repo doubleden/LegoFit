@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CreateWorkoutView: View {
-    
     @State private var createWorkoutVM = CreateWorkoutViewModel()
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
@@ -36,18 +35,16 @@ struct CreateWorkoutView: View {
             // MARK: - Sheets
             // Экран с описание упражнения
             .sheet(item: $createWorkoutVM.sheetExercise) { exercise in
-                CreateWorkoutDetailsView(
-                    exercise: exercise,
-                    createWorkoutVM: $createWorkoutVM
-                )
-                .presentationBackground(.black)
-                .presentationDragIndicator(.visible)
+                CreateWorkoutDetailsView(createWorkoutVM: $createWorkoutVM)
+                    .presentationBackground(.black)
+                    .presentationDragIndicator(.visible)
             }
             .onChange(of: createWorkoutVM.sheetExercise, {
                 if IsFocused {
-                    IsFocused = false 
+                    IsFocused = false
                 }
             })
+            
             // Экран сохранения
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented,
                    onDismiss: {
@@ -147,12 +144,7 @@ fileprivate struct FetchedExerciseListView: View {
                     })
                     .swipeActions(edge: .leading, allowsFullSwipe:true) {
                         Button(action: {
-                            if createWorkoutVM.isAddingLap {
-                                createWorkoutVM.addToLap(exercise: exercise)
-                            } else {
-                                var mutableExercise = exercise
-                                createWorkoutVM.addToWorkout(exercise: &mutableExercise)
-                            }
+                            createWorkoutVM.add(exercise: exercise)
                         }, label: {
                             Image(systemName: "plus.circle.dashed")
                         })

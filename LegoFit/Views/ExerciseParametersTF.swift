@@ -20,11 +20,14 @@ struct ExerciseParametersTF: View {
     @Binding var weight: String
     @Binding var comment: String
     @FocusState var isFocused: FocusedTextField?
+    var isAddingLaps = false
     
     var body: some View {
         VStack(spacing: 12) {
-            ParameterTextFieldView(title: "Подход", text: "0", input: $sets)
-                .focused($isFocused, equals: .sets)
+            if !isAddingLaps {
+                ParameterTextFieldView(title: "Подход", text: "0", input: $sets)
+                    .focused($isFocused, equals: .sets)
+            }
             ParameterTextFieldView(title: "Раз", text: "0", input: $reps)
                 .focused($isFocused, equals: .reps)
             ParameterTextFieldView(title: "Вес", text: "0", input: $weight)
@@ -43,6 +46,6 @@ struct ExerciseParametersTF: View {
         sets: .constant("2"),
         reps: .constant("15"),
         weight: .constant("150"),
-        comment: .constant("С резинками")
+        comment: .constant("С резинками"), isAddingLaps: true
     )
 }
