@@ -20,7 +20,7 @@ struct CreateWorkoutView: View {
                 .onTapGesture {
                     isFocused = false
                 }
-            VStack {
+            VStack(spacing: 0) {
                 if createWorkoutVM.isAddingLap {
                     ElementsForInteractWithLap(
                         createWorkoutVM: $createWorkoutVM,
@@ -76,9 +76,7 @@ struct CreateWorkoutView: View {
                     if createWorkoutVM.isAddingLap {
                         isFocused = false
                         createWorkoutVM.clearLapInputs()
-                    } else {
-                        isFocused = true
-                    }
+                    } 
                     withAnimation(.smooth) {
                         createWorkoutVM.isAddingLap.toggle()
                     }
@@ -118,39 +116,43 @@ fileprivate struct FetchedExerciseListView: View {
     @Binding var createWorkoutVM: CreateWorkoutViewModel
     
     var body: some View {
-        List(
-            Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
-            id: \.self
-        ) { section in
-            Section(section) {
-                ForEach(
-                    createWorkoutVM.sortedByCategoryExercises[section] ?? []
-                ) { exercise in
-                    Button(action: {
-                        createWorkoutVM.showSheetOf(exercise: exercise)
-                    }, label: {
-                        Text(exercise.name)
-                            .foregroundStyle(.white)
-                            
-                    })
-                    .swipeActions(edge: .leading, allowsFullSwipe:true) {
+        VStack(spacing: -1) {
+            Divider()
+            
+            List(
+                Array(createWorkoutVM.sortedByCategoryExercises.keys.sorted()),
+                id: \.self
+            ) { section in
+                Section(section) {
+                    ForEach(
+                        createWorkoutVM.sortedByCategoryExercises[section] ?? []
+                    ) { exercise in
                         Button(action: {
-                            createWorkoutVM.add(exercise: exercise)
+                            createWorkoutVM.showSheetOf(exercise: exercise)
                         }, label: {
-                            Image(systemName: "plus.circle.dashed")
+                            Text(exercise.name)
+                                .foregroundStyle(.white)
+                                
                         })
-                        .tint(.main)
+                        .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                            Button(action: {
+                                createWorkoutVM.add(exercise: exercise)
+                            }, label: {
+                                Image(systemName: "plus.circle.dashed")
+                            })
+                            .tint(.main)
+                        }
+                        .mainRowStyle()
                     }
-                    .mainRowStyle()
                 }
             }
+            .mainListStyle()
+            .background(
+                MainGradientBackground()
+            )
+            .refreshable {
+                createWorkoutVM.fetchExercises()
         }
-        .mainListStyle()
-        .background(
-            MainGradientBackground()
-        )
-        .refreshable {
-            createWorkoutVM.fetchExercises()
         }
     }
 }
@@ -161,46 +163,49 @@ fileprivate struct ElementsForInteractWithLap: View {
     @FocusState.Binding var IsFocused: Bool
     
     var body: some View {
-        TextField("Quantity of laps", text: $createWorkoutVM.lapQuantity)
-            .focused($IsFocused)
-            .keyboardType(.numberPad)
-            .padding()
-            .frame(width: 170, height: 40)
-            .overlay(
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.main)
-            )
-            .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Spacer()
-                        Button("Done") {
-                            IsFocused = false
+        VStack {
+            TextField("Quantity of laps", text: $createWorkoutVM.lapQuantity)
+                .focused($IsFocused)
+                .keyboardType(.numberPad)
+                .padding()
+                .frame(width: 170, height: 40)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.main)
+                )
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                IsFocused = false
+                            }
                         }
                     }
                 }
+            
+            
+            CircleButton(
+                icon: Image(systemName: "plus"),
+                width: 50,
+                height: 50,
+                isDisable: !createWorkoutVM.isLapValid()
+            ) {
+                createWorkoutVM.addToWorkoutLap()
+                withAnimation(.smooth) {
+                    createWorkoutVM.isAddingLap.toggle()
+                    IsFocused = false
+                }
             }
-        
-        CircleButton(
-            icon: Image(systemName: "plus"),
-            width: 50,
-            height: 50,
-            isDisable: !createWorkoutVM.isLapValid()
-        ) {
-            createWorkoutVM.addToWorkoutLap()
-            withAnimation(.smooth) {
-                createWorkoutVM.isAddingLap.toggle()
-                IsFocused = false
-            }
-        }
-        .padding(
-            EdgeInsets(
-                top: 5,
-                leading: 0,
-                bottom: 10,
-                trailing: 0
+            .padding(
+                EdgeInsets(
+                    top: 5,
+                    leading: 0,
+                    bottom: 15,
+                    trailing: 0
+                )
             )
-        )
+        }
     }
 }
 

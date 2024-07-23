@@ -35,6 +35,7 @@ struct CreateWorkoutSaveView: View {
                         )
                         dismiss()
                     }
+                    .padding(.bottom)
                     
                     ExerciseList(
                         exercises: createWorkoutVM.workout.exercises
@@ -116,39 +117,43 @@ fileprivate struct ExerciseList: View {
     let actionForLap: (Lap) -> Void
     
     var body: some View {
-        List {
-            ForEach(exercises) { exerciseType in
-                switch exerciseType {
-                case .single(let single):
-                    HStack {
-                        Text(single.name)
-                        Spacer()
-                        DeleteButton {
-                            actionForSingle(single)
-                        }
-                    }
-                    .mainRowStyle()
-                    
-                case .lap(let lap):
-                    Section {
-                        ForEach(lap.exercises) { exercise in
-                            Text(exercise.name)
-                                .mainRowStyle()
-                        }
-                    } header: {
+        VStack(spacing: 1) {
+            Divider()
+            
+            List {
+                ForEach(exercises) { exerciseType in
+                    switch exerciseType {
+                    case .single(let single):
                         HStack {
-                            Text("Lap: \(lap.quantity)")
-                                .font(.headline)
+                            Text(single.name)
                             Spacer()
                             DeleteButton {
-                                actionForLap(lap)
+                                actionForSingle(single)
+                            }
+                        }
+                        .mainRowStyle()
+                        
+                    case .lap(let lap):
+                        Section {
+                            ForEach(lap.exercises) { exercise in
+                                Text(exercise.name)
+                                    .mainRowStyle()
+                            }
+                        } header: {
+                            HStack {
+                                Text("Lap: \(lap.quantity)")
+                                    .font(.headline)
+                                Spacer()
+                                DeleteButton {
+                                    actionForLap(lap)
+                                }
                             }
                         }
                     }
                 }
             }
+            .mainListStyle()
         }
-        .mainListStyle()
     }
 }
 
