@@ -78,7 +78,7 @@ fileprivate struct SaveButton: View {
     
     var body: some View {
         Button(action: action, label: {
-            Text("Save workout")
+            Text("Create")
                 .tint(.white)
         })
         .font(.title2)
@@ -93,7 +93,7 @@ private struct CustomButtonStyle: ButtonStyle {
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 300 ,height: 45)
+            .frame(width: 150 ,height: 50)
             .background(isDisabled ? .offButton : .main)
             .clipShape(.rect(cornerRadius: 5))
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
@@ -112,7 +112,7 @@ fileprivate struct ExerciseList: View {
                 switch exerciseType {
                 case .single(let single):
                     HStack {
-                        CellTextView(exercise: single)
+                        Text(single.name)
                         Spacer()
                         DeleteButton {
                             actionForSingle(single)
@@ -123,7 +123,7 @@ fileprivate struct ExerciseList: View {
                 case .lap(let lap):
                     Section {
                         ForEach(lap.exercises) { exercise in
-                            CellTextView(exercise: exercise, isLap: true)
+                            Text(exercise.name)
                                 .mainRowStyle()
                         }
                     } header: {
