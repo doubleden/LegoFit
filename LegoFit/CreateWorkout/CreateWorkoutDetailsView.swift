@@ -32,8 +32,9 @@ struct CreateWorkoutDetailsView: View {
                         .shadow(color: .main, radius: 10, x: 3, y: 3)
                     Text(exercise.description)
                         .padding()
-                        .font(.title3)
+                        .font(.callout)
                         .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.main))
+                        
                     Spacer()
                     
                 }
