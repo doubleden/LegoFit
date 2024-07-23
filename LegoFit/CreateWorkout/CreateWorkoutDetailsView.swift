@@ -22,63 +22,52 @@ struct CreateWorkoutDetailsView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
-                ScrollView {
-                    VStack(spacing: 20) {
-                        LabelGradientBackground(content:
-                            Text(exercise.name)
-                                .font(.title)
-                        )
-                        
-                        ExerciseImageView(imageUrl: exercise.image)
-                            .shadow(color: .main, radius: 10, x: 3, y: 3)
-                        
-                        Text(exercise.description)
-                            .font(.subheadline)
-                        
-                        ExerciseParametersTF(
-                            sets: $createWorkoutVM.approachInputExercise,
-                            reps: $createWorkoutVM.repInputExercise,
-                            weight: $createWorkoutVM.weightInputExercise,
-                            comment: $createWorkoutVM.commentInputExercise,
-                            isFocused: _isFocused, 
-                            isAddingLaps: createWorkoutVM.isAddingLap
-                        )
+                VStack(spacing: 40) {
+                    LabelGradientBackground(content:
+                        Text(exercise.name)
+                            .font(.title)
+                    )
+                    
+                    ExerciseImageView(imageUrl: exercise.image)
+                        .shadow(color: .main, radius: 10, x: 3, y: 3)
+                    Text(exercise.description)
+                        .padding()
+                        .font(.title3)
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.main))
+                    Spacer()
+                    
+                }
+                .padding()
+                .toolbar {
+                    
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            guard let exercise = createWorkoutVM.makeChangesInExercise() else {
+                                return
+                            }
+                            createWorkoutVM.add(exercise: exercise)
+                            dismiss()
+                        }, label: {
+                            Image(systemName: "plus.circle")
+                                .font(.title3)
+                        })
+                        .tint(.main)
                     }
-                    .padding(.top, 10)
-                    .padding()
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            ButtonToolbar(title: "Cancel") {
-                                dismiss()
-                            }
-                        }
-                        
-                        ToolbarItem(placement: .topBarTrailing) {
-                            ButtonToolbar(title: "Add") {
-                                guard let exercise = createWorkoutVM.makeChangesInExercise() else {
-                                    return
-                                }
-                                createWorkoutVM.add(exercise: exercise)
-                                dismiss()
-                            }
-                        }
-                        
-                        ToolbarItem(placement: .keyboard) {
-                            HStack {
-                                Spacer()
-                                Button(
-                                    createWorkoutVM.isFocused == .comment
-                                       ? "Done"
-                                       : "Next"
-                                ) {
-                                    createWorkoutVM.changeIsFocused()
-                                    self.isFocused = createWorkoutVM.isFocused
-                                }
+                    
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button(
+                                createWorkoutVM.isFocused == .comment
+                                ? "Done"
+                                : "Next"
+                            ) {
+                                createWorkoutVM.changeIsFocused()
+                                self.isFocused = createWorkoutVM.isFocused
                             }
                         }
                     }
                 }
-                .scrollIndicators(.hidden)
                 .safeAreaInset(edge: .bottom) {
                     Color.clear.frame(height: 65)
             }

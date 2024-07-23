@@ -21,7 +21,6 @@
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
 		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
 		057A4D862C1C895500B977A9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D852C1C895500B977A9 /* HeaderView.swift */; };
-		057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */; };
 		0581615F2C3492D30012E105 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581615E2C3492D30012E105 /* Lap.swift */; };
 		058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882EF2C1E31A300451030 /* LabelGradientBackground.swift */; };
 		058882F22C1E35CE00451030 /* ParameterTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882F12C1E35CE00451030 /* ParameterTextFieldView.swift */; };
@@ -74,7 +73,6 @@
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
 		0575B3F92C36D271006253DD /* MyExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExerciseCellView.swift; sourceTree = "<group>"; };
 		057A4D852C1C895500B977A9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonToolBar.swift; sourceTree = "<group>"; };
 		0581615E2C3492D30012E105 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		058882EF2C1E31A300451030 /* LabelGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelGradientBackground.swift; sourceTree = "<group>"; };
 		058882F12C1E35CE00451030 /* ParameterTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterTextFieldView.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				058882F12C1E35CE00451030 /* ParameterTextFieldView.swift */,
 				058882EF2C1E31A300451030 /* LabelGradientBackground.swift */,
 				05BC99B92C4AF09200ED5B0D /* MainGradientBackground.swift */,
-				057A4D872C1C9D1700B977A9 /* ButtonToolBar.swift */,
 				0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */,
 				0575B3F92C36D271006253DD /* MyExerciseCellView.swift */,
 				05DF97CF2C4D8A4800853A74 /* CellTextView.swift */,
@@ -363,7 +360,6 @@
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
 				058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */,
 				05D3F8A92C2E084500494005 /* ActiveWorkoutViewModel.swift in Sources */,
-				057A4D882C1C9D1700B977A9 /* ButtonToolBar.swift in Sources */,
 				05AA11492C2DF93200145826 /* ActiveWorkoutView.swift in Sources */,
 				05530F432C2618A30044A855 /* MyWorkoutDetailsView.swift in Sources */,
 				05BC99B02C4AED9700ED5B0D /* MainListStyle.swift in Sources */,

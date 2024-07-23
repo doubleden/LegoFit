@@ -62,15 +62,13 @@ struct CreateWorkoutView: View {
         // MARK: - ToolBar
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                ButtonToolbar(
-                    title: "Cancel",
-                    action: {
-                        createWorkoutVM.cancelCreateWorkout(
-                            modelContext: modelContext
-                        )
-                        dismiss()
-                    }
-                )
+                Button("Cancel") {
+                    createWorkoutVM.cancelCreateWorkout(
+                        modelContext: modelContext
+                    )
+                    dismiss()
+                }
+                .tint(.main)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
@@ -91,11 +89,11 @@ struct CreateWorkoutView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                ButtonToolbar(title: "Workout") {
+                Button("Workout") {
                     createWorkoutVM.isSaveSheetPresented.toggle()
                 }
                 .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
-                
+                .tint(.main)
             }
             
             ToolbarItem(placement: .keyboard) {
