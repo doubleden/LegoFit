@@ -20,12 +20,6 @@ final class CreateWorkoutViewModel {
     var errorMessage: String? = nil
     var isAlertPresented = false
     
-    var approachInputExercise = ""
-    var repInputExercise = ""
-    var weightInputExercise = ""
-    var commentInputExercise = ""
-    var isFocused: FocusedTextField? = nil
-    
     var isAddingLap = false
     var lapQuantity = ""
     var exercisesInLaps: [Exercise] = []
@@ -129,36 +123,4 @@ final class CreateWorkoutViewModel {
     private func addToLap(exercise: Exercise) {
         exercisesInLaps.append(exercise)
     }
-    
-    // MARK: - Details View
-    
-    func clearExerciseInputs() {
-        approachInputExercise = ""
-        repInputExercise = ""
-        weightInputExercise = ""
-        commentInputExercise = ""
-    }
-    
-    func makeChangesInExercise() -> Exercise? {
-        guard var exercise = sheetExercise else { return nil }
-        exercise.approach = Int(approachInputExercise)
-        exercise.rep = Int(repInputExercise)
-        exercise.weight = Int(weightInputExercise)
-        exercise.comment = commentInputExercise
-        return exercise
-    }
-    
-    func changeIsFocused() {
-        switch isFocused {
-        case .sets:
-            isFocused = .reps
-        case .reps:
-            isFocused = .weight
-        case .weight:
-            isFocused = .comment
-        default:
-            isFocused = nil
-        }
-    }
-    
 }

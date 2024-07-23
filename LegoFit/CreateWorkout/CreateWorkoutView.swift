@@ -11,20 +11,20 @@ struct CreateWorkoutView: View {
     @State private var createWorkoutVM = CreateWorkoutViewModel()
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @FocusState private var IsFocused: Bool
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         ZStack {
             MainGradientBackground()
                 .ignoresSafeArea()
                 .onTapGesture {
-                    IsFocused = false
+                    isFocused = false
                 }
             VStack {
                 if createWorkoutVM.isAddingLap {
                     ElementsForInteractWithLap(
                         createWorkoutVM: $createWorkoutVM,
-                        IsFocused: $IsFocused
+                        IsFocused: $isFocused
                     )
                 }
                 
@@ -40,8 +40,8 @@ struct CreateWorkoutView: View {
                     .presentationDragIndicator(.visible)
             }
             .onChange(of: createWorkoutVM.sheetExercise, {
-                if IsFocused {
-                    IsFocused = false
+                if isFocused {
+                    isFocused = false
                 }
             })
             
@@ -74,10 +74,10 @@ struct CreateWorkoutView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
                     if createWorkoutVM.isAddingLap {
-                        IsFocused = false
+                        isFocused = false
                         createWorkoutVM.clearLapInputs()
                     } else {
-                        IsFocused = true
+                        isFocused = true
                     }
                     withAnimation(.smooth) {
                         createWorkoutVM.isAddingLap.toggle()
@@ -96,14 +96,6 @@ struct CreateWorkoutView: View {
                 .tint(.main)
             }
             
-            ToolbarItem(placement: .keyboard) {
-                HStack {
-                    Spacer()
-                    Button("Done") {
-                        IsFocused.toggle()
-                    }
-                }
-            }
         }
         
         // MARK: - Alerts
@@ -178,8 +170,15 @@ fileprivate struct ElementsForInteractWithLap: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.main)
             )
-            .onTapGesture {
-                IsFocused = false
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            IsFocused = false
+                        }
+                    }
+                }
             }
         
         CircleButton(

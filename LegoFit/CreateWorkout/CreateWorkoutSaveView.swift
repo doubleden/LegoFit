@@ -12,6 +12,7 @@ struct CreateWorkoutSaveView: View {
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @FocusState private var isFocused
     
     var body: some View {
         NavigationStack {
@@ -20,7 +21,10 @@ struct CreateWorkoutSaveView: View {
                     .ignoresSafeArea()
                 
                 VStack(alignment: .center, spacing: 25) {
-                    InputNameTF(input: $createWorkoutVM.workout.name)
+                    InputNameTF(
+                        input: $createWorkoutVM.workout.name,
+                        isFocused: $isFocused
+                    )
                     
                     SaveButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
                         createWorkoutVM.saveWorkout(
@@ -54,12 +58,16 @@ struct CreateWorkoutSaveView: View {
                     }
                 }
             }
+            .onTapGesture {
+                isFocused = false
+            }
         }
     }
 }
 
 fileprivate struct InputNameTF: View {
     @Binding var input: String
+    @FocusState.Binding var isFocused: Bool
     
     var body: some View {
         TextField("Name of workout", text: $input)
@@ -69,6 +77,7 @@ fileprivate struct InputNameTF: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.main)
             )
+            .focused($isFocused)
     }
 }
 
