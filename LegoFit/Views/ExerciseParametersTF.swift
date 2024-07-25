@@ -25,19 +25,20 @@ struct ExerciseParametersTF: View {
     var body: some View {
         VStack(spacing: 12) {
             if !isAddingLaps {
-                ParameterTextFieldView(title: "Подход", text: "0", input: $sets)
+                ParameterTextFieldView(title: "Sets", text: "0", input: $sets)
                     .focused($isFocused, equals: .sets)
             }
-            ParameterTextFieldView(title: "Раз", text: "0", input: $reps)
+            ParameterTextFieldView(title: "Reps", text: "0", input: $reps)
                 .focused($isFocused, equals: .reps)
-            ParameterTextFieldView(title: "Вес", text: "0", input: $weight)
+            ParameterTextFieldView(title: "Weight", text: "0", input: $weight)
                 .focused($isFocused, equals: .weight)
                 .padding(.bottom, 20)
-            TextField("коментарии", text: $comment)
+            TextField("Comment", text: $comment)
                 .focused($isFocused, equals: .comment)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
+        .tint(.white)
     }
 }
 
@@ -46,6 +47,6 @@ struct ExerciseParametersTF: View {
         sets: .constant("2"),
         reps: .constant("15"),
         weight: .constant("150"),
-        comment: .constant("С резинками"), isAddingLaps: true
+        comment: .constant("С резинками"), isAddingLaps: false
     )
 }

@@ -12,26 +12,34 @@ struct MyWorkoutDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                ExerciseParametersTF(
-                    sets: $myWorkoutDetailsVM.set,
-                    reps: $myWorkoutDetailsVM.rep,
-                    weight: $myWorkoutDetailsVM.weight,
-                    comment: $myWorkoutDetailsVM.comment
-                )
-                
-                Button("Save") {
-                    myWorkoutDetailsVM.saveСhanges()
-                    dismiss()
+        ZStack {
+            MainGradientBackground()
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 20) {
+                    ExerciseParametersTF(
+                        sets: $myWorkoutDetailsVM.set,
+                        reps: $myWorkoutDetailsVM.rep,
+                        weight: $myWorkoutDetailsVM.weight,
+                        comment: $myWorkoutDetailsVM.comment
+                    )
+                    
+                    
+                    Button("Save") {
+                        myWorkoutDetailsVM.saveСhanges()
+                        dismiss()
+                    }
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    .background(.main)
+                    .tint(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                .buttonStyle(.borderedProminent)
+                .onAppear {
+                    myWorkoutDetailsVM.setupTextFields()
+                }
+            .padding()
+            .padding(.top, 5)
             }
-            .onAppear {
-                myWorkoutDetailsVM.setupTextFields()
-            }
-        .padding()
-        .padding(.top, 5)
         }
     }
 }

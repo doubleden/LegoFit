@@ -42,6 +42,53 @@ final class MyWorkoutViewModel {
         sheetExerciseType = type
     }
     
+    func move(from source: IndexSet, to destination: Int) {
+        workout.exercises.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func moveExercise(in lap: Lap, from source: IndexSet, to destination: Int) {
+        guard let lapIndex = workout.exercises.firstIndex(where: {
+            if case .lap(let l) = $0 { return l.queue == lap.queue }
+            return false
+        }) else { return }
+        
+        var updatedLap = lap
+        updatedLap.exercises.move(fromOffsets: source, toOffset: destination)
+        workout.exercises[lapIndex] = .lap(updatedLap)
+    }
+    
+    func deleteExerciseType(_ indexSet: IndexSet) {
+        for index in indexSet {
+            workout.exercises.remove(at: index)
+        }
+    }
+    
+    
+    func delete(indexSet: IndexSet) {
+        for i in 0..<workout.exercises.count {
+            if case var .lap(lap) = workout.exercises[i] {
+                for index in indexSet {
+                    lap.exercises.remove(at: index)
+                    workout.exercises[i] = .lap(lap)
+                    break
+                }
+            }
+        }
+    }
+    
+    func delete(lap: Lap) {
+        if lap.exercises.isEmpty {
+            for index in 0..<workout.exercises.count {
+                if case let .lap(currentLap) = workout.exercises[index] {
+                    if currentLap.queue == lap.queue {
+                        workout.exercises.remove(at: index)
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
     private func isExercisesValid() -> Bool {
         var isValid = true
         for exercise in exercises {

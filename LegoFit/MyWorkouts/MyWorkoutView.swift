@@ -21,49 +21,11 @@ struct MyWorkoutView: View {
                     height: 100
                 ) {
                     myWorkoutVM.startWorkout()
+                    
+                    print(myWorkoutVM.workout.exercises.indices)
                 }
                 
-                List(myWorkoutVM.exercises) { exerciseType in
-                    switch exerciseType {
-                    case .single(let exercise):
-                        MyExerciseCellView(exercise: exercise) {
-                            myWorkoutVM.showDetailsView(
-                                exercise: exercise,
-                                type: exerciseType
-                            )
-                        }
-                        .mainRowStyle()
-                        
-                    case .lap(let lap):
-                        Section {
-                            ForEach(lap.exercises) { exercise in
-                                MyExerciseCellView(exercise: exercise) {
-                                    myWorkoutVM.showDetailsView(
-                                        exercise: exercise,
-                                        type: exerciseType
-                                    )
-                                }
-                            }
-                        } header: {
-                            Text("Круг: \(lap.quantity)")
-                                .font(.title2)
-                        }
-                        .mainRowStyle()
-                    }
-                }
-                .mainListStyle()
-                .padding()
-                .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutDetailsView(
-                    myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
-                        exercise: exercise,
-                        exerciseType: myWorkoutVM.sheetExerciseType
-                                      ?? .single(exercise),
-                        workout: myWorkoutVM.workout
-                    )
-                )
-                .presentationDetents([.height(320)])
-                .presentationDragIndicator(.visible)
-                }
+                ExerciseList(myWorkoutVM: myWorkoutVM)
             }
             .navigationTitle(myWorkoutVM.workout.name)
     //        .navigationDestination(
@@ -85,7 +47,74 @@ struct MyWorkoutView: View {
     }
 }
 
-
+fileprivate struct ExerciseList: View {
+    @Bindable var myWorkoutVM: MyWorkoutViewModel
+    @State private var isLapOpen = true
+    
+    
+    var body: some View {
+        VStack(spacing:(-15)) {
+            Divider()
+            List {
+                ForEach(myWorkoutVM.exercises) { exerciseType in
+                    switch exerciseType {
+                    case .single(let exercise):
+                        MyExerciseCellView(exercise: exercise) {
+                            myWorkoutVM.showDetailsView(
+                                exercise: exercise,
+                                type: exerciseType
+                            )
+                        }
+                        .mainRowStyle()
+                        
+                    case .lap(let lap):
+                        DisclosureGroup("Lap \(lap.quantity)", isExpanded: $isLapOpen) {
+                            ForEach(lap.exercises) { exercise in
+                                MyExerciseCellView(exercise: exercise) {
+                                    myWorkoutVM.showDetailsView(
+                                        exercise: exercise,
+                                        type: exerciseType
+                                    )
+                                }
+                                .mainRowStyle()
+                                .opacity(1)
+                            }
+                            .onMove(perform: { indices, newOffset in
+                                myWorkoutVM.moveExercise(in: lap, from: indices, to: newOffset)
+                            })
+                            .onDelete { indexSet in
+                                myWorkoutVM.delete(indexSet: indexSet)
+                            }
+                        }
+                        .mainRowStyle()
+                        .onChange(of: lap.exercises) { _, _ in
+                            withAnimation(.smooth) {
+                                myWorkoutVM.delete(lap: lap)
+                            }
+                        }
+                    }
+                }
+                .onMove(perform: myWorkoutVM.move)
+                .onDelete(perform: { indexSet in
+                    myWorkoutVM.deleteExerciseType(indexSet)
+                })
+            }
+            .mainListStyle()
+            .padding()
+            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutDetailsView(
+                myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
+                    exercise: exercise,
+                    exerciseType: myWorkoutVM.sheetExerciseType
+                    ?? .single(exercise),
+                    workout: myWorkoutVM.workout
+                )
+            )
+            .presentationDetents([.height(320)])
+            .presentationDragIndicator(.visible)
+            }
+        }
+    }
+}
 
 import SwiftData
 #Preview {
