@@ -40,8 +40,8 @@ struct CreateWorkoutDetailsView: View {
                             reps: $createWorkoutVM.repInputExercise,
                             weight: $createWorkoutVM.weightInputExercise,
                             comment: $createWorkoutVM.commentInputExercise,
-                            isFocused: _isFocused,
-                            isAddingLaps: createWorkoutVM.isAddingLap
+                            isAddingLaps: createWorkoutVM.isAddingLap,
+                            isFocused: $isFocused
                         )
                     }
                     .padding(.top, 10)
@@ -62,20 +62,6 @@ struct CreateWorkoutDetailsView: View {
                                 dismiss()
                             }
                         }
-                        
-                        ToolbarItem(placement: .keyboard) {
-                            HStack {
-                                Spacer()
-                                Button(
-                                    createWorkoutVM.isFocused == .comment
-                                    ? "Done"
-                                    : "Next"
-                                ) {
-                                    createWorkoutVM.changeIsFocused()
-                                    self.isFocused = createWorkoutVM.isFocused
-                                }
-                            }
-                        }
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -85,9 +71,6 @@ struct CreateWorkoutDetailsView: View {
             }
         }
         .tint(.main)
-        .onChange(of: isFocused, { _, newValue in
-            createWorkoutVM.isFocused = newValue
-        })
         
         .onTapGesture {
             isFocused = nil

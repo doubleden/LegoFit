@@ -19,8 +19,9 @@ struct ExerciseParametersTF: View {
     @Binding var reps: String
     @Binding var weight: String
     @Binding var comment: String
-    @FocusState var isFocused: FocusedTextField?
     var isAddingLaps = false
+    
+    @FocusState.Binding var isFocused: FocusedTextField?
     
     var body: some View {
         VStack(spacing: 12) {
@@ -39,14 +40,41 @@ struct ExerciseParametersTF: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
         .tint(.white)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    Button(
+                        isFocused == .comment
+                        ? "Done"
+                        : "Next"
+                    ) {
+                        changeIsFocused()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func changeIsFocused() {
+        switch isFocused {
+        case .sets:
+            isFocused = .reps
+        case .reps:
+            isFocused = .weight
+        case .weight:
+            isFocused = .comment
+        default:
+            isFocused = nil
+        }
     }
 }
 
-#Preview {
-    ExerciseParametersTF(
-        sets: .constant("2"),
-        reps: .constant("15"),
-        weight: .constant("150"),
-        comment: .constant("С резинками"), isAddingLaps: false
-    )
-}
+//#Preview {
+//    ExerciseParametersTF(
+//        sets: .constant("2"),
+//        reps: .constant("15"),
+//        weight: .constant("150"),
+//        comment: .constant("С резинками"), isAddingLaps: false, isFocused: .comment
+//    )
+//}

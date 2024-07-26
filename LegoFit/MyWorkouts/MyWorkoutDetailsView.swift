@@ -10,7 +10,7 @@ import SwiftUI
 struct MyWorkoutDetailsView: View {
     @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
     @Environment(\.dismiss) private var dismiss
-    
+    @FocusState private var isFocused: FocusedTextField?
     var body: some View {
         ZStack {
             MainGradientBackground()
@@ -21,7 +21,8 @@ struct MyWorkoutDetailsView: View {
                         sets: $myWorkoutDetailsVM.set,
                         reps: $myWorkoutDetailsVM.rep,
                         weight: $myWorkoutDetailsVM.weight,
-                        comment: $myWorkoutDetailsVM.comment
+                        comment: $myWorkoutDetailsVM.comment,
+                        isFocused: $isFocused
                     )
                     
                     
