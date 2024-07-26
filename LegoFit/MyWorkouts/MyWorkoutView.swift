@@ -74,8 +74,7 @@ fileprivate struct ExerciseList: View {
                                         type: exerciseType
                                     )
                                 }
-                                .mainRowStyle()
-                                
+                                .lapExerciseRowStyle()
                             }
                             .onMove(perform: { indices, newOffset in
                                 myWorkoutVM.moveExercise(in: lap, from: indices, to: newOffset)
@@ -84,7 +83,9 @@ fileprivate struct ExerciseList: View {
                                 myWorkoutVM.delete(in: lap, exerciseWith: indexSet)
                             }
                         }
+                        
                         .mainRowStyle()
+                        .tint(.white)
                         .onChange(of: lap.exercises) { _, _ in
                             withAnimation(.smooth) {
                                 myWorkoutVM.delete(lap: lap)

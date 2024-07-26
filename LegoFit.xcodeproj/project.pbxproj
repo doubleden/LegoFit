@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E42C53C9F10032C916 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 051EC9E32C53C9F10032C916 /* Kingfisher */; };
+		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
 		0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */; };
 		0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A42C0900CB0007F632 /* NetworkManager.swift */; };
 		0525D3AC2C0908E10007F632 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AB2C0908E10007F632 /* Workout.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapExerciseRowStyle.swift; sourceTree = "<group>"; };
 		0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutView.swift; sourceTree = "<group>"; };
 		0525D3A42C0900CB0007F632 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0525D3AB2C0908E10007F632 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				05BC99AF2C4AED9700ED5B0D /* MainListStyle.swift */,
 				05BC99B52C4AEE8A00ED5B0D /* MainRowStyle.swift */,
+				051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				05BC99B62C4AEE8A00ED5B0D /* MainRowStyle.swift in Sources */,
 				05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */,
 				0581615F2C3492D30012E105 /* Lap.swift in Sources */,
+				051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */,
 				05DF97D02C4D8A4800853A74 /* CellTextView.swift in Sources */,
 				05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */,
 				05AA11462C2DF5C700145826 /* MyWorkoutDetailsViewModel.swift in Sources */,

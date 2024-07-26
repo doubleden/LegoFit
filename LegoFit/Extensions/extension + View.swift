@@ -15,4 +15,8 @@ extension View {
     func mainRowStyle() -> some View {
         modifier(MainRowStyle())
     }
+    
+    func lapExerciseRowStyle() -> some View {
+        modifier(LapExerciseRowStyle())
+    }
 }
