@@ -13,7 +13,7 @@ struct LapExerciseRowStyle: ViewModifier {
             .listRowSeparator(.hidden)
             .listRowBackground(
                 RoundedRectangle(cornerRadius: 15)
-                    .foregroundStyle(.offButton)
+                    .foregroundStyle(.main)
                     .opacity(0.1)
             )
     }

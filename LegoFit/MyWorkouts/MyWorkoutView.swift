@@ -83,7 +83,6 @@ fileprivate struct ExerciseList: View {
                                 myWorkoutVM.delete(in: lap, exerciseWith: indexSet)
                             }
                         }
-                        
                         .mainRowStyle()
                         .tint(.white)
                         .onChange(of: lap.exercises) { _, _ in
