@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Lap: Codable {
+struct Lap: Codable, Equatable {
     var queue: Int
     var quantity: Int
     var exercises: [Exercise]

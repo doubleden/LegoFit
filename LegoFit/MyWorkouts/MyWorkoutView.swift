@@ -77,13 +77,13 @@ fileprivate struct ExerciseList: View {
                                     )
                                 }
                                 .mainRowStyle()
-                                .opacity(1)
+                                
                             }
                             .onMove(perform: { indices, newOffset in
                                 myWorkoutVM.moveExercise(in: lap, from: indices, to: newOffset)
                             })
                             .onDelete { indexSet in
-                                myWorkoutVM.delete(indexSet: indexSet)
+                                myWorkoutVM.delete(in: lap, exerciseWith: indexSet)
                             }
                         }
                         .mainRowStyle()

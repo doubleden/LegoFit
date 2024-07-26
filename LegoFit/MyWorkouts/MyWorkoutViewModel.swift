@@ -64,12 +64,12 @@ final class MyWorkoutViewModel {
     }
     
     
-    func delete(indexSet: IndexSet) {
+    func delete(in lap: Lap, exerciseWith indexSet: IndexSet) {
         for i in 0..<workout.exercises.count {
-            if case var .lap(lap) = workout.exercises[i] {
+            if case var .lap(currentLap) = workout.exercises[i], currentLap == lap {
                 for index in indexSet {
-                    lap.exercises.remove(at: index)
-                    workout.exercises[i] = .lap(lap)
+                    currentLap.exercises.remove(at: index)
+                    workout.exercises[i] = .lap(currentLap)
                     break
                 }
             }
