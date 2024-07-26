@@ -49,8 +49,6 @@ struct MyWorkoutView: View {
 
 fileprivate struct ExerciseList: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
-    @State private var isLapOpen = true
-    
     
     var body: some View {
         VStack(spacing:(-15)) {
@@ -68,7 +66,7 @@ fileprivate struct ExerciseList: View {
                         .mainRowStyle()
                         
                     case .lap(let lap):
-                        DisclosureGroup("Lap \(lap.quantity)", isExpanded: $isLapOpen) {
+                        DisclosureGroup("Lap \(lap.quantity)") {
                             ForEach(lap.exercises) { exercise in
                                 MyExerciseCellView(exercise: exercise) {
                                     myWorkoutVM.showDetailsView(
