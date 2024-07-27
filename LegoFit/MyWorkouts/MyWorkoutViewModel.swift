@@ -63,7 +63,6 @@ final class MyWorkoutViewModel {
         }
     }
     
-    
     func delete(in lap: Lap, exerciseWith indexSet: IndexSet) {
         for i in 0..<workout.exercises.count {
             if case var .lap(currentLap) = workout.exercises[i], currentLap == lap {

@@ -24,6 +24,7 @@ struct MyWorkoutDetailsView: View {
                             reps: $myWorkoutDetailsVM.rep,
                             weight: $myWorkoutDetailsVM.weight,
                             comment: $myWorkoutDetailsVM.comment,
+                            isAddingLaps: myWorkoutDetailsVM.isLap,
                             isFocused: $isFocused
                         )
                         

@@ -15,6 +15,13 @@ final class MyWorkoutDetailsViewModel {
     var weight = ""
     var comment = ""
     
+    var isLap: Bool {
+        switch exerciseType {
+        case .single(_): false
+        case .lap(_): true
+        }
+    }
+    
     private var exercise: Exercise
     private let exerciseType: ExerciseType
     private let workout: Workout
