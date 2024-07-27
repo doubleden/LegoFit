@@ -11,35 +11,40 @@ struct MyWorkoutDetailsView: View {
     @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
     @Environment(\.dismiss) private var dismiss
     @FocusState private var isFocused: FocusedTextField?
+    
     var body: some View {
-        ZStack {
-            MainGradientBackground()
-                .ignoresSafeArea()
-            ScrollView {
-                VStack(spacing: 20) {
-                    ExerciseParametersTF(
-                        sets: $myWorkoutDetailsVM.set,
-                        reps: $myWorkoutDetailsVM.rep,
-                        weight: $myWorkoutDetailsVM.weight,
-                        comment: $myWorkoutDetailsVM.comment,
-                        isFocused: $isFocused
-                    )
-                    
-                    
-                    Button("Save") {
-                        myWorkoutDetailsVM.saveСhanges()
-                        dismiss()
+        NavigationStack {
+            ZStack {
+                MainGradientBackground()
+                    .ignoresSafeArea()
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ExerciseParametersTF(
+                            sets: $myWorkoutDetailsVM.set,
+                            reps: $myWorkoutDetailsVM.rep,
+                            weight: $myWorkoutDetailsVM.weight,
+                            comment: $myWorkoutDetailsVM.comment,
+                            isFocused: $isFocused
+                        )
+                        
+                        Button("Save") {
+                            myWorkoutDetailsVM.saveСhanges()
+                            dismiss()
+                        }
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(.main)
+                        .tint(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                    .background(.main)
-                    .tint(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onAppear {
+                        myWorkoutDetailsVM.setupTextFields()
+                    }
+                .padding()
+                .padding(.top, 10)
                 }
-                .onAppear {
-                    myWorkoutDetailsVM.setupTextFields()
+                .onTapGesture {
+                    isFocused = nil
                 }
-            .padding()
-            .padding(.top, 5)
             }
         }
     }

@@ -14,7 +14,6 @@ struct ParameterTextFieldView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            
             Text(title)
                 .font(.headline)
                 .frame(width: 65, alignment: .leading)

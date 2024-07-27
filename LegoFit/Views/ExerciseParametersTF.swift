@@ -70,11 +70,12 @@ struct ExerciseParametersTF: View {
     }
 }
 
-//#Preview {
-//    ExerciseParametersTF(
-//        sets: .constant("2"),
-//        reps: .constant("15"),
-//        weight: .constant("150"),
-//        comment: .constant("С резинками"), isAddingLaps: false, isFocused: .comment
-//    )
-//}
+#Preview {
+    @FocusState var focusedField: FocusedTextField?
+    return ExerciseParametersTF(
+        sets: .constant("2"),
+        reps: .constant("15"),
+        weight: .constant("150"),
+        comment: .constant("С резинками"), isAddingLaps: false, isFocused: $focusedField
+    )
+}
