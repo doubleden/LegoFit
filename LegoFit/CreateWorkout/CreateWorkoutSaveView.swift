@@ -119,7 +119,6 @@ fileprivate struct ExerciseList: View {
     var body: some View {
         VStack(spacing: 1) {
             Divider()
-            
             List {
                 ForEach(exercises) { exerciseType in
                     switch exerciseType {

@@ -66,9 +66,9 @@ fileprivate struct ExerciseList: View {
                         .mainRowStyle()
                         
                     case .lap(let lap):
-                        DisclosureGroup("Lap \(lap.quantity)") {
+                        DisclosureGroup("Lap: \(lap.quantity)") {
                             ForEach(lap.exercises) { exercise in
-                                MyExerciseCellView(exercise: exercise) {
+                                MyExerciseCellView(exercise: exercise, isInLap: true) {
                                     myWorkoutVM.showDetailsView(
                                         exercise: exercise,
                                         type: exerciseType

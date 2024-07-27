@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyExerciseCellView: View {
     let exercise: Exercise
+    var isInLap = false
     let action: () -> Void
     
     var body: some View {
@@ -18,7 +19,11 @@ struct MyExerciseCellView: View {
                     .tint(.white)
                 Spacer()
                 HStack(spacing: 5) {
-                    Text("(\(exercise.approach ?? 0) / \(exercise.rep ?? 0) / \(exercise.weight ?? 0))")
+                    if !isInLap {
+                        Text("\(exercise.approach ?? 0) /")
+                    }
+                    Text("\(exercise.rep ?? 0) /")
+                    Text("\(exercise.weight ?? 0)")
                 }
                 .tint(.white)
             }
