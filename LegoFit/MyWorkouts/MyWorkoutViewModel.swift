@@ -15,7 +15,7 @@ final class MyWorkoutViewModel {
     var sheetExercise: Exercise?
     var sheetExerciseType: ExerciseType?
     
-    var sheetEditLap = false
+    var sheetEditLap: Lap?
     
     var isAlertPresented = false
     var alertMessage: String?
@@ -42,6 +42,10 @@ final class MyWorkoutViewModel {
     func showDetailsView(exercise: Exercise, type: ExerciseType) {
         sheetExercise = exercise
         sheetExerciseType = type
+    }
+    
+    func showEditLapView(lap: Lap) {
+        sheetEditLap = lap
     }
     
     func move(from source: IndexSet, to destination: Int) {

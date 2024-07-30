@@ -85,7 +85,7 @@ fileprivate struct ExerciseList: View {
                         }
                         .swipeActions(edge: .leading) {
                             Button("Edit") {
-                                myWorkoutVM.sheetEditLap.toggle()
+                                myWorkoutVM.showEditLapView(lap: lap)
                             }
                             .tint(.brown)
                         }
@@ -95,11 +95,6 @@ fileprivate struct ExerciseList: View {
                             withAnimation(.smooth) {
                                 myWorkoutVM.delete(lap: lap)
                             }
-                        }
-                        .sheet(isPresented: $myWorkoutVM.sheetEditLap) {
-                            EditLapView(workout: myWorkoutVM.workout, lap: lap)
-                                .presentationDetents([.height(220)])
-                                .presentationDragIndicator(.visible)
                         }
                     }
                 }
@@ -112,15 +107,21 @@ fileprivate struct ExerciseList: View {
             .mainListStyle()
             .padding()
             .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutDetailsView(
-                myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
-                    exercise: exercise,
-                    exerciseType: myWorkoutVM.sheetExerciseType
-                    ?? .single(exercise),
-                    workout: myWorkoutVM.workout
+                    myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
+                        exercise: exercise,
+                        exerciseType: myWorkoutVM.sheetExerciseType
+                        ?? .single(exercise),
+                        workout: myWorkoutVM.workout
+                    )
                 )
-            )
             .presentationDetents([.height(320)])
             .presentationDragIndicator(.visible)
+            }
+            
+            .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
+                EditLapView(workout: myWorkoutVM.workout, lap: lap)
+                    .presentationDetents([.height(220)])
+                    .presentationDragIndicator(.visible)
             }
         }
     }

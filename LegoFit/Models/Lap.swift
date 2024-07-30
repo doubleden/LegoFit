@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Lap: Codable, Equatable {
+struct Lap: Codable, Equatable, Identifiable {
     var id = UUID()
     var quantity: Int
     var exercises: [Exercise]
