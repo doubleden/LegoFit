@@ -13,7 +13,7 @@ struct ParameterTextFieldView: View {
     @Binding var input: String
     
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 10) {
             Text(title)
                 .font(.headline)
                 .frame(width: 65, alignment: .leading)
