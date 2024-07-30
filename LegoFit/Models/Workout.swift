@@ -12,12 +12,12 @@ enum ExerciseType: Codable, Identifiable {
     case single(Exercise)
     case lap(Lap)
     
-    var id: Int {
+    var id: UUID {
         switch self {
         case .single(let exercise):
-            exercise.queue ?? 0
+            exercise.id
         case .lap(let lap):
-            lap.queue
+            lap.id
         }
     }
 }

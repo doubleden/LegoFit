@@ -50,7 +50,7 @@ final class MyWorkoutDetailsViewModel {
         case .lap(let lap):
             storageManager.update(
                 exercise: exercise,
-                withLapQueue: lap.queue,
+                withLapID: lap.id,
                 in: workout
             )
         }

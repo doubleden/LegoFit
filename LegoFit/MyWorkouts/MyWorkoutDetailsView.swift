@@ -28,14 +28,10 @@ struct MyWorkoutDetailsView: View {
                             isFocused: $isFocused
                         )
                         
-                        Button("Save") {
+                        SaveButton {
                             myWorkoutDetailsVM.saveСhanges()
                             dismiss()
                         }
-                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                        .background(.main)
-                        .tint(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                     .onAppear {
                         myWorkoutDetailsVM.setupTextFields()

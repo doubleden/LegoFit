@@ -21,6 +21,7 @@ struct ParameterTextFieldView: View {
             TextField(text, text: $input)
                 .textFieldStyle(OvalTextFieldStyle())
                 .frame(maxWidth: 100, alignment: .leading)
+                .tint(.white)
         }
     }
 }

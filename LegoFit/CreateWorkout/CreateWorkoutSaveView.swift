@@ -26,7 +26,7 @@ struct CreateWorkoutSaveView: View {
                         isFocused: $isFocused
                     )
                     
-                    SaveButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
+                    SaveWorkoutButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
                         createWorkoutVM.saveWorkout(
                             modelContext: modelContext
                         )
@@ -41,11 +41,11 @@ struct CreateWorkoutSaveView: View {
                         exercises: createWorkoutVM.workout.exercises
                     ) { single in
                         createWorkoutVM.deleteExercise(
-                            withQueue: single.queue ?? 0
+                            withID: single.id
                         )
                         } actionForLap: { lap in
                             createWorkoutVM.deleteExercise(
-                                withQueue: lap.queue
+                                withID: lap.id
                             )
                         }
                 }
@@ -82,7 +82,7 @@ fileprivate struct InputNameTF: View {
     }
 }
 
-fileprivate struct SaveButton: View {
+fileprivate struct SaveWorkoutButton: View {
     let isDisabled: Bool
     let action: () -> Void
     

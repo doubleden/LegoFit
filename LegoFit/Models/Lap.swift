@@ -8,7 +8,7 @@
 import Foundation
 
 struct Lap: Codable, Equatable {
-    var queue: Int
+    var id = UUID()
     var quantity: Int
     var exercises: [Exercise]
 }
@@ -17,9 +17,9 @@ struct Lap: Codable, Equatable {
 extension Lap {
     static func getLaps() -> [Lap] {
         [
-            Lap(queue: 1, quantity: 3, exercises: Exercise.getExercises()),
-            Lap(queue: 3, quantity: 2, exercises: Exercise.getExercises()),
-            Lap(queue: 5, quantity: 2, exercises: Exercise.getExercises())
+            Lap(quantity: 3, exercises: Exercise.getExercises()),
+            Lap(quantity: 2, exercises: Exercise.getExercises()),
+            Lap(quantity: 2, exercises: Exercise.getExercises())
         ]
     }
 }

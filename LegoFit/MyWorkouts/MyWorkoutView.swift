@@ -83,6 +83,12 @@ fileprivate struct ExerciseList: View {
                                 myWorkoutVM.delete(in: lap, exerciseWith: indexSet)
                             }
                         }
+                        .swipeActions(edge: .leading) {
+                            Button("Edit") {
+                                myWorkoutVM.sheetEditLap.toggle()
+                            }
+                            .tint(.brown)
+                        }
                         .mainRowStyle()
                         .tint(.white)
                         .onChange(of: lap.exercises) { _, _ in
@@ -90,12 +96,18 @@ fileprivate struct ExerciseList: View {
                                 myWorkoutVM.delete(lap: lap)
                             }
                         }
+                        .sheet(isPresented: $myWorkoutVM.sheetEditLap) {
+                            EditLapView(workout: myWorkoutVM.workout, lap: lap)
+                                .presentationDetents([.height(220)])
+                                .presentationDragIndicator(.visible)
+                        }
                     }
                 }
                 .onMove(perform: myWorkoutVM.move)
-                .onDelete(perform: { indexSet in
-                    myWorkoutVM.deleteExerciseType(indexSet)
-                })
+                .onDelete(perform: myWorkoutVM.deleteExerciseType)
+            }
+            .toolbar {
+                EditButton()
             }
             .mainListStyle()
             .padding()

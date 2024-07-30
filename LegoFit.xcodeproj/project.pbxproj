@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502F3B92C5941D7006FB721 /* EditLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3B82C5941D7006FB721 /* EditLapView.swift */; };
+		0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3BA2C595392006FB721 /* SaveButton.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
 		051EC9EE2C53FF710032C916 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 051EC9ED2C53FF710032C916 /* Kingfisher */; };
@@ -61,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0502F3B82C5941D7006FB721 /* EditLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLapView.swift; sourceTree = "<group>"; };
+		0502F3BA2C595392006FB721 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapExerciseRowStyle.swift; sourceTree = "<group>"; };
 		0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				05DF97CF2C4D8A4800853A74 /* CellTextView.swift */,
 				0528E9962C2F051D00BE9B02 /* CircleButton.swift */,
 				0579FD7B2C5048F100D617DF /* Divider.swift */,
+				0502F3B82C5941D7006FB721 /* EditLapView.swift */,
+				0502F3BA2C595392006FB721 /* SaveButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */,
 				05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */,
 				0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */,
+				0502F3B92C5941D7006FB721 /* EditLapView.swift in Sources */,
 				058882F22C1E35CE00451030 /* ParameterTextFieldView.swift in Sources */,
 				0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */,
 				0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */,
@@ -363,6 +370,7 @@
 				0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */,
 				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,
+				0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */,
 				05C72FAE2C301BF9003ECC82 /* Exercise.swift in Sources */,
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
 				058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */,

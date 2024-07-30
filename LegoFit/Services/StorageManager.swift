@@ -6,6 +6,7 @@
 //
 
 import SwiftData
+import Foundation
 
 final class StorageManager {
     
@@ -34,7 +35,7 @@ final class StorageManager {
     func update(exercise: Exercise, in workout: Workout) {
         if let index = workout.exercises.firstIndex(where: {
             if case .single(let exerciseDB) = $0 {
-                return exerciseDB.queue == exercise.queue
+                return exerciseDB.id == exercise.id
             }
             return false
         }) {
@@ -42,10 +43,10 @@ final class StorageManager {
         }
     }
     
-    func update(exercise: Exercise, withLapQueue: Int, in workout: Workout) {
+    func update(exercise: Exercise, withLapID: UUID, in workout: Workout) {
         if let lapIndex = workout.exercises.firstIndex(where: {
             if case .lap(let lap) = $0 {
-                return lap.queue == withLapQueue
+                return lap.id == withLapID
             }
             return false
         }) {

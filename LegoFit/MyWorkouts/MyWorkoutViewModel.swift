@@ -15,6 +15,8 @@ final class MyWorkoutViewModel {
     var sheetExercise: Exercise?
     var sheetExerciseType: ExerciseType?
     
+    var sheetEditLap = false
+    
     var isAlertPresented = false
     var alertMessage: String?
     
@@ -48,7 +50,7 @@ final class MyWorkoutViewModel {
     
     func moveExercise(in lap: Lap, from source: IndexSet, to destination: Int) {
         guard let lapIndex = workout.exercises.firstIndex(where: {
-            if case .lap(let l) = $0 { return l.queue == lap.queue }
+            if case .lap(let l) = $0 { return l.id == lap.id }
             return false
         }) else { return }
         
@@ -79,7 +81,7 @@ final class MyWorkoutViewModel {
         if lap.exercises.isEmpty {
             for index in 0..<workout.exercises.count {
                 if case let .lap(currentLap) = workout.exercises[index] {
-                    if currentLap.queue == lap.queue {
+                    if currentLap.id == lap.id {
                         workout.exercises.remove(at: index)
                         break
                     }

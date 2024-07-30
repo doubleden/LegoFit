@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EditLapView: View {
-    @Binding var lap: Lap
+    var workout: Workout
+    var lap: Lap
     
     @State private var textInput = ""
     
@@ -17,23 +18,42 @@ struct EditLapView: View {
             MainGradientBackground()
                 .ignoresSafeArea()
             
-            VStack(spacing: 15) {
+            VStack(spacing: 25) {
                 Text("Quantity")
                 ParameterTextFieldView(
                     title: "Lap",
                     text: lap.quantity.formatted(),
                     input: $textInput
                 )
+                SaveButton {
+                    changeQuantity()
+                }
             }
-            .onDisappear {
-                if !textInput.isEmpty {
-                    lap.quantity = Int(textInput) ?? 0
+        }
+    }
+    
+    private func changeQuantity() {
+        if let newQuantity = Int(textInput) {
+            if let index = workout.exercises.firstIndex(where: {
+                if case .lap(let workoutLap) = $0 {
+                    return workoutLap.id == lap.id
+                }
+                return false
+            }) {
+                if case .lap(var workoutLap) = workout.exercises[index] {
+                    workoutLap.quantity = newQuantity
+                    workout.exercises[index] = .lap(workoutLap)
                 }
             }
         }
     }
 }
 
+import SwiftData
 #Preview {
-    EditLapView(lap: .constant(Lap.getLaps().first!))
+    let container = DataController.previewContainer
+    let workout = Workout.getWorkout()
+    
+    return EditLapView(workout: workout, lap: Lap.getLaps().first!)
+        .modelContainer(container)
 }

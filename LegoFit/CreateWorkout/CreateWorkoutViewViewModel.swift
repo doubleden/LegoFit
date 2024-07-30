@@ -43,7 +43,6 @@ final class CreateWorkoutViewModel {
     private var exercises: [Exercise] = []
     private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
-    private var queue = 0
     
     // MARK: - Main View
     
@@ -78,13 +77,13 @@ final class CreateWorkoutViewModel {
         workout = Workout()
     }
     
-    func deleteExercise(withQueue: Int) {
+    func deleteExercise(withID: UUID) {
         if let index = workout.exercises.firstIndex(where: {
             switch $0 {
             case .single(let single):
-                single.queue == withQueue
+                single.id == withID
             case .lap(let lap):
-                lap.queue == withQueue
+                lap.id == withID
             }
         }) {
             workout.exercises.remove(at: index)
@@ -105,9 +104,8 @@ final class CreateWorkoutViewModel {
     }
     
     func addToWorkoutLap() {
-        let lap = Lap(queue: queue, quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
+        let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
         workout.exercises.append(.lap(lap))
-        queue += 1
         clearLapInputs()
     }
     
@@ -121,9 +119,7 @@ final class CreateWorkoutViewModel {
     }
     
     private func addToWorkout(exercise: inout Exercise) {
-        exercise.queue = queue
         workout.exercises.append(.single(exercise))
-        queue += 1
     }
     
     private func addToLap(exercise: Exercise) {

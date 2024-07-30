@@ -39,7 +39,6 @@ struct ExerciseParametersTF: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
-        .tint(.white)
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack {
