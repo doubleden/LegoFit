@@ -106,8 +106,8 @@ fileprivate struct ExerciseList: View {
             }
             .mainListStyle()
             .padding()
-            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutDetailsView(
-                    myWorkoutDetailsVM: MyWorkoutDetailsViewModel(
+            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutEditExerciseView(
+                    myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel(
                         exercise: exercise,
                         exerciseType: myWorkoutVM.sheetExerciseType
                         ?? .single(exercise),
@@ -119,7 +119,7 @@ fileprivate struct ExerciseList: View {
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
-                EditLapView(workout: myWorkoutVM.workout, lap: lap)
+                MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
                     .presentationDetents([.height(220)])
                     .presentationDragIndicator(.visible)
             }

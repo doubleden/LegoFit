@@ -41,8 +41,15 @@ struct ExerciseParametersTF: View {
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
-                HStack {
+                HStack(spacing: 20) {
                     Spacer()
+                    if isFocused == .weight {
+                        Button(action: {
+                            weight += " + "
+                        }, label: {
+                            Image(systemName: "plus")
+                        })
+                    }
                     Button(
                         isFocused == .comment
                         ? "Done"

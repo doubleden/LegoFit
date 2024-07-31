@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditLapView: View {
+struct MyWorkoutEditLapView: View {
     var workout: Workout
     var lap: Lap
     
@@ -54,6 +54,6 @@ import SwiftData
     let container = DataController.previewContainer
     let workout = Workout.getWorkout()
     
-    return EditLapView(workout: workout, lap: Lap.getLaps().first!)
+    return MyWorkoutEditLapView(workout: workout, lap: Lap.getLaps().first!)
         .modelContainer(container)
 }

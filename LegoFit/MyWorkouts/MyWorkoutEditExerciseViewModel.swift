@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-final class MyWorkoutDetailsViewModel {
+final class MyWorkoutEditExerciseViewModel {
     var set = ""
     var rep = ""
     var weight = ""
@@ -37,7 +37,7 @@ final class MyWorkoutDetailsViewModel {
     func setupTextFields() {
         set = (exercise.approach ?? 0).formatted()
         rep = (exercise.rep ?? 0).formatted()
-        weight = (exercise.weight ?? 0).formatted()
+        weight = (exercise.weight ?? "0")
         comment = exercise.comment ?? ""
     }
     
@@ -60,7 +60,7 @@ final class MyWorkoutDetailsViewModel {
         // Сделать корректное обновление
         exercise.approach = Int(set) ?? 0
         exercise.rep = Int(rep) ?? 0
-        exercise.weight = Int(weight) ?? 0
+        exercise.weight = weight
         exercise.comment = comment
     }
 }

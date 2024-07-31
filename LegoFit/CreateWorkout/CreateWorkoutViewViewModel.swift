@@ -139,7 +139,7 @@ final class CreateWorkoutViewModel {
        guard var exercise = sheetExercise else { return nil }
        exercise.approach = Int(approachInputExercise)
        exercise.rep = Int(repInputExercise)
-       exercise.weight = Int(weightInputExercise)
+       exercise.weight = weightInputExercise
        exercise.comment = commentInputExercise
        return exercise
    }

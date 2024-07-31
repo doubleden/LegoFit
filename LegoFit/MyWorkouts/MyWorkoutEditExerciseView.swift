@@ -1,5 +1,5 @@
 //
-//  MyWorkoutDetailsView.swift
+//  MyWorkoutEditExerciseView.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 21/6/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MyWorkoutDetailsView: View {
-    @Bindable var myWorkoutDetailsVM: MyWorkoutDetailsViewModel
+struct MyWorkoutEditExerciseView: View {
+    @Bindable var myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel
     @Environment(\.dismiss) private var dismiss
     @FocusState private var isFocused: FocusedTextField?
     
@@ -54,5 +54,5 @@ import SwiftData
     let workout = workouts?.first ?? Workout.getWorkout()
     let exercise = Exercise.getExercises().first!
     
-    return MyWorkoutDetailsView(myWorkoutDetailsVM: MyWorkoutDetailsViewModel(exercise: exercise, exerciseType: .single(exercise), workout: workout))
+    return MyWorkoutEditExerciseView(myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel(exercise: exercise, exerciseType: .single(exercise), workout: workout))
 }
