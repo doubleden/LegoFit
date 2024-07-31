@@ -36,8 +36,8 @@ struct MyWorkoutEditExerciseView: View {
                     .onAppear {
                         myWorkoutDetailsVM.setupTextFields()
                     }
-                .padding()
-                .padding(.top, 10)
+                    .padding()
+                    .padding(.top, 10)
                 }
                 .onTapGesture {
                     isFocused = nil

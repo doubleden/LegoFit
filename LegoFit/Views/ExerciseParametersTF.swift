@@ -26,12 +26,12 @@ struct ExerciseParametersTF: View {
     var body: some View {
         VStack(spacing: 12) {
             if !isAddingLaps {
-                ParameterTextFieldView(title: "Sets", text: "0", input: $sets)
+                ParameterTFView(title: "Sets", placeholder: "0", input: $sets)
                     .focused($isFocused, equals: .sets)
             }
-            ParameterTextFieldView(title: "Reps", text: "0", input: $reps)
+            ParameterTFView(title: "Reps", placeholder: "0", input: $reps)
                 .focused($isFocused, equals: .reps)
-            ParameterTextFieldView(title: "Weight", text: "0", input: $weight)
+            ParameterTFView(title: "Weight", placeholder: "0", input: $weight)
                 .focused($isFocused, equals: .weight)
                 .padding(.bottom, 20)
             TextField("Comment", text: $comment)
