@@ -20,7 +20,7 @@ struct MyWorkoutEditExerciseView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         ExerciseParametersTF(
-                            sets: $myWorkoutDetailsVM.set,
+                            sets: $myWorkoutDetailsVM.approach,
                             reps: $myWorkoutDetailsVM.rep,
                             weight: $myWorkoutDetailsVM.weight,
                             comment: $myWorkoutDetailsVM.comment,

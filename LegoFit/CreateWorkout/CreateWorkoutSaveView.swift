@@ -97,7 +97,7 @@ fileprivate struct SaveWorkoutButton: View {
     }
 }
 
-private struct CustomButtonStyle: ButtonStyle {
+fileprivate struct CustomButtonStyle: ButtonStyle {
     let isDisabled: Bool
     
     @ViewBuilder

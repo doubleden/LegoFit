@@ -10,10 +10,26 @@ import Observation
 
 @Observable
 final class MyWorkoutEditExerciseViewModel {
-    var set = ""
-    var rep = ""
-    var weight = ""
-    var comment = ""
+    var approach = "" {
+        didSet {
+            exercise.approach = Int(approach) ?? 0
+        }
+    }
+    var rep = "" {
+        didSet {
+            exercise.rep = Int(rep) ?? 0
+        }
+    }
+    var weight = "" {
+        didSet {
+            exercise.weight = weight
+        }
+    }
+    var comment = "" {
+        didSet {
+            exercise.comment = comment
+        }
+    }
     
     var isLap: Bool {
         switch exerciseType {
@@ -35,15 +51,13 @@ final class MyWorkoutEditExerciseViewModel {
     }
     
     func setupTextFields() {
-        set = (exercise.approach ?? 0).formatted()
+        approach = (exercise.approach ?? 0).formatted()
         rep = (exercise.rep ?? 0).formatted()
         weight = (exercise.weight ?? "0")
         comment = exercise.comment ?? ""
     }
     
     func saveСhanges() {
-        changeParametersInExercise()
-        
         switch exerciseType {
         case .single(_):
             storageManager.update(exercise: self.exercise, in: workout)
@@ -54,13 +68,5 @@ final class MyWorkoutEditExerciseViewModel {
                 in: workout
             )
         }
-    }
-    
-    private func changeParametersInExercise() {
-        // Сделать корректное обновление
-        exercise.approach = Int(set) ?? 0
-        exercise.rep = Int(rep) ?? 0
-        exercise.weight = weight
-        exercise.comment = comment
     }
 }
