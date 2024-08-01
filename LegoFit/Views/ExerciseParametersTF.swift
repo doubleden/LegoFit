@@ -20,7 +20,6 @@ struct ExerciseParametersTF: View {
     @Binding var weight: String
     @Binding var comment: String
     var isAddingLaps = false
-    
     @FocusState.Binding var isFocused: FocusedTextField?
     
     var body: some View {
@@ -42,10 +41,11 @@ struct ExerciseParametersTF: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
-        .onChange(of: weight, { oldValue, newValue in
-            
+        .onChange(of: isFocused, { _, _ in
+            if !isValid(weight: weight) {
+                weight = ""
+            }
         })
-        
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack(spacing: 20) {
@@ -80,6 +80,17 @@ struct ExerciseParametersTF: View {
         default:
             isFocused = nil
         }
+    }
+    
+    private func isValid(weight: String) -> Bool {
+        let pattern = #"^\d+(\s*\+\s*\d+)?$"#
+        let regex = try! NSRegularExpression(
+            pattern: pattern,
+            options: []
+        )
+        
+        let range = NSRange(location: 0, length: weight.utf16.count)
+        return regex.firstMatch(in: weight, options: [], range: range) != nil
     }
 }
 

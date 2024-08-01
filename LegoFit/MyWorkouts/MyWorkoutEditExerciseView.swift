@@ -29,6 +29,9 @@ struct MyWorkoutEditExerciseView: View {
                         )
                         
                         SaveButton {
+                            if myWorkoutDetailsVM.weight.isEmpty {
+                                myWorkoutDetailsVM.weight = "0"
+                            }
                             myWorkoutDetailsVM.saveСhanges()
                             dismiss()
                         }
