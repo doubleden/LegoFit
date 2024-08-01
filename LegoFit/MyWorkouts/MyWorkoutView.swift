@@ -57,24 +57,29 @@ fileprivate struct ExerciseList: View {
                 ForEach(myWorkoutVM.exercises) { exerciseType in
                     switch exerciseType {
                     case .single(let exercise):
-                        MyExerciseCellView(exercise: exercise) {
-                            myWorkoutVM.showDetailsView(
-                                exercise: exercise,
-                                type: exerciseType
-                            )
-                        }
-                        .mainRowStyle()
-                        
-                    case .lap(let lap):
-                        DisclosureGroup("Lap: \(lap.quantity)") {
-                            ForEach(lap.exercises) { exercise in
-                                MyExerciseCellView(exercise: exercise, isInLap: true) {
+                        MyExerciseCellView(exercise: exercise)
+                            .mainRowStyle()
+                            .swipeActions(edge: .leading) {
+                                ListEditButton {
                                     myWorkoutVM.showDetailsView(
                                         exercise: exercise,
                                         type: exerciseType
                                     )
                                 }
+                            }
+                    case .lap(let lap):
+                        DisclosureGroup("Lap: \(lap.quantity)") {
+                            ForEach(lap.exercises) { exercise in
+                                MyExerciseCellView(exercise: exercise, isInLap: true)
                                 .lapExerciseRowStyle()
+                                .swipeActions(edge: .leading) {
+                                    ListEditButton {
+                                        myWorkoutVM.showDetailsView(
+                                            exercise: exercise,
+                                            type: exerciseType
+                                        )
+                                    }
+                                }
                             }
                             .onMove(perform: { indices, newOffset in
                                 myWorkoutVM.moveExercise(in: lap, from: indices, to: newOffset)
@@ -84,10 +89,10 @@ fileprivate struct ExerciseList: View {
                             }
                         }
                         .swipeActions(edge: .leading) {
-                            Button("Edit") {
+                            Button("Edit lap", action: {
                                 myWorkoutVM.showEditLapView(lap: lap)
-                            }
-                            .tint(.main)
+                            })
+                            .tint(Color.violet)
                         }
                         .mainRowStyle()
                         .tint(.white)
@@ -124,6 +129,15 @@ fileprivate struct ExerciseList: View {
                     .presentationDragIndicator(.visible)
             }
         }
+    }
+}
+
+struct ListEditButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button("Edit", action: action)
+        .tint(.main)
     }
 }
 
