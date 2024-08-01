@@ -38,7 +38,8 @@ final class MyWorkoutEditExerciseViewModel {
         }
     }
     
-    private var exercise: Exercise
+    var exercise: Exercise
+    
     private let exerciseType: ExerciseType
     private let workout: Workout
     

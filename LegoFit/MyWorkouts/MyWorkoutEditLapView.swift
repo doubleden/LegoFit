@@ -16,49 +16,54 @@ struct MyWorkoutEditLapView: View {
     @FocusState private var isFocused
     
     var body: some View {
-        ZStack {
-            MainGradientBackground()
-                .ignoresSafeArea()
-            
-            VStack(spacing: 35) {
-                Text("Quantity")
-                LapQuantityTF(
-                    input: $textInput, isFocused: $isFocused) {
-                        if quantity < 100 {
-                            quantity += 1
+        NavigationStack {
+            ZStack {
+                MainGradientBackground()
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    VStack(spacing: 35) {
+                        LapQuantityTF(
+                            input: $textInput, isFocused: $isFocused) {
+                                if quantity < 100 {
+                                    quantity += 1
+                                }
+                            } minusAction: {
+                                if quantity > 0 {
+                                    quantity -= 1
+                                }
+                            }
+                            .focused($isFocused)
+                        Spacer()
+                        SaveButton {
+                            changeQuantity()
                         }
-                    } minusAction: {
-                        if quantity > 0 {
-                            quantity -= 1
+                        Spacer()
+                    }
+                    .padding()
+                    .padding(.top, 20)
+                    .onAppear {
+                        quantity = lap.quantity
+                        textInput = quantity.formatted()
+                    }
+                    .onChange(of: quantity) { _ , newValue in
+                        textInput = newValue.formatted()
+                    }
+                    .onChange(of: textInput) { _, newValue in
+                        quantity = Int(textInput) ?? 0
+                    }
+                    .onChange(of: isFocused) { _, _ in
+                        if quantity > 100 {
+                            quantity = 100
                         }
                     }
-                    .focused($isFocused)
-                Spacer()
-                SaveButton {
-                    changeQuantity()
-                }
-                Spacer()
-            }
-            .padding()
-            .padding(.top, 20)
-            .onAppear {
-                quantity = lap.quantity
-                textInput = quantity.formatted()
-            }
-            .onChange(of: quantity) { _ , newValue in
-                textInput = newValue.formatted()
-            }
-            .onChange(of: textInput) { _, newValue in
-                quantity = Int(textInput) ?? 0
-            }
-            .onChange(of: isFocused) { _, _ in
-                if quantity > 100 {
-                    quantity = 100
                 }
             }
-        }
-        .onTapGesture {
-            isFocused = false
+            .onTapGesture {
+                isFocused = false
+            }
+            .navigationTitle("Quantity")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

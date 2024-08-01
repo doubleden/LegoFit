@@ -40,12 +40,13 @@ struct MyWorkoutEditExerciseView: View {
                         myWorkoutDetailsVM.setupTextFields()
                     }
                     .padding()
-                    .padding(.top, 10)
                 }
                 .onTapGesture {
                     isFocused = nil
                 }
             }
+            .navigationTitle(myWorkoutDetailsVM.exercise.name)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

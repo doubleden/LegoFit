@@ -23,7 +23,7 @@ struct LapQuantityTF: View {
                 .focused($isFocused)
                 .multilineTextAlignment(.center)
             
-            HStack(spacing: 15) {
+            HStack(spacing: 25) {
                 Button(action: {
                     isFocused = false
                     minusAction()
