@@ -25,20 +25,27 @@ struct ExerciseParametersTF: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            if !isAddingLaps {
-                ParameterTFView(title: "Sets", placeholder: "0", input: $sets)
-                    .focused($isFocused, equals: .sets)
+            VStack(alignment: .leading) {
+                if !isAddingLaps {
+                    ParameterTFView(title: "Sets", placeholder: "0", input: $sets)
+                        .focused($isFocused, equals: .sets)
+                }
+                ParameterTFView(title: "Reps", placeholder: "0", input: $reps)
+                    .focused($isFocused, equals: .reps)
+                ParameterTFView(title: "Weight", placeholder: "0", isWeight: true, input: $weight)
+                    .focused($isFocused, equals: .weight)
+                    .padding(.bottom, 20)
             }
-            ParameterTFView(title: "Reps", placeholder: "0", input: $reps)
-                .focused($isFocused, equals: .reps)
-            ParameterTFView(title: "Weight", placeholder: "0", input: $weight)
-                .focused($isFocused, equals: .weight)
-                .padding(.bottom, 20)
+            
             TextField("Comment", text: $comment)
                 .focused($isFocused, equals: .comment)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
         }
+        .onChange(of: weight, { oldValue, newValue in
+            
+        })
+        
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack(spacing: 20) {

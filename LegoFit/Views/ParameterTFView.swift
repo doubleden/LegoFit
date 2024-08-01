@@ -10,6 +10,7 @@ import SwiftUI
 struct ParameterTFView: View {
     let title: String
     let placeholder: String
+    var isWeight = false
     @Binding var input: String
     
     var body: some View {
@@ -21,6 +22,11 @@ struct ParameterTFView: View {
             TextField(placeholder, text: $input)
                 .textFieldStyle(OvalTextFieldStyle())
                 .frame(maxWidth: 100, alignment: .leading)
+            
+            if isWeight {
+                Text("kg")
+                    .font(.headline)
+            }
         }
     }
 }
