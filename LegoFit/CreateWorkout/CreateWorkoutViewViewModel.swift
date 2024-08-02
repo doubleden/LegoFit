@@ -96,7 +96,7 @@ final class CreateWorkoutViewModel {
     
     func add(exercise: Exercise) {
         var mutableExercise = exercise
-        if mutableExercise.weight == "" {
+        if mutableExercise.weight != nil {
             mutableExercise.weight = "0"
         }
         
