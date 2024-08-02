@@ -11,14 +11,6 @@ struct Lap: Codable, Equatable, Identifiable {
     var id = UUID()
     var quantity: Int
     var exercises: [Exercise]
-    
-    func findIndex(workout: Workout) -> Int? {
-        guard let lapIndex = workout.exercises.firstIndex(where: {
-            if case .lap(let currentLap) = $0 { return currentLap.id == self.id }
-            return false
-        }) else { return nil }
-        return lapIndex
-    }
 }
 
 // MARK: - ДЛЯ Preview

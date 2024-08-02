@@ -68,7 +68,7 @@ struct MyWorkoutEditLapView: View {
     }
     
     private func changeQuantity() {
-        guard let lapIndex = lap.findIndex(workout: workout) else { return }
+        guard let lapIndex = workout.findIndex(ofLap: lap) else { return }
         if case .lap(var workoutLap) = workout.exercises[lapIndex] {
             workoutLap.quantity = quantity
             workout.exercises[lapIndex] = .lap(workoutLap)

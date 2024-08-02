@@ -33,6 +33,19 @@ final class Workout {
         self.name = name
         self.exercises = exercises
     }
+    
+    func findIndex(ofLap: Lap) -> Int? {
+        guard let lapIndex = self.exercises.firstIndex(where: {
+            if case .lap(let lap) = $0 {
+                return lap.id == ofLap.id
+            }
+            return false
+        }) else {
+            return nil
+        }
+        
+        return lapIndex
+    }
 }
 
 // MARK: - ДЛЯ Preview

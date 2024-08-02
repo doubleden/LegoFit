@@ -53,7 +53,7 @@ final class MyWorkoutViewModel {
     }
     
     func moveExercise(in lap: Lap, from source: IndexSet, to destination: Int) {
-        guard let lapIndex = lap.findIndex(workout: workout) else { return }
+        guard let lapIndex = workout.findIndex(ofLap: lap) else { return }
         var updatedLap = lap
         updatedLap.exercises.move(fromOffsets: source, toOffset: destination)
         workout.exercises[lapIndex] = .lap(updatedLap)
@@ -66,7 +66,7 @@ final class MyWorkoutViewModel {
     }
     
     func delete(inLap: Lap, exerciseWith indexSet: IndexSet) {
-        guard let lapIndex = inLap.findIndex(workout: workout) else { return }
+        guard let lapIndex = workout.findIndex(ofLap: inLap) else { return }
         if case var .lap(lap) = workout.exercises[lapIndex] {
             for index in indexSet {
                 lap.exercises.remove(at: index)
@@ -76,7 +76,7 @@ final class MyWorkoutViewModel {
     }
     
     func delete(emptyLap: Lap) {
-        guard let lapIndex = emptyLap.findIndex(workout: workout) else { return }
+        guard let lapIndex = workout.findIndex(ofLap: emptyLap) else { return }
         if case let .lap(lap) = workout.exercises[lapIndex], lap.exercises.isEmpty {
             if lap.id == emptyLap.id {
                 workout.exercises.remove(at: lapIndex)
