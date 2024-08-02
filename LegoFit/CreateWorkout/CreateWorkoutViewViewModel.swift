@@ -95,14 +95,15 @@ final class CreateWorkoutViewModel {
     }
     
     func add(exercise: Exercise) {
+        var mutableExercise = exercise
+        if mutableExercise.weight == "" {
+            mutableExercise.weight = "0"
+        }
+        
         if isAddingLap {
-            addToLap(exercise: exercise)
+            addToLap(exercise: mutableExercise)
         } else {
-            var mutableExercise = exercise
-            if mutableExercise.weight == nil {
-                mutableExercise.weight = "0"
-            }
-            addToWorkout(exercise: &mutableExercise)
+            addToWorkout(exercise: mutableExercise)
         }
     }
     
@@ -121,7 +122,7 @@ final class CreateWorkoutViewModel {
         !lapQuantity.isEmpty && !exercisesInLaps.isEmpty
     }
     
-    private func addToWorkout(exercise: inout Exercise) {
+    private func addToWorkout(exercise: Exercise) {
         workout.exercises.append(.single(exercise))
     }
     
