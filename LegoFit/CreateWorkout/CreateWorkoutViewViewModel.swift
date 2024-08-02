@@ -99,6 +99,9 @@ final class CreateWorkoutViewModel {
             addToLap(exercise: exercise)
         } else {
             var mutableExercise = exercise
+            if mutableExercise.weight == nil {
+                mutableExercise.weight = "0"
+            }
             addToWorkout(exercise: &mutableExercise)
         }
     }

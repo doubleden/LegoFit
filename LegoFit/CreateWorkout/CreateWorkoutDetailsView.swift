@@ -24,9 +24,10 @@ struct CreateWorkoutDetailsView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 20) {
-                        LabelGradientBackground(content:
-                                                    Text(exercise.name)
-                            .font(.title)
+                        LabelGradientBackground(
+                            content:
+                                Text(exercise.name)
+                                    .font(.title)
                         )
                         
                         ExerciseImageView(imageUrl: exercise.image)
