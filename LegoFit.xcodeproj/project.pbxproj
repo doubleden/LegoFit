@@ -11,17 +11,19 @@
 		0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3BA2C595392006FB721 /* SaveButton.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
-		051EC9EE2C53FF710032C916 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 051EC9ED2C53FF710032C916 /* Kingfisher */; };
 		0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */; };
 		0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3A42C0900CB0007F632 /* NetworkManager.swift */; };
 		0525D3AC2C0908E10007F632 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AB2C0908E10007F632 /* Workout.swift */; };
 		0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */; };
-		0525D3B02C0912E10007F632 /* CreateWorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3AF2C0912E10007F632 /* CreateWorkoutDetailsView.swift */; };
 		0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3B32C09D9400007F632 /* StorageManager.swift */; };
 		0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */; };
 		0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0528E9962C2F051D00BE9B02 /* CircleButton.swift */; };
 		052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */; };
 		052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA4212C5AB3C900892ED7 /* OvalTextFieldStyle.swift */; };
+		053763A92C5D5BE300312A77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 053763A82C5D5BE300312A77 /* Kingfisher */; };
+		053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763AB2C5D5EA500312A77 /* FetchedListView.swift */; };
+		053763AE2C5D5EC100312A77 /* ElementsForInteractWithLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763AD2C5D5EC100312A77 /* ElementsForInteractWithLap.swift */; };
+		053763B42C5D657900312A77 /* ExerciseDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763B32C5D657900312A77 /* ExerciseDetailsView.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
@@ -71,12 +73,14 @@
 		0525D3A42C0900CB0007F632 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0525D3AB2C0908E10007F632 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutViewViewModel.swift; sourceTree = "<group>"; };
-		0525D3AF2C0912E10007F632 /* CreateWorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutDetailsView.swift; sourceTree = "<group>"; };
 		0525D3B32C09D9400007F632 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutsView.swift; sourceTree = "<group>"; };
 		0528E9962C2F051D00BE9B02 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapQuantityTF.swift; sourceTree = "<group>"; };
 		052BA4212C5AB3C900892ED7 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
+		053763AB2C5D5EA500312A77 /* FetchedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListView.swift; sourceTree = "<group>"; };
+		053763AD2C5D5EC100312A77 /* ElementsForInteractWithLap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsForInteractWithLap.swift; sourceTree = "<group>"; };
+		053763B32C5D657900312A77 /* ExerciseDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsView.swift; sourceTree = "<group>"; };
 		0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSaveView.swift; sourceTree = "<group>"; };
 		05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseView.swift; sourceTree = "<group>"; };
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
@@ -110,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				051EC9EE2C53FF710032C916 /* Kingfisher in Frameworks */,
+				053763A92C5D5BE300312A77 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +127,6 @@
 				0525D3AD2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift */,
 				0525D3A02C08F9F30007F632 /* CreateWorkoutView.swift */,
 				0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */,
-				0525D3AF2C0912E10007F632 /* CreateWorkoutDetailsView.swift */,
 			);
 			path = CreateWorkout;
 			sourceTree = "<group>";
@@ -149,6 +152,16 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		053763AA2C5D5E8100312A77 /* FetchedListViews */ = {
+			isa = PBXGroup;
+			children = (
+				053763AB2C5D5EA500312A77 /* FetchedListView.swift */,
+				053763AD2C5D5EC100312A77 /* ElementsForInteractWithLap.swift */,
+				053763B32C5D657900312A77 /* ExerciseDetailsView.swift */,
+			);
+			path = FetchedListViews;
+			sourceTree = "<group>";
+		};
 		0555C5C82C09F1110090C252 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 				0579FD7B2C5048F100D617DF /* Divider.swift */,
 				0502F3BA2C595392006FB721 /* SaveButton.swift */,
 				052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */,
+				053763AA2C5D5E8100312A77 /* FetchedListViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,7 +307,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				051EC9ED2C53FF710032C916 /* Kingfisher */,
+				053763A82C5D5BE300312A77 /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -324,7 +338,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				051EC9EC2C53FF710032C916 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -357,17 +371,19 @@
 				05BC99B62C4AEE8A00ED5B0D /* MainRowStyle.swift in Sources */,
 				05D857312C0D014900DD77AC /* MyWorkoutView.swift in Sources */,
 				0581615F2C3492D30012E105 /* Lap.swift in Sources */,
+				053763AE2C5D5EC100312A77 /* ElementsForInteractWithLap.swift in Sources */,
 				051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */,
 				05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */,
 				05AA11462C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift in Sources */,
-				0525D3B02C0912E10007F632 /* CreateWorkoutDetailsView.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
 				0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */,
 				05BC99B42C4AEE5C00ED5B0D /* extension + View.swift in Sources */,
+				053763B42C5D657900312A77 /* ExerciseDetailsView.swift in Sources */,
 				05BC99BA2C4AF09200ED5B0D /* MainGradientBackground.swift in Sources */,
 				0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */,
 				05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */,
 				05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */,
+				053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */,
 				0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */,
 				0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */,
 				058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */,
@@ -606,7 +622,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		051EC9EC2C53FF710032C916 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -617,9 +633,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		051EC9ED2C53FF710032C916 /* Kingfisher */ = {
+		053763A82C5D5BE300312A77 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 051EC9EC2C53FF710032C916 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

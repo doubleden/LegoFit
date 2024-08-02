@@ -9,7 +9,7 @@ import SwiftData
 import Foundation
 
 @Observable
-final class CreateWorkoutViewModel {
+final class CreateWorkoutViewModel: FetchedListViewable, ElementsForInteractWithLapViewable {
     
     var isLoading = true
     var workout = Workout()

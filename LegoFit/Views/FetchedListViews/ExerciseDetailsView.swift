@@ -7,11 +7,23 @@
 
 import SwiftUI
 
-struct CreateWorkoutDetailsView: View {
-    @Binding var createWorkoutVM: CreateWorkoutViewModel
+protocol ExerciseDetailsViewable {
+    var sheetExercise: Exercise? { get set }
+    var approachInputExercise: String { get set }
+    var repInputExercise: String { get set }
+    var weightInputExercise: String { get set }
+    var commentInputExercise: String { get set }
+    var isAddingLap: Bool { get }
+    func makeChangesInExercise() -> Exercise?
+    func add(exercise: Exercise)
+    func clearExerciseInputs()
+}
+
+struct ExerciseDetailsView<ViewModel: ExerciseDetailsViewable>: View {
+    @Binding var viewModel: ViewModel
     
     private var exercise: Exercise {
-        createWorkoutVM.sheetExercise ?? Exercise.getExercises()[0]
+        viewModel.sheetExercise ?? Exercise.getExercises()[0]
     }
     
     @Environment(\.dismiss) private var dismiss
@@ -37,11 +49,11 @@ struct CreateWorkoutDetailsView: View {
                             .font(.subheadline)
                         
                         ExerciseParametersTF(
-                            sets: $createWorkoutVM.approachInputExercise,
-                            reps: $createWorkoutVM.repInputExercise,
-                            weight: $createWorkoutVM.weightInputExercise,
-                            comment: $createWorkoutVM.commentInputExercise,
-                            isAddingLaps: createWorkoutVM.isAddingLap,
+                            sets: $viewModel.approachInputExercise,
+                            reps: $viewModel.repInputExercise,
+                            weight: $viewModel.weightInputExercise,
+                            comment: $viewModel.commentInputExercise,
+                            isAddingLaps: viewModel.isAddingLap,
                             isFocused: $isFocused
                         )
                     }
@@ -56,10 +68,10 @@ struct CreateWorkoutDetailsView: View {
                         
                         ToolbarItem(placement: .topBarTrailing) {
                             Button("Add") {
-                                guard let exercise = createWorkoutVM.makeChangesInExercise() else {
+                                guard let exercise = viewModel.makeChangesInExercise() else {
                                     return
                                 }
-                                createWorkoutVM.add(exercise: exercise)
+                                viewModel.add(exercise: exercise)
                                 dismiss()
                             }
                         }
@@ -78,7 +90,7 @@ struct CreateWorkoutDetailsView: View {
         }
         
         .onDisappear {
-            createWorkoutVM.clearExerciseInputs()
+            viewModel.clearExerciseInputs()
         }
     }
 }
@@ -86,6 +98,6 @@ struct CreateWorkoutDetailsView: View {
 import SwiftData
 #Preview {
     let container = DataController.previewContainer
-    return CreateWorkoutDetailsView(createWorkoutVM: .constant(CreateWorkoutViewModel()))
+    return ExerciseDetailsView(viewModel: .constant(CreateWorkoutViewModel()))
         .modelContainer(container)
 }
