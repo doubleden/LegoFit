@@ -85,7 +85,7 @@ fileprivate struct ExerciseList: View {
                                 myWorkoutVM.moveExercise(in: lap, from: indices, to: newOffset)
                             })
                             .onDelete { indexSet in
-                                myWorkoutVM.delete(in: lap, exerciseWith: indexSet)
+                                myWorkoutVM.delete(inLap: lap, exerciseWith: indexSet)
                             }
                         }
                         .swipeActions(edge: .leading) {
@@ -98,13 +98,13 @@ fileprivate struct ExerciseList: View {
                         .tint(.white)
                         .onChange(of: lap.exercises) { _, _ in
                             withAnimation(.smooth) {
-                                myWorkoutVM.delete(lap: lap)
+                                myWorkoutVM.delete(emptyLap: lap)
                             }
                         }
                     }
                 }
-                .onMove(perform: myWorkoutVM.move)
-                .onDelete(perform: myWorkoutVM.deleteExerciseType)
+                .onMove(perform: myWorkoutVM.moveCell)
+                .onDelete(perform: myWorkoutVM.deleteCell)
             }
             .toolbar {
                 EditButton()

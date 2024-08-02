@@ -48,48 +48,38 @@ final class MyWorkoutViewModel {
         sheetEditLap = lap
     }
     
-    func move(from source: IndexSet, to destination: Int) {
+    func moveCell(from source: IndexSet, to destination: Int) {
         workout.exercises.move(fromOffsets: source, toOffset: destination)
     }
     
     func moveExercise(in lap: Lap, from source: IndexSet, to destination: Int) {
-        guard let lapIndex = workout.exercises.firstIndex(where: {
-            if case .lap(let l) = $0 { return l.id == lap.id }
-            return false
-        }) else { return }
-        
+        guard let lapIndex = lap.findIndex(workout: workout) else { return }
         var updatedLap = lap
         updatedLap.exercises.move(fromOffsets: source, toOffset: destination)
         workout.exercises[lapIndex] = .lap(updatedLap)
     }
     
-    func deleteExerciseType(_ indexSet: IndexSet) {
+    func deleteCell(_ indexSet: IndexSet) {
         for index in indexSet {
             workout.exercises.remove(at: index)
         }
     }
     
-    func delete(in lap: Lap, exerciseWith indexSet: IndexSet) {
-        for i in 0..<workout.exercises.count {
-            if case var .lap(currentLap) = workout.exercises[i], currentLap == lap {
-                for index in indexSet {
-                    currentLap.exercises.remove(at: index)
-                    workout.exercises[i] = .lap(currentLap)
-                    break
-                }
+    func delete(inLap: Lap, exerciseWith indexSet: IndexSet) {
+        guard let lapIndex = inLap.findIndex(workout: workout) else { return }
+        if case var .lap(lap) = workout.exercises[lapIndex] {
+            for index in indexSet {
+                lap.exercises.remove(at: index)
+                workout.exercises[lapIndex] = .lap(lap)
             }
         }
     }
     
-    func delete(lap: Lap) {
-        if lap.exercises.isEmpty {
-            for index in 0..<workout.exercises.count {
-                if case let .lap(currentLap) = workout.exercises[index] {
-                    if currentLap.id == lap.id {
-                        workout.exercises.remove(at: index)
-                        break
-                    }
-                }
+    func delete(emptyLap: Lap) {
+        guard let lapIndex = emptyLap.findIndex(workout: workout) else { return }
+        if case let .lap(lap) = workout.exercises[lapIndex], lap.exercises.isEmpty {
+            if lap.id == emptyLap.id {
+                workout.exercises.remove(at: lapIndex)
             }
         }
     }
