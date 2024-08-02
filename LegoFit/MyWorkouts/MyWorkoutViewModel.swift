@@ -72,14 +72,10 @@ final class MyWorkoutViewModel {
                 lap.exercises.remove(at: index)
                 workout.exercises[lapIndex] = .lap(lap)
             }
-        }
-    }
-    
-    func delete(emptyLap: Lap) {
-        guard let lapIndex = workout.findIndex(ofLap: emptyLap) else { return }
-        if case let .lap(lap) = workout.exercises[lapIndex], lap.exercises.isEmpty {
-            if lap.id == emptyLap.id {
-                workout.exercises.remove(at: lapIndex)
+            if lap.exercises.isEmpty {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [unowned self] in
+                    workout.exercises.remove(at: lapIndex)
+                }
             }
         }
     }
