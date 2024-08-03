@@ -106,7 +106,7 @@ fileprivate struct ExerciseList: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {isPresented.toggle()}, label: {
-                        Image(systemName: "plus.square.on.square")
+                        Image(systemName: "plus.circle")
                     })
                 }
                 ToolbarItem(placement: .topBarTrailing) {

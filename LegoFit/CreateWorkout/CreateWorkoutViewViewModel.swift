@@ -54,15 +54,10 @@ final class CreateWorkoutViewModel: FetchedListWithLapViewable {
     }
     
     func add(exercise: Exercise) {
-        var mutableExercise = exercise
-        if mutableExercise.weight != nil {
-            mutableExercise.weight = "0"
-        }
-        
         if isAddingLap {
-            exercisesInLaps.append(mutableExercise)
+            exercisesInLaps.append(exercise)
         } else {
-            workout.exercises.append(.single(mutableExercise))
+            workout.exercises.append(.single(exercise))
         }
     }
     

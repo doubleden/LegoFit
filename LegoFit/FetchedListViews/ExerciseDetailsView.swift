@@ -98,7 +98,7 @@ struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
         guard var exercise = viewModel.sheetExercise else { return nil }
         exercise.approach = Int(approachInputExercise)
         exercise.rep = Int(repInputExercise)
-        exercise.weight = weightInputExercise
+        exercise.weight = weightInputExercise.isEmpty ? "0" : weightInputExercise
         exercise.comment = commentInputExercise
         return exercise
     }
