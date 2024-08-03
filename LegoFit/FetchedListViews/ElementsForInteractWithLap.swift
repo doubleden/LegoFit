@@ -7,15 +7,13 @@
 
 import SwiftUI
 
-protocol ElementsForInteractWithLapViewable {
-    var lapQuantity: String { get set }
-    var isAddingLap: Bool { get set }
-    var sheetExercise: Exercise? { get }
-    func isLapValid() -> Bool
+protocol FetchedListWithLapViewable: FetchedListViewable {
     func addToWorkoutLap()
+    var lapQuantity: String { get set }
+    var exercisesInLaps: [Exercise] { get set }
 }
 
-struct ElementsForInteractWithLap<ViewModel: ElementsForInteractWithLapViewable>: View {
+struct ElementsForInteractWithLap<ViewModel: FetchedListWithLapViewable>: View {
     @Binding var viewModel: ViewModel
     @FocusState.Binding var isFocused: Bool
     
@@ -46,7 +44,7 @@ struct ElementsForInteractWithLap<ViewModel: ElementsForInteractWithLapViewable>
                 icon: Image(systemName: "plus"),
                 width: 50,
                 height: 50,
-                isDisable: !viewModel.isLapValid()
+                isDisable: !isLapValid()
             ) {
                 viewModel.addToWorkoutLap()
                 withAnimation(.smooth) {
@@ -68,6 +66,17 @@ struct ElementsForInteractWithLap<ViewModel: ElementsForInteractWithLapViewable>
                 isFocused = false
             }
         })
+        .onChange(of: viewModel.isAddingLap) { _, _ in
+            clearLapInputs()
+        }
+    }
+    private func clearLapInputs() {
+        viewModel.lapQuantity = ""
+        viewModel.exercisesInLaps = []
+    }
+    
+    private func isLapValid() -> Bool {
+        !viewModel.lapQuantity.isEmpty && !viewModel.exercisesInLaps.isEmpty
     }
 }
 

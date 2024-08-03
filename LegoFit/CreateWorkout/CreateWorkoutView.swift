@@ -59,18 +59,7 @@ struct CreateWorkoutView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    if createWorkoutVM.isAddingLap {
-                        isFocused = false
-                        createWorkoutVM.clearLapInputs()
-                    } 
-                    withAnimation(.smooth) {
-                        createWorkoutVM.isAddingLap.toggle()
-                    }
-                }, label: {
-                    Image(systemName: createWorkoutVM.isAddingLap ? "figure.run.square.stack.fill" : "figure.run.square.stack")
-                        .tint(.main)
-                })
+                ButtonLap(isAddingLap: $createWorkoutVM.isAddingLap)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
@@ -81,16 +70,6 @@ struct CreateWorkoutView: View {
                 .tint(.main)
             }
             
-        }
-        
-        // MARK: - Alerts
-        .alert(createWorkoutVM.errorMessage ?? "",
-               isPresented: $createWorkoutVM.isAlertPresented) {
-            Button("Ok", role: .cancel) {}
-        }
-        
-        .onAppear {
-            createWorkoutVM.fetchExercises()
         }
         
         .onDisappear {

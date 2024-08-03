@@ -49,7 +49,7 @@ struct MyWorkoutView: View {
 
 fileprivate struct ExerciseList: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
-    
+    @State var isPresented = false
     var body: some View {
         VStack(spacing:(-15)) {
             Divider()
@@ -104,7 +104,14 @@ fileprivate struct ExerciseList: View {
                 .onDelete(perform: myWorkoutVM.deleteCell)
             }
             .toolbar {
-                EditButton()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {isPresented.toggle()}, label: {
+                        Image(systemName: "plus.square.on.square")
+                    })
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
             }
             .mainListStyle()
             .padding()
@@ -125,6 +132,14 @@ fileprivate struct ExerciseList: View {
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             }
+            
+            .sheet(isPresented: $isPresented,
+                   content: {
+                WorkoutEditView(
+                    workoutEditVM: WorkoutEditViewModel(workout: myWorkoutVM.workout)
+                )
+                .presentationDragIndicator(.visible)
+            })
         }
     }
 }

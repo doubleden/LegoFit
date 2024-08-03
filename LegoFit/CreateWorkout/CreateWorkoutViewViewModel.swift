@@ -9,56 +9,19 @@ import SwiftData
 import Foundation
 
 @Observable
-final class CreateWorkoutViewModel: FetchedListViewable, ElementsForInteractWithLapViewable {
-    
-    var isLoading = true
+final class CreateWorkoutViewModel: FetchedListWithLapViewable {
     var workout = Workout()
     var isDidSave = false
     var sheetExercise: Exercise?
     var isSaveSheetPresented = false
     
-    var errorMessage: String? = nil
-    var isAlertPresented = false
-    
-    var approachInputExercise = ""
-    var repInputExercise = ""
-    var weightInputExercise = ""
-    var commentInputExercise = ""
-    var isFocused: FocusedTextField? = nil
-    
     var isAddingLap = false
     var lapQuantity = ""
     var exercisesInLaps: [Exercise] = []
     
-    var sortedByCategoryExercises: [String: [Exercise]] {
-        [
-            "Legs" : exercises.filter { $0.category == "legs" },
-            "Chest" : exercises.filter { $0.category == "chest" },
-            "Shoulders" : exercises.filter {$0.category == "shoulders" },
-            "Back" : exercises.filter { $0.category == "back" },
-            "Arms" : exercises.filter { $0.category == "arms" }
-        ]
-    }
-    
-    private var exercises: [Exercise] = []
-    private let networkManager = NetworkManager.shared
     private let storageManager = StorageManager.shared
     
     // MARK: - Main View
-    
-    func fetchExercises() {
-        Task {
-            do {
-                exercises = try await networkManager.fetchExercise()
-                isLoading = false
-            } catch {
-                exercises = []
-                isLoading = false
-                errorMessage = error.localizedDescription
-                isAlertPresented.toggle()
-            }
-        }
-    }
     
     func isWorkoutNameValid() -> Bool {
         !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
@@ -90,10 +53,6 @@ final class CreateWorkoutViewModel: FetchedListViewable, ElementsForInteractWith
         }
     }
     
-    func showSheetOf(exercise: Exercise) {
-        sheetExercise = exercise
-    }
-    
     func add(exercise: Exercise) {
         var mutableExercise = exercise
         if mutableExercise.weight != nil {
@@ -101,63 +60,14 @@ final class CreateWorkoutViewModel: FetchedListViewable, ElementsForInteractWith
         }
         
         if isAddingLap {
-            addToLap(exercise: mutableExercise)
+            exercisesInLaps.append(mutableExercise)
         } else {
-            addToWorkout(exercise: mutableExercise)
+            workout.exercises.append(.single(mutableExercise))
         }
     }
     
     func addToWorkoutLap() {
         let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
         workout.exercises.append(.lap(lap))
-        clearLapInputs()
     }
-    
-    func clearLapInputs() {
-        lapQuantity = ""
-        exercisesInLaps = []
-    }
-    
-    func isLapValid() -> Bool {
-        !lapQuantity.isEmpty && !exercisesInLaps.isEmpty
-    }
-    
-    private func addToWorkout(exercise: Exercise) {
-        workout.exercises.append(.single(exercise))
-    }
-    
-    private func addToLap(exercise: Exercise) {
-        exercisesInLaps.append(exercise)
-    }
-    
-    // MARK: - Details View
-       
-   func clearExerciseInputs() {
-       approachInputExercise = ""
-       repInputExercise = ""
-       weightInputExercise = ""
-       commentInputExercise = ""
-   }
-   
-   func makeChangesInExercise() -> Exercise? {
-       guard var exercise = sheetExercise else { return nil }
-       exercise.approach = Int(approachInputExercise)
-       exercise.rep = Int(repInputExercise)
-       exercise.weight = weightInputExercise
-       exercise.comment = commentInputExercise
-       return exercise
-   }
-   
-   func changeIsFocused() {
-       switch isFocused {
-       case .sets:
-           isFocused = .reps
-       case .reps:
-           isFocused = .weight
-       case .weight:
-           isFocused = .comment
-       default:
-           isFocused = nil
-       }
-   }
 }

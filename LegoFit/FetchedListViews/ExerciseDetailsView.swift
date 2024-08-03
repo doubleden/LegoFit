@@ -7,20 +7,13 @@
 
 import SwiftUI
 
-protocol ExerciseDetailsViewable {
-    var sheetExercise: Exercise? { get set }
-    var approachInputExercise: String { get set }
-    var repInputExercise: String { get set }
-    var weightInputExercise: String { get set }
-    var commentInputExercise: String { get set }
-    var isAddingLap: Bool { get }
-    func makeChangesInExercise() -> Exercise?
-    func add(exercise: Exercise)
-    func clearExerciseInputs()
-}
-
-struct ExerciseDetailsView<ViewModel: ExerciseDetailsViewable>: View {
+struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
     @Binding var viewModel: ViewModel
+    
+    @State var approachInputExercise = ""
+    @State var repInputExercise = ""
+    @State var weightInputExercise = ""
+    @State var commentInputExercise = ""
     
     private var exercise: Exercise {
         viewModel.sheetExercise ?? Exercise.getExercises()[0]
@@ -49,10 +42,10 @@ struct ExerciseDetailsView<ViewModel: ExerciseDetailsViewable>: View {
                             .font(.subheadline)
                         
                         ExerciseParametersTF(
-                            sets: $viewModel.approachInputExercise,
-                            reps: $viewModel.repInputExercise,
-                            weight: $viewModel.weightInputExercise,
-                            comment: $viewModel.commentInputExercise,
+                            sets: $approachInputExercise,
+                            reps: $repInputExercise,
+                            weight: $weightInputExercise,
+                            comment: $commentInputExercise,
                             isAddingLaps: viewModel.isAddingLap,
                             isFocused: $isFocused
                         )
@@ -68,7 +61,7 @@ struct ExerciseDetailsView<ViewModel: ExerciseDetailsViewable>: View {
                         
                         ToolbarItem(placement: .topBarTrailing) {
                             Button("Add") {
-                                guard let exercise = viewModel.makeChangesInExercise() else {
+                                guard let exercise = makeChangesInExercise() else {
                                     return
                                 }
                                 viewModel.add(exercise: exercise)
@@ -90,12 +83,28 @@ struct ExerciseDetailsView<ViewModel: ExerciseDetailsViewable>: View {
         }
         
         .onDisappear {
-            viewModel.clearExerciseInputs()
+            clearExerciseInputs()
         }
+    }
+    
+    private func clearExerciseInputs() {
+        approachInputExercise = ""
+        repInputExercise = ""
+        weightInputExercise = ""
+        commentInputExercise = ""
+    }
+    
+    private func makeChangesInExercise() -> Exercise? {
+        guard var exercise = viewModel.sheetExercise else { return nil }
+        exercise.approach = Int(approachInputExercise)
+        exercise.rep = Int(repInputExercise)
+        exercise.weight = weightInputExercise
+        exercise.comment = commentInputExercise
+        return exercise
     }
 }
 
-import SwiftData
+
 #Preview {
     let container = DataController.previewContainer
     return ExerciseDetailsView(viewModel: .constant(CreateWorkoutViewModel()))

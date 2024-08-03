@@ -14,6 +14,7 @@ struct MyWorkoutEditLapView: View {
     @State private var textInput = ""
     @State private var quantity = 0
     @FocusState private var isFocused
+    @State private var isPresented = false
     
     var body: some View {
         NavigationStack {
@@ -35,6 +36,14 @@ struct MyWorkoutEditLapView: View {
                             }
                             .focused($isFocused)
                         Spacer()
+                        Button("Add exercise to lap") {
+                            isPresented.toggle()
+                        }
+                        .padding()
+                        .tint(.white)
+                        .background(.violet)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        
                         SaveButton {
                             changeQuantity()
                         }
@@ -64,6 +73,16 @@ struct MyWorkoutEditLapView: View {
             }
             .navigationTitle("Quantity")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $isPresented,
+                   content: {
+                WorkoutEditLapView(
+                    workoutEditLapVM: WorkoutEditLapViewModel(
+                        workout: workout,
+                        lap: lap
+                    )
+                )
+                .presentationDragIndicator(.visible)
+            })
         }
     }
     
