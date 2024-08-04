@@ -21,18 +21,4 @@ final class WorkoutAddExerciseViewModel: FetchedListLapBarViewable {
     init(workout: Workout) {
         self.workout = workout
     }
-    
-    func add(exercise: Exercise) {
-        if isAddingLap {
-            exercisesInLaps.append(exercise)
-        } else {
-            workout.exercises.append(.single(exercise))
-        }
-    }
-    
-    func addToWorkoutLap() {
-        let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
-        workout.exercises.append(.lap(lap))
-    }
-    
 }

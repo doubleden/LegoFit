@@ -173,7 +173,7 @@ fileprivate struct DeleteButton: View {
 
 #Preview {
     let container = DataController.previewContainer
-    let createWorkoutVM = CreateWorkoutViewModel()
+    var createWorkoutVM = CreateWorkoutViewModel()
     let exercises = Exercise.getExercises()
     let laps = Lap.getLaps()
     createWorkoutVM.exercisesInLaps.append(contentsOf: exercises)

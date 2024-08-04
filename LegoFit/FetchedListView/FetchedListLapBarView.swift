@@ -13,6 +13,21 @@ protocol FetchedListLapBarViewable: FetchedListViewable {
     func addToWorkoutLap()
 }
 
+extension FetchedListLapBarViewable {
+    func addToWorkoutLap() {
+        let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
+        workout.exercises.append(.lap(lap))
+    }
+    
+    mutating func add(exercise: Exercise) {
+        if isAddingLap {
+            exercisesInLaps.append(exercise)
+        } else {
+            workout.exercises.append(.single(exercise))
+        }
+    }
+}
+
 struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
     @Binding var viewModel: ViewModel
     @FocusState.Binding var isFocused: Bool
