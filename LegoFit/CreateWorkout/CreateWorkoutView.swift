@@ -55,7 +55,6 @@ struct CreateWorkoutView: View {
                     )
                     dismiss()
                 }
-                .tint(.main)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
@@ -67,14 +66,9 @@ struct CreateWorkoutView: View {
                     createWorkoutVM.isSaveSheetPresented.toggle()
                 }
                 .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
-                .tint(.main)
             }
-            
         }
-        
-        .onDisappear {
-            createWorkoutVM.isAddingLap = false
-        }
+        .tint(.main)
     }
 }
 

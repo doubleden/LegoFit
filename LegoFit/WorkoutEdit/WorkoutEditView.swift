@@ -30,6 +30,9 @@ struct WorkoutEditView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     ButtonLap(isAddingLap: $workoutEditVM.isAddingLap)
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Spacer()
+                }
             }
             .onChange(of: workoutEditVM.workout.exercises) { _, _ in
                 dismiss()

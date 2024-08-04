@@ -38,6 +38,7 @@ final class CreateWorkoutViewModel: FetchedListWithLapViewable {
     
     func cancelCreateWorkout(modelContext: ModelContext) {
         workout = Workout()
+        isAddingLap = false
     }
     
     func deleteExercise(withID: UUID) {
