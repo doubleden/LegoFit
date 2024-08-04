@@ -9,7 +9,7 @@ import SwiftData
 import Foundation
 
 @Observable
-final class CreateWorkoutViewModel: FetchedListWithLapViewable {
+final class CreateWorkoutViewModel: FetchedListLapBarViewable {
     var workout = Workout()
     var isDidSave = false
     var sheetExercise: Exercise?

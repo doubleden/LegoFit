@@ -22,7 +22,7 @@ struct CreateWorkoutView: View {
                 }
             VStack(spacing: 0) {
                 if createWorkoutVM.isAddingLap {
-                    ElementsForInteractWithLap(
+                    FetchedListLapBarView(
                         viewModel: $createWorkoutVM,
                         isFocused: $isFocused
                     )

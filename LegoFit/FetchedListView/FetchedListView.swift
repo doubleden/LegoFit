@@ -8,6 +8,7 @@
 import SwiftUI
 
 protocol FetchedListViewable {
+    var workout: Workout { get set }
     var sheetExercise: Exercise? { get set }
     var isAddingLap: Bool { get set }
     func add(exercise: Exercise)
@@ -15,36 +16,22 @@ protocol FetchedListViewable {
 
 struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
     @Binding var viewModel: ViewModel
-    
-    @State var errorMessage: String? = nil
-    @State var isAlertPresented = false
-    var sortedByCategoryExercises: [String: [Exercise]] {
-        [
-            "Legs" : exercises.filter { $0.category == "legs" },
-            "Chest" : exercises.filter { $0.category == "chest" },
-            "Shoulders" : exercises.filter {$0.category == "shoulders" },
-            "Back" : exercises.filter { $0.category == "back" },
-            "Arms" : exercises.filter { $0.category == "arms" }
-        ]
-    }
-    
-    @State private var exercises: [Exercise] = []
-    private let networkManager = NetworkManager.shared
+    @State private var fetchedListVM = FetchedListViewModel()
     
     var body: some View {
         VStack(spacing: -1) {
             Divider()
             
             List(
-                Array(sortedByCategoryExercises.keys.sorted()),
+                Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),
                 id: \.self
             ) { section in
                 Section(section) {
                     ForEach(
-                        sortedByCategoryExercises[section] ?? []
+                        fetchedListVM.sortedByCategoryExercises[section] ?? []
                     ) { exercise in
                         Button(action: {
-                            showSheetOf(exercise: exercise)
+                            viewModel.sheetExercise = exercise
                         }, label: {
                             Text(exercise.name)
                                 .foregroundStyle(.white)
@@ -67,37 +54,21 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 MainGradientBackground()
             )
             .refreshable {
-                fetchExercises()
+                fetchedListVM.fetchExercises()
             }
         }
         .onAppear {
-            fetchExercises()
+            fetchedListVM.fetchExercises()
         }
         .sheet(item: $viewModel.sheetExercise) { _ in
-            ExerciseDetailsView(viewModel: $viewModel)
+            FetchedListDetailsView(viewModel: $viewModel)
                 .presentationBackground(.black)
                 .presentationDragIndicator(.visible)
         }
-        .alert(errorMessage ?? "",
-               isPresented: $isAlertPresented) {
+        .alert(fetchedListVM.errorMessage ?? "",
+               isPresented: $fetchedListVM.isAlertPresented) {
             Button("Ok", role: .cancel) {}
         }
-    }
-    
-    private func fetchExercises() {
-        Task {
-            do {
-                exercises = try await networkManager.fetchExercise()
-            } catch {
-                exercises = []
-                errorMessage = error.localizedDescription
-                isAlertPresented.toggle()
-            }
-        }
-    }
-    
-    private func showSheetOf(exercise: Exercise) {
-        viewModel.sheetExercise = exercise
     }
 }
 

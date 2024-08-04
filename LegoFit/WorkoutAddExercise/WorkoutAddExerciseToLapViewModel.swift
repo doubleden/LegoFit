@@ -8,22 +8,16 @@
 import Observation
 
 @Observable
-final class WorkoutEditLapViewModel: FetchedListViewable {
-    
+final class WorkoutAddExerciseToLapViewModel: FetchedListViewable {
     var sheetExercise: Exercise?
     var isAddingLap = true
     
-    
-    private var workout: Workout
+    internal var workout: Workout
     private var lap: Lap
     
     init(workout: Workout, lap: Lap) {
         self.workout = workout
         self.lap = lap
-    }
-    
-    func showSheetOf(exercise: Exercise) {
-        sheetExercise = exercise
     }
     
     func add(exercise: Exercise) {

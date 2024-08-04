@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct WorkoutEditView: View {
-    @State var workoutEditVM: WorkoutEditViewModel
+struct WorkoutAddExerciseView: View {
+    @State var workoutEditVM: WorkoutAddExerciseViewModel
     @FocusState private var isFocused
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -18,7 +18,7 @@ struct WorkoutEditView: View {
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
                     if workoutEditVM.isAddingLap {
-                        ElementsForInteractWithLap(
+                        FetchedListLapBarView(
                             viewModel: $workoutEditVM,
                             isFocused: $isFocused
                         )
@@ -43,6 +43,6 @@ struct WorkoutEditView: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return WorkoutEditView(workoutEditVM: WorkoutEditViewModel(workout: Workout.getWorkout()))
+    return WorkoutAddExerciseView(workoutEditVM: WorkoutAddExerciseViewModel(workout: Workout.getWorkout()))
         .modelContainer(container)
 }

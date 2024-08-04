@@ -75,8 +75,8 @@ struct MyWorkoutEditLapView: View {
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $isPresented,
                    content: {
-                WorkoutEditLapView(
-                    workoutEditLapVM: WorkoutEditLapViewModel(
+                WorkoutAddExerciseToLapView(
+                    workoutEditLapVM: WorkoutAddExerciseToLapViewModel(
                         workout: workout,
                         lap: lap
                     )

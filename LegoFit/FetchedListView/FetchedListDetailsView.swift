@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
+struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
     @Binding var viewModel: ViewModel
-    
-    @State var approachInputExercise = ""
-    @State var repInputExercise = ""
-    @State var weightInputExercise = ""
-    @State var commentInputExercise = ""
-    
+    @State private var fetchedListDetailsVM = FetchedListDetailsViewModel()
     private var exercise: Exercise {
         viewModel.sheetExercise ?? Exercise.getExercises()[0]
     }
@@ -42,10 +37,10 @@ struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
                             .font(.subheadline)
                         
                         ExerciseParametersTF(
-                            sets: $approachInputExercise,
-                            reps: $repInputExercise,
-                            weight: $weightInputExercise,
-                            comment: $commentInputExercise,
+                            sets: $fetchedListDetailsVM.approachInputExercise,
+                            reps: $fetchedListDetailsVM.repInputExercise,
+                            weight: $fetchedListDetailsVM.weightInputExercise,
+                            comment: $fetchedListDetailsVM.commentInputExercise,
                             isAddingLaps: viewModel.isAddingLap,
                             isFocused: $isFocused
                         )
@@ -61,7 +56,7 @@ struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
                         
                         ToolbarItem(placement: .topBarTrailing) {
                             Button("Add") {
-                                guard let exercise = makeChangesInExercise() else {
+                                guard let exercise = fetchedListDetailsVM.makeChangesInExercise(exercise: viewModel.sheetExercise) else {
                                     return
                                 }
                                 viewModel.add(exercise: exercise)
@@ -83,30 +78,14 @@ struct ExerciseDetailsView<ViewModel: FetchedListViewable>: View {
         }
         
         .onDisappear {
-            clearExerciseInputs()
+            fetchedListDetailsVM.clearExerciseInputs()
         }
-    }
-    
-    private func clearExerciseInputs() {
-        approachInputExercise = ""
-        repInputExercise = ""
-        weightInputExercise = ""
-        commentInputExercise = ""
-    }
-    
-    private func makeChangesInExercise() -> Exercise? {
-        guard var exercise = viewModel.sheetExercise else { return nil }
-        exercise.approach = Int(approachInputExercise)
-        exercise.rep = Int(repInputExercise)
-        exercise.weight = weightInputExercise.isEmpty ? "0" : weightInputExercise
-        exercise.comment = commentInputExercise
-        return exercise
     }
 }
 
 
 #Preview {
     let container = DataController.previewContainer
-    return ExerciseDetailsView(viewModel: .constant(CreateWorkoutViewModel()))
+    return FetchedListDetailsView(viewModel: .constant(CreateWorkoutViewModel()))
         .modelContainer(container)
 }

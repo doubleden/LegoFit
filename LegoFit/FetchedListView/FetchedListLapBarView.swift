@@ -1,5 +1,5 @@
 //
-//  ElementsForInteractWithLap.swift
+//  FetchedListLapBarView.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 2/8/24.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-protocol FetchedListWithLapViewable: FetchedListViewable {
+protocol FetchedListLapBarViewable: FetchedListViewable {
     func addToWorkoutLap()
     var lapQuantity: String { get set }
     var exercisesInLaps: [Exercise] { get set }
 }
 
-struct ElementsForInteractWithLap<ViewModel: FetchedListWithLapViewable>: View {
+struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
     @Binding var viewModel: ViewModel
     @FocusState.Binding var isFocused: Bool
     
@@ -83,6 +83,6 @@ struct ElementsForInteractWithLap<ViewModel: FetchedListWithLapViewable>: View {
 #Preview {
     @FocusState var focus
     let container = DataController.previewContainer
-    return ElementsForInteractWithLap(viewModel: .constant(CreateWorkoutViewModel()), isFocused: $focus)
+    return FetchedListLapBarView(viewModel: .constant(CreateWorkoutViewModel()), isFocused: $focus)
         .modelContainer(container)
 }

@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct WorkoutEditLapView: View {
-    @State var workoutEditLapVM: WorkoutEditLapViewModel
+struct WorkoutAddExerciseToLapView: View {
+    @State var workoutEditLapVM: WorkoutAddExerciseToLapViewModel
     
     var body: some View {
         ZStack {
@@ -22,6 +22,6 @@ struct WorkoutEditLapView: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return WorkoutEditLapView(workoutEditLapVM: WorkoutEditLapViewModel(workout: Workout.getWorkout(), lap: Lap.getLaps().first!))
+    return WorkoutAddExerciseToLapView(workoutEditLapVM: WorkoutAddExerciseToLapViewModel(workout: Workout.getWorkout(), lap: Lap.getLaps().first!))
         .modelContainer(container)
 }

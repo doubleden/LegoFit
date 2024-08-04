@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-final class WorkoutEditViewModel: FetchedListWithLapViewable {
+final class WorkoutAddExerciseViewModel: FetchedListLapBarViewable {
     var lapQuantity = ""
     var exercisesInLaps: [Exercise] = []
     
