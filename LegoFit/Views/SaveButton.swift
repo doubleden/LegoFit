@@ -18,6 +18,7 @@ struct SaveButton: View {
         .background(.main)
         .tint(.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke())
     }
 }
 

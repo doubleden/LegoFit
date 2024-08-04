@@ -23,7 +23,7 @@ struct MyWorkoutEditLapView: View {
                     .ignoresSafeArea()
                 
                 ScrollView {
-                    VStack(spacing: 35) {
+                    VStack(spacing: 30) {
                         LapQuantityTF(
                             input: $textInput, isFocused: $isFocused) {
                                 if quantity < 100 {
@@ -36,13 +36,6 @@ struct MyWorkoutEditLapView: View {
                             }
                             .focused($isFocused)
                         Spacer()
-                        Button("Add exercise to lap") {
-                            isPresented.toggle()
-                        }
-                        .padding()
-                        .tint(.white)
-                        .background(.violet)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
                         
                         SaveButton {
                             changeQuantity()
@@ -73,6 +66,13 @@ struct MyWorkoutEditLapView: View {
             }
             .navigationTitle("Quantity")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { isPresented.toggle() }, label: {
+                        Image(systemName: "plus.circle")
+                    })
+                }
+            }
             .sheet(isPresented: $isPresented,
                    content: {
                 WorkoutAddExerciseToLapView(

@@ -106,6 +106,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .frame(width: 150 ,height: 50)
             .background(isDisabled ? .offButton : .main)
             .clipShape(.rect(cornerRadius: 5))
+            .overlay(RoundedRectangle(cornerRadius: 5).stroke())
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
