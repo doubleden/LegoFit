@@ -37,13 +37,12 @@ struct MyWorkoutsView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink(destination: CreateWorkoutView()) {
                         Image(systemName: "plus.circle")
-                            .tint(.main)
                             .font(.title2)
                     }
                 }
             }
         }
-        .tint(.main)
+        .tint(.white)
     }
     
     private func deleteWorkout(_ indexSet: IndexSet) {

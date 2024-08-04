@@ -68,7 +68,7 @@ struct CreateWorkoutView: View {
                 .disabled(createWorkoutVM.isExercisesInWorkoutEmpty())
             }
         }
-        .tint(.main)
+        .tint(.white)
     }
 }
 

@@ -71,7 +71,7 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
                 }
             }
         }
-        .tint(.main)
+        .tint(.white)
         
         .onTapGesture {
             isFocused = nil

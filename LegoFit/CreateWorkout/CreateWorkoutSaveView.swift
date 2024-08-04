@@ -55,7 +55,7 @@ struct CreateWorkoutSaveView: View {
                         Button("Clear") {
                             createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
                         }
-                        .tint(.main)
+                        .tint(.white)
                     }
                 }
             }

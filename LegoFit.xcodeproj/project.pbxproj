@@ -22,7 +22,6 @@
 		0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0528E9962C2F051D00BE9B02 /* CircleButton.swift */; };
 		052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */; };
 		052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA4212C5AB3C900892ED7 /* OvalTextFieldStyle.swift */; };
-		053763A92C5D5BE300312A77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 053763A82C5D5BE300312A77 /* Kingfisher */; };
 		053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763AB2C5D5EA500312A77 /* FetchedListView.swift */; };
 		053763AE2C5D5EC100312A77 /* FetchedListLapBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763AD2C5D5EC100312A77 /* FetchedListLapBarView.swift */; };
 		053763B42C5D657900312A77 /* FetchedListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763B32C5D657900312A77 /* FetchedListDetailsView.swift */; };
@@ -32,6 +31,7 @@
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
+		054BF8592C5FCBF9005FBEA5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 054BF8582C5FCBF9005FBEA5 /* Kingfisher */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
 		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053763A92C5D5BE300312A77 /* Kingfisher in Frameworks */,
+				054BF8592C5FCBF9005FBEA5 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +336,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				053763A82C5D5BE300312A77 /* Kingfisher */,
+				054BF8582C5FCBF9005FBEA5 /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -367,7 +367,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				054BF8572C5FCBF9005FBEA5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -658,7 +658,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		054BF8572C5FCBF9005FBEA5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -669,9 +669,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		053763A82C5D5BE300312A77 /* Kingfisher */ = {
+		054BF8582C5FCBF9005FBEA5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 053763A72C5D5BE300312A77 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 054BF8572C5FCBF9005FBEA5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

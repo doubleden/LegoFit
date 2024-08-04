@@ -16,7 +16,6 @@ struct ButtonLap: View {
             }
         }, label: {
             Image(systemName: isAddingLap ? "figure.run.square.stack.fill" : "figure.run.square.stack")
-                .tint(.main)
         })
     }
 }
