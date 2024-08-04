@@ -1,5 +1,5 @@
 //
-//  ExerciseListView.swift
+//  ExerciseListAddView.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 2/8/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ExerciseListView: View {
-    @State var exerciseListVM: ExerciseListViewModel
+struct ExerciseListAddView: View {
+    @State var exerciseListVM: ExerciseListAddViewModel
     @FocusState.Binding var isFocused: Bool
     
     var body: some View {
@@ -30,7 +30,7 @@ struct ExerciseListView: View {
 }
 
 fileprivate struct LapElements: View {
-    @Binding var exerciseListVM: ExerciseListViewModel
+    @Binding var exerciseListVM: ExerciseListAddViewModel
     @FocusState.Binding var isFocused: Bool
     var body: some View {
         VStack {
@@ -90,7 +90,7 @@ fileprivate struct LapElements: View {
 #Preview {
     @FocusState var focus
     let container = DataController.previewContainer
-    return NavigationStack { ExerciseListView(exerciseListVM: ExerciseListViewModel(workout: Workout.getWorkout()), isFocused: $focus)
+    return NavigationStack { ExerciseListAddView(exerciseListVM: ExerciseListAddViewModel(workout: Workout.getWorkout()), isFocused: $focus)
             .modelContainer(container)
     }
 }

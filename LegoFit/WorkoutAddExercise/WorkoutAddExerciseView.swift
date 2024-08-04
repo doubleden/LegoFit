@@ -16,8 +16,8 @@ struct WorkoutAddExerciseView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
-                ExerciseListView(
-                    exerciseListVM: ExerciseListViewModel(
+                ExerciseListAddView(
+                    exerciseListVM: ExerciseListAddViewModel(
                         workout: workout
                     ),
                     isFocused: $isFocused

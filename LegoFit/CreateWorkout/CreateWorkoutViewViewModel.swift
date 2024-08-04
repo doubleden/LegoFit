@@ -14,8 +14,6 @@ final class CreateWorkoutViewModel {
     var isDidSave = false
     var isSaveSheetPresented = false
     
-    
-    // MARK: - Main View
     private let storageManager = StorageManager.shared
     
     func isWorkoutNameValid() -> Bool {

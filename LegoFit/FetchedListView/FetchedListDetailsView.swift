@@ -86,6 +86,6 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return FetchedListDetailsView(viewModel: .constant(ExerciseListViewModel(workout: Workout.getWorkout())))
+    return FetchedListDetailsView(viewModel: .constant(ExerciseListAddViewModel(workout: Workout.getWorkout())))
         .modelContainer(container)
 }

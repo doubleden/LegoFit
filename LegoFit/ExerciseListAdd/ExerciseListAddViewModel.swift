@@ -1,5 +1,5 @@
 //
-//  ExerciseListViewModel.swift
+//  ExerciseListAddViewModel.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 4/8/24.
@@ -8,7 +8,7 @@
 import Observation
 
 @Observable
-final class ExerciseListViewModel: FetchedListViewable {
+final class ExerciseListAddViewModel: FetchedListViewable {
     var workout: Workout
     var sheetExercise: Exercise?
     

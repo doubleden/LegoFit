@@ -20,7 +20,7 @@ struct CreateWorkoutView: View {
                 .onTapGesture {
                     isFocused = false
                 }
-            ExerciseListView(exerciseListVM: ExerciseListViewModel(workout: createWorkoutVM.workout), isFocused: $isFocused)
+            ExerciseListAddView(exerciseListVM: ExerciseListAddViewModel(workout: createWorkoutVM.workout), isFocused: $isFocused)
             .padding(.top, 20)
             
             // Экран сохранения
