@@ -20,16 +20,7 @@ struct CreateWorkoutView: View {
                 .onTapGesture {
                     isFocused = false
                 }
-            VStack(spacing: 0) {
-                if createWorkoutVM.isAddingLap {
-                    FetchedListLapBarView(
-                        viewModel: $createWorkoutVM,
-                        isFocused: $isFocused
-                    )
-                }
-                
-                FetchedExerciseListView(viewModel: $createWorkoutVM)
-            }
+            ExerciseListView(exerciseListVM: ExerciseListViewModel(workout: createWorkoutVM.workout), isFocused: $isFocused)
             .padding(.top, 20)
             
             // Экран сохранения
@@ -55,10 +46,6 @@ struct CreateWorkoutView: View {
                     )
                     dismiss()
                 }
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                ButtonLap(isAddingLap: $createWorkoutVM.isAddingLap)
             }
             
             ToolbarItem(placement: .topBarTrailing) {

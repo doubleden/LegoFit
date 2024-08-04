@@ -1,5 +1,5 @@
 //
-//  FetchedListLapBarView.swift
+//  ExerciseListView.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 2/8/24.
@@ -7,34 +7,34 @@
 
 import SwiftUI
 
-protocol FetchedListLapBarViewable: FetchedListViewable {
-    var lapQuantity: String { get set }
-    var exercisesInLaps: [Exercise] { get set }
-    func addToWorkoutLap()
-}
-
-extension FetchedListLapBarViewable {
-    func addToWorkoutLap() {
-        let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
-        workout.exercises.append(.lap(lap))
-    }
-    
-    mutating func add(exercise: Exercise) {
-        if isAddingLap {
-            exercisesInLaps.append(exercise)
-        } else {
-            workout.exercises.append(.single(exercise))
-        }
-    }
-}
-
-struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
-    @Binding var viewModel: ViewModel
+struct ExerciseListView: View {
+    @State var exerciseListVM: ExerciseListViewModel
     @FocusState.Binding var isFocused: Bool
     
     var body: some View {
         VStack {
-            TextField("Quantity of laps", text: $viewModel.lapQuantity)
+            if exerciseListVM.isAddingLap {
+                LapElements(
+                    exerciseListVM: $exerciseListVM,
+                    isFocused: $isFocused
+                )
+            }
+            FetchedExerciseListView(viewModel: $exerciseListVM)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                ButtonLap(isAddingLap: $exerciseListVM.isAddingLap)
+            }
+        }
+    }
+}
+
+fileprivate struct LapElements: View {
+    @Binding var exerciseListVM: ExerciseListViewModel
+    @FocusState.Binding var isFocused: Bool
+    var body: some View {
+        VStack {
+            TextField("Quantity of laps", text: $exerciseListVM.lapQuantity)
                 .focused($isFocused)
                 .keyboardType(.numberPad)
                 .padding()
@@ -59,11 +59,11 @@ struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
                 icon: Image(systemName: "plus"),
                 width: 50,
                 height: 50,
-                isDisable: !isLapValid()
+                isDisable: !exerciseListVM.isLapValid()
             ) {
-                viewModel.addToWorkoutLap()
+                exerciseListVM.addToWorkoutLap()
                 withAnimation(.smooth) {
-                    viewModel.isAddingLap.toggle()
+                    exerciseListVM.isAddingLap.toggle()
                     isFocused = false
                 }
             }
@@ -76,28 +76,21 @@ struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
                 )
             )
         }
-        .onChange(of: viewModel.sheetExercise, {
+        .onChange(of: exerciseListVM.sheetExercise, {
             if isFocused {
                 isFocused = false
             }
         })
-        .onChange(of: viewModel.isAddingLap) { _, _ in
-            clearLapInputs()
+        .onChange(of: exerciseListVM.isAddingLap) { _, _ in
+            exerciseListVM.clearLapInputs()
         }
-    }
-    private func clearLapInputs() {
-        viewModel.lapQuantity = ""
-        viewModel.exercisesInLaps = []
-    }
-    
-    private func isLapValid() -> Bool {
-        !viewModel.lapQuantity.isEmpty && !viewModel.exercisesInLaps.isEmpty
     }
 }
 
 #Preview {
     @FocusState var focus
     let container = DataController.previewContainer
-    return FetchedListLapBarView(viewModel: .constant(CreateWorkoutViewModel()), isFocused: $focus)
-        .modelContainer(container)
+    return NavigationStack { ExerciseListView(exerciseListVM: ExerciseListViewModel(workout: Workout.getWorkout()), isFocused: $focus)
+            .modelContainer(container)
+    }
 }

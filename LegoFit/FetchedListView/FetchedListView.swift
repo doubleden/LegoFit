@@ -11,7 +11,7 @@ protocol FetchedListViewable {
     var workout: Workout { get set }
     var sheetExercise: Exercise? { get set }
     var isAddingLap: Bool { get set }
-    mutating func add(exercise: Exercise)
+    func add(exercise: Exercise)
 }
 
 struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
@@ -74,6 +74,6 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return FetchedExerciseListView(viewModel: .constant(CreateWorkoutViewModel()))
+    return FetchedExerciseListView(viewModel: .constant(ExerciseListViewModel(workout: Workout.getWorkout())))
         .modelContainer(container)
 }

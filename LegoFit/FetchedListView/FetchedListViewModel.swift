@@ -12,6 +12,7 @@ import Observation
 final class FetchedListViewModel {
     var errorMessage: String? = nil
     var isAlertPresented = false
+    
     var sortedByCategoryExercises: [String: [Exercise]] {
         [
             "Legs" : exercises.filter { $0.category == "legs" },
@@ -24,11 +25,6 @@ final class FetchedListViewModel {
     
     private var exercises: [Exercise] = []
     private let networkManager = NetworkManager.shared
-    private var workout: Workout
-    
-    init(workout: Workout = Workout()) {
-        self.workout = workout
-    }
     
     func fetchExercises() {
         Task {

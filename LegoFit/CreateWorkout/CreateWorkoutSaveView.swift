@@ -171,22 +171,22 @@ fileprivate struct DeleteButton: View {
     }
 }
 
-#Preview {
-    let container = DataController.previewContainer
-    var createWorkoutVM = CreateWorkoutViewModel()
-    let exercises = Exercise.getExercises()
-    let laps = Lap.getLaps()
-    createWorkoutVM.exercisesInLaps.append(contentsOf: exercises)
-    for i in 0..<exercises.count {
-        let exercise = exercises[i]
-        createWorkoutVM.add(exercise: exercise)
-    }
-    
-    for _ in 0..<laps.count {
-        createWorkoutVM.addToWorkoutLap()
-    }
-    
-    return CreateWorkoutSaveView(createWorkoutVM: createWorkoutVM)
-        .modelContainer(container)
-        
-}
+//#Preview {
+//    let container = DataController.previewContainer
+//    var createWorkoutVM = CreateWorkoutViewModel()
+//    let exercises = Exercise.getExercises()
+//    let laps = Lap.getLaps()
+//    createWorkoutVM.exercisesInLaps.append(contentsOf: exercises)
+//    for i in 0..<exercises.count {
+//        let exercise = exercises[i]
+//        createWorkoutVM.add(exercise: exercise)
+//    }
+//    
+//    for _ in 0..<laps.count {
+//        createWorkoutVM.addToWorkoutLap()
+//    }
+//    
+//    return CreateWorkoutSaveView(createWorkoutVM: createWorkoutVM)
+//        .modelContainer(container)
+//        
+//}

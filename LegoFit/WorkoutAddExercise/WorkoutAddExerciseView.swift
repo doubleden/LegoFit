@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WorkoutAddExerciseView: View {
-    @State var workoutEditVM: WorkoutAddExerciseViewModel
+    @State var workout: Workout
     @FocusState private var isFocused
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -16,25 +16,14 @@ struct WorkoutAddExerciseView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
-                VStack(spacing: 0) {
-                    if workoutEditVM.isAddingLap {
-                        FetchedListLapBarView(
-                            viewModel: $workoutEditVM,
-                            isFocused: $isFocused
-                        )
-                    }
-                    FetchedExerciseListView(viewModel: $workoutEditVM)
-                }
+                ExerciseListView(
+                    exerciseListVM: ExerciseListViewModel(
+                        workout: workout
+                    ),
+                    isFocused: $isFocused
+                )
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    ButtonLap(isAddingLap: $workoutEditVM.isAddingLap)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Spacer()
-                }
-            }
-            .onChange(of: workoutEditVM.workout.exercises) { _, _ in
+            .onChange(of: workout.exercises) { _, _ in
                 dismiss()
             }
         }
@@ -43,6 +32,6 @@ struct WorkoutAddExerciseView: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return WorkoutAddExerciseView(workoutEditVM: WorkoutAddExerciseViewModel(workout: Workout.getWorkout()))
+    return WorkoutAddExerciseView(workout: Workout.getWorkout())
         .modelContainer(container)
 }

@@ -9,19 +9,14 @@ import SwiftData
 import Foundation
 
 @Observable
-final class CreateWorkoutViewModel: FetchedListLapBarViewable {
+final class CreateWorkoutViewModel {
     var workout = Workout()
     var isDidSave = false
-    var sheetExercise: Exercise?
     var isSaveSheetPresented = false
     
-    var isAddingLap = false
-    var lapQuantity = ""
-    var exercisesInLaps: [Exercise] = []
-    
-    private let storageManager = StorageManager.shared
     
     // MARK: - Main View
+    private let storageManager = StorageManager.shared
     
     func isWorkoutNameValid() -> Bool {
         !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
@@ -38,7 +33,6 @@ final class CreateWorkoutViewModel: FetchedListLapBarViewable {
     
     func cancelCreateWorkout(modelContext: ModelContext) {
         workout = Workout()
-        isAddingLap = false
     }
     
     func deleteExercise(withID: UUID) {
