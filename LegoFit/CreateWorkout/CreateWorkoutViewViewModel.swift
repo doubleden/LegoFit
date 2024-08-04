@@ -14,15 +14,15 @@ final class CreateWorkoutViewModel {
     var isDidSave = false
     var isSaveSheetPresented = false
     
-    private let storageManager = StorageManager.shared
+    var isExercisesInWorkoutEmpty: Bool {
+        workout.exercises.isEmpty
+    }
     
-    func isWorkoutNameValid() -> Bool {
+    var isWorkoutNameValid: Bool {
         !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
-    func isExercisesInWorkoutEmpty() -> Bool {
-        workout.exercises.isEmpty
-    }
+    private let storageManager = StorageManager.shared
     
     func saveWorkout(modelContext: ModelContext) {
         storageManager.save(workout: workout, context: modelContext)

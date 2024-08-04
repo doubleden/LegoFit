@@ -26,7 +26,7 @@ struct CreateWorkoutSaveView: View {
                         isFocused: $isFocused
                     )
                     
-                    SaveWorkoutButton(isDisabled: !createWorkoutVM.isWorkoutNameValid()) {
+                    SaveWorkoutButton(isDisabled: !createWorkoutVM.isWorkoutNameValid) {
                         createWorkoutVM.saveWorkout(
                             modelContext: modelContext
                         )
@@ -104,6 +104,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 150 ,height: 50)
+            .foregroundStyle(isDisabled ? .gray : .white)
             .background(isDisabled ? .offButton : .main)
             .clipShape(.rect(cornerRadius: 5))
             .overlay(RoundedRectangle(cornerRadius: 5).stroke())
