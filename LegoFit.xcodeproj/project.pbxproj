@@ -32,7 +32,6 @@
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
-		054BF8512C5FBBE5005FBEA5 /* FetchedListLapBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF8502C5FBBE5005FBEA5 /* FetchedListLapBarViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
 		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
@@ -97,7 +96,6 @@
 		0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSaveView.swift; sourceTree = "<group>"; };
 		054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewModel.swift; sourceTree = "<group>"; };
 		054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListDetailsViewModel.swift; sourceTree = "<group>"; };
-		054BF8502C5FBBE5005FBEA5 /* FetchedListLapBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListLapBarViewModel.swift; sourceTree = "<group>"; };
 		05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseView.swift; sourceTree = "<group>"; };
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
 		0575B3F92C36D271006253DD /* MyExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExerciseCellView.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				053763AB2C5D5EA500312A77 /* FetchedListView.swift */,
 				054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */,
 				053763AD2C5D5EC100312A77 /* FetchedListLapBarView.swift */,
-				054BF8502C5FBBE5005FBEA5 /* FetchedListLapBarViewModel.swift */,
 				053763B32C5D657900312A77 /* FetchedListDetailsView.swift */,
 				054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */,
 				0524622B2C5E9CC000C4090A /* ButtonLap.swift */,
@@ -430,7 +427,6 @@
 				052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */,
 				0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */,
 				054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */,
-				054BF8512C5FBBE5005FBEA5 /* FetchedListLapBarViewModel.swift in Sources */,
 				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,
 				0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */,

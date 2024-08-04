@@ -8,9 +8,9 @@
 import SwiftUI
 
 protocol FetchedListLapBarViewable: FetchedListViewable {
-    func addToWorkoutLap()
     var lapQuantity: String { get set }
     var exercisesInLaps: [Exercise] { get set }
+    func addToWorkoutLap()
 }
 
 struct FetchedListLapBarView<ViewModel: FetchedListLapBarViewable>: View {
