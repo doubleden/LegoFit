@@ -29,7 +29,7 @@ final class CreateWorkoutViewModel {
         isDidSave.toggle()
     }
     
-    func cancelCreateWorkout(modelContext: ModelContext) {
+    func cancelCreateWorkout() {
         workout = Workout()
     }
     

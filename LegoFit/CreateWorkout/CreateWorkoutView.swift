@@ -40,9 +40,7 @@ struct CreateWorkoutView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        createWorkoutVM.cancelCreateWorkout(
-                            modelContext: modelContext
-                        )
+                        createWorkoutVM.cancelCreateWorkout()
                         dismiss()
                     }
                 }

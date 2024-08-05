@@ -30,9 +30,7 @@ struct CreateWorkoutSaveView: View {
                         createWorkoutVM.saveWorkout(
                             modelContext: modelContext
                         )
-                        createWorkoutVM.cancelCreateWorkout(
-                            modelContext: modelContext
-                        )
+                        createWorkoutVM.cancelCreateWorkout()
                         dismiss()
                     }
                     .padding(.bottom)
@@ -53,7 +51,7 @@ struct CreateWorkoutSaveView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button("Clear") {
-                            createWorkoutVM.cancelCreateWorkout(modelContext: modelContext)
+                            createWorkoutVM.cancelCreateWorkout()
                         }
                         .tint(.white)
                     }
