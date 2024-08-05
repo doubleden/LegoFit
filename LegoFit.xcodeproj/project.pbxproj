@@ -28,8 +28,8 @@
 		053763B92C5D737D00312A77 /* WorkoutAddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763B82C5D737D00312A77 /* WorkoutAddExerciseView.swift */; };
 		053763BB2C5D73CA00312A77 /* WorkoutAddExerciseToLapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763BA2C5D73CA00312A77 /* WorkoutAddExerciseToLapViewModel.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
-		0538EAC52C5FE49F00D100FC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0538EAC42C5FE49F00D100FC /* Kingfisher */; };
 		0538EAC72C5FE4CC00D100FC /* ExerciseListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538EAC62C5FE4CC00D100FC /* ExerciseListAddViewModel.swift */; };
+		053D10C72C61926400BDA52A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 053D10C62C61926400BDA52A /* Kingfisher */; };
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0538EAC52C5FE49F00D100FC /* Kingfisher in Frameworks */,
+				053D10C72C61926400BDA52A /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +344,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				0538EAC42C5FE49F00D100FC /* Kingfisher */,
+				053D10C62C61926400BDA52A /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -375,7 +375,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				0538EAC32C5FE49F00D100FC /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -666,7 +666,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0538EAC32C5FE49F00D100FC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -677,9 +677,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0538EAC42C5FE49F00D100FC /* Kingfisher */ = {
+		053D10C62C61926400BDA52A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0538EAC32C5FE49F00D100FC /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

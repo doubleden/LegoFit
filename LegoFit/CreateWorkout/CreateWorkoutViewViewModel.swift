@@ -10,7 +10,7 @@ import Foundation
 
 @Observable
 final class CreateWorkoutViewModel {
-    var workout = Workout()
+    var workout: Workout
     var isDidSave = false
     var isSaveSheetPresented = false
     
@@ -22,8 +22,14 @@ final class CreateWorkoutViewModel {
         !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
+    var exerciseListAddVM: ExerciseListAddViewModel
+    
     private let storageManager = StorageManager.shared
     
+    init(workout: Workout = Workout()) {
+        self.workout = workout
+        self.exerciseListAddVM = ExerciseListAddViewModel(workout: workout)
+    }
     func saveWorkout(modelContext: ModelContext) {
         storageManager.save(workout: workout, context: modelContext)
         isDidSave.toggle()
@@ -31,6 +37,7 @@ final class CreateWorkoutViewModel {
     
     func cancelCreateWorkout() {
         workout = Workout()
+        updateExerciseListAddVM()
     }
     
     func deleteExercise(withID: UUID) {
@@ -44,5 +51,9 @@ final class CreateWorkoutViewModel {
         }) {
             workout.exercises.remove(at: index)
         }
+    }
+    
+    func updateExerciseListAddVM() {
+        exerciseListAddVM = ExerciseListAddViewModel(workout: workout)
     }
 }

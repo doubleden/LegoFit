@@ -21,9 +21,7 @@ struct CreateWorkoutView: View {
                     isFocused = false
                 }
             ExerciseListAddView(
-                exerciseListVM: ExerciseListAddViewModel(
-                    workout: createWorkoutVM.workout
-                ),
+                exerciseListVM: $createWorkoutVM.exerciseListAddVM,
                 isFocused: $isFocused
             )
             .padding(.top, 20)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExerciseListAddView: View {
-    @State var exerciseListVM: ExerciseListAddViewModel
+    @Binding var exerciseListVM: ExerciseListAddViewModel
     @FocusState.Binding var isFocused: Bool
     
     var body: some View {
@@ -90,7 +90,8 @@ fileprivate struct LapElements: View {
 #Preview {
     @FocusState var focus
     let container = DataController.previewContainer
-    return NavigationStack { ExerciseListAddView(exerciseListVM: ExerciseListAddViewModel(workout: Workout.getWorkout()), isFocused: $focus)
+    @State var exerciseVM = ExerciseListAddViewModel(workout: Workout.getWorkout())
+    return NavigationStack { ExerciseListAddView(exerciseListVM: .constant(exerciseVM), isFocused: $focus)
             .modelContainer(container)
     }
 }

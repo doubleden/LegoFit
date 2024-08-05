@@ -9,17 +9,18 @@ import SwiftUI
 
 struct WorkoutAddExerciseView: View {
     @State var workout: Workout
+    
+    @State private var exerciseListAddVM: ExerciseListAddViewModel
     @FocusState private var isFocused
     @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
                 ExerciseListAddView(
-                    exerciseListVM: ExerciseListAddViewModel(
-                        workout: workout
-                    ),
+                    exerciseListVM: $exerciseListAddVM,
                     isFocused: $isFocused
                 )
             }
@@ -27,6 +28,11 @@ struct WorkoutAddExerciseView: View {
                 dismiss()
             }
         }
+    }
+    
+    init(workout: Workout = Workout()) {
+        self.workout = workout
+        self.exerciseListAddVM = ExerciseListAddViewModel(workout: workout)
     }
 }
 
