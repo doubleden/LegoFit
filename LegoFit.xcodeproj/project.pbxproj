@@ -21,6 +21,7 @@
 		0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3B32C09D9400007F632 /* StorageManager.swift */; };
 		0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0525D3B62C09DF800007F632 /* MyWorkoutsView.swift */; };
 		0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0528E9962C2F051D00BE9B02 /* CircleButton.swift */; };
+		052B1F462C6233E00088C76D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 052B1F452C6233E00088C76D /* Kingfisher */; };
 		052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */; };
 		052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA4212C5AB3C900892ED7 /* OvalTextFieldStyle.swift */; };
 		053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763AB2C5D5EA500312A77 /* FetchedListView.swift */; };
@@ -31,7 +32,6 @@
 		053763BB2C5D73CA00312A77 /* WorkoutAddExerciseToLapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763BA2C5D73CA00312A77 /* WorkoutAddExerciseToLapViewModel.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		0538EAC72C5FE4CC00D100FC /* ExerciseListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538EAC62C5FE4CC00D100FC /* ExerciseListAddViewModel.swift */; };
-		053D10C72C61926400BDA52A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 053D10C62C61926400BDA52A /* Kingfisher */; };
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
@@ -132,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053D10C72C61926400BDA52A /* Kingfisher in Frameworks */,
+				052B1F462C6233E00088C76D /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +358,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				053D10C62C61926400BDA52A /* Kingfisher */,
+				052B1F452C6233E00088C76D /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -389,7 +389,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				052B1F442C6233E00088C76D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -682,7 +682,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		052B1F442C6233E00088C76D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -693,9 +693,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		053D10C62C61926400BDA52A /* Kingfisher */ = {
+		052B1F452C6233E00088C76D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 053D10C52C61926400BDA52A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 052B1F442C6233E00088C76D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
