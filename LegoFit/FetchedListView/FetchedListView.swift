@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-protocol FetchedListViewable {
-    var workout: Workout { get set }
-    var sheetExercise: Exercise? { get set }
-    var isAddingLap: Bool { get set }
-    func add(exercise: Exercise)
-}
-
 struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
     @Binding var viewModel: ViewModel
     @State private var fetchedListVM = FetchedListViewModel()

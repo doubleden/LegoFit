@@ -9,7 +9,7 @@ import Observation
 import Foundation
 
 @Observable
-final class MyWorkoutViewModel {
+final class MyWorkoutViewModel: ExerciseListCellDeletable {
     var isWorkoutStart = false
     
     var sheetExercise: Exercise?
@@ -24,7 +24,7 @@ final class MyWorkoutViewModel {
         workout.exercises
     }
     
-    let workout: Workout
+    var workout: Workout
     
     init(workout: Workout) {
         self.workout = workout
@@ -57,27 +57,6 @@ final class MyWorkoutViewModel {
         var updatedLap = lap
         updatedLap.exercises.move(fromOffsets: source, toOffset: destination)
         workout.exercises[lapIndex] = .lap(updatedLap)
-    }
-    
-    func deleteCell(_ indexSet: IndexSet) {
-        for index in indexSet {
-            workout.exercises.remove(at: index)
-        }
-    }
-    
-    func delete(inLap: Lap, exerciseWith indexSet: IndexSet) {
-        guard let lapIndex = workout.findIndex(ofLap: inLap) else { return }
-        if case var .lap(lap) = workout.exercises[lapIndex] {
-            for index in indexSet {
-                lap.exercises.remove(at: index)
-                workout.exercises[lapIndex] = .lap(lap)
-            }
-            if lap.exercises.isEmpty {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [unowned self] in
-                    workout.exercises.remove(at: lapIndex)
-                }
-            }
-        }
     }
     
     private func isExercisesValid() -> Bool {

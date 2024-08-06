@@ -35,17 +35,13 @@ struct CreateWorkoutSaveView: View {
                     }
                     .padding(.bottom)
                     
-                    ExerciseList(
-                        exercises: createWorkoutVM.workout.exercises
-                    ) { single in
-                        createWorkoutVM.deleteExercise(
-                            withID: single.id
-                        )
-                        } actionForLap: { lap in
-                            createWorkoutVM.deleteExercise(
-                                withID: lap.id
-                            )
-                        }
+                    ExerciseList(exercises: createWorkoutVM.workout.exercises) { indexSet in
+                        createWorkoutVM.deleteCell(indexSet)
+                    } deleteCellLap: { lap in
+                        createWorkoutVM.delete(lap: lap)
+                    } deleteCellInLap: { lap, indexSet in
+                        createWorkoutVM.delete(inLap: lap, exerciseWith: indexSet)
+                    }
                 }
                 .padding(.top, 20)
                 .toolbar {
@@ -113,8 +109,9 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
 
 fileprivate struct ExerciseList: View {
     let exercises: [ExerciseType]
-    let actionForSingle: (Exercise) -> Void
-    let actionForLap: (Lap) -> Void
+    let deleteCell: (IndexSet) -> Void
+    let deleteCellLap: (Lap) -> Void
+    let deleteCellInLap: (Lap, IndexSet) -> Void
     
     var body: some View {
         VStack(spacing: 1) {
@@ -123,14 +120,8 @@ fileprivate struct ExerciseList: View {
                 ForEach(exercises) { exerciseType in
                     switch exerciseType {
                     case .single(let single):
-                        HStack {
-                            Text(single.name)
-                            Spacer()
-                            DeleteButton {
-                                actionForSingle(single)
-                            }
-                        }
-                        .mainRowStyle()
+                        Text(single.name)
+                            .mainRowStyle()
                         
                     case .lap(let lap):
                         Section {
@@ -138,18 +129,24 @@ fileprivate struct ExerciseList: View {
                                 Text(exercise.name)
                                     .mainRowStyle()
                             }
+                            .onDelete(perform: { indexSet in
+                                deleteCellInLap(lap, indexSet)
+                            })
                         } header: {
                             HStack {
                                 Text("Lap: \(lap.quantity)")
                                     .font(.headline)
                                 Spacer()
                                 DeleteButton {
-                                    actionForLap(lap)
+                                    deleteCellLap(lap)
                                 }
                             }
                         }
                     }
                 }
+                .onDelete(perform: { indexSet in
+                    deleteCell(indexSet)
+                })
             }
             .mainListStyle()
         }

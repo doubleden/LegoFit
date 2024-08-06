@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */; };
 		0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3BA2C595392006FB721 /* SaveButton.swift */; };
+		05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEA2C621346009E7954 /* FetchedListViewable.swift */; };
+		05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
 		0524622C2C5E9CC000C4090A /* ButtonLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524622B2C5E9CC000C4090A /* ButtonLap.swift */; };
@@ -74,6 +76,8 @@
 /* Begin PBXFileReference section */
 		0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditLapView.swift; sourceTree = "<group>"; };
 		0502F3BA2C595392006FB721 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		05138FEA2C621346009E7954 /* FetchedListViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewable.swift; sourceTree = "<group>"; };
+		05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCellDeletable.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapExerciseRowStyle.swift; sourceTree = "<group>"; };
 		0524622B2C5E9CC000C4090A /* ButtonLap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLap.swift; sourceTree = "<group>"; };
@@ -135,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05138FE92C62131E009E7954 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				05138FEA2C621346009E7954 /* FetchedListViewable.swift */,
+				05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		0525D39F2C08F9840007F632 /* CreateWorkout */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +269,7 @@
 				05C72FAB2C301B8A003ECC82 /* Models */,
 				05BC99B22C4AEE3A00ED5B0D /* Extensions */,
 				05BC99AE2C4AED5700ED5B0D /* Modifiers */,
+				05138FE92C62131E009E7954 /* Protocols */,
 				052BA4202C5AB36900892ED7 /* Styles */,
 				05BC718D2C08E9FA00524C58 /* Services */,
 				05BC71802C0646F500524C58 /* Assets.xcassets */,
@@ -415,6 +429,7 @@
 				05AA11462C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
 				0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */,
+				05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */,
 				05BC99B42C4AEE5C00ED5B0D /* extension + View.swift in Sources */,
 				053763B72C5D735C00312A77 /* WorkoutAddExerciseToLapView.swift in Sources */,
 				053763B42C5D657900312A77 /* FetchedListDetailsView.swift in Sources */,
@@ -425,6 +440,7 @@
 				053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */,
 				0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */,
 				053763B92C5D737D00312A77 /* WorkoutAddExerciseView.swift in Sources */,
+				05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */,
 				0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */,
 				058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */,
 				0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */,

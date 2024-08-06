@@ -9,7 +9,7 @@ import SwiftData
 import Foundation
 
 @Observable
-final class CreateWorkoutViewModel {
+final class CreateWorkoutViewModel: ExerciseListCellDeletable {
     var workout: Workout
     var isDidSave = false
     var isSaveSheetPresented = false
@@ -40,17 +40,9 @@ final class CreateWorkoutViewModel {
         updateExerciseListAddVM()
     }
     
-    func deleteExercise(withID: UUID) {
-        if let index = workout.exercises.firstIndex(where: {
-            switch $0 {
-            case .single(let single):
-                single.id == withID
-            case .lap(let lap):
-                lap.id == withID
-            }
-        }) {
-            workout.exercises.remove(at: index)
-        }
+    func delete(lap: Lap) {
+        guard let lapIndex = workout.findIndex(ofLap: lap) else { return }
+        workout.exercises.remove(at: lapIndex)
     }
     
     func updateExerciseListAddVM() {
