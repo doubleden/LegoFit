@@ -18,6 +18,9 @@ struct ExerciseListAddView: View {
                     exerciseListVM: $exerciseListVM,
                     isFocused: $isFocused
                 )
+                .onDisappear {
+                    exerciseListVM.clearLapInputs()
+                }
             }
             FetchedExerciseListView(viewModel: $exerciseListVM)
         }
