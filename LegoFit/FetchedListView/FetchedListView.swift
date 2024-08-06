@@ -19,7 +19,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),
                 id: \.self
             ) { section in
-                Section(section) {
+                Section {
                     ForEach(
                         fetchedListVM.sortedByCategoryExercises[section] ?? []
                     ) { exercise in
@@ -40,6 +40,20 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                         }
                         .mainRowStyle()
                     }
+                } header: {
+                    VStack {
+                        HStack {
+                            Text(section)
+                                .foregroundStyle(.white)
+                                .font(.system(size: 16))
+                            Spacer()
+                            if fetchedListVM.isFetching {
+                                ProgressView()
+                                    .tint(.main)
+                            }
+                        }
+                        Divider()
+                    }
                 }
             }
             .mainListStyle()
@@ -47,11 +61,13 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 MainGradientBackground()
             )
             .refreshable {
-                fetchedListVM.fetchExercises()
+                Task {
+                    await fetchedListVM.refreshExercises()
+                }
             }
         }
-        .onAppear {
-            fetchedListVM.fetchExercises()
+        .task {
+            await fetchedListVM.fetchExercises()
         }
         .sheet(item: $viewModel.sheetExercise) { _ in
             FetchedListDetailsView(viewModel: $viewModel)

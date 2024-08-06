@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Divider: View {
     var body: some View {
-        Rectangle()
+        RoundedRectangle(cornerRadius: 20)
             .frame(height: 2)
             .foregroundStyle(.main)
             .shadow(color: .main, radius: 5, y: 2)

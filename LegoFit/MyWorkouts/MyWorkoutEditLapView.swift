@@ -70,6 +70,7 @@ struct MyWorkoutEditLapView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { isPresented.toggle() }, label: {
                         Image(systemName: "plus.circle")
+                            .font(.title3)
                     })
                 }
             }

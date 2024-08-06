@@ -10,6 +10,8 @@ import Observation
 
 @Observable
 final class FetchedListViewModel {
+    var isFetching = false
+    
     var errorMessage: String? = nil
     var isAlertPresented = false
     
@@ -26,15 +28,24 @@ final class FetchedListViewModel {
     private var exercises: [Exercise] = []
     private let networkManager = NetworkManager.shared
     
-    func fetchExercises() {
-        Task {
-            do {
-                exercises = try await networkManager.fetchExercise()
-            } catch {
-                exercises = []
-                errorMessage = error.localizedDescription
-                isAlertPresented.toggle()
-            }
+    func fetchExercises() async {
+        do {
+            isFetching.toggle()
+            exercises = try await networkManager.fetchExercise()
+        } catch {
+            exercises = []
+            errorMessage = error.localizedDescription
+            isAlertPresented.toggle()
         }
+        isFetching = false
+    }
+    
+    func refreshExercises() async {
+        exercises = []
+        do {
+            isFetching.toggle()
+            try await Task.sleep(nanoseconds: 1_000_000_000)
+            await fetchExercises()
+        } catch {}
     }
 }
