@@ -19,6 +19,9 @@ struct CreateWorkoutSaveView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        isFocused = false
+                    }
                 
                 VStack(alignment: .center, spacing: 25) {
                     InputNameTF(
@@ -53,9 +56,6 @@ struct CreateWorkoutSaveView: View {
                     }
                 }
             }
-            .onTapGesture {
-                isFocused = false
-            }
         }
     }
 }
@@ -73,6 +73,17 @@ fileprivate struct InputNameTF: View {
                     .stroke(Color.main)
             )
             .focused($isFocused)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            isFocused.toggle()
+                        }
+                        .tint(.green)
+                    }
+                }
+            }
     }
 }
 
