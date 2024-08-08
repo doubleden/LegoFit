@@ -12,77 +12,88 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
     @State private var fetchedListVM = FetchedListViewModel()
     
     var body: some View {
-        VStack(spacing: 0) {
-            Divider()
-            
-            ScrollView(.horizontal) {
-                LazyHStack(spacing: 10) {
-                    ForEach(fetchedListVM.exerciseCategoriesAll) { category in
-                        CategoryButton(title: category.title) {
-                            fetchedListVM.showFiltered(category: category)
+        ZStack {
+            VStack(spacing: 0) {
+                Divider()
+                
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 10) {
+                        ForEach(fetchedListVM.exerciseCategoriesAll) { category in
+                            CategoryButton(title: category.title) {
+                                fetchedListVM.showFiltered(category: category)
+                            }
                         }
                     }
                 }
-            }
-            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
-            .frame(height: 50)
-            .background(.cosmos)
-            
-            List(fetchedListVM.exercisesCategories) { category in
-                Section {
-                    ForEach(
-                        category.exercises
-                    ) { exercise in
-                        Button(action: {
-                            viewModel.sheetExercise = exercise
-                        }, label: {
-                            Text(exercise.name)
-                                .foregroundStyle(.white)
-                            
-                        })
-                        .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                .frame(height: 50)
+                .background(.cosmos)
+                
+                List(fetchedListVM.exercisesCategories) { category in
+                    Section {
+                        ForEach(
+                            category.exercises
+                        ) { exercise in
                             Button(action: {
-                                viewModel.add(exercise: exercise)
+                                viewModel.sheetExercise = exercise
                             }, label: {
-                                Image(systemName: "plus.circle.dashed")
+                                Text(exercise.name)
+                                    .foregroundStyle(.white)
+                                
                             })
-                            .tint(.main)
+                            .swipeActions(edge: .leading, allowsFullSwipe:true) {
+                                Button(action: {
+                                    viewModel.add(exercise: exercise)
+                                }, label: {
+                                    Image(systemName: "plus.circle.dashed")
+                                })
+                                .tint(.main)
+                            }
+                            .mainRowStyle()
                         }
-                        .mainRowStyle()
+                    } header: {
+                        VStack {
+                            HStack {
+                                Text(category.title)
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 16))
+                                Spacer()
+                            }
+                            Divider()
+                        }
                     }
-                } header: {
-                    VStack {
-                        HStack {
-                            Text(category.title)
-                                .foregroundStyle(.white)
-                                .font(.system(size: 16))
-                            Spacer()
-                        }
-                        Divider()
+                }
+                .mainListStyle()
+                .background(
+                    MainGradientBackground()
+                )
+                .refreshable {
+                    Task {
+                        await fetchedListVM.refreshExercises()
                     }
                 }
             }
-            .mainListStyle()
-            .background(
-                MainGradientBackground()
-            )
-            .refreshable {
-                Task {
-                    await fetchedListVM.refreshExercises()
-                }
+            .task {
+                await fetchedListVM.fetchExercises()
             }
-        }
-        .task {
-            await fetchedListVM.fetchExercises()
-        }
-        .sheet(item: $viewModel.sheetExercise) { _ in
-            FetchedListDetailsView(viewModel: $viewModel)
-                .presentationBackground(.black)
-                .presentationDragIndicator(.visible)
-        }
-        .alert(fetchedListVM.errorMessage ?? "",
-               isPresented: $fetchedListVM.isAlertPresented) {
-            Button("Ok", role: .cancel) {}
+            .sheet(item: $viewModel.sheetExercise) { _ in
+                FetchedListDetailsView(viewModel: $viewModel)
+                    .presentationBackground(.black)
+                    .presentationDragIndicator(.visible)
+            }
+            .alert(fetchedListVM.errorMessage ?? "",
+                   isPresented: $fetchedListVM.isAlertPresented) {
+                Button("Ok", role: .cancel) {}
+            }
+            
+            if fetchedListVM.isFetching {
+                ProgressView {
+                    Text("loading...")
+                }
+                .progressViewStyle(.circular)
+                .tint(.white)
+            }
+                
         }
     }
 }
