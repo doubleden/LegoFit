@@ -17,27 +17,21 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
             
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 10) {
-                    ForEach(
-                        Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),
-                        id: \.self
-                    ) { section in
-                        CategoryButton(title: section) {
-                            // logic for filter 
+                    ForEach(fetchedListVM.exerciseCategoriesAll) { category in
+                        CategoryButton(title: category.title) {
+                            fetchedListVM.showFiltered(category: category)
                         }
                     }
                 }
             }
-            .padding(.top, 10)
+            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
             .frame(height: 50)
             .background(.cosmos)
             
-            List(
-                Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),
-                id: \.self
-            ) { section in
+            List(fetchedListVM.exercisesCategories) { category in
                 Section {
                     ForEach(
-                        fetchedListVM.sortedByCategoryExercises[section] ?? []
+                        category.exercises
                     ) { exercise in
                         Button(action: {
                             viewModel.sheetExercise = exercise
@@ -59,14 +53,10 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 } header: {
                     VStack {
                         HStack {
-                            Text(section)
+                            Text(category.title)
                                 .foregroundStyle(.white)
                                 .font(.system(size: 16))
                             Spacer()
-                            if fetchedListVM.isFetching {
-                                ProgressView()
-                                    .tint(.main)
-                            }
                         }
                         Divider()
                     }

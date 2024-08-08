@@ -10,6 +10,7 @@
 		0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */; };
 		0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3BA2C595392006FB721 /* SaveButton.swift */; };
 		050AFB5B2C64BF9F0001AA81 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AFB5A2C64BF9F0001AA81 /* CategoryButton.swift */; };
+		050AFB5D2C6562250001AA81 /* ExerciseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */; };
 		05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEA2C621346009E7954 /* FetchedListViewable.swift */; };
 		05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
@@ -78,6 +79,7 @@
 		0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditLapView.swift; sourceTree = "<group>"; };
 		0502F3BA2C595392006FB721 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		050AFB5A2C64BF9F0001AA81 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategory.swift; sourceTree = "<group>"; };
 		05138FEA2C621346009E7954 /* FetchedListViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewable.swift; sourceTree = "<group>"; };
 		05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCellDeletable.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				0525D3AB2C0908E10007F632 /* Workout.swift */,
 				0581615E2C3492D30012E105 /* Lap.swift */,
 				05C72FAD2C301BF9003ECC82 /* Exercise.swift */,
+				050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */,
 				0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */,
 				0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */,
+				050AFB5D2C6562250001AA81 /* ExerciseCategory.swift in Sources */,
 				052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */,
 				05BC717F2C0646F400524C58 /* ContentView.swift in Sources */,
 				052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */,

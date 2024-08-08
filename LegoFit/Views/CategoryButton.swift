@@ -14,7 +14,10 @@ struct CategoryButton: View {
     @State private var isDisabled = true
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            isDisabled.toggle()
+            action()
+        }) {
             Text(title)
                 .foregroundStyle(isDisabled ? .gray : .white)
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
@@ -36,12 +39,9 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .shadow(color: isDisabled ? .clear : .venom, radius: 2)
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-            .onTapGesture {
-                isDisabled.toggle()
-            }
     }
 }
 
 #Preview {
-    CategoryButton(title: "Shoulders", action: {})
+    CategoryButton(title: "shoulders", action: {})
 }
