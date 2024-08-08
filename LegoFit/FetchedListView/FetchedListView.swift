@@ -12,8 +12,24 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
     @State private var fetchedListVM = FetchedListViewModel()
     
     var body: some View {
-        VStack(spacing: -1) {
+        VStack(spacing: 0) {
             Divider()
+            
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 10) {
+                    ForEach(
+                        Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),
+                        id: \.self
+                    ) { section in
+                        CategoryButton(title: section) {
+                            // logic for filter 
+                        }
+                    }
+                }
+            }
+            .padding(.top, 10)
+            .frame(height: 50)
+            .background(.cosmos)
             
             List(
                 Array(fetchedListVM.sortedByCategoryExercises.keys.sorted()),

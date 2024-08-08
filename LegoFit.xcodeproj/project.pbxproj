@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */; };
 		0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502F3BA2C595392006FB721 /* SaveButton.swift */; };
+		050AFB5B2C64BF9F0001AA81 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AFB5A2C64BF9F0001AA81 /* CategoryButton.swift */; };
 		05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEA2C621346009E7954 /* FetchedListViewable.swift */; };
 		05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
@@ -76,6 +77,7 @@
 /* Begin PBXFileReference section */
 		0502F3B82C5941D7006FB721 /* MyWorkoutEditLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditLapView.swift; sourceTree = "<group>"; };
 		0502F3BA2C595392006FB721 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		050AFB5A2C64BF9F0001AA81 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		05138FEA2C621346009E7954 /* FetchedListViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewable.swift; sourceTree = "<group>"; };
 		05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCellDeletable.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				05F87D292C0B7C8400AFB4CA /* ExerciseImageView.swift */,
+				050AFB5A2C64BF9F0001AA81 /* CategoryButton.swift */,
 				058882F12C1E35CE00451030 /* ParameterTFView.swift */,
 				0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */,
 				058882EF2C1E31A300451030 /* LabelGradientBackground.swift */,
@@ -428,6 +431,7 @@
 				05BC99C02C4AF44100ED5B0D /* HistoryWorkoutView.swift in Sources */,
 				05AA11462C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift in Sources */,
 				0525D3A52C0900CB0007F632 /* NetworkManager.swift in Sources */,
+				050AFB5B2C64BF9F0001AA81 /* CategoryButton.swift in Sources */,
 				0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */,
 				05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */,
 				05BC99B42C4AEE5C00ED5B0D /* extension + View.swift in Sources */,

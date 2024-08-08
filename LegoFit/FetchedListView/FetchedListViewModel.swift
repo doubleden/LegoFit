@@ -10,7 +10,7 @@ import Observation
 
 @Observable
 final class FetchedListViewModel {
-    var isFetching = false
+    var isFetching = true
     
     var errorMessage: String? = nil
     var isAlertPresented = false
@@ -30,7 +30,6 @@ final class FetchedListViewModel {
     
     func fetchExercises() async {
         do {
-            isFetching.toggle()
             exercises = try await networkManager.fetchExercise()
         } catch {
             exercises = []
@@ -42,8 +41,8 @@ final class FetchedListViewModel {
     
     func refreshExercises() async {
         exercises = []
+        isFetching.toggle()
         do {
-            isFetching.toggle()
             try await Task.sleep(nanoseconds: 1_000_000_000)
             await fetchExercises()
         } catch {}
