@@ -12,9 +12,10 @@ struct MyExerciseCellView: View {
     var isInLap = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        HStack {
             Text(exercise.name)
                 .tint(.white)
+            Spacer()
             HStack(spacing: 5) {
                 if !isInLap {
                     Text("\(exercise.approach ?? 0) /")

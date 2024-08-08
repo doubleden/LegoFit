@@ -114,7 +114,7 @@ fileprivate struct ExerciseList: View {
                 }
             }
             .mainListStyle()
-            .padding()
+            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutEditExerciseView(
                     myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel(
                         exercise: exercise,
