@@ -20,7 +20,7 @@ struct CategoryButton: View {
         }) {
             Text(title)
                 .foregroundStyle(isDisabled ? .gray : .white)
-                .padding(EdgeInsets(top: 9, leading: 14, bottom: 9, trailing: 14))
+                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
         }
         .buttonStyle(CustomButtonStyle(isDisabled: $isDisabled))
     }

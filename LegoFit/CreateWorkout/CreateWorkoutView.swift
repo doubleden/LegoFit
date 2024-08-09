@@ -24,7 +24,7 @@ struct CreateWorkoutView: View {
                 exerciseListVM: $createWorkoutVM.exerciseListAddVM,
                 isFocused: $isFocused
             )
-            .padding(.top, 20)
+            .padding(.top, 25)
             
             // Экран сохранения
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented,
@@ -43,13 +43,14 @@ struct CreateWorkoutView: View {
                     }
                 }
                 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .principal) {
                     ButtonWorkoutView(createWorkoutVM: $createWorkoutVM)
+                        .padding(.top, 10)
+                        .padding(.bottom, 5)
                 }
             }
         }
         .navigationBarBackButtonHidden()
-        .navigationTitle("Exercises")
         .navigationBarTitleDisplayMode(.inline)
         .tint(.white)
     }
@@ -72,7 +73,7 @@ fileprivate struct ButtonWorkoutView: View {
                     .frame(width: 20)
                     .background(.venom)
                     .clipShape(Circle())
-                    .offset(x: 30, y: -15)
+                    .offset(x: 40, y: -17)
             }
         }
     }
@@ -81,13 +82,20 @@ fileprivate struct ButtonWorkoutView: View {
 fileprivate struct CustomButtonStyle: ButtonStyle {
     let isDisabled: Bool
     
+    let off = AngularGradient(colors: [.offButton], center: .center)
+    let on = AngularGradient(
+        gradient: Gradient(colors: [.violet, .rose, .night, .sky, .cosmos]),
+        center: .top,
+        angle: .degrees(40)
+    )
+    
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8))
+            .padding(EdgeInsets(top: 8, leading: 13, bottom: 8, trailing: 13))
             .foregroundStyle(isDisabled ? .gray : .white)
-            .background(isDisabled ? .offButton : .main)
-            .clipShape(.rect(cornerRadius: 20))
+            .background(isDisabled ? off : on)
+            .clipShape(.rect(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 0.7 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }

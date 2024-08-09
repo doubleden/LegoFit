@@ -80,7 +80,6 @@ fileprivate struct InputNameTF: View {
                         Button("Done") {
                             isFocused.toggle()
                         }
-                        .tint(.green)
                     }
                 }
             }

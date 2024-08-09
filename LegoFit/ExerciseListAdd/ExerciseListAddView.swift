@@ -28,6 +28,9 @@ struct ExerciseListAddView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 ButtonLap(isAddingLap: $exerciseListVM.isAddingLap)
             }
+            ToolbarItem(placement: .topBarTrailing) {
+                Spacer()
+            }
         }
     }
 }
