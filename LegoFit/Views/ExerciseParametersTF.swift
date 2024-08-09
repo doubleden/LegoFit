@@ -8,15 +8,15 @@
 import SwiftUI
 
 enum FocusedTextField {
-    case sets
-    case reps
+    case approach
+    case repetition
     case weight
     case comment
 }
 
 struct ExerciseParametersTF: View {
-    @Binding var sets: String
-    @Binding var reps: String
+    @Binding var approach: String
+    @Binding var repetition: String
     @Binding var weight: String
     @Binding var comment: String
     var isAddingLaps = false
@@ -26,11 +26,11 @@ struct ExerciseParametersTF: View {
         VStack(spacing: 12) {
             VStack(alignment: .leading) {
                 if !isAddingLaps {
-                    ParameterTFView(title: "Sets", placeholder: "0", input: $sets)
-                        .focused($isFocused, equals: .sets)
+                    ParameterTFView(title: "Sets", placeholder: "0", input: $approach)
+                        .focused($isFocused, equals: .approach)
                 }
-                ParameterTFView(title: "Reps", placeholder: "0", input: $reps)
-                    .focused($isFocused, equals: .reps)
+                ParameterTFView(title: "Reps", placeholder: "0", input: $repetition)
+                    .focused($isFocused, equals: .repetition)
                 ParameterTFView(title: "Weight", placeholder: "0", isWeight: true, input: $weight)
                     .focused($isFocused, equals: .weight)
                     .padding(.bottom, 20)
@@ -49,6 +49,9 @@ struct ExerciseParametersTF: View {
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack(spacing: 20) {
+                    Button("Clear") {
+                        clearFocusedTextField()
+                    }
                     Spacer()
                     if isFocused == .weight {
                         Button(action: {
@@ -69,11 +72,26 @@ struct ExerciseParametersTF: View {
         }
     }
     
+    private func clearFocusedTextField() {
+        switch isFocused {
+        case .approach:
+            approach = ""
+        case .repetition:
+            repetition = ""
+        case .weight:
+            weight = ""
+        case .comment:
+            comment = ""
+        case nil:
+            return
+        }
+    }
+    
     private func changeIsFocused() {
         switch isFocused {
-        case .sets:
-            isFocused = .reps
-        case .reps:
+        case .approach:
+            isFocused = .repetition
+        case .repetition:
             isFocused = .weight
         case .weight:
             isFocused = .comment
@@ -97,8 +115,8 @@ struct ExerciseParametersTF: View {
 #Preview {
     @FocusState var focusedField: FocusedTextField?
     return ExerciseParametersTF(
-        sets: .constant("2"),
-        reps: .constant("15"),
+        approach: .constant("2"),
+        repetition: .constant("15"),
         weight: .constant("150"),
         comment: .constant("С резинками"), isAddingLaps: false, isFocused: $focusedField
     )

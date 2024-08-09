@@ -36,8 +36,8 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
                             .font(.subheadline)
                         
                         ExerciseParametersTF(
-                            sets: $fetchedListDetailsVM.approachInputExercise,
-                            reps: $fetchedListDetailsVM.repInputExercise,
+                            approach: $fetchedListDetailsVM.approachInputExercise,
+                            repetition: $fetchedListDetailsVM.repInputExercise,
                             weight: $fetchedListDetailsVM.weightInputExercise,
                             comment: $fetchedListDetailsVM.commentInputExercise,
                             isAddingLaps: viewModel.isAddingLap,
