@@ -31,7 +31,6 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
                         )
                         
                         ExerciseImageView(imageUrl: exercise.image)
-                            .shadow(color: .main, radius: 10, x: 3, y: 3)
                         
                         Text(exercise.description)
                             .font(.subheadline)

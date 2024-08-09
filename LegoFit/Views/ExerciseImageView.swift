@@ -14,15 +14,16 @@ struct ExerciseImageView: View {
     var body: some View {
         KFImage(URL(string: imageUrl))
             .placeholder {
-                Image(systemName: "questionmark")
+                Image("placeholderImage")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 30)
             }
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: 300, maxHeight: 400)
             .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(color: .indigo, radius: 5)
     }
 }
 
