@@ -13,6 +13,7 @@
 		050AFB5D2C6562250001AA81 /* ExerciseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */; };
 		05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEA2C621346009E7954 /* FetchedListViewable.swift */; };
 		05138FED2C621384009E7954 /* ExerciseListCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */; };
+		0518169E2C66D6AC00EB9DEC /* MainOpacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
 		0524622C2C5E9CC000C4090A /* ButtonLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524622B2C5E9CC000C4090A /* ButtonLap.swift */; };
@@ -83,6 +84,7 @@
 		050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategory.swift; sourceTree = "<group>"; };
 		05138FEA2C621346009E7954 /* FetchedListViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewable.swift; sourceTree = "<group>"; };
 		05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListCellDeletable.swift; sourceTree = "<group>"; };
+		0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOpacity.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapExerciseRowStyle.swift; sourceTree = "<group>"; };
 		0524622B2C5E9CC000C4090A /* ButtonLap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLap.swift; sourceTree = "<group>"; };
@@ -152,6 +154,14 @@
 				05138FEC2C621384009E7954 /* ExerciseListCellDeletable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0518169C2C66D68300EB9DEC /* Alies */ = {
+			isa = PBXGroup;
+			children = (
+				0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */,
+			);
+			path = Alies;
 			sourceTree = "<group>";
 		};
 		0525D39F2C08F9840007F632 /* CreateWorkout */ = {
@@ -280,6 +290,7 @@
 				05138FE92C62131E009E7954 /* Protocols */,
 				052BA4202C5AB36900892ED7 /* Styles */,
 				05BC718D2C08E9FA00524C58 /* Services */,
+				0518169C2C66D68300EB9DEC /* Alies */,
 				05BC71802C0646F500524C58 /* Assets.xcassets */,
 				05C72FAC2C301BB8003ECC82 /* PreviewSupports */,
 				05BC71822C0646F500524C58 /* Preview Content */,
@@ -446,6 +457,7 @@
 				053763B42C5D657900312A77 /* FetchedListDetailsView.swift in Sources */,
 				05BC99BA2C4AF09200ED5B0D /* MainGradientBackground.swift in Sources */,
 				0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */,
+				0518169E2C66D6AC00EB9DEC /* MainOpacity.swift in Sources */,
 				05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */,
 				05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */,
 				053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */,

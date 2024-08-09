@@ -16,16 +16,12 @@ struct ContentView: View {
                     Image(systemName: "dumbbell")
                     Text("My workouts")
                 }
-                .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(.cosmos, for: .tabBar)
             
             HistoryWorkoutView()
                 .tabItem {
                     Image(systemName: "book.fill")
                     Text("History")
                 }
-                .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(.cosmos, for: .tabBar)
         }
         .tint(.white)
     }

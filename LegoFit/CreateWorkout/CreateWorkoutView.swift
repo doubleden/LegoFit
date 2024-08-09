@@ -24,7 +24,7 @@ struct CreateWorkoutView: View {
                 exerciseListVM: $createWorkoutVM.exerciseListAddVM,
                 isFocused: $isFocused
             )
-            .padding(.top, 25)
+            .padding(.top, 20)
             
             // Экран сохранения
             .sheet(isPresented: $createWorkoutVM.isSaveSheetPresented,
@@ -82,7 +82,7 @@ fileprivate struct ButtonWorkoutView: View {
 fileprivate struct CustomButtonStyle: ButtonStyle {
     let isDisabled: Bool
     
-    let off = AngularGradient(colors: [.offButton], center: .center)
+    let off = AngularGradient(colors: [.black, .cosmos, .offButton, .black, .offButton], center: .top, angle: .degrees(40))
     let on = AngularGradient(
         gradient: Gradient(colors: [.violet, .rose, .night, .sky, .cosmos]),
         center: .top,

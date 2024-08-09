@@ -148,7 +148,7 @@ struct ListEditButton: View {
     
     var body: some View {
         Button("Edit", action: action)
-        .tint(.main)
+        .tint(.night)
     }
 }
 

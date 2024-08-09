@@ -28,7 +28,6 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 .scrollIndicators(.hidden)
                 .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                 .frame(height: 60)
-                .background(.cosmos)
                 
                 List(fetchedListVM.exercisesCategories) { category in
                     Section {
@@ -48,7 +47,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                                 }, label: {
                                     Image(systemName: "plus.circle.dashed")
                                 })
-                                .tint(.main)
+                                .tint(.night)
                             }
                             .mainRowStyle()
                         }
@@ -65,9 +64,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                     }
                 }
                 .mainListStyle()
-                .background(
-                    MainGradientBackground()
-                )
+                .background(.clear)
                 .refreshable {
                     Task {
                         await fetchedListVM.refreshExercises()
@@ -94,7 +91,6 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 .progressViewStyle(.circular)
                 .tint(.white)
             }
-                
         }
     }
 }

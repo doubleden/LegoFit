@@ -18,6 +18,12 @@ struct ExerciseListAddView: View {
                     exerciseListVM: $exerciseListVM,
                     isFocused: $isFocused
                 )
+                .transition(
+                    .asymmetric(
+                        insertion: .scale(scale: 0, anchor: .topTrailing),
+                        removal: .scale(scale: 0, anchor: .topTrailing)
+                    )
+                )
                 .onDisappear {
                     exerciseListVM.clearLapInputs()
                 }
@@ -47,7 +53,7 @@ fileprivate struct LapElements: View {
                 .frame(width: 170, height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.main)
+                        .stroke(Color.sky)
                 )
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {
@@ -87,9 +93,6 @@ fileprivate struct LapElements: View {
                 isFocused = false
             }
         })
-        .onChange(of: exerciseListVM.isAddingLap) { _, _ in
-            exerciseListVM.clearLapInputs()
-        }
     }
 }
 

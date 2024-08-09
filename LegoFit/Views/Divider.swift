@@ -11,8 +11,8 @@ struct Divider: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .frame(height: 2)
-            .foregroundStyle(.main)
-            .shadow(color: .main, radius: 5, y: 2)
+            .foregroundStyle(.sky)
+            .shadow(color: .night, radius: 5, y: 2)
     }
 }
 

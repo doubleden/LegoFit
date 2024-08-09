@@ -21,8 +21,8 @@ struct CircleButton: View {
                 Circle()
                     .frame(width: width, height: height)
                     .foregroundStyle(isDisable
-                                     ? Gradient(colors: [.gray])
-                                     : Gradient(colors: [.main, .violet]))
+                                     ? AngularGradient(colors: [.gray], center: .center)
+                                     : AngularGradient(colors: [.venom, .blue, .sky], center: .center, angle: .degrees(360)))
                     .shadow(color: .violet, radius: isDisable ? 0 : 4)
                 icon
                     .foregroundStyle(.black)

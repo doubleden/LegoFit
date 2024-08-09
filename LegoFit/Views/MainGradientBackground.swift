@@ -9,12 +9,10 @@ import SwiftUI
 
 struct MainGradientBackground: View {
     var body: some View {
-        LinearGradient(
-            gradient: Gradient(
-                colors: [.cosmos, .black]
-            ),
-            startPoint: .center,
-            endPoint: .bottom
+        AngularGradient(
+            colors: [.night, .rose, .sky, .purple, .cosmos],
+            center: .top,
+            angle: .degrees(70)
         )
         .ignoresSafeArea()
     }

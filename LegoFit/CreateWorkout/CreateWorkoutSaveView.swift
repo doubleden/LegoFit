@@ -70,7 +70,7 @@ fileprivate struct InputNameTF: View {
             .frame(width: 300, height: 50)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.main)
+                    .stroke(Color.sky)
             )
             .focused($isFocused)
             .toolbar {
@@ -109,7 +109,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
         configuration.label
             .frame(width: 150 ,height: 50)
             .foregroundStyle(isDisabled ? .gray : .white)
-            .background(isDisabled ? .offButton : .main)
+            .background(isDisabled ? .offButton.opacity(mainOpacity) : .violet)
             .clipShape(.rect(cornerRadius: 5))
             .overlay(RoundedRectangle(cornerRadius: 5).stroke())
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
@@ -173,6 +173,7 @@ fileprivate struct DeleteButton: View {
             }
         }, label: {
             Image(systemName: "minus.circle")
+                .tint(.rose)
         })
     }
 }

@@ -15,7 +15,7 @@ struct SaveButton: View {
             action()
         }
         .padding(EdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20))
-        .background(.main)
+        .background(.violet)
         .tint(.white)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(RoundedRectangle(cornerRadius: 10).stroke())
