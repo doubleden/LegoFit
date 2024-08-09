@@ -43,7 +43,6 @@
                         <color key="backgroundColor" name="cosmos"/>
                         <constraints>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="hXj-vQ-jT2" secondAttribute="trailing" id="7P9-oc-hE6"/>
-                            <constraint firstItem="jQi-f7-FpA" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="279" id="8pG-58-FGE"/>
                             <constraint firstAttribute="bottom" secondItem="hXj-vQ-jT2" secondAttribute="bottom" id="L8w-mC-KQP"/>
                             <constraint firstItem="hXj-vQ-jT2" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Nl1-6N-ZB9"/>
                             <constraint firstItem="TMZ-O7-drc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TkV-Su-bUc"/>
