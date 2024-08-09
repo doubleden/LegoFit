@@ -51,7 +51,7 @@ fileprivate struct ExerciseList: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     @State var isPresented = false
     var body: some View {
-        VStack(spacing:(-15)) {
+        VStack(spacing:(0)) {
             Divider()
             List {
                 ForEach(myWorkoutVM.exercises) { exerciseType in
