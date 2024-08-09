@@ -25,8 +25,9 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
-                .frame(height: 50)
+                .scrollIndicators(.hidden)
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 10, trailing: 0))
+                .frame(height: 70)
                 .background(.cosmos)
                 
                 List(fetchedListVM.exercisesCategories) { category in

@@ -113,6 +113,7 @@ fileprivate struct ExerciseList: View {
                     EditButton()
                 }
             }
+            .scrollIndicators(.hidden)
             .mainListStyle()
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutEditExerciseView(
