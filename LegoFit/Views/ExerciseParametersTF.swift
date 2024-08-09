@@ -52,9 +52,9 @@ struct ExerciseParametersTF: View {
                     Spacer()
                     if isFocused == .weight {
                         Button(action: {
-                            weight += " + "
+                            weight += " + \(weight)"
                         }, label: {
-                            Image(systemName: "plus")
+                            Image(systemName: "dumbbell")
                         })
                     }
                     Button(
