@@ -136,7 +136,7 @@ fileprivate struct ExerciseList: View {
             
             .sheet(isPresented: $isPresented,
                    content: {
-                WorkoutAddExerciseView(workout: myWorkoutVM.workout)
+                EditMyWorkoutSingleView(workout: myWorkoutVM.workout)
                 .presentationDragIndicator(.visible)
             })
         }

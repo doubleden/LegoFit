@@ -76,8 +76,8 @@ struct MyWorkoutEditLapView: View {
             }
             .sheet(isPresented: $isPresented,
                    content: {
-                WorkoutAddExerciseToLapView(
-                    workoutEditLapVM: WorkoutAddExerciseToLapViewModel(
+                EditMyWorkoutLapView(
+                    workoutEditLapVM: EditMyWorkoutLapViewModel(
                         workout: workout,
                         lap: lap
                     )

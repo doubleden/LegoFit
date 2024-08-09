@@ -8,7 +8,7 @@
 import Observation
 
 @Observable
-final class WorkoutAddExerciseToLapViewModel: FetchedListViewable {
+final class EditMyWorkoutLapViewModel: FetchedListViewable {
     var sheetExercise: Exercise?
     var isAddingLap = true
     

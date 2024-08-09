@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutAddExerciseView: View {
+struct EditMyWorkoutSingleView: View {
     @State var workout: Workout
     
     @State private var exerciseListAddVM: ExerciseListAddViewModel
@@ -38,6 +38,6 @@ struct WorkoutAddExerciseView: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return WorkoutAddExerciseView(workout: Workout.getWorkout())
+    return EditMyWorkoutSingleView(workout: Workout.getWorkout())
         .modelContainer(container)
 }
