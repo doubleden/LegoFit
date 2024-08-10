@@ -104,12 +104,15 @@ fileprivate struct SaveWorkoutButton: View {
 fileprivate struct CustomButtonStyle: ButtonStyle {
     let isDisabled: Bool
     
+    let off = Gradient(colors: [.offButton.opacity(mainOpacity)])
+    let on = Gradient(colors: [.gray.opacity(mainOpacity), .violet])
+    
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 150 ,height: 50)
             .foregroundStyle(isDisabled ? .gray : .white)
-            .background(isDisabled ? .offButton.opacity(mainOpacity) : .violet)
+            .background(isDisabled ? off : on)
             .clipShape(.rect(cornerRadius: 5))
             .overlay(RoundedRectangle(cornerRadius: 5).stroke())
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
