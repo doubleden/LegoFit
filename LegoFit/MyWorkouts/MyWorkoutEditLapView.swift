@@ -35,15 +35,8 @@ struct MyWorkoutEditLapView: View {
                                 }
                             }
                             .focused($isFocused)
-                        Spacer()
-                        
-                        SaveButton {
-                            changeQuantity()
-                        }
-                        Spacer()
                     }
-                    .padding()
-                    .padding(.top, 20)
+                    .padding(.top, 30)
                     .onAppear {
                         quantity = lap.quantity
                         textInput = quantity.formatted()
@@ -67,11 +60,19 @@ struct MyWorkoutEditLapView: View {
             .navigationTitle("Quantity")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
                     Button(action: { isPresented.toggle() }, label: {
-                        Image(systemName: "plus.circle")
-                            .font(.title3)
+                        Text("Add Exercise")
+                            .foregroundStyle(.white)
+                            .padding(.leading, 6)
                     })
+                    .background(Gradient(colors: [.gray.opacity(mainOpacity), .blue]))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    SaveButton {
+                        changeQuantity()
+                    }
                 }
             }
             .sheet(isPresented: $isPresented,

@@ -11,14 +11,13 @@ struct SaveButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button("Save") {
-            action()
-        }
-        .padding(EdgeInsets(top: 8, leading: 20, bottom: 8, trailing: 20))
-        .background(.violet)
-        .tint(.white)
+        Button(action: action, label: {
+            Text("Save")
+                .foregroundStyle(.white)
+                .padding(.trailing, 6)
+        })
+        .background(Gradient(colors: [.gray.opacity(mainOpacity), .venom]))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke())
     }
 }
 

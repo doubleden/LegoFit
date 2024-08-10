@@ -40,6 +40,7 @@ struct ExerciseParametersTF: View {
                 .focused($isFocused, equals: .comment)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
+                .frame(width: 310)
         }
         .onChange(of: isFocused, { _, _ in
             if !isValid(weight: weight) {

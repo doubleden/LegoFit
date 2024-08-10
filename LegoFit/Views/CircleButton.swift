@@ -20,9 +20,18 @@ struct CircleButton: View {
             ZStack {
                 Circle()
                     .frame(width: width, height: height)
-                    .foregroundStyle(isDisable
-                                     ? AngularGradient(colors: [.gray], center: .center)
-                                     : AngularGradient(colors: [.venom, .blue, .sky], center: .center, angle: .degrees(360)))
+                    .foregroundStyle(
+                        isDisable
+                        ? AngularGradient(
+                            colors: [.gray],
+                            center: .center
+                        )
+                        : AngularGradient(
+                            colors: [.blue, .sky],
+                            center: .center,
+                            angle: .degrees(300)
+                        )
+                    )
                     .shadow(color: .violet, radius: isDisable ? 0 : 4)
                 icon
                     .foregroundStyle(.black)

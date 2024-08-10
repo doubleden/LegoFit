@@ -15,7 +15,7 @@ struct LapQuantityTF: View {
     let minusAction: () -> Void
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 35) {
             
             TextField("0", text: $input)
                 .textFieldStyle(OvalTextFieldStyle())
@@ -31,7 +31,6 @@ struct LapQuantityTF: View {
                     Image(systemName: "minus.circle")
                         .font(.title)
                 })
-                .tint(.main)
                 
                 Button(action: {
                     isFocused = false
@@ -40,8 +39,8 @@ struct LapQuantityTF: View {
                     Image(systemName: "plus.circle")
                         .font(.title)
                 })
-                .tint(.main)
             }
+            .tint(.white)
         }
     }
 }

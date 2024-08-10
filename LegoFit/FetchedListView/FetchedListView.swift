@@ -45,9 +45,9 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                                 Button(action: {
                                     viewModel.add(exercise: exercise)
                                 }, label: {
-                                    Image(systemName: "plus.circle.dashed")
+                                    Image(systemName: "plus.circle")
                                 })
-                                .tint(.night)
+                                .tint(.venom)
                             }
                             .mainRowStyle()
                         }

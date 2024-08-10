@@ -18,12 +18,11 @@ struct OvalTextFieldStyle: TextFieldStyle {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            .main,
-                            .violet
+                            .gray.opacity(mainOpacity)
                         ]
                     ),
                     startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+                    endPoint: .trailing
                 )
             )
             .clipShape(RoundedRectangle(cornerRadius: 20))

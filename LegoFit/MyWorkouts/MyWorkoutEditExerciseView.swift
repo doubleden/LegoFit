@@ -27,14 +27,6 @@ struct MyWorkoutEditExerciseView: View {
                             isAddingLaps: myWorkoutDetailsVM.isLap,
                             isFocused: $isFocused
                         )
-                        
-                        SaveButton {
-                            if myWorkoutDetailsVM.weight.isEmpty {
-                                myWorkoutDetailsVM.weight = "0"
-                            }
-                            myWorkoutDetailsVM.saveСhanges()
-                            dismiss()
-                        }
                     }
                     .onAppear {
                         myWorkoutDetailsVM.setupTextFields()
@@ -47,6 +39,17 @@ struct MyWorkoutEditExerciseView: View {
             }
             .navigationTitle(myWorkoutDetailsVM.exercise.name)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    SaveButton {
+                        if myWorkoutDetailsVM.weight.isEmpty {
+                            myWorkoutDetailsVM.weight = "0"
+                        }
+                        myWorkoutDetailsVM.saveСhanges()
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }

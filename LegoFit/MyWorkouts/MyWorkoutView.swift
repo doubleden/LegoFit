@@ -94,7 +94,7 @@ fileprivate struct ExerciseList: View {
                             Button("Edit lap", action: {
                                 myWorkoutVM.showEditLapView(lap: lap)
                             })
-                            .tint(Color.violet)
+                            .tint(.orange)
                         }
                         .mainRowStyle()
                         .tint(.white)
@@ -124,13 +124,13 @@ fileprivate struct ExerciseList: View {
                         workout: myWorkoutVM.workout
                     )
                 )
-            .presentationDetents([.medium])
+            .presentationDetents([.height(300)])
             .presentationDragIndicator(.visible)
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
                 MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
-                    .presentationDetents([.medium])
+                    .presentationDetents([.height(220)])
                     .presentationDragIndicator(.visible)
             }
             
@@ -148,7 +148,7 @@ struct ListEditButton: View {
     
     var body: some View {
         Button("Edit", action: action)
-        .tint(.night)
+            .tint(.yellowEdit)
     }
 }
 
