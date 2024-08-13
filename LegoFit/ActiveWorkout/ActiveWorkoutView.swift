@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ActiveWorkoutView: View {
-    @Bindable var activeWorkoutVM: ActiveWorkoutViewModel
+    @Binding var workout: Workout
+    @State private var activeWorkoutVM = ActiveWorkoutViewModel()
     
     var body: some View {
         Text("Start")
     }
+    
 }
 
 #Preview {
     let container = DataController.previewContainer
 
-    return ActiveWorkoutView(activeWorkoutVM: ActiveWorkoutViewModel())
+    return ActiveWorkoutView(workout: .constant(Workout.getWorkout()))
         .modelContainer(container)
 }

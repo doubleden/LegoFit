@@ -28,16 +28,14 @@ struct MyWorkoutView: View {
                 ExerciseList(myWorkoutVM: myWorkoutVM)
             }
             .navigationTitle(myWorkoutVM.workout.name)
-    //        .navigationDestination(
-    //            isPresented: $myWorkoutVM.isWorkoutStart,
-    //            destination: {
-    //                ActiveWorkoutView(
-    //                    activeWorkoutVM: ActiveWorkoutViewModel(
-    //                        workout: myWorkoutVM.workout
-    //                    )
-    //                )
-    //            }
-    //        )
+            .navigationDestination(
+                isPresented: $myWorkoutVM.isWorkoutStart,
+                destination: {
+                    ActiveWorkoutView(
+                        workout: $myWorkoutVM.workout
+                    )
+                }
+            )
             
             .alert(myWorkoutVM.alertMessage ?? "",
                    isPresented: $myWorkoutVM.isAlertPresented,
