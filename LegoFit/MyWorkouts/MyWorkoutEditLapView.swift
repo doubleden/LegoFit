@@ -21,7 +21,7 @@ struct MyWorkoutEditLapView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
-                
+                    .blur(radius: 10)
                 ScrollView {
                     VStack(spacing: 30) {
                         LapQuantityTF(

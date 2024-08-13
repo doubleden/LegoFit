@@ -17,6 +17,7 @@ struct MyWorkoutEditExerciseView: View {
             ZStack {
                 MainGradientBackground()
                     .ignoresSafeArea()
+                    .blur(radius: 10)
                 ScrollView {
                     VStack(spacing: 20) {
                         ExerciseParametersTF(
