@@ -38,7 +38,7 @@ struct MyWorkoutEditLapView: View {
                     }
                     .padding(.top, 30)
                     .onAppear {
-                        quantity = lap.quantity
+                        quantity = lap.approach
                         textInput = quantity.formatted()
                     }
                     .onChange(of: quantity) { _ , newValue in
@@ -86,7 +86,7 @@ struct MyWorkoutEditLapView: View {
     private func changeQuantity() {
         guard let lapIndex = workout.findIndex(ofLap: lap) else { return }
         if case .lap(var workoutLap) = workout.exercises[lapIndex] {
-            workoutLap.quantity = quantity
+            workoutLap.approach = quantity
             workout.exercises[lapIndex] = .lap(workoutLap)
         }
     }

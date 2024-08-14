@@ -21,10 +21,11 @@ struct ActiveWorkoutView: View {
             MainGradientBackground()
                 .ignoresSafeArea()
                 .blur(radius: 3)
-            if activeWorkoutVM.workout.isDone {
+            if activeWorkoutVM.isExercisesCompleted || workout.isDone {
                 VStack {
                     Text("Congratulations you did it!")
                     Button("Exit") {
+                        workout.isDone.toggle()
                         dismiss()
                     }
                 }
@@ -54,7 +55,7 @@ struct ActiveWorkoutView: View {
                             }
                         case .lap(let lap):
                             VStack {
-                                Text("Quantity: \(lap.quantity) of \(activeWorkoutVM.completedApproach)")
+                                Text("Quantity: \(lap.approach) of \(activeWorkoutVM.completedApproach)")
                                 List(lap.exercises) { exercise in
                                     HStack {
                                         ExerciseImageView(imageUrl: exercise.image)
@@ -84,23 +85,13 @@ struct ActiveWorkoutView: View {
                     Spacer()
                     
                     Button(action: {
-                        switch exercise {
-                        case .single(let single):
-                            withAnimation {
-                                activeWorkoutVM.didFinish(
-                                    approach: single.approach ?? 0
-                                )
-                            }
-                            activeWorkoutVM.doneWorkout(single.approach ?? 0)
-                            
-                        case .lap(let lap):
-                            withAnimation {
-                                activeWorkoutVM.didFinish(approach: lap.quantity)
-                            }
-                            activeWorkoutVM.doneWorkout(lap.quantity)
+                        withAnimation(.easeIn) {
+                            activeWorkoutVM.didFinish()
+                            activeWorkoutVM.doneWorkout()
                         }
+                        activeWorkoutVM.setButtonTittle()
                     }, label: {
-                        Text("Done Set")
+                        Text(activeWorkoutVM.buttonTitle)
                             .tint(.green)
                     })
                     

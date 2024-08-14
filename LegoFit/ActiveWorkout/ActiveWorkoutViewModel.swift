@@ -10,8 +10,11 @@ import Observation
 @Observable
 final class ActiveWorkoutViewModel {
     
+    var buttonTitle = "Done Set"
     var completedApproach = 0
     var queue = 0
+    
+    var isExercisesCompleted = false
     
     var currentExercise: ExerciseType {
         workout.exercises[queue]
@@ -21,14 +24,14 @@ final class ActiveWorkoutViewModel {
         workout.exercises.count - 1 == queue
     }
     
-    var workout: Workout
+    private var workout: Workout
     
     init(workout: Workout) {
         self.workout = workout
     }
     
-    func didFinish(approach: Int) {
-        if completedApproach == approach {
+    func didFinish() {
+        if completedApproach == currentExercise.approach {
             queue += 1
             completedApproach = 0
         } else {
@@ -36,9 +39,22 @@ final class ActiveWorkoutViewModel {
         }
     }
     
-    func doneWorkout(_ exerciseApproach: Int) {
-        if isLastExercise && completedApproach == exerciseApproach {
-            workout.isDone.toggle()
+    func doneWorkout() {
+        if isLastExercise && completedApproach == currentExercise.approach {
+            isExercisesCompleted.toggle()
+        }
+    }
+    
+    func setButtonTittle() {
+        // последние упражнение и предпоследний подход
+        if isLastExercise && completedApproach == currentExercise.approach - 1 {
+            buttonTitle = "Finish"
+            // просто предпоследний подход
+        } else if completedApproach == currentExercise.approach {
+            buttonTitle = "Next"
+            // закончить подход
+        } else {
+            buttonTitle = "Done Set"
         }
     }
 }

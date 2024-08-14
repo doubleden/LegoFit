@@ -8,20 +8,6 @@
 import Foundation
 import SwiftData
 
-enum ExerciseType: Codable, Identifiable, Equatable, Hashable {
-    case single(Exercise)
-    case lap(Lap)
-    
-    var id: UUID {
-        switch self {
-        case .single(let exercise):
-            exercise.id
-        case .lap(let lap):
-            lap.id
-        }
-    }
-}
-
 @Model
 final class Workout {
     var name: String
@@ -46,6 +32,30 @@ final class Workout {
         }
         
         return lapIndex
+    }
+}
+
+// MARK: - Enum ExerciseType
+enum ExerciseType: Codable, Identifiable, Equatable, Hashable {
+    case single(Exercise)
+    case lap(Lap)
+    
+    var id: UUID {
+        switch self {
+        case .single(let exercise):
+            exercise.id
+        case .lap(let lap):
+            lap.id
+        }
+    }
+    
+    var approach: Int {
+        switch self {
+        case .single(let single):
+            single.approach ?? 0
+        case .lap(let lap):
+            lap.approach
+        }
     }
 }
 

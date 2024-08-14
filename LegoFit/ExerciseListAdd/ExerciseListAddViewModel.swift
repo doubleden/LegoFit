@@ -29,7 +29,7 @@ final class ExerciseListAddViewModel: FetchedListViewable {
     }
     
     func addToWorkoutLap() {
-        let lap = Lap(quantity: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
+        let lap = Lap(approach: Int(lapQuantity) ?? 0, exercises: exercisesInLaps)
         workout.exercises.append(.lap(lap))
     }
     

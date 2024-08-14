@@ -23,7 +23,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="hXj-vQ-jT2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launc" translatesAutoresizingMaskIntoConstraints="NO" id="hXj-vQ-jT2">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lego Fit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMZ-O7-drc">
@@ -59,7 +59,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchBackground" width="2880" height="1800"/>
+        <image name="launc" width="2880" height="1800"/>
         <namedColor name="cosmos">
             <color red="0.062745098039215685" green="0.035294117647058823" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

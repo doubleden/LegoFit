@@ -147,7 +147,7 @@ fileprivate struct ExerciseList: View {
                             })
                         } header: {
                             HStack {
-                                Text("Lap: \(lap.quantity)")
+                                Text("Lap: \(lap.approach)")
                                     .font(.headline)
                                 Spacer()
                                 DeleteButton {

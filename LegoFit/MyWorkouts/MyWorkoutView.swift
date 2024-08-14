@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyWorkoutView: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -21,30 +22,25 @@ struct MyWorkoutView: View {
                     height: 100,
                     action: myWorkoutVM.startWorkout
                 )
+                .fullScreenCover(
+                    item: $myWorkoutVM.activeWorkout,
+                    onDismiss: {
+                        if myWorkoutVM.workout.isDone {
+                            dismiss()
+                        }
+                    }) { workout in
+                        ActiveWorkoutView(workout: workout)
+                    }
                 
                 ExerciseList(myWorkoutVM: myWorkoutVM)
             }
+            
             .navigationTitle(myWorkoutVM.workout.name)
-            .navigationDestination(
-                isPresented: $myWorkoutVM.isWorkoutStart,
-                destination: {
-                    ActiveWorkoutView(
-                        workout: myWorkoutVM.workout
-                    )
-                }
-            )
             
             .alert(myWorkoutVM.alertMessage ?? "",
                    isPresented: $myWorkoutVM.isAlertPresented,
                    actions: {}
             )
-        }
-        
-        // Костыль
-        .onAppear {
-            if myWorkoutVM.workout.isDone {
-                myWorkoutVM.workout.isDone.toggle()
-            }
         }
     }
 }
@@ -70,7 +66,7 @@ fileprivate struct ExerciseList: View {
                                 }
                             }
                     case .lap(let lap):
-                        DisclosureGroup("Lap: \(lap.quantity)") {
+                        DisclosureGroup("Lap: \(lap.approach)") {
                             ForEach(lap.exercises) { exercise in
                                 MyExerciseCellView(exercise: exercise, isInLap: true)
                                 .lapExerciseRowStyle()

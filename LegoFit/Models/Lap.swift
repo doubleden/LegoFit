@@ -9,7 +9,7 @@ import Foundation
 
 struct Lap: Codable, Equatable, Identifiable, Hashable {
     var id = UUID()
-    var quantity: Int
+    var approach: Int
     var exercises: [Exercise]
 }
 
@@ -17,9 +17,9 @@ struct Lap: Codable, Equatable, Identifiable, Hashable {
 extension Lap {
     static func getLaps() -> [Lap] {
         [
-            Lap(quantity: 3, exercises: Exercise.getExercises()),
-            Lap(quantity: 2, exercises: Exercise.getExercises()),
-            Lap(quantity: 2, exercises: Exercise.getExercises())
+            Lap(approach: 3, exercises: Exercise.getExercises()),
+            Lap(approach: 2, exercises: Exercise.getExercises()),
+            Lap(approach: 2, exercises: Exercise.getExercises())
         ]
     }
 }

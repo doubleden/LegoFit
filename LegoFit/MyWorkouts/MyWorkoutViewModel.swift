@@ -10,7 +10,7 @@ import Foundation
 
 @Observable
 final class MyWorkoutViewModel: ExerciseListCellDeletable {
-    var isWorkoutStart = false
+    var activeWorkout: Workout?
     
     var sheetExercise: Exercise?
     var sheetExerciseType: ExerciseType?
@@ -36,7 +36,7 @@ final class MyWorkoutViewModel: ExerciseListCellDeletable {
             alertMessage = "Проверьте заполнение параметров всех упражнений.\nПодход и повторения должны быть больше 0"
             return
         }
-        isWorkoutStart.toggle()
+        activeWorkout = workout
     }
     
     func showDetailsView(exercise: Exercise, type: ExerciseType) {
@@ -69,7 +69,7 @@ final class MyWorkoutViewModel: ExerciseListCellDeletable {
                     break
                 }
             case .lap(let lap):
-                if lap.quantity <= 0 {
+                if lap.approach <= 0 {
                     isValid.toggle()
                     break
                 }
