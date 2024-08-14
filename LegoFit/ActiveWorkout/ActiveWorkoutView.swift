@@ -20,6 +20,7 @@ struct ActiveWorkoutView: View {
             MainGradientBackground()
                 .ignoresSafeArea()
                 .blur(radius: 3)
+            
             VStack(spacing: 20) {
                 Text("\(activeWorkoutVM.queue) of \(workout.exercises.count)")
                 
@@ -29,45 +30,66 @@ struct ActiveWorkoutView: View {
                 )
                 .tint(.white)
                 
-                switch exercise {
-                case .single(let single):
-                    LabelGradientBackground(content: Text(single.name))
-                        .font(.title)
-                    
-                    ExerciseImageView(imageUrl: single.image)
-                    
-                    Text("Sets: \(single.approach ?? 0) of \(activeWorkoutVM.doneApproach)")
-                    Text("Reps: \(single.rep ?? 0)")
-                    Text("Weight: \(single.weight ?? "0")")
-                    Text("Comment: \(single.comment ?? "")")
-                    
-                case .lap(let lap):
-                    Text("Quantity: \(lap.quantity) of \(activeWorkoutVM.doneApproach)")
-                    List(lap.exercises) { exercise in
-                        HStack {
-                            ExerciseImageView(imageUrl: exercise.image)
-                                .frame(width: 120)
-                            Spacer()
-                            VStack(alignment: .leading) {
-                                Text(exercise.name)
-                                Text("\(exercise.rep ?? 0) reps")
-                                Text("\(exercise.weight ?? "0") kg")
-                            }
+                Group {
+                    switch exercise {
+                    case .single(let single):
+                        VStack {
+                            LabelGradientBackground(content: Text(single.name))
+                                .font(.title)
+                            
+                            ExerciseImageView(imageUrl: single.image)
+                            
+                            Text("Sets: \(single.approach ?? 0) of \(activeWorkoutVM.completedApproach)")
+                            Text("Reps: \(single.rep ?? 0)")
+                            Text("Weight: \(single.weight ?? "0")")
+                            Text("Comment: \(single.comment ?? "")")
+//                            Spacer()
                         }
-                            .mainRowStyle()
+                    case .lap(let lap):
+                        VStack {
+                            Text("Quantity: \(lap.quantity) of \(activeWorkoutVM.completedApproach)")
+                            List(lap.exercises) { exercise in
+                                HStack {
+                                    ExerciseImageView(imageUrl: exercise.image)
+                                        .frame(width: 120)
+                                    Spacer()
+                                    VStack(alignment: .leading) {
+                                        Text(exercise.name)
+                                        Text("\(exercise.rep ?? 0) reps")
+                                        Text("\(exercise.weight ?? "0") kg")
+                                    }
+                                }
+                                .mainRowStyle()
+                            }
+                            .mainListStyle()
+                        }
                     }
-                    .mainListStyle()
                 }
+                .transition(
+                    .asymmetric(
+                        insertion: .slide,
+                        removal: AnyTransition.scale(scale: 0, anchor: .trailing)
+                            .combined(with: .slide)
+                    )
+                )
+                .id(exercise)
                 
-                Button(action: {}, label: {
+                Spacer()
+                
+                Button(action: {
+                    withAnimation {
+                        activeWorkoutVM.didFinishApproach(in: exercise)
+                    }
+                }, label: {
                     Text("Done Set")
                         .tint(.green)
                 })
                 
-                Spacer()
             }
             .padding()
         }
+        .toolbar(.hidden, for: .tabBar)
+        .navigationBarBackButtonHidden()
     }
     
     init(workout: Workout) {

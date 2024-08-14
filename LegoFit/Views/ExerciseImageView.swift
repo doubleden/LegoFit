@@ -21,7 +21,7 @@ struct ExerciseImageView: View {
             }
             .resizable()
             .aspectRatio(contentMode: .fill)
-//            .frame(maxWidth: 300, maxHeight: 250)
+            .frame(maxWidth: 300, maxHeight: 250)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(color: .indigo, radius: 5)
     }

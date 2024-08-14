@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-enum ExerciseType: Codable, Identifiable, Equatable {
+enum ExerciseType: Codable, Identifiable, Equatable, Hashable {
     case single(Exercise)
     case lap(Lap)
     

@@ -18,12 +18,9 @@ struct MyWorkoutView: View {
                 CircleButton(
                     icon: Image(systemName: "play.fill"),
                     width: 100,
-                    height: 100
-                ) {
-                    myWorkoutVM.startWorkout()
-                    
-                    print(myWorkoutVM.workout.exercises.indices)
-                }
+                    height: 100,
+                    action: myWorkoutVM.startWorkout
+                )
                 
                 ExerciseList(myWorkoutVM: myWorkoutVM)
             }
@@ -40,7 +37,7 @@ struct MyWorkoutView: View {
             .alert(myWorkoutVM.alertMessage ?? "",
                    isPresented: $myWorkoutVM.isAlertPresented,
                    actions: {}
-        )
+            )
         }
     }
 }
@@ -160,4 +157,5 @@ import SwiftData
         MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: workout))
             .modelContainer(container)
     }
+    .tint(.white)
 }
