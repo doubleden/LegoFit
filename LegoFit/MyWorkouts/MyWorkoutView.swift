@@ -39,6 +39,13 @@ struct MyWorkoutView: View {
                    actions: {}
             )
         }
+        
+        // Костыль
+        .onAppear {
+            if myWorkoutVM.workout.isDone {
+                myWorkoutVM.workout.isDone.toggle()
+            }
+        }
     }
 }
 

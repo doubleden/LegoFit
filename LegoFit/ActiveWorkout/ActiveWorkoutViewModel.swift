@@ -21,29 +21,24 @@ final class ActiveWorkoutViewModel {
         workout.exercises.count - 1 == queue
     }
     
-    private var workout: Workout
+    var workout: Workout
     
     init(workout: Workout) {
         self.workout = workout
     }
     
-    func didFinishApproach(in exercise: ExerciseType) {
-        switch exercise {
-        case .single(let single):
-            if completedApproach == single.rep {
-                queue += 1
-                completedApproach = 0
-            } else {
-                completedApproach += 1
-            }
-            
-        case .lap(let lap):
-            if completedApproach == lap.quantity {
-                queue += 1
-                completedApproach = 0
-            } else {
-                completedApproach += 1
-            }
+    func didFinish(approach: Int) {
+        if completedApproach == approach {
+            queue += 1
+            completedApproach = 0
+        } else {
+            completedApproach += 1
+        }
+    }
+    
+    func doneWorkout(_ exerciseApproach: Int) {
+        if isLastExercise && completedApproach == exerciseApproach {
+            workout.isDone.toggle()
         }
     }
 }
