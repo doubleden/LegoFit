@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct EditMyWorkoutLapView: View {
-    @State var workoutEditLapVM: EditMyWorkoutLapViewModel
+    let workout: Workout
+    let lap: Lap
+    @State private var workoutEditLapVM: EditMyWorkoutLapViewModel
     
     var body: some View {
         ZStack {
@@ -18,10 +20,16 @@ struct EditMyWorkoutLapView: View {
                 .padding(.top,40)
         }
     }
+    
+    init(workout: Workout, lap: Lap) {
+        self.workout = workout
+        self.lap = lap
+        self.workoutEditLapVM = EditMyWorkoutLapViewModel(workout: workout, lap: lap)
+    }
 }
 
 #Preview {
     let container = DataController.previewContainer
-    return EditMyWorkoutLapView(workoutEditLapVM: EditMyWorkoutLapViewModel(workout: Workout.getWorkout(), lap: Lap.getLaps().first!))
+    return EditMyWorkoutLapView(workout: Workout.getWorkout(), lap: Lap.getLaps().first!)
         .modelContainer(container)
 }

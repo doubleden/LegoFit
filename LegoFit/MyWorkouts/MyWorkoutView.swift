@@ -32,7 +32,7 @@ struct MyWorkoutView: View {
                 isPresented: $myWorkoutVM.isWorkoutStart,
                 destination: {
                     ActiveWorkoutView(
-                        workout: $myWorkoutVM.workout
+                        workout: myWorkoutVM.workout
                     )
                 }
             )

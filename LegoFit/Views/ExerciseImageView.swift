@@ -20,8 +20,8 @@ struct ExerciseImageView: View {
                     .frame(maxWidth: 30)
             }
             .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: 300, maxHeight: 400)
+            .aspectRatio(contentMode: .fill)
+//            .frame(maxWidth: 300, maxHeight: 250)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(color: .indigo, radius: 5)
     }

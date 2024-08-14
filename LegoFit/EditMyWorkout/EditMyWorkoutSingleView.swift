@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct EditMyWorkoutSingleView: View {
-    @State var workout: Workout
-    
+    let workout: Workout
     @State private var exerciseListAddVM: ExerciseListAddViewModel
     @FocusState private var isFocused
     @Environment(\.dismiss) private var dismiss
@@ -30,7 +29,7 @@ struct EditMyWorkoutSingleView: View {
         }
     }
     
-    init(workout: Workout = Workout()) {
+    init(workout: Workout) {
         self.workout = workout
         self.exerciseListAddVM = ExerciseListAddViewModel(workout: workout)
     }

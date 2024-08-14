@@ -77,12 +77,7 @@ struct MyWorkoutEditLapView: View {
             }
             .sheet(isPresented: $isPresented,
                    content: {
-                EditMyWorkoutLapView(
-                    workoutEditLapVM: EditMyWorkoutLapViewModel(
-                        workout: workout,
-                        lap: lap
-                    )
-                )
+                EditMyWorkoutLapView(workout: workout, lap: lap)
                 .presentationDragIndicator(.visible)
             })
         }
