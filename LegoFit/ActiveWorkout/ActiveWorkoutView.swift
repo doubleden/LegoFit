@@ -27,6 +27,7 @@ struct ActiveWorkoutView: View {
                     value: Double(activeWorkoutVM.queue),
                     total: Double(workout.exercises.count)
                 )
+                .tint(.white)
                 
                 switch exercise {
                 case .single(let single):

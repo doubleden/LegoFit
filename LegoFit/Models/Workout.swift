@@ -28,6 +28,7 @@ final class Workout {
     let date = Date()
     var isDone = false
     var exercises: [ExerciseType]
+    var comment = ""
     
     init(name: String = "", exercises: [ExerciseType] = []) {
         self.name = name
