@@ -22,12 +22,10 @@ struct ActiveWorkoutView: View {
                 .ignoresSafeArea()
                 .blur(radius: 3)
             if activeWorkoutVM.isExercisesCompleted || workout.isDone {
-                VStack {
-                    Text("Congratulations you did it!")
-                    Button("Exit") {
-                        workout.isDone.toggle()
-                        dismiss()
-                    }
+                ActiveWorkoutFinishView(input: $activeWorkoutVM.workoutComment) {
+                    workout.comment = activeWorkoutVM.workoutComment
+                    workout.isDone.toggle()
+                    dismiss()
                 }
             } else {
                 VStack(spacing: 20) {
@@ -42,35 +40,15 @@ struct ActiveWorkoutView: View {
                     Group {
                         switch exercise {
                         case .single(let single):
-                            VStack {
-                                LabelGradientBackground(content: Text(single.name))
-                                    .font(.title)
-                                
-                                ExerciseImageView(imageUrl: single.image)
-                                
-                                Text("Sets: \(single.approach ?? 0) of \(activeWorkoutVM.completedApproach)")
-                                Text("Reps: \(single.rep ?? 0)")
-                                Text("Weight: \(single.weight ?? "0")")
-                                Text("Comment: \(single.comment ?? "")")
-                            }
+                            ActiveWorkoutSingleView(
+                                single: single,
+                                completedApproach: activeWorkoutVM.completedApproach
+                            )
                         case .lap(let lap):
-                            VStack {
-                                Text("Quantity: \(lap.approach) of \(activeWorkoutVM.completedApproach)")
-                                List(lap.exercises) { exercise in
-                                    HStack {
-                                        ExerciseImageView(imageUrl: exercise.image)
-                                            .frame(width: 120)
-                                        Spacer()
-                                        VStack(alignment: .leading) {
-                                            Text(exercise.name)
-                                            Text("\(exercise.rep ?? 0) reps")
-                                            Text("\(exercise.weight ?? "0") kg")
-                                        }
-                                    }
-                                    .mainRowStyle()
-                                }
-                                .mainListStyle()
-                            }
+                            ActiveWorkoutLapView(
+                                lap: lap,
+                                completedApproach: activeWorkoutVM.completedApproach
+                            )
                         }
                     }
                     .transition(

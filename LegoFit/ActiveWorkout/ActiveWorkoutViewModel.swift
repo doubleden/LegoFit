@@ -16,6 +16,8 @@ final class ActiveWorkoutViewModel {
     
     var isExercisesCompleted = false
     
+    var workoutComment = ""
+    
     var currentExercise: ExerciseType {
         workout.exercises[queue]
     }
@@ -46,13 +48,10 @@ final class ActiveWorkoutViewModel {
     }
     
     func setButtonTittle() {
-        // последние упражнение и предпоследний подход
         if isLastExercise && completedApproach == currentExercise.approach - 1 {
             buttonTitle = "Finish"
-            // просто предпоследний подход
         } else if completedApproach == currentExercise.approach {
             buttonTitle = "Next"
-            // закончить подход
         } else {
             buttonTitle = "Done Set"
         }
