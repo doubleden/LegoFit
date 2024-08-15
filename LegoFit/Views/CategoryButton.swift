@@ -30,7 +30,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
     @Binding var isDisabled: Bool
     
     private let onColor = Gradient(colors: [.main, .violet])
-    private let offColor = Gradient(colors: [.gray.opacity(mainOpacity)])
+    private let offColor = Gradient(colors: [clearGray])
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

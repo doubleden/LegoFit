@@ -14,7 +14,7 @@ struct MainRowStyle: ViewModifier {
             .listRowBackground(
                 RoundedRectangle(cornerRadius: 15)
                     .foregroundStyle(.gray)
-                    .opacity(mainOpacity)
+                    .opacity(0.3)
             )
     }
 }

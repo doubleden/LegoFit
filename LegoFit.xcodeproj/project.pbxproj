@@ -16,7 +16,7 @@
 		0516177B2C6E1E5D00E28777 /* ActiveWorkoutSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0516177A2C6E1E5D00E28777 /* ActiveWorkoutSingleView.swift */; };
 		0516177D2C6E1ED700E28777 /* ActiveWorkoutLapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0516177C2C6E1ED700E28777 /* ActiveWorkoutLapView.swift */; };
 		0516177F2C6E1F1700E28777 /* ActiveWorkoutFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0516177E2C6E1F1700E28777 /* ActiveWorkoutFinishView.swift */; };
-		0518169E2C66D6AC00EB9DEC /* MainOpacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */; };
+		0518169E2C66D6AC00EB9DEC /* ClearGrayColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0518169D2C66D6AC00EB9DEC /* ClearGrayColor.swift */; };
 		0518560A2C1ED48300138B3E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051856092C1ED48300138B3E /* API.swift */; };
 		051EC9E62C53EA480032C916 /* LapExerciseRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */; };
 		0524622C2C5E9CC000C4090A /* ButtonLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524622B2C5E9CC000C4090A /* ButtonLap.swift */; };
@@ -90,7 +90,7 @@
 		0516177A2C6E1E5D00E28777 /* ActiveWorkoutSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutSingleView.swift; sourceTree = "<group>"; };
 		0516177C2C6E1ED700E28777 /* ActiveWorkoutLapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutLapView.swift; sourceTree = "<group>"; };
 		0516177E2C6E1F1700E28777 /* ActiveWorkoutFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutFinishView.swift; sourceTree = "<group>"; };
-		0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOpacity.swift; sourceTree = "<group>"; };
+		0518169D2C66D6AC00EB9DEC /* ClearGrayColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearGrayColor.swift; sourceTree = "<group>"; };
 		051856092C1ED48300138B3E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapExerciseRowStyle.swift; sourceTree = "<group>"; };
 		0524622B2C5E9CC000C4090A /* ButtonLap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLap.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		0518169C2C66D68300EB9DEC /* Alies */ = {
 			isa = PBXGroup;
 			children = (
-				0518169D2C66D6AC00EB9DEC /* MainOpacity.swift */,
+				0518169D2C66D6AC00EB9DEC /* ClearGrayColor.swift */,
 			);
 			path = Alies;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 				053763B42C5D657900312A77 /* FetchedListDetailsView.swift in Sources */,
 				05BC99BA2C4AF09200ED5B0D /* MainGradientBackground.swift in Sources */,
 				0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */,
-				0518169E2C66D6AC00EB9DEC /* MainOpacity.swift in Sources */,
+				0518169E2C66D6AC00EB9DEC /* ClearGrayColor.swift in Sources */,
 				0516177D2C6E1ED700E28777 /* ActiveWorkoutLapView.swift in Sources */,
 				05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */,
 				05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */,

@@ -14,17 +14,7 @@ struct OvalTextFieldStyle: TextFieldStyle {
             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
             .frame(alignment: .trailing)
             .tint(.white)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(
-                        colors: [
-                            .gray.opacity(mainOpacity)
-                        ]
-                    ),
-                    startPoint: .topLeading,
-                    endPoint: .trailing
-                )
-            )
+            .background(clearGray)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .keyboardType(.numberPad)
     }

@@ -66,7 +66,7 @@ struct MyWorkoutEditLapView: View {
                             .foregroundStyle(.white)
                             .padding(.leading, 6)
                     })
-                    .background(Gradient(colors: [.gray.opacity(mainOpacity), .blue]))
+                    .background(Gradient(colors: [clearGray, .blue]))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 ToolbarItem(placement: .topBarTrailing) {

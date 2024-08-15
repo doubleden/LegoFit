@@ -17,68 +17,75 @@ struct ActiveWorkoutView: View {
     }
     
     var body: some View {
-        ZStack {
-            MainGradientBackground()
-                .ignoresSafeArea()
-                .blur(radius: 3)
-            if activeWorkoutVM.isExercisesCompleted || workout.isDone {
-                ActiveWorkoutFinishView(input: $activeWorkoutVM.workoutComment) {
-                    workout.comment = activeWorkoutVM.workoutComment
-                    workout.isDone.toggle()
-                    dismiss()
-                }
-            } else {
-                VStack(spacing: 20) {
-                    Text("\(activeWorkoutVM.queue) of \(workout.exercises.count)")
-                    
-                    ProgressView(
-                        value: Double(activeWorkoutVM.queue),
-                        total: Double(workout.exercises.count)
-                    )
-                    .tint(.white)
-                    
-                    Group {
-                        switch exercise {
-                        case .single(let single):
-                            ActiveWorkoutSingleView(
-                                single: single,
-                                completedApproach: activeWorkoutVM.completedApproach
-                            )
-                        case .lap(let lap):
-                            ActiveWorkoutLapView(
-                                lap: lap,
-                                completedApproach: activeWorkoutVM.completedApproach
-                            )
-                        }
+        NavigationStack {
+            ZStack {
+                MainGradientBackground()
+                    .ignoresSafeArea()
+                    .blur(radius: 3)
+                if activeWorkoutVM.isExercisesCompleted || workout.isDone {
+                    ActiveWorkoutFinishView(input: $activeWorkoutVM.workoutComment) {
+                        workout.comment = activeWorkoutVM.workoutComment
+                        workout.isDone.toggle()
+                        dismiss()
                     }
-                    .transition(
-                        .asymmetric(
-                            insertion: .slide,
-                            removal: AnyTransition.scale(scale: 0, anchor: .trailing)
-                                .combined(with: .slide)
+                } else {
+                    VStack(spacing: 20) {
+                        
+                        ProgressView(
+                            value: Double(activeWorkoutVM.queue),
+                            total: Double(workout.exercises.count)
                         )
-                    )
-                    .id(exercise)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        withAnimation(.easeIn) {
-                            activeWorkoutVM.didFinish()
-                            activeWorkoutVM.doneWorkout()
+                        .padding(EdgeInsets(top: 0, leading: -15, bottom: 0, trailing: -15))
+                        .tint(.white)
+                        
+                        Group {
+                            switch exercise {
+                            case .single(let single):
+                                ActiveWorkoutSingleView(
+                                    single: single,
+                                    completedApproach: activeWorkoutVM.completedApproach
+                                )
+                            case .lap(let lap):
+                                ActiveWorkoutLapView(
+                                    lap: lap,
+                                    completedApproach: activeWorkoutVM.completedApproach
+                                )
+                            }
                         }
-                        activeWorkoutVM.setButtonTittle()
-                    }, label: {
-                        Text(activeWorkoutVM.buttonTitle)
-                            .tint(.green)
-                    })
-                    
+                        .transition(
+                            .asymmetric(
+                                insertion: .slide,
+                                removal: AnyTransition.scale(scale: 0, anchor: .trailing)
+                                    .combined(with: .slide)
+                            )
+                        )
+                        .id(exercise)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            withAnimation(.easeIn) {
+                                activeWorkoutVM.didFinish()
+                                activeWorkoutVM.doneWorkout()
+                            }
+                            activeWorkoutVM.setButtonTittle()
+                        }, label: {
+                            Text(activeWorkoutVM.buttonTitle)
+                                .tint(.green)
+                        })
+                        
+                    }
+                    .padding()
                 }
-                .padding()
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
             }
         }
-        .toolbar(.hidden, for: .tabBar)
-        .navigationBarBackButtonHidden()
     }
     
     init(workout: Workout) {
@@ -89,7 +96,7 @@ struct ActiveWorkoutView: View {
 
 #Preview {
     let container = DataController.previewContainer
-
+    
     return ActiveWorkoutView(workout: Workout.getWorkout())
         .modelContainer(container)
 }

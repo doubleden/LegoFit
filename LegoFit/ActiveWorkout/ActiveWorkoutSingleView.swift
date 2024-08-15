@@ -12,16 +12,14 @@ struct ActiveWorkoutSingleView: View {
     let completedApproach: Int
     
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             LabelGradientBackground(content: Text(single.name))
                 .font(.title)
             
             ExerciseImageView(imageUrl: single.image)
+                .frame(width: 150, height: 150)
             
-            Text("Sets: \(single.approach ?? 0) of \(completedApproach)")
-            Text("Reps: \(single.rep ?? 0)")
-            Text("Weight: \(single.weight ?? "0")")
-            Text("Comment: \(single.comment ?? "")")
+            ParametersView(single: single, completedApproach: completedApproach)
         }
     }
 }
@@ -30,8 +28,49 @@ struct ActiveWorkoutSingleView: View {
     ZStack {
         MainGradientBackground()
         VStack {
-            ActiveWorkoutSingleView(single: Exercise.getExercises().first!, completedApproach: 3)
+            ActiveWorkoutSingleView(single: Exercise.getExercises().first!, completedApproach: 1)
             Spacer()
+            Button("Done", action: {})
         }
+    }
+}
+
+fileprivate struct ParametersView: View {
+    let single: Exercise
+    let completedApproach: Int
+    
+    var body: some View {
+        HStack(spacing: 25) {
+            VStack(alignment: .trailing) {
+                Text("sets done")
+                Text("\(completedApproach) of \(single.approach ?? 0)")
+                    .font(.system(size: 50))
+                    .frame(minWidth: 150, alignment: .trailing)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Rectangle()
+                .frame(width: 2, height: 200)
+                .foregroundStyle(.sky)
+            VStack(alignment: .leading, spacing: 30) {
+                Text("\(single.rep ?? 0) reps")
+                    .font(.system(size: 25))
+                Text("\(single.weight ?? "") kg")
+                    .font(.system(size: 20))
+                if single.comment != "" {
+                    VStack(alignment: .leading) {
+                        Text("Comment:")
+                            .font(.caption)
+                        Text(single.comment ?? "no comment")
+                            .padding(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(clearGray)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }

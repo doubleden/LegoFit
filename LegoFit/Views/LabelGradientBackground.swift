@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LabelGradientBackground<Content: View>: View {
+    var width: CGFloat = 360
     let content: Content
     
     var body: some View {
@@ -15,7 +16,7 @@ struct LabelGradientBackground<Content: View>: View {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundStyle(Gradient(colors: [.gray.opacity(0.3), .rose]))
                 .opacity(0.8)
-            .frame(width: 360, height: 40)
+            .frame(width: width, height: 40)
             .shadow(color: .night, radius: 10, y: 10)
             
             content

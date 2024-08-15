@@ -16,7 +16,7 @@ struct SaveButton: View {
                 .foregroundStyle(.white)
                 .padding(.trailing, 6)
         })
-        .background(Gradient(colors: [.gray.opacity(mainOpacity), .venom]))
+        .background(Gradient(colors: [clearGray, .venom]))
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

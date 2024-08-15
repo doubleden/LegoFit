@@ -5,6 +5,6 @@
 //  Created by Denis Denisov on 10/8/24.
 //
 
-import Foundation
+import SwiftUI
 
-let mainOpacity = 0.3
+let clearGray = Color.gray.opacity(0.3)

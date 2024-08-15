@@ -23,10 +23,13 @@ struct ExerciseImageView: View {
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: 300, maxHeight: 250)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: .indigo, radius: 5)
+            .shadow(color: .black, radius: 10)
     }
 }
 
 #Preview {
-    ExerciseImageView(imageUrl: Exercise.getExercises().first!.image)
+    ZStack {
+        MainGradientBackground()
+        ExerciseImageView(imageUrl: Exercise.getExercises().first!.image)
+    }
 }
