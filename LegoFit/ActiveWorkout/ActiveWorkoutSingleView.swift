@@ -17,9 +17,22 @@ struct ActiveWorkoutSingleView: View {
                 .font(.title)
             
             ExerciseImageView(imageUrl: single.image)
-                .frame(width: 150, height: 150)
+                .frame(width: 250, height: 150)
             
-            ParametersView(single: single, completedApproach: completedApproach)
+            HStack(spacing: 25) {
+                ApproachView(
+                    text: "sets done",
+                    completedApproach: completedApproach,
+                    approach: single.approach ?? 0
+                )
+                
+                DividerVerticalView()
+                
+                ExerciseParametersView(exercise: single)
+            }
+            .padding()
+            .background(clearGray)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
 }
@@ -32,45 +45,5 @@ struct ActiveWorkoutSingleView: View {
             Spacer()
             Button("Done", action: {})
         }
-    }
-}
-
-fileprivate struct ParametersView: View {
-    let single: Exercise
-    let completedApproach: Int
-    
-    var body: some View {
-        HStack(spacing: 25) {
-            VStack(alignment: .trailing) {
-                Text("sets done")
-                Text("\(completedApproach) of \(single.approach ?? 0)")
-                    .font(.system(size: 50))
-                    .frame(minWidth: 150, alignment: .trailing)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            Rectangle()
-                .frame(width: 2, height: 200)
-                .foregroundStyle(.sky)
-            VStack(alignment: .leading, spacing: 30) {
-                Text("\(single.rep ?? 0) reps")
-                    .font(.system(size: 25))
-                Text("\(single.weight ?? "") kg")
-                    .font(.system(size: 20))
-                if single.comment != "" {
-                    VStack(alignment: .leading) {
-                        Text("Comment:")
-                            .font(.caption)
-                        Text(single.comment ?? "no comment")
-                            .padding(.leading)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-            }
-        }
-        .padding()
-        .background(clearGray)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }

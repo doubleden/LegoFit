@@ -75,7 +75,6 @@ struct ActiveWorkoutView: View {
                         })
                         
                     }
-                    .padding()
                 }
             }
             .toolbar {

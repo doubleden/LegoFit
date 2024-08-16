@@ -50,7 +50,7 @@ fileprivate struct ExerciseList: View {
     @State var isPresented = false
     var body: some View {
         VStack(spacing:(0)) {
-            Divider()
+            DividerHorizontalView()
             List {
                 ForEach(myWorkoutVM.exercises) { exerciseType in
                     switch exerciseType {

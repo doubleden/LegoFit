@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Divider: View {
+struct DividerHorizontalView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .frame(height: 2)
@@ -17,5 +17,5 @@ struct Divider: View {
 }
 
 #Preview {
-    Divider()
+    DividerHorizontalView()
 }

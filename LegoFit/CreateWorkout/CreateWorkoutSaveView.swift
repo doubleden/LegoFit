@@ -128,7 +128,7 @@ fileprivate struct ExerciseList: View {
     
     var body: some View {
         VStack(spacing: 1) {
-            Divider()
+            DividerHorizontalView()
             List {
                 ForEach(exercises) { exerciseType in
                     switch exerciseType {

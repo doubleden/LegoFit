@@ -14,7 +14,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                Divider()
+                DividerHorizontalView()
                 
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: 10) {
@@ -59,7 +59,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                                     .font(.system(size: 16))
                                 Spacer()
                             }
-                            Divider()
+                            DividerHorizontalView()
                         }
                     }
                 }

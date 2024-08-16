@@ -12,22 +12,45 @@ struct ActiveWorkoutLapView: View {
     let completedApproach: Int
     
     var body: some View {
-        VStack {
-            Text("Quantity: \(lap.approach) of \(completedApproach)")
+        VStack(spacing: 0) {
+            ApproachView(
+                text: "laps done",
+                completedApproach: completedApproach,
+                approach: lap.approach
+            )
+            .padding()
+            .background(clearGray)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            
+            DividerHorizontalView()
+                .padding(.top)
+
             List(lap.exercises) { exercise in
-                HStack {
-                    ExerciseImageView(imageUrl: exercise.image)
-                        .frame(width: 120)
-                    Spacer()
-                    VStack(alignment: .leading) {
-                        Text(exercise.name)
-                        Text("\(exercise.rep ?? 0) reps")
-                        Text("\(exercise.weight ?? "0") kg")
+                HStack(alignment: .bottom, spacing: 20) {
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 20)
+                            .foregroundStyle(clearGray)
+                        
+                        ExerciseParametersView(
+                            exercise: exercise,
+                            spacing: 10,
+                            isPaddingForComment: false
+                        )
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    VStack(alignment: .trailing) {
+                        Text(exercise.name)
+                            .font(.subheadline)
+                        ExerciseImageView(imageUrl: exercise.image)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .mainRowStyle()
+                .listRowBackground(Color.clear)
             }
-            .mainListStyle()
+            .scrollContentBackground(.hidden)
+            .scrollIndicators(.hidden)
         }
     }
 }
