@@ -54,26 +54,27 @@ struct ActiveWorkoutView: View {
                         }
                         .transition(
                             .asymmetric(
-                                insertion: .slide,
+                                insertion: .move(edge: .trailing),
                                 removal: AnyTransition.scale(scale: 0, anchor: .trailing)
-                                    .combined(with: .slide)
+                                    .combined(with: .move(edge: .leading))
                             )
                         )
                         .id(exercise)
                         
-                        Spacer()
-                        
-                        Button(action: {
-                            withAnimation(.easeIn) {
+                        Button(activeWorkoutVM.buttonTitle.rawValue) {
+                            withAnimation(.smooth) {
                                 activeWorkoutVM.didFinish()
                                 activeWorkoutVM.doneWorkout()
+                                activeWorkoutVM.setButtonTittle()
                             }
-                            activeWorkoutVM.setButtonTittle()
-                        }, label: {
-                            Text(activeWorkoutVM.buttonTitle)
-                                .tint(.green)
-                        })
+                        }
+                        .buttonStyle(
+                            CustomButtonStyle(
+                                buttonTitle: activeWorkoutVM.buttonTitle
+                            )
+                        )
                         
+                        Spacer()
                     }
                 }
             }
@@ -90,6 +91,34 @@ struct ActiveWorkoutView: View {
     init(workout: Workout) {
         self.workout = workout
         self.activeWorkoutVM = ActiveWorkoutViewModel(workout: workout)
+    }
+}
+
+fileprivate struct CustomButtonStyle: ButtonStyle {
+    let buttonTitle: ButtonTitle
+    
+    private var color: RadialGradient {
+        switch buttonTitle {
+        case .done:
+            RadialGradient(colors: [.sky, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+        case .next:
+            RadialGradient(colors: [clearGray, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+        case .finish:
+            RadialGradient(colors: [.rose, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+        }
+    }
+    
+    @ViewBuilder
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 60, height: 50)
+            .padding()
+            .font(.title3)
+            .background(color)
+            .clipShape(Circle())
+            .scaleEffect(configuration.isPressed ? 0.7 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+            .shadow(radius: configuration.isPressed ? 30 : 15)
     }
 }
 

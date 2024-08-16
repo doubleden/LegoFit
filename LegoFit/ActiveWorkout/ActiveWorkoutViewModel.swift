@@ -10,7 +10,7 @@ import Observation
 @Observable
 final class ActiveWorkoutViewModel {
     
-    var buttonTitle = "Done Set"
+    var buttonTitle: ButtonTitle = .done
     var completedApproach = 0
     var queue = 0
     
@@ -49,11 +49,17 @@ final class ActiveWorkoutViewModel {
     
     func setButtonTittle() {
         if isLastExercise && completedApproach == currentExercise.approach - 1 {
-            buttonTitle = "Finish"
+            buttonTitle = .finish
         } else if completedApproach == currentExercise.approach {
-            buttonTitle = "Next"
+            buttonTitle = .next
         } else {
-            buttonTitle = "Done Set"
+            buttonTitle = .done
         }
     }
+}
+
+enum ButtonTitle: String {
+    case done = "Done"
+    case next = "Next"
+    case finish = "Finish"
 }

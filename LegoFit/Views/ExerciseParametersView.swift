@@ -17,10 +17,10 @@ struct ExerciseParametersView: View {
             Text("\(exercise.rep ?? 0) reps")
                 .font(.system(size: 25))
                 .foregroundStyle(.orange)
-            Text("\(exercise.weight ?? "") kg")
+            Text("\(exercise.weight ?? "0") kg")
                 .font(.system(size: 20))
-                .foregroundStyle(.sky)
-            if exercise.comment != "" {
+                .foregroundStyle(.cyan)
+            if exercise.comment != "" && exercise.comment != nil {
                 VStack(alignment: .leading) {
                     Text("Comment:")
                         .font(.caption)

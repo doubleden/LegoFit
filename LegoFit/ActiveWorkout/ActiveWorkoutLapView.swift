@@ -13,23 +13,23 @@ struct ActiveWorkoutLapView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ApproachView(
-                text: "laps done",
-                completedApproach: completedApproach,
-                approach: lap.approach
-            )
-            .padding()
-            .background(clearGray)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-            
-            DividerHorizontalView()
-                .padding(.top)
+            HStack {
+                Spacer()
+                ApproachView(
+                    text: "laps done",
+                    completedApproach: completedApproach,
+                    approach: lap.approach,
+                    font: 30
+                )
+                .padding(.trailing)
+                .padding(.bottom)
+            }
 
             List(lap.exercises) { exercise in
                 HStack(alignment: .bottom, spacing: 20) {
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(clearGray)
+                            .foregroundStyle(.gray.opacity(0.1))
                         
                         ExerciseParametersView(
                             exercise: exercise,
@@ -49,6 +49,11 @@ struct ActiveWorkoutLapView: View {
                 }
                 .listRowBackground(Color.clear)
             }
+            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+            .listStyle(PlainListStyle())
+            .clipShape(RoundedRectangle(cornerRadius: 35))
+            .overlay(RoundedRectangle(cornerRadius: 35).stroke().foregroundStyle(clearGray))
+            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
         }
@@ -61,7 +66,8 @@ struct ActiveWorkoutLapView: View {
         VStack {
             ActiveWorkoutLapView(lap: Lap.getLaps().first!, completedApproach: 2)
             Spacer()
-            Button("Done", action: {})
+            Circle()
+                .frame(width: 60, height: 50)
         }
     }
 }
