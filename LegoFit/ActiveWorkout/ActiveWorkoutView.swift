@@ -22,7 +22,8 @@ struct ActiveWorkoutView: View {
                 MainBackgroundWithFlashAnimation(
                     activeWorkoutVM: activeWorkoutVM
                 )
-                if activeWorkoutVM.isExercisesDidEnd || workout.isDone {
+                // Костыль
+                if activeWorkoutVM.isExercisesDidEnd {
                     ActiveWorkoutFinishView(
                         input: $activeWorkoutVM.workoutComment
                     ) {
@@ -57,7 +58,7 @@ struct ActiveWorkoutView: View {
                         .transition(
                             .asymmetric(
                                 insertion: .move(edge: .trailing),
-                                removal: AnyTransition.scale(scale: 0, anchor: .trailing)
+                                removal: .scale(scale: 0, anchor: .trailing)
                                     .combined(with: .move(edge: .leading))
                             )
                         )
@@ -76,7 +77,9 @@ struct ActiveWorkoutView: View {
                                     }
                                 }
                                 if activeWorkoutVM.isWorkoutDone() {
-                                    activeWorkoutVM.isExercisesDidEnd.toggle()
+                                    withAnimation {
+                                        activeWorkoutVM.isExercisesDidEnd.toggle()
+                                    }
                                 }
                             }
                         }
