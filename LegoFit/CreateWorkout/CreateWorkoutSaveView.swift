@@ -91,7 +91,10 @@ fileprivate struct SaveWorkoutButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action, label: {
+        Button(action: {
+            startVibrationSuccess()
+            action()
+        }, label: {
             Text("Create")
                 .tint(.white)
         })

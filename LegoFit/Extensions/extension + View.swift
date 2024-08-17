@@ -19,4 +19,25 @@ extension View {
     func lapExerciseRowStyle() -> some View {
         modifier(LapExerciseRowStyle())
     }
+    
+    func startVibrationSuccess() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
+    
+    func startVibration() {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    }
+    
+    func startRattleVibration() {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            
+            let numberOfVibrations = 5
+            let interval: TimeInterval = 0.1
+            
+            for i in 0..<numberOfVibrations {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (interval * Double(i))) {
+                    generator.impactOccurred()
+                }
+            }
+        }
 }

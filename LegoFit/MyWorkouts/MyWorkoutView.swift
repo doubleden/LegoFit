@@ -19,9 +19,12 @@ struct MyWorkoutView: View {
                 CircleButton(
                     icon: Image(systemName: "play.fill"),
                     width: 100,
-                    height: 100,
-                    action: myWorkoutVM.startWorkout
-                )
+                    height: 100
+                ) {
+                    startVibrationSuccess()
+                    myWorkoutVM.startWorkout()
+                }
+                
                 .fullScreenCover(
                     item: $myWorkoutVM.activeWorkout,
                     onDismiss: {

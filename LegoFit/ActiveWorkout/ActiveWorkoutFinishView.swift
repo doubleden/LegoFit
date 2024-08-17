@@ -78,7 +78,10 @@ struct ActiveWorkoutFinishView: View {
                     .tint(.white)
             }
             Spacer()
-            Button("Exit", action: action)
+            Button("Exit") {
+                startVibrationSuccess()
+                action()
+            }
                 .buttonStyle(ButtonCustomStyle())
         }
         .padding()
@@ -86,10 +89,13 @@ struct ActiveWorkoutFinishView: View {
         .onTapGesture {
             isFocused = false
         }
-        .onChange(of: isFocused) { oldValue, newValue in
+        .onChange(of: isFocused) { _, _ in
             withAnimation {
                 isHidden = isFocused
             }
+        }
+        .onAppear {
+            startRattleVibration()
         }
     }
 }

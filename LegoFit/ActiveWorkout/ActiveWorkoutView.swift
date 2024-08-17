@@ -65,6 +65,7 @@ struct ActiveWorkoutView: View {
                         .id(exercise)
                         
                         Button(activeWorkoutVM.buttonTitle.rawValue) {
+                            startVibration()
                             withAnimation(.smooth) {
                                 activeWorkoutVM.buttonDidTapped.toggle()
                                 activeWorkoutVM.finishApproach()

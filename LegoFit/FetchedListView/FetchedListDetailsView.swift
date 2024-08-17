@@ -58,6 +58,7 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
                                 guard let exercise = fetchedListDetailsVM.makeChangesInExercise(exercise: viewModel.sheetExercise) else {
                                     return
                                 }
+                                startVibrationSuccess()
                                 viewModel.add(exercise: exercise)
                                 dismiss()
                             }
