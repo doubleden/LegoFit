@@ -19,11 +19,13 @@ struct ActiveWorkoutView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                MainGradientBackground()
-                    .ignoresSafeArea()
-                    .blur(radius: 3)
-                if activeWorkoutVM.isExercisesCompleted || workout.isDone {
-                    ActiveWorkoutFinishView(input: $activeWorkoutVM.workoutComment) {
+                MainBackgroundWithFlashAnimation(
+                    activeWorkoutVM: activeWorkoutVM
+                )
+                if activeWorkoutVM.isExercisesDidEnd || workout.isDone {
+                    ActiveWorkoutFinishView(
+                        input: $activeWorkoutVM.workoutComment
+                    ) {
                         workout.comment = activeWorkoutVM.workoutComment
                         workout.isDone.toggle()
                         dismiss()
@@ -63,9 +65,19 @@ struct ActiveWorkoutView: View {
                         
                         Button(activeWorkoutVM.buttonTitle.rawValue) {
                             withAnimation(.smooth) {
-                                activeWorkoutVM.didFinish()
-                                activeWorkoutVM.doneWorkout()
-                                activeWorkoutVM.setButtonTittle()
+                                activeWorkoutVM.buttonDidTapped.toggle()
+                                activeWorkoutVM.finishApproach()
+                                DispatchQueue.main.asyncAfter(
+                                    deadline: .now() + 0.3
+                                ) {
+                                    withAnimation(.smooth) {
+                                        activeWorkoutVM.buttonDidTapped.toggle()
+                                        activeWorkoutVM.setButtonTittle()
+                                    }
+                                }
+                                if activeWorkoutVM.isWorkoutDone() {
+                                    activeWorkoutVM.isExercisesDidEnd.toggle()
+                                }
                             }
                         }
                         .buttonStyle(
@@ -119,6 +131,38 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.7 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
             .shadow(radius: configuration.isPressed ? 30 : 15)
+    }
+}
+
+struct MainBackgroundWithFlashAnimation: View {
+    @Bindable var activeWorkoutVM: ActiveWorkoutViewModel
+    
+    private var flashColor: Color {
+        switch activeWorkoutVM.buttonTitle {
+        case .done: .sky
+        case .next: .violet
+        case .finish: .rose
+        }
+    }
+    
+    var body: some View {
+        MainGradientBackground()
+            .overlay(
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(
+                        flashColor.opacity(0.8),
+                        lineWidth: activeWorkoutVM.buttonDidTapped ? 30 : 0
+                    )
+                    .shadow(
+                        color: flashColor.opacity(0.8),
+                        radius: activeWorkoutVM.buttonDidTapped ? 10 : 0
+                    )
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 20)
+                    )
+            )
+            .ignoresSafeArea()
+            .blur(radius: 3)
     }
 }
 

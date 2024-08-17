@@ -14,7 +14,8 @@ final class ActiveWorkoutViewModel {
     var completedApproach = 0
     var queue = 0
     
-    var isExercisesCompleted = false
+    var isExercisesDidEnd = false
+    var buttonDidTapped = false
     
     var workoutComment = ""
     
@@ -32,7 +33,7 @@ final class ActiveWorkoutViewModel {
         self.workout = workout
     }
     
-    func didFinish() {
+    func finishApproach() {
         if completedApproach == currentExercise.approach {
             queue += 1
             completedApproach = 0
@@ -41,10 +42,8 @@ final class ActiveWorkoutViewModel {
         }
     }
     
-    func doneWorkout() {
-        if isLastExercise && completedApproach == currentExercise.approach {
-            isExercisesCompleted.toggle()
-        }
+    func isWorkoutDone() -> Bool {
+        isLastExercise && completedApproach == currentExercise.approach
     }
     
     func setButtonTittle() {
