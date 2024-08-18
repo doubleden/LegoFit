@@ -70,7 +70,7 @@ struct ActiveWorkoutView: View {
                                 activeWorkoutVM.buttonDidTapped.toggle()
                                 activeWorkoutVM.finishApproach()
                                 DispatchQueue.main.asyncAfter(
-                                    deadline: .now() + 0.3
+                                    deadline: .now() + 0.4
                                 ) {
                                     withAnimation(.smooth) {
                                         activeWorkoutVM.buttonDidTapped.toggle()
@@ -120,7 +120,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
         case .next:
             RadialGradient(colors: [clearGray, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
         case .finish:
-            RadialGradient(colors: [.rose, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+            RadialGradient(colors: [.yellow, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
         }
     }
     
@@ -145,7 +145,7 @@ struct MainBackgroundWithFlashAnimation: View {
         switch activeWorkoutVM.buttonTitle {
         case .done: .sky
         case .next: .violet
-        case .finish: .rose
+        case .finish: .yellow
         }
     }
     
