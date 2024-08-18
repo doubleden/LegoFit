@@ -43,6 +43,8 @@
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
+		056467162C727EE70029B0B4 /* StarFallAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467152C727EE70029B0B4 /* StarFallAnimationView.swift */; };
+		056467182C7286630029B0B4 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467172C7286630029B0B4 /* Star.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
 		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
 		0579FD7C2C5048F100D617DF /* DividerHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579FD7B2C5048F100D617DF /* DividerHorizontalView.swift */; };
@@ -120,6 +122,8 @@
 		054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewModel.swift; sourceTree = "<group>"; };
 		054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListDetailsViewModel.swift; sourceTree = "<group>"; };
 		05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseView.swift; sourceTree = "<group>"; };
+		056467152C727EE70029B0B4 /* StarFallAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarFallAnimationView.swift; sourceTree = "<group>"; };
+		056467172C7286630029B0B4 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
 		0575B3F92C36D271006253DD /* MyExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExerciseCellView.swift; sourceTree = "<group>"; };
 		0579FD7B2C5048F100D617DF /* DividerHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerHorizontalView.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				05373F8D2C6F6E72008BEE84 /* ApproachView.swift */,
 				05373F8F2C6F7111008BEE84 /* DividerVerticalView.swift */,
 				05373F912C6F723D008BEE84 /* ExerciseParametersView.swift */,
+				056467152C727EE70029B0B4 /* StarFallAnimationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 				0581615E2C3492D30012E105 /* Lap.swift */,
 				05C72FAD2C301BF9003ECC82 /* Exercise.swift */,
 				050AFB5C2C6562250001AA81 /* ExerciseCategory.swift */,
+				056467172C7286630029B0B4 /* Star.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -508,11 +514,13 @@
 				05AA11492C2DF93200145826 /* ActiveWorkoutView.swift in Sources */,
 				05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */,
 				0524622C2C5E9CC000C4090A /* ButtonLap.swift in Sources */,
+				056467162C727EE70029B0B4 /* StarFallAnimationView.swift in Sources */,
 				054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */,
 				05BC99B02C4AED9700ED5B0D /* MainListStyle.swift in Sources */,
 				0516177F2C6E1F1700E28777 /* ActiveWorkoutFinishView.swift in Sources */,
 				05D857332C0D089900DD77AC /* PreviewProviderSwiftData.swift in Sources */,
 				0538EAC72C5FE4CC00D100FC /* ExerciseListAddViewModel.swift in Sources */,
+				056467182C7286630029B0B4 /* Star.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
