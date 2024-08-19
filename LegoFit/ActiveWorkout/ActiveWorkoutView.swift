@@ -41,7 +41,7 @@ struct ActiveWorkoutView: View {
                             total: Double(workout.exercises.count)
                         )
                         .padding(EdgeInsets(top: 0, leading: -15, bottom: 0, trailing: -15))
-                        .tint(.white)
+                        .tint(.sky)
                         
                         Group {
                             switch exercise {

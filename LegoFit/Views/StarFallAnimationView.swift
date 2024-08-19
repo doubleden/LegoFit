@@ -41,13 +41,17 @@ struct StarFallAnimationView: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             timerRef.invalidate()
+            
         }
     }
         
     func animateEmojiFalling(emoji: Star) {
         if let index = emojis.firstIndex(where: { $0.id == emoji.id }) {
             withAnimation(.linear(duration: emoji.duration)) {
-                emojis[index].y = screenSize.height + emoji.size
+                emojis[index].y = (screenSize.height) + emoji.size
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + emoji.duration) {
+                emojis.removeAll { $0.id == emoji.id }
             }
         }
     }
