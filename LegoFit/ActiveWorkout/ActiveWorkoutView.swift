@@ -103,7 +103,7 @@ struct ActiveWorkoutView: View {
                     currentExercise: activeWorkoutVM.currentExercise
                 )
                 .presentationDragIndicator(.visible)
-                .background(MainGradientBackground())
+                .background(MainGradientBackground().blur(radius: 50))
             })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

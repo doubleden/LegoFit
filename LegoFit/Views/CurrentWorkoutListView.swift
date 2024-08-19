@@ -13,6 +13,9 @@ struct CurrentWorkoutListView: View {
     
     var body: some View {
         VStack {
+            Text("Exercise list")
+                .font(.title)
+            
             List(workout.exercises) { exerciseType in
                 switch exerciseType {
                 case .single(let exercise):
@@ -43,6 +46,7 @@ struct CurrentWorkoutListView: View {
             }
             .mainListStyle()
         }
+        .padding(.top, 40)
     }
     
     private func isCurrentExercise(_ exerciseType: ExerciseType) -> Bool {
