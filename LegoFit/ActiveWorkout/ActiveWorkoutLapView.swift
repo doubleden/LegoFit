@@ -53,7 +53,7 @@ struct ActiveWorkoutLapView: View {
             .listStyle(PlainListStyle())
             .clipShape(RoundedRectangle(cornerRadius: 35))
             .overlay(RoundedRectangle(cornerRadius: 35).stroke().foregroundStyle(clearGray))
-            .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             .scrollContentBackground(.hidden)
             .scrollIndicators(.hidden)
         }

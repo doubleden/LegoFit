@@ -60,13 +60,19 @@ struct ActiveWorkoutView: View {
                         .transition(
                             .asymmetric(
                                 insertion: .move(edge: .trailing),
-                                removal: .scale(scale: 0, anchor: .trailing)
+                                removal: .scale(scale: 0, anchor: .leading)
                                     .combined(with: .move(edge: .leading))
                             )
                         )
                         .id(exercise)
                         
                         Button(activeWorkoutVM.buttonTitle.rawValue) {
+                            if activeWorkoutVM.buttonTitle == .finish {
+                                withAnimation {
+                                    activeWorkoutVM.isExercisesDidEnd.toggle()
+                                }
+                                return
+                            }
                             startVibration()
                             withAnimation(.smooth) {
                                 activeWorkoutVM.buttonDidTapped.toggle()
@@ -77,11 +83,6 @@ struct ActiveWorkoutView: View {
                                     withAnimation(.smooth) {
                                         activeWorkoutVM.buttonDidTapped.toggle()
                                         activeWorkoutVM.setButtonTittle()
-                                    }
-                                }
-                                if activeWorkoutVM.isWorkoutDone() {
-                                    withAnimation {
-                                        activeWorkoutVM.isExercisesDidEnd.toggle()
                                     }
                                 }
                             }

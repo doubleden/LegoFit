@@ -42,12 +42,8 @@ final class ActiveWorkoutViewModel {
         }
     }
     
-    func isWorkoutDone() -> Bool {
-        isLastExercise && completedApproach == currentExercise.approach
-    }
-    
     func setButtonTittle() {
-        if isLastExercise && completedApproach == currentExercise.approach - 1 {
+        if isLastExercise && completedApproach == currentExercise.approach {
             buttonTitle = .finish
         } else if completedApproach == currentExercise.approach {
             buttonTitle = .next
