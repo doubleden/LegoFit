@@ -27,7 +27,7 @@ final class ActiveWorkoutViewModel {
         workout.exercises.count - 1 == queue
     }
     
-    private var workout: Workout
+    var workout: Workout
     
     init(workout: Workout) {
         self.workout = workout

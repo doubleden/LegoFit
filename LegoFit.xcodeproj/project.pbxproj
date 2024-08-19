@@ -46,11 +46,12 @@
 		056467162C727EE70029B0B4 /* StarFallAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467152C727EE70029B0B4 /* StarFallAnimationView.swift */; };
 		056467182C7286630029B0B4 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467172C7286630029B0B4 /* Star.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
-		0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* MyExerciseCellView.swift */; };
+		0575B3FA2C36D271006253DD /* ExerciseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B3F92C36D271006253DD /* ExerciseCellView.swift */; };
 		0579FD7C2C5048F100D617DF /* DividerHorizontalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579FD7B2C5048F100D617DF /* DividerHorizontalView.swift */; };
 		0581615F2C3492D30012E105 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581615E2C3492D30012E105 /* Lap.swift */; };
 		058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882EF2C1E31A300451030 /* LabelGradientBackground.swift */; };
 		058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882F12C1E35CE00451030 /* ParameterTFView.swift */; };
+		058F4D9E2C73912E008CF2C3 /* CurrentWorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */; };
 		05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA11432C2DF20D00145826 /* MyWorkoutViewModel.swift */; };
 		05AA11462C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA11452C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift */; };
 		05AA11492C2DF93200145826 /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA11482C2DF93200145826 /* ActiveWorkoutView.swift */; };
@@ -125,11 +126,12 @@
 		056467152C727EE70029B0B4 /* StarFallAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarFallAnimationView.swift; sourceTree = "<group>"; };
 		056467172C7286630029B0B4 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseParametersTF.swift; sourceTree = "<group>"; };
-		0575B3F92C36D271006253DD /* MyExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExerciseCellView.swift; sourceTree = "<group>"; };
+		0575B3F92C36D271006253DD /* ExerciseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellView.swift; sourceTree = "<group>"; };
 		0579FD7B2C5048F100D617DF /* DividerHorizontalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerHorizontalView.swift; sourceTree = "<group>"; };
 		0581615E2C3492D30012E105 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		058882EF2C1E31A300451030 /* LabelGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelGradientBackground.swift; sourceTree = "<group>"; };
 		058882F12C1E35CE00451030 /* ParameterTFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterTFView.swift; sourceTree = "<group>"; };
+		058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWorkoutListView.swift; sourceTree = "<group>"; };
 		05AA11432C2DF20D00145826 /* MyWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutViewModel.swift; sourceTree = "<group>"; };
 		05AA11452C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseViewModel.swift; sourceTree = "<group>"; };
 		05AA11482C2DF93200145826 /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
@@ -251,7 +253,7 @@
 				0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */,
 				058882EF2C1E31A300451030 /* LabelGradientBackground.swift */,
 				05BC99B92C4AF09200ED5B0D /* MainGradientBackground.swift */,
-				0575B3F92C36D271006253DD /* MyExerciseCellView.swift */,
+				0575B3F92C36D271006253DD /* ExerciseCellView.swift */,
 				0528E9962C2F051D00BE9B02 /* CircleButton.swift */,
 				0579FD7B2C5048F100D617DF /* DividerHorizontalView.swift */,
 				0502F3BA2C595392006FB721 /* SaveButton.swift */,
@@ -260,6 +262,7 @@
 				05373F8F2C6F7111008BEE84 /* DividerVerticalView.swift */,
 				05373F912C6F723D008BEE84 /* ExerciseParametersView.swift */,
 				056467152C727EE70029B0B4 /* StarFallAnimationView.swift */,
+				058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */,
 				05373F922C6F723D008BEE84 /* ExerciseParametersView.swift in Sources */,
 				0525D3AE2C0909FC0007F632 /* CreateWorkoutViewViewModel.swift in Sources */,
+				058F4D9E2C73912E008CF2C3 /* CurrentWorkoutListView.swift in Sources */,
 				0516177B2C6E1E5D00E28777 /* ActiveWorkoutSingleView.swift in Sources */,
 				053763B92C5D737D00312A77 /* EditMyWorkoutSingleView.swift in Sources */,
 				05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */,
@@ -501,7 +505,7 @@
 				052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */,
 				05BC717F2C0646F400524C58 /* ContentView.swift in Sources */,
 				052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */,
-				0575B3FA2C36D271006253DD /* MyExerciseCellView.swift in Sources */,
+				0575B3FA2C36D271006253DD /* ExerciseCellView.swift in Sources */,
 				054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */,
 				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,

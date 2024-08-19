@@ -11,7 +11,7 @@ import SwiftData
 @Model
 final class Workout {
     var name: String
-    let date = Date()
+    var finishDate = Date()
     var isDone = false
     var exercises: [ExerciseType]
     var comment = ""

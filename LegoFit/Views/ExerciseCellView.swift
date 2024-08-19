@@ -1,5 +1,5 @@
 //
-//  MyExerciseCellView.swift
+//  ExerciseCellView.swift
 //  LegoFit
 //
 //  Created by Denis Denisov on 4/7/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyExerciseCellView: View {
+struct ExerciseCellView: View {
     let exercise: Exercise
     var isInLap = false
     
@@ -30,5 +30,5 @@ struct MyExerciseCellView: View {
 
 #Preview {
     let exercise = Exercise.getExercises().first!
-    return MyExerciseCellView(exercise: exercise)
+    return ExerciseCellView(exercise: exercise)
 }

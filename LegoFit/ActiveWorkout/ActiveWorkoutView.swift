@@ -11,6 +11,7 @@ struct ActiveWorkoutView: View {
     var workout: Workout
     @State private var activeWorkoutVM: ActiveWorkoutViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var isPresented = false
     
     private var exercise: ExerciseType {
         activeWorkoutVM.currentExercise
@@ -28,6 +29,7 @@ struct ActiveWorkoutView: View {
                         input: $activeWorkoutVM.workoutComment
                     ) {
                         workout.comment = activeWorkoutVM.workoutComment
+                        workout.finishDate = Date.now
                         workout.isDone.toggle()
                         dismiss()
                     }
@@ -94,11 +96,27 @@ struct ActiveWorkoutView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isPresented, content: {
+                CurrentWorkoutListView(
+                    workout: activeWorkoutVM.workout,
+                    currentExercise: activeWorkoutVM.currentExercise
+                )
+                .presentationDragIndicator(.visible)
+                .background(MainGradientBackground())
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
                         dismiss()
                     }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isPresented.toggle()
+                    },label: {
+                        Image(systemName: "info.circle")
+                    })
                 }
             }
         }

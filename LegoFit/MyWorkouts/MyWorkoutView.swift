@@ -58,7 +58,7 @@ fileprivate struct ExerciseList: View {
                 ForEach(myWorkoutVM.exercises) { exerciseType in
                     switch exerciseType {
                     case .single(let exercise):
-                        MyExerciseCellView(exercise: exercise)
+                        ExerciseCellView(exercise: exercise)
                             .mainRowStyle()
                             .swipeActions(edge: .leading) {
                                 ListEditButton {
@@ -71,7 +71,7 @@ fileprivate struct ExerciseList: View {
                     case .lap(let lap):
                         DisclosureGroup("Lap: \(lap.approach)") {
                             ForEach(lap.exercises) { exercise in
-                                MyExerciseCellView(exercise: exercise, isInLap: true)
+                                ExerciseCellView(exercise: exercise, isInLap: true)
                                 .lapExerciseRowStyle()
                                 .swipeActions(edge: .leading) {
                                     ListEditButton {
@@ -153,14 +153,11 @@ struct ListEditButton: View {
     }
 }
 
-import SwiftData
 #Preview {
     let container = DataController.previewContainer
-    let workouts = try? container.mainContext.fetch(FetchDescriptor<Workout>())
-    let workout = workouts?.first ?? Workout.getWorkout()
 
     return NavigationStack {
-        MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: workout))
+        MyWorkoutView(myWorkoutVM: MyWorkoutViewModel(workout: Workout.getWorkout()))
             .modelContainer(container)
     }
     .tint(.white)
