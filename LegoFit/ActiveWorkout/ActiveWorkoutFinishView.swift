@@ -13,9 +13,28 @@ struct ActiveWorkoutFinishView: View {
     
     @FocusState private var isFocused
     @State private var isHidden = false
-
+    @State private var isFlashOn = false
+    
     var body: some View {
         ZStack {
+            MainGradientBackground()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(
+                            .yellow.opacity(0.8),
+                            lineWidth: isFlashOn ? 30 : 0
+                        )
+                        .shadow(
+                            color: .yellow.opacity(0.8),
+                            radius: isFlashOn ? 10 : 0
+                        )
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 20)
+                        )
+                )
+                .ignoresSafeArea()
+                .blur(radius: 3)
+            
             GeometryReader { geometry in
                 StarFallAnimationView(screenSize: geometry.size)
                 
@@ -101,6 +120,15 @@ struct ActiveWorkoutFinishView: View {
                 
                 .onAppear {
                     startRattleVibration()
+                    withAnimation {
+                        isFlashOn.toggle()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        withAnimation {
+                            isFlashOn.toggle()
+                        }
+                    }
                 }
             }
         }

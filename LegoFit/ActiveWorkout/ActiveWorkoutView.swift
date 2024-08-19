@@ -164,7 +164,7 @@ struct MainBackgroundWithFlashAnimation: View {
         switch activeWorkoutVM.buttonTitle {
         case .done: .sky
         case .next: .violet
-        case .finish: .yellow
+        case .finish: .clear
         }
     }
     
