@@ -10,40 +10,50 @@ import SwiftUI
 struct MyWorkoutView: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     @Environment(\.dismiss) private var dismiss
-    
+    @Environment(\.editMode) private var editMode
+
     var body: some View {
         ZStack {
             MainGradientBackground()
                 .ignoresSafeArea()
             VStack(spacing: 30) {
-                CircleButton(
-                    icon: Image(systemName: "play.fill"),
-                    width: 100,
-                    height: 100
-                ) {
-                    startVibrationSuccess()
-                    myWorkoutVM.startWorkout()
-                }
-                
-                .fullScreenCover(
-                    item: $myWorkoutVM.activeWorkout,
-                    onDismiss: {
-                        if myWorkoutVM.workout.isDone {
-                            dismiss()
-                        }
-                    }) { workout in
-                        ActiveWorkoutView(workout: workout)
+                if editMode?.wrappedValue.isEditing == true {
+                    TextFieldTitle(myWorkoutVM: myWorkoutVM)
+                } else {
+                    Text(myWorkoutVM.workout.name)
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
+                    
+                    CircleButton(
+                        icon: Image(systemName: "play.fill"),
+                        width: 100,
+                        height: 100
+                    ) {
+                        startVibrationSuccess()
+                        myWorkoutVM.startWorkout()
                     }
+                    .fullScreenCover(
+                        item: $myWorkoutVM.activeWorkout,
+                        onDismiss: {
+                            if myWorkoutVM.workout.isDone {
+                                dismiss()
+                            }
+                        }) { workout in
+                            ActiveWorkoutView(workout: workout)
+                        }
+                }
                 
                 ExerciseList(myWorkoutVM: myWorkoutVM)
             }
-            
-            .navigationTitle(myWorkoutVM.workout.name)
-            
+            .toolbar {
+                EditButton()
+            }
             .alert(myWorkoutVM.alertMessage ?? "",
                    isPresented: $myWorkoutVM.isAlertPresented,
                    actions: {}
             )
+            .environment(\.editMode, editMode)
         }
     }
 }
@@ -110,9 +120,6 @@ fileprivate struct ExerciseList: View {
                         Image(systemName: "plus.circle")
                     })
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    EditButton()
-                }
             }
             .scrollIndicators(.hidden)
             .mainListStyle()
@@ -150,6 +157,32 @@ struct ListEditButton: View {
     var body: some View {
         Button("Edit", action: action)
             .tint(.yellowEdit)
+    }
+}
+
+struct TextFieldTitle: View {
+    @Bindable var myWorkoutVM: MyWorkoutViewModel
+    @FocusState private var isTitleFocused
+    
+    var body: some View {
+        TextField("", text: $myWorkoutVM.workout.name)
+            .font(.largeTitle)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(clearGray)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding()
+            .focused($isTitleFocused)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            isTitleFocused.toggle()
+                        }
+                    }
+                }
+            }
     }
 }
 
