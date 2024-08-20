@@ -30,13 +30,18 @@ struct HistoryWorkoutView: View {
             VStack {
                 List {
                     ForEach(dates, id: \.self) { date in
-                        Section(header: Text(date.showDate())) {
+                        Section {
                             ForEach(workouts.filter { Calendar.current.isDate($0.finishDate, inSameDayAs: date) }) { workout in
                                 NavigationLink(workout.name) {
                                     HistoryWorkoutDetailsView(workout: workout)
                                 }
+                                .foregroundStyle(.sky)
                             }
                             .mainRowStyle()
+                        } header: {
+                            Text(date.showDate())
+                                .font(.title3)
+                                .foregroundStyle(.white)
                         }
                     }
                 }
