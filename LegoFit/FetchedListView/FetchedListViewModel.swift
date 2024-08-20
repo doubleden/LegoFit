@@ -20,7 +20,9 @@ final class FetchedListViewModel {
     }
     
     var exerciseCategoriesAll: [ExerciseCategory] = []
-    private var exercisesCategoriesFiltered: [ExerciseCategory] = []
+    private var exercisesCategoriesFiltered: [ExerciseCategory] {
+        exerciseCategoriesAll.filter { $0.isSelected }
+    }
     
     private var exercises: [Exercise] = []
     private let networkManager = NetworkManager.shared
@@ -28,7 +30,7 @@ final class FetchedListViewModel {
     func fetchExercises() async {
         do {
             exercises = try await networkManager.fetchExercise()
-            setExercisesCategories()
+            setCategories()
         } catch {
             exercises = []
             errorMessage = error.localizedDescription
@@ -40,7 +42,6 @@ final class FetchedListViewModel {
     func refreshExercises() async {
         isFetching.toggle()
         do {
-            exercisesCategoriesFiltered = []
             exerciseCategoriesAll = []
             exercises = []
             try await Task.sleep(nanoseconds: 1_000_000_000)
@@ -49,17 +50,16 @@ final class FetchedListViewModel {
     }
     
     func showFiltered(category: ExerciseCategory) {
-        guard let index = exercisesCategoriesFiltered.firstIndex(where: {
-            $0.id == category.id
-        }) else {
-            exercisesCategoriesFiltered.append(category)
-            return
+        for index in exerciseCategoriesAll.indices {
+            exerciseCategoriesAll[index].isSelected = false
         }
         
-        exercisesCategoriesFiltered.remove(at: index)
+        if let index = exerciseCategoriesAll.firstIndex(where: { $0.id == category.id }) {
+            exerciseCategoriesAll[index].isSelected = !category.isSelected
+        }
     }
     
-    private func setExercisesCategories() {
+    private func setCategories() {
         let categories = Set(exercises.map { $0.category })
         var sortedCategories: [ExerciseCategory] = []
         for category in categories {

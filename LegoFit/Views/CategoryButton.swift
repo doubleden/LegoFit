@@ -9,37 +9,36 @@ import SwiftUI
 
 struct CategoryButton: View {
     let title: String
+    let isSelected: Bool
     let action: () -> Void
     
-    @State private var isDisabled = true
     
     var body: some View {
         Button(action: {
-            isDisabled.toggle()
             action()
         }) {
             Text(title)
-                .foregroundStyle(isDisabled ? .gray : .white)
+                .foregroundStyle(!isSelected ? .gray : .white)
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
         }
-        .buttonStyle(CustomButtonStyle(isDisabled: $isDisabled))
+        .buttonStyle(CustomButtonStyle(isSelected: isSelected))
     }
 }
 
 fileprivate struct CustomButtonStyle: ButtonStyle {
-    @Binding var isDisabled: Bool
+    var isSelected: Bool
     
     private let onColor = Gradient(colors: [.main, .violet])
     private let offColor = Gradient(colors: [clearGray])
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .background(isDisabled ? offColor : onColor)
+            .background(!isSelected ? offColor : onColor)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
     }
 }
 
 #Preview {
-    CategoryButton(title: "shoulders", action: {})
+    CategoryButton(title: "shoulders", isSelected: true, action: {})
 }

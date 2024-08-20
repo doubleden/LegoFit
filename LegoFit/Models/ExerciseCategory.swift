@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct ExerciseCategory: Identifiable {
+struct ExerciseCategory: Identifiable, Equatable {
     var id = UUID()
     let title: String
     let exercises: [Exercise]
+    var isSelected = false
     
     init(title: String, exercises: [Exercise]) {
         self.title = title
