@@ -66,6 +66,7 @@ struct HistoryWorkoutDetailsView: View {
                     })
                 }
             }
+            .toolbar(.hidden, for: .tabBar)
         }
     }
     
