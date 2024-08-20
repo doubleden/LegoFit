@@ -66,6 +66,13 @@ extension Workout {
         return Workout(name: "First", exercises: exercises)
     }
     
+    static func getWorkoutFinished() -> Workout {
+        let exercises: [ExerciseType] = [.single(Exercise.getExercises().first!), .lap(Lap.getLaps().first!)]
+        let workout = Workout(name: "First", exercises: exercises)
+        workout.isDone.toggle()
+        return workout
+    }
+    
     static func getWorkouts() -> [Workout] {
         let exercises: [ExerciseType] = [.single(Exercise.getExercises().first!), .lap(Lap.getLaps().first!)]
         return [

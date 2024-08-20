@@ -18,6 +18,17 @@ class DataController {
             container.mainContext.insert(Workout.getWorkout())
             container.mainContext.insert(Workout.getWorkout())
             container.mainContext.insert(Workout.getWorkout())
+            container.mainContext.insert(Workout.getWorkoutFinished())
+            
+            let workout2 = Workout.getWorkoutFinished()
+            workout2.finishDate = Date.now.addingTimeInterval(-86400)
+            workout2.name = "second"
+            container.mainContext.insert(workout2)
+            
+            let workout3 = Workout.getWorkoutFinished()
+            workout3.finishDate = Date.now.addingTimeInterval(-86400)
+            workout3.name = "third"
+            container.mainContext.insert(workout3)
 
             return container
         } catch {

@@ -10,7 +10,9 @@ import SwiftData
 
 struct MyWorkoutsView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var workouts: [Workout]
+    @Query(filter: #Predicate<Workout> { workout in
+        !workout.isDone
+    }) var workouts: [Workout]
     
     var body: some View {
         NavigationStack {
