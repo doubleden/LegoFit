@@ -18,8 +18,8 @@ final class CreateWorkoutViewModel: ExerciseListCellDeletable {
         workout.exercises.isEmpty
     }
     
-    var isWorkoutNameValid: Bool {
-        !workout.name.trimmingCharacters(in: .whitespaces).isEmpty
+    var isCreateButtonDisabled: Bool {
+        !workout.name.trimmingCharacters(in: .whitespaces).isEmpty && !workout.exercises.isEmpty
     }
     
     var exerciseListAddVM: ExerciseListAddViewModel

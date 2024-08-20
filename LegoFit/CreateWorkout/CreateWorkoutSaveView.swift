@@ -29,7 +29,7 @@ struct CreateWorkoutSaveView: View {
                         isFocused: $isFocused
                     )
                     
-                    SaveWorkoutButton(isDisabled: !createWorkoutVM.isWorkoutNameValid) {
+                    SaveWorkoutButton(isDisabled: !createWorkoutVM.isCreateButtonDisabled) {
                         createWorkoutVM.saveWorkout(
                             modelContext: modelContext
                         )
