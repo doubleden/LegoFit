@@ -10,6 +10,8 @@ import SwiftUI
 struct HistoryWorkoutDetailsView: View {
     let workout: Workout
     
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -53,7 +55,25 @@ struct HistoryWorkoutDetailsView: View {
             }
             .background(MainGradientBackground())
             .navigationTitle("\(workout.name)")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        startVibrationSuccess()
+                        copyWorkout()
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "gobackward")
+                    })
+                }
+            }
         }
+    }
+    
+    private func copyWorkout() {
+        let copiedWorkout = Workout()
+        copiedWorkout.name = "Copy of \(workout.name)"
+        copiedWorkout.exercises = workout.exercises
+        StorageManager.shared.save(workout: copiedWorkout, context: modelContext)
     }
 }
 

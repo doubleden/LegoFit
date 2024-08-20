@@ -38,9 +38,6 @@ struct HistoryWorkoutView: View {
                     }
                 }
                 .mainListStyle()
-                .onAppear {
-                    print(dates.count)
-                }
             }
             .background(MainGradientBackground())
             .navigationTitle("History")
