@@ -27,10 +27,10 @@ struct HistoryWorkoutView: View {
             VStack {
                 List {
                     ForEach(dates, id: \.self) { date in
-                        Section(header: Text(date.formatted(date: .abbreviated, time: .omitted))) {
+                        Section(header: Text(date.showDate())) {
                             ForEach(workouts.filter { Calendar.current.isDate($0.finishDate, inSameDayAs: date) }) { workout in
                                 NavigationLink(workout.name) {
-                                    Text("Workout Details for \(workout.name)")
+                                    HistoryWorkoutDetailsView(workout: workout)
                                 }
                             }
                             .mainRowStyle()

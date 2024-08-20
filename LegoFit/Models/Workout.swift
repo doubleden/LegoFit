@@ -63,7 +63,9 @@ enum ExerciseType: Codable, Identifiable, Equatable, Hashable {
 extension Workout {
     static func getWorkout() -> Workout {
         let exercises: [ExerciseType] = [.single(Exercise.getExercises().first!), .lap(Lap.getLaps().first!)]
-        return Workout(name: "First", exercises: exercises)
+        let workout = Workout(name: "First", exercises: exercises)
+        workout.comment = "Did something good Did something good Did something good Did something good Did something good Did something good Did something good Did something goodDid something good"
+        return workout
     }
     
     static func getWorkoutFinished() -> Workout {

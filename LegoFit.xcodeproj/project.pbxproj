@@ -40,6 +40,8 @@
 		053763BB2C5D73CA00312A77 /* EditMyWorkoutLapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053763BA2C5D73CA00312A77 /* EditMyWorkoutLapViewModel.swift */; };
 		0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */; };
 		0538EAC72C5FE4CC00D100FC /* ExerciseListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538EAC62C5FE4CC00D100FC /* ExerciseListAddViewModel.swift */; };
+		0548932E2C74B564001A2E3B /* HistoryWorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548932D2C74B564001A2E3B /* HistoryWorkoutDetailsView.swift */; };
+		054893302C74B885001A2E3B /* extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0548932F2C74B885001A2E3B /* extension + Date.swift */; };
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
@@ -120,6 +122,8 @@
 		053763BA2C5D73CA00312A77 /* EditMyWorkoutLapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyWorkoutLapViewModel.swift; sourceTree = "<group>"; };
 		0538125C2C18F2440040CD5D /* CreateWorkoutSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSaveView.swift; sourceTree = "<group>"; };
 		0538EAC62C5FE4CC00D100FC /* ExerciseListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListAddViewModel.swift; sourceTree = "<group>"; };
+		0548932D2C74B564001A2E3B /* HistoryWorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWorkoutDetailsView.swift; sourceTree = "<group>"; };
+		0548932F2C74B885001A2E3B /* extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + Date.swift"; sourceTree = "<group>"; };
 		054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListViewModel.swift; sourceTree = "<group>"; };
 		054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedListDetailsViewModel.swift; sourceTree = "<group>"; };
 		05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseView.swift; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				05BC99B32C4AEE5C00ED5B0D /* extension + View.swift */,
+				0548932F2C74B885001A2E3B /* extension + Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				05BC99BF2C4AF44100ED5B0D /* HistoryWorkoutView.swift */,
+				0548932D2C74B564001A2E3B /* HistoryWorkoutDetailsView.swift */,
 			);
 			path = HistoryWorkout;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				0525D3A12C08F9F30007F632 /* CreateWorkoutView.swift in Sources */,
 				0525D3B42C09D9400007F632 /* StorageManager.swift in Sources */,
 				0502F3BB2C595392006FB721 /* SaveButton.swift in Sources */,
+				054893302C74B885001A2E3B /* extension + Date.swift in Sources */,
 				05C72FAE2C301BF9003ECC82 /* Exercise.swift in Sources */,
 				05BC717D2C0646F400524C58 /* LegoFitApp.swift in Sources */,
 				058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */,
@@ -524,6 +531,7 @@
 				0516177F2C6E1F1700E28777 /* ActiveWorkoutFinishView.swift in Sources */,
 				05D857332C0D089900DD77AC /* PreviewProviderSwiftData.swift in Sources */,
 				0538EAC72C5FE4CC00D100FC /* ExerciseListAddViewModel.swift in Sources */,
+				0548932E2C74B564001A2E3B /* HistoryWorkoutDetailsView.swift in Sources */,
 				056467182C7286630029B0B4 /* Star.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
