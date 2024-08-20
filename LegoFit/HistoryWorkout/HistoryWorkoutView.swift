@@ -16,6 +16,9 @@ struct HistoryWorkoutView: View {
            sort: \Workout.finishDate,
            order: .reverse) var workouts: [Workout]
     
+    @State private var isAlertPresented = false
+    @Environment(\.modelContext) private var modelContext
+    
     private var dates: [Date] {
         Set(workouts.map {
             Calendar.current.startOfDay(for: $0.finishDate)
@@ -41,6 +44,34 @@ struct HistoryWorkoutView: View {
             }
             .background(MainGradientBackground())
             .navigationTitle("History")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isAlertPresented.toggle()
+                    }, label: {
+                        Image(systemName: "trash")
+                    })
+                }
+            }
+            .alert(
+                "Do you really want to clear your history?",
+                isPresented: $isAlertPresented
+            ) {
+                Button(
+                    "Delete",
+                    role: .destructive,
+                    action: clearHistory
+                )
+            }
+        }
+    }
+    
+    func clearHistory() {
+        workouts.forEach { workout in
+            StorageManager.shared.delete(
+                workout: workout,
+                context: modelContext
+            )
         }
     }
 }
