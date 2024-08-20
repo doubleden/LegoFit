@@ -18,9 +18,9 @@ struct ExerciseCellView: View {
             Spacer()
             HStack(spacing: 5) {
                 if !isInLap {
-                    Text("\(exercise.approach ?? 0) /")
+                    Text("\(exercise.approach ?? 0)  /")
                 }
-                Text("\(exercise.rep ?? 0) /")
+                Text("\(exercise.rep ?? 0)  /")
                 Text(exercise.weight ?? "0")
             }
             .tint(.white)

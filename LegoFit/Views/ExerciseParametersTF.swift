@@ -22,21 +22,37 @@ struct ExerciseParametersTF: View {
     var isAddingLaps = false
     @FocusState.Binding var isFocused: FocusedTextField?
     
+    private var localizeApproach: String {
+        localize(russian: "Подход", english: "Sets")
+    }
+    
+    private var localizeRepetition: String {
+        localize(russian: "Раз", english: "Reps")
+    }
+    
+    private var localizeWeight: String {
+        localize(russian: "Вес", english: "Weight")
+    }
+    
+    private var localizeComment: String {
+        localize(russian: "Заметка", english: "Comment")
+    }
+    
     var body: some View {
         VStack(spacing: 12) {
             VStack(alignment: .leading) {
                 if !isAddingLaps {
-                    ParameterTFView(title: "Sets", placeholder: "0", input: $approach)
+                    ParameterTFView(title: localizeApproach, placeholder: "0", input: $approach)
                         .focused($isFocused, equals: .approach)
                 }
-                ParameterTFView(title: "Reps", placeholder: "0", input: $repetition)
+                ParameterTFView(title: localizeRepetition, placeholder: "0", input: $repetition)
                     .focused($isFocused, equals: .repetition)
-                ParameterTFView(title: "Weight", placeholder: "0", isWeight: true, input: $weight)
+                ParameterTFView(title: localizeWeight, placeholder: "0", isWeight: true, input: $weight)
                     .focused($isFocused, equals: .weight)
                     .padding(.bottom, 20)
             }
             
-            TextField("Comment", text: $comment)
+            TextField(localizeComment, text: $comment)
                 .focused($isFocused, equals: .comment)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())

@@ -29,15 +29,22 @@ extension View {
     }
     
     func startRattleVibration() {
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            
-            let numberOfVibrations = 5
-            let interval: TimeInterval = 0.1
-            
-            for i in 0..<numberOfVibrations {
-                DispatchQueue.main.asyncAfter(deadline: .now() + (interval * Double(i))) {
-                    generator.impactOccurred()
-                }
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        
+        let numberOfVibrations = 5
+        let interval: TimeInterval = 0.1
+        
+        for i in 0..<numberOfVibrations {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (interval * Double(i))) {
+                generator.impactOccurred()
             }
         }
+    }
+    
+    func localize(russian: String, english: String) -> String {
+        switch AppLanguage.shared {
+        case .russian: russian
+        default: english
+        }
+    }
 }
