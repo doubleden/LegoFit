@@ -18,6 +18,7 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                 
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: 10) {
+                        Spacer(minLength: 5)
                         ForEach(
                             fetchedListVM.exerciseCategoriesAll
                         ) { category in
