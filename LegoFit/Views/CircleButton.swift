@@ -27,12 +27,11 @@ struct CircleButton: View {
                             center: .center
                         )
                         : AngularGradient(
-                            colors: [.blue, .sky],
+                            colors: [.yellowEdit, .orange],
                             center: .center,
                             angle: .degrees(300)
                         )
                     )
-                    .shadow(color: .violet, radius: isDisable ? 0 : 4)
                 icon
                     .foregroundStyle(.black)
                     .font(.largeTitle)

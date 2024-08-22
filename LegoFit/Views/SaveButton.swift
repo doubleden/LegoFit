@@ -11,13 +11,8 @@ struct SaveButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action, label: {
-            Text("Save")
-                .foregroundStyle(.white)
-                .padding(.trailing, 6)
-        })
-        .background(Gradient(colors: [clearGray, .venom]))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        Button("Save", action: action)
+            .foregroundStyle(.green)
     }
 }
 

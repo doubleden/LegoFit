@@ -60,22 +60,20 @@ fileprivate struct ButtonWorkoutView: View {
     @Binding var createWorkoutVM: CreateWorkoutViewModel
     
     var body: some View {
-        ZStack {
-            Button("Workout") {
-                createWorkoutVM.isSaveSheetPresented.toggle()
-            }
-            .disabled(createWorkoutVM.isExercisesInWorkoutEmpty)
-            .buttonStyle(CustomButtonStyle(isDisabled: createWorkoutVM.isExercisesInWorkoutEmpty))
-            if createWorkoutVM.workout.exercises.count > 0 {
-                Text(createWorkoutVM.workout.exercises.count.formatted())
-                    .font(.caption2)
-                    .foregroundColor(.white)
-                    .frame(width: 20)
-                    .background(.venom)
-                    .clipShape(Circle())
-                    .offset(x: 40, y: -17)
-            }
+        Button("Workout") {
+            createWorkoutVM.isSaveSheetPresented.toggle()
         }
+        .disabled(createWorkoutVM.isExercisesInWorkoutEmpty)
+        .buttonStyle(CustomButtonStyle(isDisabled: createWorkoutVM.isExercisesInWorkoutEmpty))
+        .overlay(
+            createWorkoutVM.workout.exercises.count > 0
+            ? AnyView(BadgeView(
+                number: createWorkoutVM.workout.exercises.count)
+                .offset(x: 7, y: -6)
+            )
+            : AnyView(Circle().opacity(0))
+            ,alignment: .topTrailing
+        )
     }
 }
 
@@ -101,6 +99,19 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
     }
 }
 
+struct BadgeView: View {
+    let number: Int
+    
+    var body: some View {
+        Text(number.formatted())
+            .font(.caption2)
+            .foregroundColor(.black)
+            .frame(width: 20)
+            .background(.yellow)
+            .clipShape(Circle())
+    }
+}
+
 #Preview {
     let container = DataController.previewContainer
     
@@ -109,4 +120,3 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .modelContainer(container)
     }
 }
-

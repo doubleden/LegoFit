@@ -35,7 +35,7 @@ struct HistoryWorkoutView: View {
                                 NavigationLink(workout.name) {
                                     HistoryWorkoutDetailsView(workout: workout)
                                 }
-                                .foregroundStyle(.sky)
+                                .foregroundStyle(.yellow)
                             }
                             .mainRowStyle()
                         } header: {

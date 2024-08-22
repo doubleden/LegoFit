@@ -40,7 +40,7 @@ struct ActiveWorkoutView: View {
                             total: Double(workout.exercises.count)
                         )
                         .padding(EdgeInsets(top: 0, leading: -15, bottom: 0, trailing: -15))
-                        .tint(.sky)
+                        .tint(.yellow)
                         
                         Group {
                             switch exercise {
@@ -134,11 +134,11 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
     private var color: RadialGradient {
         switch buttonTitle {
         case .done:
-            RadialGradient(colors: [.sky, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
+            RadialGradient(colors: [.orange, .darkGrey, .black], center: .center, startRadius: 60, endRadius: 5)
         case .next:
-            RadialGradient(colors: [clearGray, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
+            RadialGradient(colors: [.purple, .darkGrey, .black], center: .center, startRadius: 60, endRadius: 5)
         case .finish:
-            RadialGradient(colors: [.yellow, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
+            RadialGradient(colors: [.yellow, .darkGrey, .black], center: .center, startRadius: 60, endRadius: 5)
         }
     }
     
@@ -161,7 +161,7 @@ struct MainBackgroundWithFlashAnimation: View {
     
     private var flashColor: Color {
         switch activeWorkoutVM.buttonTitle {
-        case .done: .sky
+        case .done: .orange
         case .next: .violet
         case .finish: .clear
         }

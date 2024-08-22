@@ -18,7 +18,7 @@ struct CategoryButton: View {
             action()
         }) {
             Text(title)
-                .foregroundStyle(!isSelected ? .gray : .white)
+                .foregroundStyle(!isSelected ? .gray : .black)
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
         }
         .buttonStyle(CustomButtonStyle(isSelected: isSelected))
@@ -28,7 +28,7 @@ struct CategoryButton: View {
 fileprivate struct CustomButtonStyle: ButtonStyle {
     var isSelected: Bool
     
-    private let onColor = Gradient(colors: [.main, .violet])
+    private let onColor = Gradient(colors: [.orange])
     private let offColor = Gradient(colors: [clearGray])
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {

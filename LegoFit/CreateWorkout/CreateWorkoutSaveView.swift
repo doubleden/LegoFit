@@ -70,7 +70,7 @@ fileprivate struct InputNameTF: View {
             .frame(width: 300, height: 50)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.sky)
+                    .stroke(Color.yellow)
             )
             .focused($isFocused)
             .toolbar {
@@ -116,8 +116,7 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .frame(width: 150 ,height: 50)
             .foregroundStyle(isDisabled ? .gray : .white)
             .background(isDisabled ? off : on)
-            .clipShape(.rect(cornerRadius: 5))
-            .overlay(RoundedRectangle(cornerRadius: 5).stroke())
+            .clipShape(.rect(cornerRadius: 15))
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
@@ -179,7 +178,7 @@ fileprivate struct DeleteButton: View {
             }
         }, label: {
             Image(systemName: "minus.circle")
-                .tint(.rose)
+                .tint(.red)
         })
     }
 }

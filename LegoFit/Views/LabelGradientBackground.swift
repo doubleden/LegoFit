@@ -14,10 +14,9 @@ struct LabelGradientBackground<Content: View>: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
-                .foregroundStyle(Gradient(colors: [.gray.opacity(0.3), .rose]))
+                .foregroundStyle(Gradient(colors: [.gray.opacity(0.3), .orange]))
                 .opacity(0.8)
             .frame(width: width, height: 40)
-            .shadow(color: .night, radius: 10, y: 10)
             
             content
         }

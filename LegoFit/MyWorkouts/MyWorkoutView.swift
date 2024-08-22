@@ -55,8 +55,8 @@ struct MyWorkoutView: View {
                         workout: myWorkoutVM.workout
                     )
                 )
-            .presentationDetents([.height(300)])
-            .presentationDragIndicator(.visible)
+                .presentationDetents([.height(300)])
+                .presentationDragIndicator(.visible)
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
@@ -79,6 +79,7 @@ struct MyWorkoutView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {isPresented.toggle()}, label: {
                         Image(systemName: "plus.circle")
+                            .font(.title3)
                     })
                 }
             }

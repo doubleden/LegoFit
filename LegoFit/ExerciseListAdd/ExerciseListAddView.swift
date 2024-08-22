@@ -53,7 +53,7 @@ fileprivate struct LapElements: View {
                 .frame(width: 170, height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.sky)
+                        .stroke(Color.yellow)
                 )
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {

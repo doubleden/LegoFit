@@ -18,6 +18,11 @@ struct MyWorkoutEditExerciseView: View {
                 MainGradientBackground()
                     .ignoresSafeArea()
                     .blur(radius: 10)
+                    .onTapGesture {
+                        withAnimation {
+                            isFocused = nil
+                        }
+                    }
                 VStack(spacing: 20) {
                     ExerciseParametersTF(
                         isFocused: $isFocused, approach: $myWorkoutDetailsVM.approach,
@@ -26,14 +31,12 @@ struct MyWorkoutEditExerciseView: View {
                         comment: $myWorkoutDetailsVM.comment,
                         isAddingLaps: myWorkoutDetailsVM.isLap
                     )
+                    Spacer()
                 }
                 .onAppear {
                     myWorkoutDetailsVM.setupTextFields()
                 }
                 .padding()
-            }
-            .onTapGesture {
-                isFocused = nil
             }
             .navigationTitle(myWorkoutDetailsVM.exercise.name)
             .navigationBarTitleDisplayMode(.inline)

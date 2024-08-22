@@ -70,7 +70,7 @@ fileprivate struct Stroke: ViewModifier {
                     if isCurrentExercise {
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(lineWidth: 4)
-                            .foregroundStyle(.sky)
+                            .foregroundStyle(.yellow)
                     } else {
                         Circle()
                             .foregroundStyle(.clear)

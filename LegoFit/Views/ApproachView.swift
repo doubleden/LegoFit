@@ -18,7 +18,7 @@ struct ApproachView: View {
             Text(text)
             HStack {
                 Text(completedApproach.formatted())
-                    .foregroundStyle(completedApproach == 0 ? .white : .sky)
+                    .foregroundStyle(completedApproach == 0 ? .white : .yellow)
                 Text("of")
                 Text(approach.formatted())
             }

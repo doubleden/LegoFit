@@ -87,7 +87,7 @@ struct ExerciseParametersTF: View {
                 weight = ""
             }
         })
-        .onChange(of: isFocused, { oldValue, newValue in
+        .onChange(of: isFocused, { _, _ in
             switch isFocused {
             case .approach:
                 if approach == "0" {

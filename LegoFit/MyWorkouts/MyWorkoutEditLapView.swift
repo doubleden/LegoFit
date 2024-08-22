@@ -55,19 +55,18 @@ struct MyWorkoutEditLapView: View {
                 }
             }
             .onTapGesture {
-                isFocused = false
+                withAnimation {
+                    isFocused = false
+                }
             }
             .navigationTitle("Quantity")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(action: { isPresented.toggle() }, label: {
-                        Text("Add Exercise")
-                            .foregroundStyle(.white)
-                            .padding(.leading, 6)
-                    })
-                    .background(Gradient(colors: [clearGray, .blue]))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Button("Add Exercise") {
+                        isPresented.toggle()
+                    }
+                    .foregroundStyle(.orange)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     SaveButton {

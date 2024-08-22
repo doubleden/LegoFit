@@ -10,9 +10,9 @@ import SwiftUI
 struct MainGradientBackground: View {
     var body: some View {
         AngularGradient(
-            colors: [.night, .rose, .sky, .purple, .cosmos],
+            colors: [.black, .darkGrey, .gray, .offButton],
             center: .top,
-            angle: .degrees(70)
+            angle: .degrees(30)
         )
         .ignoresSafeArea()
     }

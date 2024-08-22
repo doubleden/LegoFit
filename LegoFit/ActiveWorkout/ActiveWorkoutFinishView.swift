@@ -45,7 +45,7 @@ struct ActiveWorkoutFinishView: View {
                             .font(.largeTitle)
                             .foregroundStyle(
                                 AngularGradient(
-                                    colors: [.yellow, .orange, .sky],
+                                    colors: [.yellow, .orange],
                                     center: .center
                                 )
                             )
@@ -140,7 +140,8 @@ fileprivate struct ButtonCustomStyle: ButtonStyle {
         configuration.label
             .padding(EdgeInsets(top: 15, leading: 35, bottom: 15, trailing: 35))
             .font(.title2)
-            .background(configuration.isPressed ? .clear : .rose)
+            .foregroundStyle(.black)
+            .background(configuration.isPressed ? .clear : .orange)
             .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
