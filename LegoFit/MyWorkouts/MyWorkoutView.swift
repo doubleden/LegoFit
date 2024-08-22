@@ -11,7 +11,6 @@ struct MyWorkoutView: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.editMode) private var editMode
-    @State private var isPresented = false
 
     var body: some View {
         ZStack {
@@ -65,22 +64,17 @@ struct MyWorkoutView: View {
                     .presentationDragIndicator(.visible)
             }
             
-            .sheet(isPresented: $isPresented,
-                   content: {
-                EditMyWorkoutSingleView(workout: myWorkoutVM.workout)
-                .presentationDragIndicator(.visible)
-            })
-            
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     EditButton()
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {isPresented.toggle()}, label: {
-                        Image(systemName: "plus.circle")
-                            .font(.title3)
-                    })
+                    NavigationLink(
+                        destination: EditMyWorkoutSingleView(workout: myWorkoutVM.workout)) {
+                            Image(systemName: "plus.circle")
+                                .font(.title3)
+                        }
                 }
             }
             .alert(myWorkoutVM.alertMessage ?? "",
