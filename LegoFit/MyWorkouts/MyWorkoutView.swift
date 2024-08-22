@@ -22,6 +22,8 @@ struct MyWorkoutView: View {
                 } else {
                     Text(myWorkoutVM.workout.name)
                         .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.orange)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
                     
