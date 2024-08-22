@@ -20,6 +20,10 @@ extension View {
         modifier(LapExerciseRowStyle())
     }
     
+    func badge(quantity: Int, isForTitle: Bool = false) -> some View {
+        modifier(BadgeModifire(quantity: quantity, isForTitle: isForTitle))
+    }
+    
     func startVibrationSuccess() {
         UINotificationFeedbackGenerator().notificationOccurred(.success)
     }

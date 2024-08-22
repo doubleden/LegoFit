@@ -65,14 +65,9 @@ fileprivate struct ButtonWorkoutView: View {
         }
         .disabled(createWorkoutVM.isExercisesInWorkoutEmpty)
         .buttonStyle(CustomButtonStyle(isDisabled: createWorkoutVM.isExercisesInWorkoutEmpty))
-        .overlay(
-            createWorkoutVM.workout.exercises.count > 0
-            ? AnyView(BadgeView(
-                number: createWorkoutVM.workout.exercises.count)
-                .offset(x: 7, y: -6)
-            )
-            : AnyView(Circle().opacity(0))
-            ,alignment: .topTrailing
+        .badge(
+            quantity: createWorkoutVM.workout.exercises.count,
+            isForTitle: true
         )
     }
 }
@@ -96,19 +91,6 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
             .clipShape(.rect(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 0.7 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
-
-struct BadgeView: View {
-    let number: Int
-    
-    var body: some View {
-        Text(number.formatted())
-            .font(.caption2)
-            .foregroundColor(.black)
-            .frame(width: 20)
-            .background(.yellow)
-            .clipShape(Circle())
     }
 }
 

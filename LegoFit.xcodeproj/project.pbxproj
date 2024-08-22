@@ -54,6 +54,8 @@
 		0581615F2C3492D30012E105 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581615E2C3492D30012E105 /* Lap.swift */; };
 		058882F02C1E31A300451030 /* LabelGradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882EF2C1E31A300451030 /* LabelGradientBackground.swift */; };
 		058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058882F12C1E35CE00451030 /* ParameterTFView.swift */; };
+		058DA0AF2C77CC5600CBDBF7 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DA0AE2C77CC5600CBDBF7 /* BadgeView.swift */; };
+		058DA0B12C77CD7300CBDBF7 /* BadgeModifire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DA0B02C77CD7300CBDBF7 /* BadgeModifire.swift */; };
 		058F4D9E2C73912E008CF2C3 /* CurrentWorkoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */; };
 		05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA11432C2DF20D00145826 /* MyWorkoutViewModel.swift */; };
 		05AA11462C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA11452C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift */; };
@@ -137,6 +139,8 @@
 		0581615E2C3492D30012E105 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		058882EF2C1E31A300451030 /* LabelGradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelGradientBackground.swift; sourceTree = "<group>"; };
 		058882F12C1E35CE00451030 /* ParameterTFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterTFView.swift; sourceTree = "<group>"; };
+		058DA0AE2C77CC5600CBDBF7 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		058DA0B02C77CD7300CBDBF7 /* BadgeModifire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeModifire.swift; sourceTree = "<group>"; };
 		058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWorkoutListView.swift; sourceTree = "<group>"; };
 		05AA11432C2DF20D00145826 /* MyWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutViewModel.swift; sourceTree = "<group>"; };
 		05AA11452C2DF5C700145826 /* MyWorkoutEditExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutEditExerciseViewModel.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				05373F912C6F723D008BEE84 /* ExerciseParametersView.swift */,
 				056467152C727EE70029B0B4 /* StarFallAnimationView.swift */,
 				058F4D9D2C73912E008CF2C3 /* CurrentWorkoutListView.swift */,
+				058DA0AE2C77CC5600CBDBF7 /* BadgeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 				05BC99AF2C4AED9700ED5B0D /* MainListStyle.swift */,
 				05BC99B52C4AEE8A00ED5B0D /* MainRowStyle.swift */,
 				051EC9E52C53EA480032C916 /* LapExerciseRowStyle.swift */,
+				058DA0B02C77CD7300CBDBF7 /* BadgeModifire.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 				0516177D2C6E1ED700E28777 /* ActiveWorkoutLapView.swift in Sources */,
 				05F87D2A2C0B7C8400AFB4CA /* ExerciseImageView.swift in Sources */,
 				05AA11442C2DF20D00145826 /* MyWorkoutViewModel.swift in Sources */,
+				058DA0AF2C77CC5600CBDBF7 /* BadgeView.swift in Sources */,
 				05373F902C6F7111008BEE84 /* DividerVerticalView.swift in Sources */,
 				053763AC2C5D5EA500312A77 /* FetchedListView.swift in Sources */,
 				05373F922C6F723D008BEE84 /* ExerciseParametersView.swift in Sources */,
@@ -512,6 +519,7 @@
 				053763B92C5D737D00312A77 /* EditMyWorkoutSingleView.swift in Sources */,
 				05138FEB2C621346009E7954 /* FetchedListViewable.swift in Sources */,
 				0502F3B92C5941D7006FB721 /* MyWorkoutEditLapView.swift in Sources */,
+				058DA0B12C77CD7300CBDBF7 /* BadgeModifire.swift in Sources */,
 				058882F22C1E35CE00451030 /* ParameterTFView.swift in Sources */,
 				0525D3B72C09DF800007F632 /* MyWorkoutsView.swift in Sources */,
 				0538125D2C18F2440040CD5D /* CreateWorkoutSaveView.swift in Sources */,

@@ -33,6 +33,7 @@ struct ExerciseListAddView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ButtonLap(isAddingLap: $exerciseListVM.isAddingLap)
+                    .badge(quantity: exerciseListVM.exercisesInLaps.count)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Spacer()
