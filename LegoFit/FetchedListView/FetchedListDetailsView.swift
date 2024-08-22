@@ -36,12 +36,11 @@ struct FetchedListDetailsView<ViewModel: FetchedListViewable>: View {
                             .font(.subheadline)
                         
                         ExerciseParametersTF(
-                            approach: $fetchedListDetailsVM.approachInputExercise,
+                            isFocused: $isFocused, approach: $fetchedListDetailsVM.approachInputExercise,
                             repetition: $fetchedListDetailsVM.repInputExercise,
                             weight: $fetchedListDetailsVM.weightInputExercise,
                             comment: $fetchedListDetailsVM.commentInputExercise,
-                            isAddingLaps: viewModel.isAddingLap,
-                            isFocused: $isFocused
+                            isAddingLaps: viewModel.isAddingLap
                         )
                     }
                     .padding(.top, 10)

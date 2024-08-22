@@ -11,6 +11,7 @@ struct MyWorkoutView: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.editMode) private var editMode
+    @State private var isPresented = false
 
     var body: some View {
         ZStack {
@@ -46,8 +47,40 @@ struct MyWorkoutView: View {
                 
                 ExerciseList(myWorkoutVM: myWorkoutVM)
             }
+            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutEditExerciseView(
+                    myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel(
+                        exercise: exercise,
+                        exerciseType: myWorkoutVM.sheetExerciseType
+                        ?? .single(exercise),
+                        workout: myWorkoutVM.workout
+                    )
+                )
+            .presentationDetents([.height(300)])
+            .presentationDragIndicator(.visible)
+            }
+            
+            .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
+                MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
+                    .presentationDetents([.height(220)])
+                    .presentationDragIndicator(.visible)
+            }
+            
+            .sheet(isPresented: $isPresented,
+                   content: {
+                EditMyWorkoutSingleView(workout: myWorkoutVM.workout)
+                .presentationDragIndicator(.visible)
+            })
+            
             .toolbar {
-                EditButton()
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {isPresented.toggle()}, label: {
+                        Image(systemName: "plus.circle")
+                    })
+                }
             }
             .alert(myWorkoutVM.alertMessage ?? "",
                    isPresented: $myWorkoutVM.isAlertPresented,
@@ -60,7 +93,7 @@ struct MyWorkoutView: View {
 
 fileprivate struct ExerciseList: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
-    @State var isPresented = false
+    
     var body: some View {
         VStack(spacing:(0)) {
             DividerHorizontalView()
@@ -114,39 +147,9 @@ fileprivate struct ExerciseList: View {
                 .onMove(perform: myWorkoutVM.moveCell)
                 .onDelete(perform: myWorkoutVM.deleteCell)
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {isPresented.toggle()}, label: {
-                        Image(systemName: "plus.circle")
-                    })
-                }
-            }
             .scrollIndicators(.hidden)
             .mainListStyle()
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-            .sheet(item: $myWorkoutVM.sheetExercise) { exercise in MyWorkoutEditExerciseView(
-                    myWorkoutDetailsVM: MyWorkoutEditExerciseViewModel(
-                        exercise: exercise,
-                        exerciseType: myWorkoutVM.sheetExerciseType
-                        ?? .single(exercise),
-                        workout: myWorkoutVM.workout
-                    )
-                )
-            .presentationDetents([.height(300)])
-            .presentationDragIndicator(.visible)
-            }
-            
-            .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
-                MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
-                    .presentationDetents([.height(220)])
-                    .presentationDragIndicator(.visible)
-            }
-            
-            .sheet(isPresented: $isPresented,
-                   content: {
-                EditMyWorkoutSingleView(workout: myWorkoutVM.workout)
-                .presentationDragIndicator(.visible)
-            })
         }
     }
 }

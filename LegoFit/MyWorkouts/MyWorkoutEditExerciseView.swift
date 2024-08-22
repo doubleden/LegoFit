@@ -18,25 +18,22 @@ struct MyWorkoutEditExerciseView: View {
                 MainGradientBackground()
                     .ignoresSafeArea()
                     .blur(radius: 10)
-                ScrollView {
-                    VStack(spacing: 20) {
-                        ExerciseParametersTF(
-                            approach: $myWorkoutDetailsVM.approach,
-                            repetition: $myWorkoutDetailsVM.rep,
-                            weight: $myWorkoutDetailsVM.weight,
-                            comment: $myWorkoutDetailsVM.comment,
-                            isAddingLaps: myWorkoutDetailsVM.isLap,
-                            isFocused: $isFocused
-                        )
-                    }
-                    .onAppear {
-                        myWorkoutDetailsVM.setupTextFields()
-                    }
-                    .padding()
+                VStack(spacing: 20) {
+                    ExerciseParametersTF(
+                        isFocused: $isFocused, approach: $myWorkoutDetailsVM.approach,
+                        repetition: $myWorkoutDetailsVM.rep,
+                        weight: $myWorkoutDetailsVM.weight,
+                        comment: $myWorkoutDetailsVM.comment,
+                        isAddingLaps: myWorkoutDetailsVM.isLap
+                    )
                 }
-                .onTapGesture {
-                    isFocused = nil
+                .onAppear {
+                    myWorkoutDetailsVM.setupTextFields()
                 }
+                .padding()
+            }
+            .onTapGesture {
+                isFocused = nil
             }
             .navigationTitle(myWorkoutDetailsVM.exercise.name)
             .navigationBarTitleDisplayMode(.inline)

@@ -15,12 +15,12 @@ enum FocusedTextField {
 }
 
 struct ExerciseParametersTF: View {
+    @FocusState.Binding var isFocused: FocusedTextField?
     @Binding var approach: String
     @Binding var repetition: String
     @Binding var weight: String
     @Binding var comment: String
     var isAddingLaps = false
-    @FocusState.Binding var isFocused: FocusedTextField?
     
     private var localizeApproach: String {
         localize(russian: "Подход", english: "Sets")
@@ -58,6 +58,30 @@ struct ExerciseParametersTF: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke())
                 .frame(width: 310)
         }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack(spacing: 20) {
+                    Button("Clear") {
+                        clearFocusedTextField()
+                    }
+                    Spacer()
+                    if isFocused == .weight {
+                        Button(action: {
+                            weight += " + \(weight)"
+                        }, label: {
+                            Image(systemName: "dumbbell")
+                        })
+                    }
+                    Button(
+                        isFocused == .comment
+                        ? "Done"
+                        : "Next"
+                    ) {
+                        changeIsFocused()
+                    }
+                }
+            }
+        }
         .onChange(of: isFocused, { _, _ in
             if !isValid(weight: weight) {
                 weight = ""
@@ -85,30 +109,6 @@ struct ExerciseParametersTF: View {
                 return
             }
         })
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                HStack(spacing: 20) {
-                    Button("Clear") {
-                        clearFocusedTextField()
-                    }
-                    Spacer()
-                    if isFocused == .weight {
-                        Button(action: {
-                            weight += " + \(weight)"
-                        }, label: {
-                            Image(systemName: "dumbbell")
-                        })
-                    }
-                    Button(
-                        isFocused == .comment
-                        ? "Done"
-                        : "Next"
-                    ) {
-                        changeIsFocused()
-                    }
-                }
-            }
-        }
     }
     
     private func clearFocusedTextField() {
@@ -154,9 +154,9 @@ struct ExerciseParametersTF: View {
 #Preview {
     @FocusState var focusedField: FocusedTextField?
     return ExerciseParametersTF(
-        approach: .constant("2"),
+        isFocused: $focusedField, approach: .constant("2"),
         repetition: .constant("15"),
         weight: .constant("150"),
-        comment: .constant("С резинками"), isAddingLaps: false, isFocused: $focusedField
+        comment: .constant("С резинками"), isAddingLaps: false
     )
 }

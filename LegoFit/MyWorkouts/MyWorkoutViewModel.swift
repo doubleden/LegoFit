@@ -60,21 +60,18 @@ final class MyWorkoutViewModel: ExerciseListCellDeletable {
     }
     
     private func isExercisesValid() -> Bool {
-        var isValid = true
         for exercise in exercises {
             switch exercise {
             case .single(let exercise):
-                if (exercise.approach ?? 0) <= 0 || (exercise.rep ?? 0) <= 0 {
-                    isValid.toggle()
-                    break
+                if (exercise.approach ?? 0) < 1 || (exercise.rep ?? 0) < 1 {
+                    return false
                 }
             case .lap(let lap):
-                if lap.approach <= 0 {
-                    isValid.toggle()
-                    break
+                if lap.approach < 1 {
+                    return false
                 }
             }
         }
-        return isValid
+        return true
     }
 }
