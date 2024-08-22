@@ -19,6 +19,8 @@ struct EditMyWorkoutLapView: View {
             FetchedExerciseListView(viewModel: $workoutEditLapVM)
                 .padding(.top,40)
         }
+        .navigationTitle("Lap \(lap.approach.formatted())")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     init(workout: Workout, lap: Lap) {
@@ -30,6 +32,9 @@ struct EditMyWorkoutLapView: View {
 
 #Preview {
     let container = DataController.previewContainer
-    return EditMyWorkoutLapView(workout: Workout.getWorkout(), lap: Lap.getLaps().first!)
+    
+    return NavigationStack {
+        EditMyWorkoutLapView(workout: Workout.getWorkout(), lap: Lap.getLaps().first!)
+    }
         .modelContainer(container)
 }

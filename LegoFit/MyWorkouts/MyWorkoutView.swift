@@ -56,13 +56,13 @@ struct MyWorkoutView: View {
                         workout: myWorkoutVM.workout
                     )
                 )
-                .presentationDetents([.height(300)])
+                .presentationDetents([.height(300), .large])
                 .presentationDragIndicator(.visible)
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
                 MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
-                    .presentationDetents([.height(220)])
+                    .presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
             

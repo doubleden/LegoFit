@@ -48,7 +48,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить"
+            "value" : "Добавить в"
           }
         }
       }
@@ -214,12 +214,32 @@
         }
       }
     },
+    "Lap %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Круг %@"
+          }
+        }
+      }
+    },
     "Lap: %lld" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Круг: %lld"
+          }
+        }
+      }
+    },
+    "Laps" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Круг"
           }
         }
       }
@@ -305,6 +325,7 @@
       }
     },
     "Quantity" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

@@ -26,6 +26,9 @@ struct EditMyWorkoutSingleView: View {
             .onChange(of: workout.exercises) { _, _ in
                 dismiss()
             }
+            .navigationTitle(workout.name)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
         }
     }
     

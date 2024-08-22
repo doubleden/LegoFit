@@ -14,7 +14,6 @@ struct MyWorkoutEditLapView: View {
     @State private var textInput = ""
     @State private var quantity = 0
     @FocusState private var isFocused
-    @State private var isPresented = false
     
     var body: some View {
         NavigationStack {
@@ -59,12 +58,12 @@ struct MyWorkoutEditLapView: View {
                     isFocused = false
                 }
             }
-            .navigationTitle("Quantity")
+            .navigationTitle("Laps")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Add Exercise") {
-                        isPresented.toggle()
+                    NavigationLink("Add Exercise") {
+                        EditMyWorkoutLapView(workout: workout, lap: lap)
                     }
                     .foregroundStyle(.orange)
                 }
@@ -74,11 +73,6 @@ struct MyWorkoutEditLapView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isPresented,
-                   content: {
-                EditMyWorkoutLapView(workout: workout, lap: lap)
-                .presentationDragIndicator(.visible)
-            })
         }
     }
     
