@@ -53,8 +53,19 @@ final class ActiveWorkoutViewModel {
     }
 }
 
-enum ButtonTitle: String {
-    case done = "Done"
-    case next = "Next"
-    case finish = "Finish"
+enum ButtonTitle {
+    case done
+    case next
+    case finish
+    
+    var localized: String {
+        switch self {
+        case .done:
+            return localize(russian: "Сделано", english: "Done")
+        case .next:
+            return localize(russian: "Далее", english: "Next")
+        case .finish:
+            return localize(russian: "Завершить", english: "Finish")
+        }
+    }
 }

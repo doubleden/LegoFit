@@ -11,12 +11,16 @@ struct ActiveWorkoutLapView: View {
     let lap: Lap
     let completedApproach: Int
     
+    private var title: String {
+        localize(russian: "Кругов закончено", english: "laps done")
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Spacer()
                 ApproachView(
-                    text: "laps done",
+                    text: title,
                     completedApproach: completedApproach,
                     approach: lap.approach,
                     font: 30

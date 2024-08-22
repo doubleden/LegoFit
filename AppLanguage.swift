@@ -21,3 +21,10 @@ enum AppLanguage: String {
         }
     }
 }
+
+func localize(russian: String, english: String) -> String {
+    switch AppLanguage.shared {
+    case .russian: russian
+    default: english
+    }
+}

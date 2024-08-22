@@ -63,6 +63,28 @@ struct ExerciseParametersTF: View {
                 weight = ""
             }
         })
+        .onChange(of: isFocused, { oldValue, newValue in
+            switch isFocused {
+            case .approach:
+                if approach == "0" {
+                    approach = ""
+                }
+            case .repetition:
+                if repetition == "0" {
+                    repetition = ""
+                }
+            case .weight:
+                if weight == "0" {
+                    weight = ""
+                }
+            case .comment:
+                if comment == "0" {
+                    comment = ""
+                }
+            case nil:
+                return
+            }
+        })
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack(spacing: 20) {

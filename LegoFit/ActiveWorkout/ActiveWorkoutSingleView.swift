@@ -11,6 +11,10 @@ struct ActiveWorkoutSingleView: View {
     let single: Exercise
     let completedApproach: Int
     
+    private var title: String {
+        localize(russian: "Сделано", english: "sets done")
+    }
+    
     var body: some View {
         VStack(spacing: 30) {
             LabelGradientBackground(content: Text(single.name))
@@ -21,7 +25,7 @@ struct ActiveWorkoutSingleView: View {
             
             HStack(spacing: 25) {
                 ApproachView(
-                    text: "sets done",
+                    text: title,
                     completedApproach: completedApproach,
                     approach: single.approach ?? 0
                 )

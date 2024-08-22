@@ -23,7 +23,6 @@ struct ActiveWorkoutView: View {
                 MainBackgroundWithFlashAnimation(
                     activeWorkoutVM: activeWorkoutVM
                 )
-                // Костыль
                 if activeWorkoutVM.isExercisesDidEnd {
                     ActiveWorkoutFinishView(
                         input: $activeWorkoutVM.workoutComment
@@ -66,7 +65,7 @@ struct ActiveWorkoutView: View {
                         )
                         .id(exercise)
                         
-                        Button(activeWorkoutVM.buttonTitle.rawValue) {
+                        Button(activeWorkoutVM.buttonTitle.localized) {
                             if activeWorkoutVM.buttonTitle == .finish {
                                 withAnimation {
                                     activeWorkoutVM.isExercisesDidEnd.toggle()
@@ -135,18 +134,18 @@ fileprivate struct CustomButtonStyle: ButtonStyle {
     private var color: RadialGradient {
         switch buttonTitle {
         case .done:
-            RadialGradient(colors: [.sky, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+            RadialGradient(colors: [.sky, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
         case .next:
-            RadialGradient(colors: [clearGray, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+            RadialGradient(colors: [clearGray, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
         case .finish:
-            RadialGradient(colors: [.yellow, .violet, .night], center: .center, startRadius: 40, endRadius: 5)
+            RadialGradient(colors: [.yellow, .violet, .night], center: .center, startRadius: 60, endRadius: 5)
         }
     }
     
     @ViewBuilder
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 60, height: 50)
+            .frame(width: 150, height: 80)
             .padding()
             .font(.title3)
             .background(color)
