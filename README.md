@@ -12,3 +12,5 @@ Key Features:
 Legofit is perfect for both beginners and experienced athletes. Whether you’re at home, in the gym, or outdoors, Legofit helps you build the ideal workout and achieve your fitness goals.
 
 Start your fitness journey today with Legofit – build your path to the perfect shape!
+
+![alt text](https://siamster.com/LegoFit_AppStore/github.png)
