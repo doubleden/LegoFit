@@ -15,7 +15,7 @@ struct LapQuantityTF: View {
     let minusAction: () -> Void
     
     var body: some View {
-        VStack(spacing: 35) {
+        VStack(spacing: 20) {
             
             TextField("0", text: $input)
                 .textFieldStyle(OvalTextFieldStyle())

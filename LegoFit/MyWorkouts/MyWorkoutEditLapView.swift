@@ -10,10 +10,16 @@ import SwiftUI
 struct MyWorkoutEditLapView: View {
     var workout: Workout
     var lap: Lap
+    @Binding var selectedDetent: PresentationDetent
+    @Binding var detents: Set<PresentationDetent>
     
+    @State private var isListShow = false
     @State private var textInput = ""
     @State private var quantity = 0
     @FocusState private var isFocused
+    @State private var arrowDegrees = -90.0
+    @State private var isBlinking = false
+    private let height: PresentationDetent = .height(260)
     
     var body: some View {
         NavigationStack {
@@ -21,36 +27,72 @@ struct MyWorkoutEditLapView: View {
                 MainGradientBackground()
                     .ignoresSafeArea()
                     .blur(radius: 10)
-                ScrollView {
-                    VStack(spacing: 30) {
-                        LapQuantityTF(
-                            input: $textInput, isFocused: $isFocused) {
-                                if quantity < 100 {
-                                    quantity += 1
-                                }
-                            } minusAction: {
-                                if quantity > 0 {
-                                    quantity -= 1
-                                }
+                
+                VStack(spacing: 40) {
+                    LapQuantityTF(
+                        input: $textInput, isFocused: $isFocused) {
+                            if quantity < 100 {
+                                quantity += 1
                             }
-                            .focused($isFocused)
-                    }
-                    .padding(.top, 30)
-                    .onAppear {
-                        quantity = lap.approach
-                        textInput = quantity.formatted()
-                    }
-                    .onChange(of: quantity) { _ , newValue in
-                        textInput = newValue.formatted()
-                    }
-                    .onChange(of: textInput) { _, newValue in
-                        quantity = Int(textInput) ?? 0
-                    }
-                    .onChange(of: isFocused) { _, _ in
-                        if quantity > 100 {
-                            quantity = 100
+                        } minusAction: {
+                            if quantity > 0 {
+                                quantity -= 1
+                            }
+                        }
+                        .focused($isFocused)
+                    
+                    VStack {
+                        VStack(spacing: 10) {
+                            Image(systemName: "chevron.right.2")
+                                .rotationEffect(.degrees(arrowDegrees))
+                                .font(.title)
+                                .opacity(isBlinking ? 0.4 : 1.0)
+                                .offset(y: isBlinking ? 3 : 0)
+                                .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isBlinking)
+                                .shadow(color: .yellow, radius: 2)
+                            Text("Add Exercise")
+                        }
+                        .foregroundStyle(.orange)
+                        
+                        if isListShow {
+                            EditMyWorkoutLapView(workout: workout, lap: lap)
+                                .transition(
+                                    .asymmetric(
+                                        insertion: .move(edge: .bottom),
+                                        removal: .move(edge: .bottom)
+                                    )
+                                )
+                        } else {
+                            Spacer()
                         }
                     }
+                    .onChange(of: selectedDetent) { _, newValue in
+                        withAnimation {
+                            isListShow = newValue == .large
+                            arrowDegrees = newValue == .large ? 90.0 : -90.0
+                            updateDetentsWithDelay()
+                        }
+                    }
+                }
+                .padding(.top, 50)
+                .onAppear {
+                    quantity = lap.approach
+                    textInput = quantity.formatted()
+                    isBlinking.toggle()
+                }
+                .onChange(of: quantity) { _ , newValue in
+                    textInput = newValue.formatted()
+                }
+                .onChange(of: textInput) { _, newValue in
+                    quantity = Int(textInput) ?? 0
+                }
+                .onChange(of: isFocused) { _, _ in
+                    if quantity > 100 {
+                        quantity = 100
+                    }
+                }
+                .onDisappear {
+                    selectedDetent = height
                 }
             }
             .onTapGesture {
@@ -61,12 +103,6 @@ struct MyWorkoutEditLapView: View {
             .navigationTitle("Laps")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink("Add Exercise") {
-                        EditMyWorkoutLapView(workout: workout, lap: lap)
-                    }
-                    .foregroundStyle(.orange)
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     SaveButton {
                         changeQuantity()
@@ -83,13 +119,24 @@ struct MyWorkoutEditLapView: View {
             workout.exercises[lapIndex] = .lap(workoutLap)
         }
     }
+    
+    private func updateDetentsWithDelay() {
+        Task {
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            guard selectedDetent == .large else {
+                detents = [height, .large]
+                return
+            }
+            detents = [.large, height]
+        }
+    }
 }
 
-import SwiftData
+
 #Preview {
     let container = DataController.previewContainer
     let workout = Workout.getWorkout()
     
-    return MyWorkoutEditLapView(workout: workout, lap: Lap.getLaps().first!)
+    return MyWorkoutEditLapView(workout: workout, lap: Lap.getLaps().first!, selectedDetent: .constant(.medium), detents: .constant([.large, .medium]))
         .modelContainer(container)
 }

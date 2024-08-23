@@ -11,7 +11,11 @@ struct MyWorkoutView: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.editMode) private var editMode
-
+    
+    // Для плавного увеличения высоты для Lap sheet
+    @State var selectedDetent: PresentationDetent = .height(260)
+    @State var detents: Set<PresentationDetent> = [.large, .height(260)]
+    
     var body: some View {
         ZStack {
             MainGradientBackground()
@@ -56,17 +60,22 @@ struct MyWorkoutView: View {
                         workout: myWorkoutVM.workout
                     )
                 )
-                .presentationDetents([.height(300), .large])
+                .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(25)
                 
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
-                MyWorkoutEditLapView(workout: myWorkoutVM.workout, lap: lap)
-                    .presentationDetents([.large])
-                    .presentationDragIndicator(.visible)
-                    .presentationCornerRadius(25)
+                MyWorkoutEditLapView(
+                    workout: myWorkoutVM.workout,
+                    lap: lap,
+                    selectedDetent: $selectedDetent,
+                    detents: $detents
+                )
+                .presentationDetents(detents, selection: $selectedDetent)
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(25)
             }
             
             .toolbar {

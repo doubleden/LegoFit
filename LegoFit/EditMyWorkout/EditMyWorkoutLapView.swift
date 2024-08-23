@@ -13,14 +13,7 @@ struct EditMyWorkoutLapView: View {
     @State private var workoutEditLapVM: EditMyWorkoutLapViewModel
     
     var body: some View {
-        ZStack {
-            MainGradientBackground()
-                .ignoresSafeArea()
-            FetchedExerciseListView(viewModel: $workoutEditLapVM)
-                .padding(.top,40)
-        }
-        .navigationTitle("Lap \(lap.approach.formatted())")
-        .navigationBarTitleDisplayMode(.inline)
+        FetchedExerciseListView(viewModel: $workoutEditLapVM)
     }
     
     init(workout: Workout, lap: Lap) {

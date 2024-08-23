@@ -48,7 +48,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить в"
+            "value" : "Добавить упражнение"
           }
         }
       }
@@ -215,6 +215,7 @@
       }
     },
     "Lap %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
