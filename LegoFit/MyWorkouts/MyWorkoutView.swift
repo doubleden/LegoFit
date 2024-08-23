@@ -95,6 +95,7 @@ struct MyWorkoutView: View {
                    actions: {}
             )
             .environment(\.editMode, editMode)
+            .toolbarTitleDisplayMode(.inline)
         }
     }
 }
@@ -173,26 +174,40 @@ struct ListEditButton: View {
 
 struct TextFieldTitle: View {
     @Bindable var myWorkoutVM: MyWorkoutViewModel
+    
     @FocusState private var isTitleFocused
+    @State private var input = ""
     
     var body: some View {
-        TextField("", text: $myWorkoutVM.workout.name)
+        TextField("", text: $input)
             .font(.largeTitle)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(clearGray)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .padding()
+            .autocorrectionDisabled()
             .focused($isTitleFocused)
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     HStack {
+                        Button("Clear") {
+                            input = ""
+                        }
                         Spacer()
                         Button("Done") {
                             isTitleFocused.toggle()
                         }
                     }
                 }
+            }
+            .onChange(of: input) { _, newValue in
+                if !input.trimmingCharacters(in: .whitespaces).isEmpty {
+                    myWorkoutVM.workout.name = newValue
+                }
+            }
+            .onAppear {
+                input = myWorkoutVM.workout.name
             }
     }
 }

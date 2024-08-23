@@ -72,6 +72,7 @@ fileprivate struct InputNameTF: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color.yellow)
             )
+            .autocorrectionDisabled()
             .focused($isFocused)
             .toolbar {
                 ToolbarItem(placement: .keyboard) {

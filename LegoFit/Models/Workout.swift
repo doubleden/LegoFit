@@ -33,6 +33,10 @@ final class Workout {
         
         return lapIndex
     }
+    
+    func isNameValid() -> Bool {
+        !self.name.trimmingCharacters(in: .whitespaces).isEmpty && !self.exercises.isEmpty
+    }
 }
 
 // MARK: - Enum ExerciseType
