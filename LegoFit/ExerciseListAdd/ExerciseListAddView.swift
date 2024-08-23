@@ -79,6 +79,7 @@ fileprivate struct LapElements: View {
                     exerciseListVM.isAddingLap.toggle()
                     isFocused = false
                 }
+                startVibrationSuccess()
             }
             .padding(
                 EdgeInsets(
