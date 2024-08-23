@@ -90,9 +90,13 @@ struct MyWorkoutView: View {
                         }
                 }
             }
-            .alert(myWorkoutVM.alertMessage ?? "",
+            
+            .alert(localize(russian: "Проверьте параметры", english: "Check parameters"),
                    isPresented: $myWorkoutVM.isAlertPresented,
-                   actions: {}
+                   actions: {},
+                   message: {
+                    Text(myWorkoutVM.alertMessage ?? "")
+                    }
             )
             .environment(\.editMode, editMode)
             .toolbarTitleDisplayMode(.inline)

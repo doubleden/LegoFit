@@ -33,7 +33,6 @@ final class MyWorkoutViewModel: ExerciseListCellDeletable {
     func startWorkout() {
         guard isExercisesValid() else {
             isAlertPresented.toggle()
-            alertMessage = "Проверьте заполнение параметров всех упражнений.\nПодход и повторения должны быть больше 0"
             return
         }
         activeWorkout = workout
@@ -60,16 +59,34 @@ final class MyWorkoutViewModel: ExerciseListCellDeletable {
     }
     
     private func isExercisesValid() -> Bool {
-        for exercise in exercises {
-            switch exercise {
-            case .single(let exercise):
-                if (exercise.approach ?? 0) < 1 || (exercise.rep ?? 0) < 1 {
+        for exerciseType in exercises {
+            switch exerciseType {
+            case .single(let single):
+                guard (single.approach ?? 0) > 0 && (single.rep ?? 0) > 0 else {
+                    alertMessage = localize(
+                        russian: "Подход и повторения должны быть больше 0",
+                        english: "Sets and reps must be greater than 0"
+                    )
                     return false
                 }
             case .lap(let lap):
-                if lap.approach < 1 {
+                guard isExercisesValid(inLap: lap) else {
+                    alertMessage = localize(
+                        russian: "Количество кругов и повторения должны быть больше 0",
+                        english: "The number of laps and reps must be greater than 0"
+                    )
                     return false
                 }
+            }
+        }
+        return true
+    }
+    
+    private func isExercisesValid(inLap: Lap) -> Bool {
+        guard inLap.approach > 0 else { return false }
+        for exercise in inLap.exercises {
+            if (exercise.rep ?? 0) < 1 {
+                return false
             }
         }
         return true
