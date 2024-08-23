@@ -72,6 +72,7 @@ struct MyWorkoutEditLapView: View {
                             arrowDegrees = newValue == .large ? 90.0 : -90.0
                             updateDetentsWithDelay()
                         }
+                        startVibrationSuccess()
                     }
                 }
                 .padding(.top, 50)

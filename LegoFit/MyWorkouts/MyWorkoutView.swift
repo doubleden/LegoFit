@@ -63,7 +63,6 @@ struct MyWorkoutView: View {
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(25)
-                
             }
             
             .sheet(item: $myWorkoutVM.sheetEditLap) { lap in
