@@ -13,4 +13,4 @@ Legofit is perfect for both beginners and experienced athletes. Whether you’re
 
 Start your fitness journey today with Legofit – build your path to the perfect shape!
 
-![alt text](https://siamster.com/LegoFit_AppStore/github.png)
+![alt text](https://siamster.com/LegoFit_AppStore/GitHubLegofit.png)
