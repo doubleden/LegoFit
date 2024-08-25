@@ -29,6 +29,7 @@
 		0528E9972C2F051D00BE9B02 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0528E9962C2F051D00BE9B02 /* CircleButton.swift */; };
 		052BA41F2C5AB28C00892ED7 /* LapQuantityTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA41E2C5AB28C00892ED7 /* LapQuantityTF.swift */; };
 		052BA4222C5AB3C900892ED7 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BA4212C5AB3C900892ED7 /* OvalTextFieldStyle.swift */; };
+		0536A5172C7B61460006DF67 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0536A5162C7B61460006DF67 /* Kingfisher */; };
 		05373F8E2C6F6E72008BEE84 /* ApproachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05373F8D2C6F6E72008BEE84 /* ApproachView.swift */; };
 		05373F902C6F7111008BEE84 /* DividerVerticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05373F8F2C6F7111008BEE84 /* DividerVerticalView.swift */; };
 		05373F922C6F723D008BEE84 /* ExerciseParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05373F912C6F723D008BEE84 /* ExerciseParametersView.swift */; };
@@ -45,7 +46,6 @@
 		054BF84D2C5FB3DD005FBEA5 /* FetchedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84C2C5FB3DD005FBEA5 /* FetchedListViewModel.swift */; };
 		054BF84F2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BF84E2C5FB94D005FBEA5 /* FetchedListDetailsViewModel.swift */; };
 		05530F432C2618A30044A855 /* MyWorkoutEditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05530F422C2618A30044A855 /* MyWorkoutEditExerciseView.swift */; };
-		0553512B2C781E7F003D077F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0553512A2C781E7F003D077F /* Kingfisher */; };
 		056467162C727EE70029B0B4 /* StarFallAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467152C727EE70029B0B4 /* StarFallAnimationView.swift */; };
 		056467182C7286630029B0B4 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056467172C7286630029B0B4 /* Star.swift */; };
 		0567571D2C2B79E9009062C5 /* ExerciseParametersTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567571C2C2B79E9009062C5 /* ExerciseParametersTF.swift */; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0553512B2C781E7F003D077F /* Kingfisher in Frameworks */,
+				0536A5172C7B61460006DF67 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +423,7 @@
 			);
 			name = LegoFit;
 			packageProductDependencies = (
-				0553512A2C781E7F003D077F /* Kingfisher */,
+				0536A5162C7B61460006DF67 /* Kingfisher */,
 			);
 			productName = LegoFit;
 			productReference = 05BC71792C0646F400524C58 /* LegoFit.app */;
@@ -455,7 +455,7 @@
 			);
 			mainGroup = 05BC71702C0646F400524C58;
 			packageReferences = (
-				055351292C781E7F003D077F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0536A5152C7B61460006DF67 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 05BC717A2C0646F400524C58 /* Products */;
 			projectDirPath = "";
@@ -769,7 +769,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		055351292C781E7F003D077F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		0536A5152C7B61460006DF67 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -780,9 +780,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0553512A2C781E7F003D077F /* Kingfisher */ = {
+		0536A5162C7B61460006DF67 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 055351292C781E7F003D077F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 0536A5152C7B61460006DF67 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

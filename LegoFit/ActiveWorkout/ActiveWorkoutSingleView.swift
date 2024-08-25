@@ -16,28 +16,31 @@ struct ActiveWorkoutSingleView: View {
     }
     
     var body: some View {
-        VStack(spacing: 30) {
-            LabelGradientBackground(content: Text(single.name))
-                .font(.title)
-            
-            ExerciseImageView(imageUrl: single.image)
-                .frame(width: 250, height: 150)
-            
-            HStack(spacing: 25) {
-                ApproachView(
-                    text: title,
-                    completedApproach: completedApproach,
-                    approach: single.approach ?? 0
-                )
+        ScrollView {
+            VStack(spacing: 30) {
+                LabelGradientBackground(content: Text(single.name))
+                    .font(.title)
                 
-                DividerVerticalView()
+                ExerciseImageView(imageUrl: single.image)
+                    .frame(width: 250, height: 150)
                 
-                ExerciseParametersView(exercise: single)
+                HStack(spacing: 25) {
+                    ApproachView(
+                        text: title,
+                        completedApproach: completedApproach,
+                        approach: single.approach ?? 0
+                    )
+                    
+                    DividerVerticalView()
+                    
+                    ExerciseParametersView(exercise: single)
+                }
+                .padding()
+                .background(clearGray)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            .padding()
-            .background(clearGray)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
         }
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
 
