@@ -64,6 +64,7 @@
       }
     },
     "Check" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

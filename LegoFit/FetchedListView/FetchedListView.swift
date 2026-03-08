@@ -70,7 +70,6 @@ struct FetchedExerciseListView<ViewModel: FetchedListViewable>: View {
                     }
                 }
                 .mainListStyle()
-                .background(.clear)
                 .refreshable {
                     Task {
                         await fetchedListVM.refreshExercises()
